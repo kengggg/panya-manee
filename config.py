@@ -9,8 +9,8 @@ RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
 OLLAMA_URL = "http://localhost:11434/api/chat"
 
 DATASET_FILES = {
-    "thai": DATA_DIR / "nt_p3_th_2566_items.json",
-    "math": DATA_DIR / "nt_p3_math_2566_items.json",
+    "thai": DATA_DIR / "nt_p3_th_all.json",
+    "math": DATA_DIR / "nt_p3_math_all.json",
 }
 
 PROMPT_TEMPLATE = """คุณกำลังทำข้อสอบระดับประถมศึกษาปีที่ 3 ของประเทศไทย

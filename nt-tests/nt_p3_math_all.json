@@ -1,0 +1,3914 @@
+[
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 1,
+    "question_no": 1,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แก้วสำรวจราคาเครื่องใช้ไฟฟ้า 4 ชนิด: โทรทัศน์ 15,900 บาท; คอมพิวเตอร์ 14,900 บาท; เครื่องปรับอากาศ 13,500 บาท; ตู้เย็น 18,990 บาท",
+    "prompt_text": "จากข้อมูล ถ้าแก้วเรียงลำดับราคาเครื่องใช้ไฟฟ้าจากมากไปน้อย เครื่องใช้ไฟฟ้าในลำดับที่ 3 กับลำดับที่ 4 มีราคาต่างกันกี่บาท",
+    "correct_answer": "1",
+    "correct_answer_text": "1,400",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/2",
+    "skill_tag": [
+      "number_ordering",
+      "comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      3
+    ],
+    "source_pages_answer": [
+      4
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1,400",
+      "2": "3,090",
+      "3": "13,500",
+      "4": "18,990"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 2,
+    "question_no": 2,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "พิซซ่า 4 ถาดเหลือดังนี้: ไส้กรอก 1/7 ถาด, กุ้ง 1/10 ถาด, ปูอัด 1/5 ถาด, แฮม 1/9 ถาด",
+    "prompt_text": "จากข้อมูล พิซซ่าหน้าใดเหลือน้อยที่สุด",
+    "correct_answer": "2",
+    "correct_answer_text": "กุ้ง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/4",
+    "skill_tag": [
+      "fraction_comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      5,
+      6
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ไส้กรอก",
+      "2": "กุ้ง",
+      "3": "ปูอัด",
+      "4": "แฮม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 3,
+    "question_no": 3,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แตนเทน้ำส้มใส่ขวดให้เพื่อน 4 คน: เค้ก 1/5 ขวด, บอล 1/9 ขวด, ต้า 1/8 ขวด, แนน 1/6 ขวด",
+    "prompt_text": "จากข้อมูล ถ้าเรียงลำดับคนที่ได้น้ำส้มจากน้อยไปมากจะเรียงได้ตามข้อใด",
+    "correct_answer": "2",
+    "correct_answer_text": "บอล, ต้า, แนน, เค้ก",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/4",
+    "skill_tag": [
+      "fraction_comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      7,
+      8
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "บอล, แนน, ต้า, เค้ก",
+      "2": "บอล, ต้า, แนน, เค้ก",
+      "3": "เค้ก, แนน, บอล, ต้า",
+      "4": "เค้ก, แนน, ต้า, บอล"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 4,
+    "question_no": 4,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ลุงโตเก็บพุทราได้เดือนมกราคม 2,050 กิโลกรัม และเดือนกุมภาพันธ์ 1,850 กิโลกรัม ขายราคากิโลกรัมละ 9 บาท",
+    "prompt_text": "จากข้อมูล ถ้าลุงโตขายพุทราในราคากิโลกรัมละ 9 บาท รวมทั้งสองเดือนจะขายได้เงินกี่บาท",
+    "correct_answer": "4",
+    "correct_answer_text": "35,100",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "two_step_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      9,
+      10
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "16,650",
+      "2": "18,450",
+      "3": "27,100",
+      "4": "35,100"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 5,
+    "question_no": 5,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อ้วนจัดไข่เค็ม 90 ฟอง ใส่กล่อง กล่องละ 6 ฟอง ราคาขายกล่องละ 50 บาท",
+    "prompt_text": "จากข้อมูล ถ้าจัดไข่เค็มใส่กล่องและขายหมดจะได้เงินทั้งหมดกี่บาท",
+    "correct_answer": "4",
+    "correct_answer_text": "750",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "division",
+      "multiplication",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      11
+    ],
+    "source_pages_answer": [
+      11,
+      12
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "146",
+      "2": "240",
+      "3": "300",
+      "4": "750"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 6,
+    "question_no": 6,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ต้อมมีแสตมป์ 112 ดวง ได้รับจากเพื่อนเพิ่ม 37 ดวง แล้วให้แสตมป์น้องชาย 25 ดวง",
+    "prompt_text": "จากข้อมูล ต้อมเหลือแสตมป์กี่ดวง",
+    "correct_answer": "3",
+    "correct_answer_text": "124",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "two_step_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      13,
+      14
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "50",
+      "2": "87",
+      "3": "124",
+      "4": "174"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 7,
+    "question_no": 7,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "รูปวงกลม 4 รูปแบ่งเป็น 8 ส่วนเท่า ๆ กัน โดยส่วนที่แรเงาคือ ต้น 4/8, เจเจ 3/8, บอล 1/8, ก้อง 5/8",
+    "prompt_text": "จากข้อมูล เศษส่วนที่แรเงาของต้นกับเจเจรวมกันต่างกับของบอลกับก้องรวมกันเท่าใด",
+    "correct_answer": "4",
+    "correct_answer_text": "1/8",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/10",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      16
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "7/8",
+      "2": "6/8",
+      "3": "2/8",
+      "4": "1/8"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 8,
+    "question_no": 8,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "บอสมีที่ดิน 12/12 ไร่ ปลูกกล้วย 7/12 ไร่ ปลูกข้าวโพดน้อยกว่าปลูกกล้วย 3/12 ไร่ พื้นที่ที่เหลือปลูกทานตะวัน",
+    "prompt_text": "จากข้อมูล บอสใช้พื้นที่ในการปลูกทานตะวันกี่ไร่",
+    "correct_answer": "1",
+    "correct_answer_text": "1/12",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/10",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      18,
+      19
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1/12",
+      "2": "2/12",
+      "3": "4/12",
+      "4": "10/12"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 9,
+    "question_no": 9,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตาลมีน้ำผลไม้ 4 แก้ว: น้ำองุ่น 4/12, น้ำส้ม 7/12, น้ำฝรั่ง 3/12, น้ำมะม่วง 5/12 ของแก้ว เทน้ำองุ่นกับน้ำมะม่วงลงแก้วใบที่ 1 และเทน้ำส้มกับน้ำฝรั่งลงแก้วใบที่ 2",
+    "prompt_text": "จากข้อมูล น้ำผลไม้ในแก้วใบที่ 1 ต่างจากน้ำผลไม้ในแก้วใบที่ 2 อยู่เท่าใด",
+    "correct_answer": "1",
+    "correct_answer_text": "1/12",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      20
+    ],
+    "source_pages_answer": [
+      20,
+      21
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1/12",
+      "2": "2/12",
+      "3": "9/12",
+      "4": "10/12"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 10,
+    "question_no": 10,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "นิภาแบ่งเค้ก 1 ก้อนเป็น 12 ส่วน ขายให้เจน 3/12, โต้ง 2/12 และโบว์ 4/12",
+    "prompt_text": "จากข้อมูล นิภาเหลือเค้กเท่าใด",
+    "correct_answer": "4",
+    "correct_answer_text": "3/12",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      22
+    ],
+    "source_pages_answer": [
+      23,
+      24
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "9/12",
+      "2": "7/12",
+      "3": "5/12",
+      "4": "3/12"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 11,
+    "question_no": 11,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แบบรูปเงินออมของนุชเพิ่มขึ้นครั้งละ 13 บาท: อาทิตย์ 26, จันทร์ 39, อังคาร 52, พุธ ?, พฤหัสบดี 78, ศุกร์ ?, เสาร์ ?",
+    "prompt_text": "จากข้อมูล เงินที่นุชออมในวันพุธกับวันศุกร์ต่างกันกี่บาท",
+    "correct_answer": "2",
+    "correct_answer_text": "26",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      25
+    ],
+    "source_pages_answer": [
+      25,
+      26
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "13",
+      "2": "26",
+      "3": "65",
+      "4": "91"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 12,
+    "question_no": 12,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แบบรูปจำนวนรูปเพิ่มขึ้นครั้งละ 3: รูปที่ 1 = 4 รูป, รูปที่ 2 = 7 รูป, รูปที่ 3 = 10 รูป",
+    "prompt_text": "จากข้อมูล รูปที่ 5 จะมีจำนวนรูปทั้งหมดกี่รูป",
+    "correct_answer": "2",
+    "correct_answer_text": "16",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      27
+    ],
+    "source_pages_answer": [
+      27,
+      28
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "13",
+      "2": "16",
+      "3": "19",
+      "4": "21"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 13,
+    "question_no": 13,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ฟ้ามีเงิน 50 บาท 2 ใบ และนมราคาขวดละ 26.50 บาท",
+    "prompt_text": "จากข้อมูล ถ้าฟ้าซื้อนม 3 ขวด ฟ้าจะเหลือเงินเท่าใด",
+    "correct_answer": "1",
+    "correct_answer_text": "20.50 บาท",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      29
+    ],
+    "source_pages_answer": [
+      29
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "20.50 บาท",
+      "2": "23.50 บาท",
+      "3": "73.50 บาท",
+      "4": "79.50 บาท"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 14,
+    "question_no": 14,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แก้มรับประทานอาหารเสร็จเวลา 8.10 น. อีก 20 นาทีเริ่มเรียนออนไลน์ คณิตศาสตร์ 40 นาที ภาษาอังกฤษ 1 ชั่วโมง ภาษาไทย 40 นาที",
+    "prompt_text": "จากข้อมูล แก้มเลิกเรียนออนไลน์ตรงกับเวลาใด",
+    "correct_answer": "4",
+    "correct_answer_text": "10.50 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      30
+    ],
+    "source_pages_answer": [
+      31
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "8.10 น.",
+      "2": "9.10 น.",
+      "3": "10.30 น.",
+      "4": "10.50 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 15,
+    "question_no": 15,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางเวลาทำการบ้าน: กานดา 17.45-18.50, ยุพา 17.30-18.40, สมชาย 17.40-18.30, สุพร 17.50-19.00",
+    "prompt_text": "จากข้อมูล ใครใช้เวลาทำการบ้านเท่ากัน",
+    "correct_answer": "1",
+    "correct_answer_text": "ยุพา, สุพร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration",
+      "table_reading"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      32
+    ],
+    "source_pages_answer": [
+      32,
+      33
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ยุพา, สุพร",
+      "2": "สมชาย, สุพร",
+      "3": "กานดา, ยุพา",
+      "4": "สมชาย, กานดา"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 16,
+    "question_no": 16,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "สุดาเริ่มเรียนคณิตศาสตร์เวลา 8.05 น. ตารางเรียนต่อเนื่องคือ คณิตศาสตร์ 60 นาที ประวัติศาสตร์ 45 นาที พัก 10 นาที ภาษาไทย 50 นาที ภาษาอังกฤษ ? นาที และพักกลางวันเวลา 11.30 น.",
+    "prompt_text": "จากข้อมูล สุดาจะมีเวลาเรียนภาษาอังกฤษกี่นาทีจึงจะพักกลางวัน",
+    "correct_answer": "1",
+    "correct_answer_text": "40",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      34
+    ],
+    "source_pages_answer": [
+      34,
+      35
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "40",
+      "2": "45",
+      "3": "50",
+      "4": "60"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 17,
+    "question_no": 17,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตูนนำกล่องขนมขนาดเท่ากัน 5 กล่องมาวางซ้อนกันสูงรวม 42 เซนติเมตร 5 มิลลิเมตร แล้วนำไปให้คุณยาย 2 กล่อง",
+    "prompt_text": "จากข้อมูล ถ้าตูนนำขนมไปให้คุณยาย 2 กล่อง กล่องขนมที่เหลือวางซ้อนกันจะสูงรวมกันเท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "25 เซนติเมตร 5 มิลลิเมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      36
+    ],
+    "source_pages_answer": [
+      37
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "8 เซนติเมตร 5 มิลลิเมตร",
+      "2": "17 เซนติเมตร",
+      "3": "25 เซนติเมตร 5 มิลลิเมตร",
+      "4": "34 เซนติเมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 18,
+    "question_no": 18,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ปาล์มและทอมขับรถส่งอาหารให้ร้านค้า ระยะทางรวม 30 กิโลเมตร โดยปาล์มขับได้ 15 กิโลเมตร 600 เมตร และทอมขับได้ 10 กิโลเมตร 900 เมตร",
+    "prompt_text": "จากข้อมูล เหลือระยะทางอีกเท่าใด จึงจะถึงร้านค้า",
+    "correct_answer": "1",
+    "correct_answer_text": "3 กิโลเมตร 500 เมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      38
+    ],
+    "source_pages_answer": [
+      38,
+      39
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "3 กิโลเมตร 500 เมตร",
+      "2": "4 กิโลเมตร 700 เมตร",
+      "3": "14 กิโลเมตร 400 เมตร",
+      "4": "19 กิโลเมตร 100 เมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 19,
+    "question_no": 19,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ดินสอยาว 18 เซนติเมตร 5 มิลลิเมตร และยางลบสั้นกว่าดินสอ 15 เซนติเมตร 3 มิลลิเมตร",
+    "prompt_text": "จากข้อมูล นำดินสอและยางลบมาวางต่อกันเป็นแนวตรง จะได้ความยาวเท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "21 เซนติเมตร 7 มิลลิเมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      40
+    ],
+    "source_pages_answer": [
+      41
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "3 เซนติเมตร 2 มิลลิเมตร",
+      "2": "15 เซนติเมตร 3 มิลลิเมตร",
+      "3": "21 เซนติเมตร 7 มิลลิเมตร",
+      "4": "33 เซนติเมตร 8 มิลลิเมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 20,
+    "question_no": 20,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ผักกาดขาวหนัก 26 กิโลกรัม 500 กรัม และกะหล่ำปลีหนักกว่าผักกาดขาว 9 กิโลกรัม 700 กรัม",
+    "prompt_text": "จากข้อมูล กะหล่ำปลีและผักกาดขาวหนักรวมกันเท่าใด",
+    "correct_answer": "4",
+    "correct_answer_text": "62 กิโลกรัม 700 กรัม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      42
+    ],
+    "source_pages_answer": [
+      43
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "16 กิโลกรัม 800 กรัม",
+      "2": "26 กิโลกรัม 500 กรัม",
+      "3": "36 กิโลกรัม 200 กรัม",
+      "4": "62 กิโลกรัม 700 กรัม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 21,
+    "question_no": 21,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "บันทึกการยกน้ำหนักของป๋อง: ครั้งที่ 1 = 15 กิโลกรัม 600 กรัม, ครั้งที่ 2 = ?, ครั้งที่ 3 น้อยกว่าครั้งที่ 1 อยู่ 2,700 กรัม, รวมทั้ง 3 ครั้ง = 42 กิโลกรัม",
+    "prompt_text": "จากข้อมูล ครั้งที่ 2 ป๋องยกน้ำหนักได้เท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "13 กิโลกรัม 500 กรัม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      44
+    ],
+    "source_pages_answer": [
+      45,
+      46
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "28 กิโลกรัม 500 กรัม",
+      "2": "26 กิโลกรัม 400 กรัม",
+      "3": "13 กิโลกรัม 500 กรัม",
+      "4": "12 กิโลกรัม 900 กรัม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 22,
+    "question_no": 22,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ร้านค้าขายน้ำผลไม้ได้ดังนี้: น้ำส้ม 3 ลิตร, น้ำกระเจี๊ยบ 1 ลิตร 700 มิลลิลิตร, น้ำลำไย 600 มิลลิลิตร",
+    "prompt_text": "จากข้อมูล ขายน้ำกระเจี๊ยบรวมกับน้ำลำไยน้อยกว่าหรือมากกว่าน้ำส้มเท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "น้อยกว่า 700 มิลลิลิตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "comparison",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      47
+    ],
+    "source_pages_answer": [
+      48
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "น้อยกว่า 2 ลิตร 300 มิลลิลิตร",
+      "2": "มากกว่า 2 ลิตร 300 มิลลิลิตร",
+      "3": "น้อยกว่า 700 มิลลิลิตร",
+      "4": "มากกว่า 700 มิลลิลิตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 23,
+    "question_no": 23,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณแม่ซื้อน้ำผลไม้ 6 ขวด ขวดละ 450 มิลลิลิตร เทใส่เหยือกที่มีความจุเท่ากัน 3 เหยือกได้เต็มพอดี",
+    "prompt_text": "จากข้อมูล เหยือกแต่ละใบมีความจุเท่าใด",
+    "correct_answer": "2",
+    "correct_answer_text": "900 มิลลิลิตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "division",
+      "multiplication"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      49
+    ],
+    "source_pages_answer": [
+      49,
+      50
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "450 มิลลิลิตร",
+      "2": "900 มิลลิลิตร",
+      "3": "1 ลิตร 350 มิลลิลิตร",
+      "4": "2 ลิตร 700 มิลลิลิตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 24,
+    "question_no": 24,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพการยืมหนังสือในห้องสมุด 1 วัน โดย 1 รูปแทน 10 เล่ม: หนังสือนิทาน 5 รูป, หนังสือเรียน 4 รูป, หนังสือสารคดี 2 รูป, หนังสือ 2 ภาษา 3 รูป, หนังสือการ์ตูน 6 รูป; ห้องสมุดมีหนังสือทั้งหมด 250 เล่ม",
+    "prompt_text": "จากข้อมูล ถ้าห้องสมุดมีหนังสือทั้งหมด 250 เล่ม เหลือหนังสือที่ไม่ถูกยืมกี่เล่ม",
+    "correct_answer": "2",
+    "correct_answer_text": "50",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      51
+    ],
+    "source_pages_answer": [
+      52
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "20",
+      "2": "50",
+      "3": "200",
+      "4": "230"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 25,
+    "question_no": 25,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพจำนวนสัตว์ในฟาร์ม โดย 1 รูปแทน 5 ตัว: วัว 4 รูป, แพะ 6 รูป, ไก่ 8 รูป, ม้า 2 รูป, หมู 2 รูป และซื้อม้าเพิ่มอีก 10 ตัว",
+    "prompt_text": "จากข้อมูล ถ้าซื้อม้าเพิ่มอีก 10 ตัว ฟาร์มจะมีสัตว์ทั้งหมดกี่ตัว",
+    "correct_answer": "4",
+    "correct_answer_text": "120 ตัว",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      53
+    ],
+    "source_pages_answer": [
+      53,
+      54
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "12 ตัว",
+      "2": "32 ตัว",
+      "3": "110 ตัว",
+      "4": "120 ตัว"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 26,
+    "question_no": 26,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางข้าวสารที่ขาย: ข้าวกล้อง 500 ถุง ถุงละ 1 กิโลกรัม; ข้าวเสาไห้ 100 ถุง ถุงละ 5 กิโลกรัม; ข้าวหอมมะลิ 30 ถุง ถุงละ 15 กิโลกรัม; ข้าวขาวนาปี 20 ถุง ถุงละ 25 กิโลกรัม",
+    "prompt_text": "จากข้อมูล ร้านค้าขายข้าวสารชนิดใดที่มีน้ำหนักรวมต่างจากชนิดอื่น",
+    "correct_answer": "3",
+    "correct_answer_text": "ข้าวหอมมะลิ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/2",
+    "skill_tag": [
+      "table_reading",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      55
+    ],
+    "source_pages_answer": [
+      56
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ข้าวกล้อง",
+      "2": "ข้าวเสาไห้",
+      "3": "ข้าวหอมมะลิ",
+      "4": "ข้าวขาวนาปี"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 27,
+    "question_no": 27,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "หนุ่มออมเงินวันละ 95 บาท เป็นเวลา 30 วัน ต้องการซื้อนาฬิกาข้อมือราคา 2,000 บาท",
+    "prompt_text": "จากข้อมูล เมื่อหนุ่มนำเงินออมไปซื้อนาฬิกาข้อมือ จะเหลือเงินกี่บาท",
+    "correct_answer": "850",
+    "correct_answer_text": "850 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      57
+    ],
+    "source_pages_answer": [
+      57
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "850",
+      "850 บาท",
+      "๘๕๐",
+      "๘๕๐ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 28,
+    "question_no": 28,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ใบเตยมีเงินดังนี้: ธนบัตร 1,000 บาท 2 ฉบับ, ธนบัตร 500 บาท 2 ฉบับ, ธนบัตร 100 บาท 4 ฉบับ, เหรียญ 10 บาท 7 เหรียญ",
+    "prompt_text": "จากข้อมูล ถ้าใบเตยนำเงินไปฝากธนาคาร 1,650 บาท เหลือเงินกี่บาท",
+    "correct_answer": "1820",
+    "correct_answer_text": "1,820 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      58
+    ],
+    "source_pages_answer": [
+      58
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "1820",
+      "1,820",
+      "1820 บาท",
+      "1,820 บาท",
+      "๑๘๒๐",
+      "๑,๘๒๐",
+      "๑๘๒๐ บาท",
+      "๑,๘๒๐ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 29,
+    "question_no": 29,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ฟาร์มแห่งหนึ่งมีม้า 8 ตัว ม้าแต่ละตัวกินอาหารวันละ 5,000 กรัม",
+    "prompt_text": "จากข้อมูล ในเวลา 3 วัน จะต้องให้อาหารม้าทั้งหมดกี่กิโลกรัม",
+    "correct_answer": "120",
+    "correct_answer_text": "120 กิโลกรัม",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "unit_conversion",
+      "multiplication"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      59
+    ],
+    "source_pages_answer": [
+      59
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "120",
+      "120 กิโลกรัม",
+      "๑๒๐",
+      "๑๒๐ กิโลกรัม"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2565",
+    "subject": "math",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 30,
+    "question_no": 30,
+    "section": "written_solution",
+    "answer_type": "worked_solution",
+    "max_score": 10,
+    "stimulus_text": "แม่ค้าขายฝรั่งวันแรกได้ 29 กิโลกรัม วันที่สองได้ 33 กิโลกรัม และขายฝรั่งราคากิโลกรัมละ 40 บาท",
+    "prompt_text": "จากข้อมูล รวมสองวันแม่ค้าขายฝรั่งได้เงินกี่บาท (แสดงวิธีทำ)",
+    "correct_answer": "2480",
+    "correct_answer_text": "2,480 บาท",
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "worked_solution",
+      "word_problem",
+      "multiplication",
+      "addition"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      60
+    ],
+    "source_pages_answer": [
+      60,
+      61,
+      62
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "2480",
+      "2,480",
+      "2480 บาท",
+      "2,480 บาท",
+      "๒๔๘๐",
+      "๒,๔๘๐",
+      "๒๔๘๐ บาท",
+      "๒,๔๘๐ บาท"
+    ],
+    "rubric": {
+      "max_score": 10,
+      "summary": "ตรวจทั้งความถูกต้องของวิธีทำและคำตอบสุดท้าย",
+      "accepted_final_answers": [
+        "2480",
+        "2,480",
+        "2480 บาท",
+        "2,480 บาท",
+        "๒๔๘๐",
+        "๒,๔๘๐",
+        "๒๔๘๐ บาท",
+        "๒,๔๘๐ บาท"
+      ],
+      "dimensions": [
+        {
+          "name": "statement_and_units",
+          "description": "เขียนข้อความ/หน่วยสอดคล้องกับวิธีทำ",
+          "approx_points": 3
+        },
+        {
+          "name": "numbers_and_symbols",
+          "description": "เขียนจำนวนและเครื่องหมายถูกต้อง",
+          "approx_points": 2
+        },
+        {
+          "name": "addition",
+          "description": "คำนวณการบวกถูกต้อง",
+          "approx_points": 2
+        },
+        {
+          "name": "multiplication",
+          "description": "คำนวณการคูณถูกต้อง",
+          "approx_points": 3
+        }
+      ],
+      "reference_methods": [
+        "29 + 33 = 62 แล้ว 62 × 40 = 2,480",
+        "(29 × 40) + (33 × 40) = 1,160 + 1,320 = 2,480"
+      ]
+    },
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 1,
+    "question_no": 1,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "จำนวนประชากรในอำเภอแห่งหนึ่ง: สามัคคี 16,049; เอื้อเฟื้อ 7,624; รวมใจ 92,140; ใจบุญ 21,881; เสียสละ 13,795",
+    "prompt_text": "จากข้อมูล เมื่อเรียงลำดับจำนวนประชากรจากมากไปน้อย ตำบลในข้อใดที่มีประชากรน้อยเป็น 2 ตำบลสุดท้าย",
+    "correct_answer": "1",
+    "correct_answer_text": "เสียสละ และ เอื้อเฟื้อ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/2",
+    "skill_tag": [
+      "number_ordering",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      3
+    ],
+    "source_pages_answer": [
+      3,
+      4
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เสียสละ และ เอื้อเฟื้อ",
+      "2": "รวมใจ และ ใจบุญ",
+      "3": "ใจบุญ และ เสียสละ",
+      "4": "สามัคคี และ เอื้อเฟื้อ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 2,
+    "question_no": 2,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "น้ำผลไม้บรรจุกล่องใส่ลัง ลังละเท่า ๆ กัน ขายได้ดังนี้: น้ำผลไม้รวม 1/2 ลัง, น้ำส้ม 1/6 ลัง, น้ำลิ้นจี่ 1/3 ลัง, น้ำองุ่น 1/4 ลัง",
+    "prompt_text": "จากข้อมูล ร้านค้าแห่งนี้ขายน้ำผลไม้ชนิดใดได้มากที่สุด",
+    "correct_answer": "4",
+    "correct_answer_text": "น้ำผลไม้รวม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/4",
+    "skill_tag": [
+      "fraction_comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      3
+    ],
+    "source_pages_answer": [
+      5,
+      6
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "น้ำส้ม",
+      "2": "น้ำองุ่น",
+      "3": "น้ำลิ้นจี่",
+      "4": "น้ำผลไม้รวม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 3,
+    "question_no": 3,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ข้อ 1) 45,050 − □ = 22,150; นิดตอบ 22,900, หน่อยตอบ 23,900. ข้อ 2) □ + 12,200 = 35,250; แก้มตอบ 27,450, แก้วตอบ 23,050",
+    "prompt_text": "จากข้อมูล คำตอบของใครถูกต้องทั้งหมด",
+    "correct_answer": "2",
+    "correct_answer_text": "นิด และ แก้ว",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/5",
+    "skill_tag": [
+      "unknown_value",
+      "addition_subtraction"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      4
+    ],
+    "source_pages_answer": [
+      7,
+      8
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นิด และ แก้ม",
+      "2": "นิด และ แก้ว",
+      "3": "หน่อย และ แก้ม",
+      "4": "หน่อย และ แก้ว"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 4,
+    "question_no": 4,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กุ้ง: 7 × □ = 630 ตอบ 80; เจน: □ × 8 = 72 ตอบ 9; บอส: 8 × □ = 560 ตอบ 70; น้ำ: □ × 12 = 720 ตอบ 6",
+    "prompt_text": "จากข้อมูล ใครตอบคำถาม ได้ถูกต้องทั้งหมด",
+    "correct_answer": "2",
+    "correct_answer_text": "เจน และ บอส",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/6",
+    "skill_tag": [
+      "multiplication",
+      "unknown_value"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      4
+    ],
+    "source_pages_answer": [
+      10,
+      11
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "กุ้ง และ เจน",
+      "2": "เจน และ บอส",
+      "3": "บอส และ น้ำ",
+      "4": "น้ำ และ กุ้ง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 5,
+    "question_no": 5,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "โทรทัศน์ราคา 9,870 บาท, หม้อหุงข้าวราคา 1,250 บาท. อารีย์ซื้อโทรทัศน์ 1 เครื่อง และหม้อหุงข้าว 1 ใบ แล้วเหลือเงินอยู่ 2,430 บาท",
+    "prompt_text": "จากข้อมูล ข้อใดแสดงวิธีหาคำตอบได้ถูกต้อง",
+    "correct_answer": "1",
+    "correct_answer_text": "(9,870 + 1,250) + 2,430",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "expression_setup"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      12,
+      13
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "(9,870 + 1,250) + 2,430",
+      "2": "(9,870 + 1,250) − 2,430",
+      "3": "9,870 − (2,430 − 1,250)",
+      "4": "9,870 − (2,430 + 1,250)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 6,
+    "question_no": 6,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ร้านค้า มีลูกชิ้นไก่ 50 กิโลกรัม มีลูกชิ้นปลา มากกว่าลูกชิ้นไก่ 70 กิโลกรัม ถ้าร้านค้าแบ่งลูกชิ้นปลาใส่ถุง ถุงละ 5 กิโลกรัม",
+    "prompt_text": "จากข้อมูล ร้านค้าจะแบ่งลูกชิ้นปลาได้ทั้งหมดกี่ถุง",
+    "correct_answer": "4",
+    "correct_answer_text": "24",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "two_step_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      14,
+      15
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "4",
+      "2": "10",
+      "3": "14",
+      "4": "24"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 7,
+    "question_no": 7,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ร้านค้ามีเชือกยาว 300 เมตร ตัดแบ่งเส้นละ 2 เมตร เท่า ๆ กัน แล้วขายไป เส้นละ 10 บาท",
+    "prompt_text": "จากข้อมูล ถ้าร้านค้าขายเชือกหมด จะได้เงินกี่บาท",
+    "correct_answer": "1",
+    "correct_answer_text": "1,500",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "division",
+      "multiplication",
+      "word_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      6
+    ],
+    "source_pages_answer": [
+      16,
+      17
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1,500",
+      "2": "2,980",
+      "3": "3,000",
+      "4": "6,000"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 8,
+    "question_no": 8,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แม่มีขนมชั้น 1 ถาด ตัดแบ่งเป็น 8 ชิ้นที่มีขนาดเท่า ๆ กัน แบ่งให้น้องนิด 3/8 ถาด แบ่งให้น้องนัท 2/8 ถาด",
+    "prompt_text": "จากข้อมูล แม่เหลือขนมในถาดคิดเป็นเศษส่วนเท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "3/8",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_subtraction",
+      "fraction_addition"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      6
+    ],
+    "source_pages_answer": [
+      18,
+      19
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1/8",
+      "2": "2/8",
+      "3": "3/8",
+      "4": "5/8"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 9,
+    "question_no": 9,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กลุ่มแม่บ้านผลิตน้ำยาล้างจาน จำนวน 1 ถัง วันแรกขายได้ 13/29 ถัง วันที่สองขายได้ 7/29 ถัง",
+    "prompt_text": "จากข้อมูล จะเหลือน้ำยาล้างจานเท่าใด",
+    "correct_answer": "2",
+    "correct_answer_text": "9/29 ถัง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_subtraction",
+      "fraction_addition"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      20,
+      21
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "6/29 ถัง",
+      "2": "9/29 ถัง",
+      "3": "20/29 ถัง",
+      "4": "22/29 ถัง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 10,
+    "question_no": 10,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แม่ให้เงินกระต่าย 405 บาท กระต่ายออมเงินเพิ่มขึ้นเท่ากันทุกวัน โดยมีเงินรวมในแต่ละวันดังนี้: วันที่ 1 = 450, วันที่ 2 = 495, วันที่ 3 = ..., วันที่ 4 = 585, วันที่ 5 = ...",
+    "prompt_text": "จากข้อมูล จำนวนเงินในวันที่ 3 และวันที่ 5 รวมกันได้กี่บาท",
+    "correct_answer": "4",
+    "correct_answer_text": "1,170",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      22,
+      23
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "630",
+      "2": "1,080",
+      "3": "1,125",
+      "4": "1,170"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 11,
+    "question_no": 11,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "โรงงานผลิตน้ำดื่ม ตามแบบรูปของจำนวนในตาราง: วันที่ 1 2 3 4 5 6, จำนวน(ขวด) 5,350 ... 6,050 6,400 6,750 ...",
+    "prompt_text": "จากข้อมูล โรงงานผลิตน้ำดื่ม วันที่ 6 มากกว่าวันที่ 2 กี่ขวด",
+    "correct_answer": "3",
+    "correct_answer_text": "1,400",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      8
+    ],
+    "source_pages_answer": [
+      24,
+      25
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "350",
+      "2": "700",
+      "3": "1,400",
+      "4": "1,750"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 12,
+    "question_no": 12,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "วิชัยมีเงินออม: ธนบัตร 100 บาท 2 ฉบับ, ธนบัตร 50 บาท 3 ฉบับ, ธนบัตร 20 บาท 5 ฉบับ, เหรียญสิบบาท 3 เหรียญ. ชุดกีฬา ราคา 550 บาท",
+    "prompt_text": "จากข้อมูล วิชัยต้องเก็บเงินเพิ่มอีกกี่บาท จึงจะซื้อชุดกีฬาได้พอดี",
+    "correct_answer": "1",
+    "correct_answer_text": "70",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      8
+    ],
+    "source_pages_answer": [
+      26,
+      27
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "70",
+      "2": "100",
+      "3": "130",
+      "4": "180"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 13,
+    "question_no": 13,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางการเดินทางรถไฟ 4 ช่วง: 1) กรุงเทพอภิวัฒน์ 09.05 ถึง นครสวรรค์ 11.37; 2) นครสวรรค์ 11.40 ถึง พิษณุโลก 13.12; 3) พิษณุโลก 13.22 ถึง นครลำปาง 17.30; 4) นครลำปาง 17.33 ถึง เชียงใหม่ 19.30",
+    "prompt_text": "จากข้อมูล ข้อใดสรุปเวลาการนั่งรถไฟของแดงได้ถูกต้อง",
+    "correct_answer": "1",
+    "correct_answer_text": "รถไฟขบวนนี้จอดที่สถานีพิษณุโลกใช้เวลามากที่สุด",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration",
+      "table_reading"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      28,
+      29
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "รถไฟขบวนนี้จอดที่สถานีพิษณุโลกใช้เวลามากที่สุด",
+      "2": "การเดินทางช่วงที่ 2 นครสวรรค์ – พิษณุโลก รถไฟใช้เวลาเดินทางมากที่สุด",
+      "3": "การเดินทางช่วงที่ 3 พิษณุโลก – นครลำปาง รถไฟใช้เวลาเดินทางน้อยที่สุด",
+      "4": "แดงใช้เวลาเดินทางจาก กรุงเทพอภิวัฒน์ – เชียงใหม่ 10 ชั่วโมง 35 นาที"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 14,
+    "question_no": 14,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "รถบรรทุกดิน 3 รอบ แต่ละรอบใช้เวลา: รอบที่ 1 = 1 ชั่วโมง 30 นาที, รอบที่ 2 = 2 ชั่วโมง 5 นาที, รอบที่ 3 = 1 ชั่วโมง 50 นาที. เริ่มงานเวลา 09.30 น.",
+    "prompt_text": "จากข้อมูล ถ้ารถบรรทุกเริ่มงานเวลา 09.30 น. โดยไม่หยุดพักจะบรรทุกดินเสร็จในเวลาใด",
+    "correct_answer": "3",
+    "correct_answer_text": "14.55 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      30,
+      31,
+      32
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "13.55 น.",
+      "2": "14.15 น.",
+      "3": "14.55 น.",
+      "4": "15.40 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 15,
+    "question_no": 15,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ก้อยออกจากบ้านเวลา 6.00 น. เดินทางจากบ้านถึงสนามบินดอนเมือง 50 นาที, รอขึ้นเครื่องบิน 40 นาที, เดินทางจากสนามบินดอนเมืองถึงสนามบินหาดใหญ่ 1 ชั่วโมง 10 นาที",
+    "prompt_text": "จากข้อมูล ก้อยเดินทางจากบ้านถึงสนามบินหาดใหญ่เวลาใด",
+    "correct_answer": "4",
+    "correct_answer_text": "8.40 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      10
+    ],
+    "source_pages_answer": [
+      33,
+      34
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "6.50 น.",
+      "2": "7.10 น.",
+      "3": "7.30 น.",
+      "4": "8.40 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 16,
+    "question_no": 16,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ดินสอของมะลิยาว 15 เซนติเมตร 5 มิลลิเมตร; ดินสอของกุหลาบสั้นกว่าดินสอของมะลิ 5 เซนติเมตร 7 มิลลิเมตร",
+    "prompt_text": "จากข้อมูล ดินสอของกุหลาบมีความยาวเท่าใด",
+    "correct_answer": "2",
+    "correct_answer_text": "9 เซนติเมตร 8 มิลลิเมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      10
+    ],
+    "source_pages_answer": [
+      35,
+      36
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "5 เซนติเมตร 7 มิลลิเมตร",
+      "2": "9 เซนติเมตร 8 มิลลิเมตร",
+      "3": "10 เซนติเมตร 2 มิลลิเมตร",
+      "4": "15 เซนติเมตร 5 มิลลิเมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 17,
+    "question_no": 17,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "สวนสัตว์ไม่เก็บค่าเข้าชมสำหรับเด็กที่มีความสูงไม่เกิน 135 เซนติเมตร. ปอสูง 1 เมตร 28 เซนติเมตร, อ๊อฟสูง 1 เมตร 38 เซนติเมตร, อ้วนสูงน้อยกว่าอ๊อฟ 5 เซนติเมตร",
+    "prompt_text": "จากข้อมูล ใครไม่เสียค่าเข้าชมสวนสัตว์แห่งนี้ทุกคน",
+    "correct_answer": "3",
+    "correct_answer_text": "อ้วน และ ปอ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion",
+      "comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      11
+    ],
+    "source_pages_answer": [
+      37,
+      38
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ปอ และ อ๊อฟ",
+      "2": "อ๊อฟ และ อ้วน",
+      "3": "อ้วน และ ปอ",
+      "4": "ปอ อ๊อฟ และ อ้วน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 18,
+    "question_no": 18,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "เส้นทาง A ยาว 3 กิโลเมตร 500 เมตร, เส้นทาง B สั้นกว่าเส้นทาง A อยู่ 1,200 เมตร, เส้นทาง C ยาว 2 กิโลเมตร 500 เมตร",
+    "prompt_text": "จากข้อมูล ข้อใดสรุปเส้นทางไปโรงเรียนของเด็กชายบอลได้ถูกต้อง",
+    "correct_answer": "3",
+    "correct_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      11
+    ],
+    "source_pages_answer": [
+      39,
+      40
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ใช้เส้นทาง B เป็นระยะทางยาว 2,375 เมตร",
+      "2": "ใช้เส้นทาง C เป็นระยะทางยาวกว่า เส้นทาง B อยู่ 175 เมตร",
+      "3": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+      "4": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 19,
+    "question_no": 19,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กุ้ง 2 กิโลกรัม 300 กรัม, หมึก 4 กิโลกรัม 700 กรัม, ปูหนักน้อยกว่าหมึก 1 กิโลกรัม 500 กรัม",
+    "prompt_text": "จากข้อมูล แม่ซื้อ กุ้ง หมึก และปู รวมทั้งหมดเท่าใด",
+    "correct_answer": "1",
+    "correct_answer_text": "10 กิโลกรัม 200 กรัม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      12
+    ],
+    "source_pages_answer": [
+      41,
+      42
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "10 กิโลกรัม 200 กรัม",
+      "2": "8 กิโลกรัม 500 กรัม",
+      "3": "7 กิโลกรัม 000 กรัม",
+      "4": "5 กิโลกรัม 500 กรัม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 20,
+    "question_no": 20,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "วันแรกเก็บทุเรียนได้ 15 ตัน 600 กิโลกรัม; วันที่สองเก็บทุเรียนได้น้อยกว่าวันที่หนึ่ง 2 ตัน 300 กิโลกรัม",
+    "prompt_text": "จากข้อมูล สวนลุงพันเก็บทุเรียน 2 วัน รวมกันได้เท่าใด",
+    "correct_answer": "3",
+    "correct_answer_text": "28 ตัน 900 กิโลกรัม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      12
+    ],
+    "source_pages_answer": [
+      43,
+      44
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "13 ตัน 300 กิโลกรัม",
+      "2": "17 ตัน 900 กิโลกรัม",
+      "3": "28 ตัน 900 กิโลกรัม",
+      "4": "33 ตัน 500 กิโลกรัม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 21,
+    "question_no": 21,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แก้วน้ำ 1 ใบมีความจุ 250 มิลลิลิตร. บอมเทน้ำตาลสดใส่เต็มแก้ว 2 ใบ แล้วยังเหลืออยู่ในเหยือกอีก 600 มิลลิลิตร",
+    "prompt_text": "จากข้อมูล เดิมมีน้ำตาลสดในเหยือกกี่มิลลิลิตร",
+    "correct_answer": "3",
+    "correct_answer_text": "1,100",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "multiplication",
+      "addition"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      45,
+      46
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "850",
+      "2": "1,000",
+      "3": "1,100",
+      "4": "1,350"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 22,
+    "question_no": 22,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กะทิขนาด A ปริมาตร 250 มิลลิลิตร, กะทิขนาด B ปริมาตร 500 มิลลิลิตร. ซื้อขนาด A 4 กล่อง และขนาด B 4 กล่อง",
+    "prompt_text": "จากข้อมูล แม่ซื้อกะทิปริมาตรทั้งหมดเท่าใด",
+    "correct_answer": "4",
+    "correct_answer_text": "3 ลิตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "unit_conversion"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      47,
+      48
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1 ลิตร 500 มิลลิลิตร",
+      "2": "2 ลิตร",
+      "3": "2 ลิตร 250 มิลลิลิตร",
+      "4": "3 ลิตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 23,
+    "question_no": 23,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "รูปป้ายจราจร ก ข ค ง ตามภาพ",
+    "prompt_text": "จากข้อมูล เครื่องหมายป้ายจราจร รูปใดมีแกนสมมาตร 1 แกน ทุกรูป",
+    "correct_answer": "3",
+    "correct_answer_text": "รูป ก และ รูป ค",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.2 ป.3/1",
+    "skill_tag": [
+      "symmetry",
+      "geometry"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      14
+    ],
+    "source_pages_answer": [
+      49,
+      50
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "รูป ก และ รูป ข",
+      "2": "รูป ค และ รูป ง",
+      "3": "รูป ก และ รูป ค",
+      "4": "รูป ข และ รูป ง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 24,
+    "question_no": 24,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพจำนวนไข่ไก่ที่วีระเก็บได้ในแต่ละวัน โดย 1 รูปแทน 5 ฟอง: อังคาร 3 รูป, พุธ 7 รูป, พฤหัสบดี 8 รูป",
+    "prompt_text": "จากข้อมูล จำนวนไข่ไก่ที่เก็บได้ในวันอังคาร รวมกับ วันพุธ มากกว่า ไข่ไก่ที่เก็บได้ในวันพฤหัสบดี กี่ฟอง",
+    "correct_answer": "2",
+    "correct_answer_text": "10",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      14
+    ],
+    "source_pages_answer": [
+      51,
+      52
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "2",
+      "2": "10",
+      "3": "18",
+      "4": "50"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 25,
+    "question_no": 25,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพจำนวนนักเรียนที่ชอบเล่นกีฬา โดย 1 รูปแทน 10 คน: ฟุตบอล 4 รูป, ว่ายน้ำ 7 รูป, เทนนิส 6 รูป, วอลเลย์บอล 8 รูป",
+    "prompt_text": "จากข้อมูล จำนวนนักเรียนที่ชอบเล่นกีฬาชนิดใดรวมกันได้ 130 คน",
+    "correct_answer": "1",
+    "correct_answer_text": "ว่ายน้ำกับเทนนิส",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      53,
+      54
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ว่ายน้ำกับเทนนิส",
+      "2": "ฟุตบอลกับว่ายน้ำ",
+      "3": "ฟุตบอลกับเทนนิส",
+      "4": "เทนนิสกับวอลเลย์บอล"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 26,
+    "question_no": 26,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+    "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+    "correct_answer": "4",
+    "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/2",
+    "skill_tag": [
+      "table_reading",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      55,
+      56
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+      "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+      "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+      "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 27,
+    "question_no": 27,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ร้านค้าขายเครื่องดื่มทุกชนิดราคาแก้วละ 40 บาท วันนี้ขายชานมไข่มุก 50 แก้ว และขายกาแฟโบราณ 42 แก้ว",
+    "prompt_text": "จากข้อมูล วันนี้ร้านค้าขายเครื่องดื่มได้เงินทั้งหมดกี่บาท",
+    "correct_answer": "3680",
+    "correct_answer_text": "3,680 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "multiplication",
+      "addition"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      16
+    ],
+    "source_pages_answer": [
+      57
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "3680",
+      "3,680",
+      "3680 บาท",
+      "3,680 บาท",
+      "๓๖๘๐",
+      "๓,๖๘๐",
+      "๓๖๘๐ บาท",
+      "๓,๖๘๐ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 28,
+    "question_no": 28,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "น้ำตาลมีเงิน: ธนบัตร 1,000 บาท 2 ฉบับ, ธนบัตร 500 บาท 3 ฉบับ, ธนบัตร 100 บาท 5 ฉบับ, ธนบัตร 20 บาท 5 ฉบับ. โทรศัพท์ราคา 5,900 บาท",
+    "prompt_text": "จากข้อมูล น้ำตาลต้องออมเงินเพิ่มอีกกี่บาท จึงจะซื้อโทรศัพท์ได้พอดี",
+    "correct_answer": "1800",
+    "correct_answer_text": "1,800 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      16
+    ],
+    "source_pages_answer": [
+      58,
+      59
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "1800",
+      "1,800",
+      "1800 บาท",
+      "1,800 บาท",
+      "๑๘๐๐",
+      "๑,๘๐๐",
+      "๑๘๐๐ บาท",
+      "๑,๘๐๐ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 29,
+    "question_no": 29,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ปลา 2 กิโลกรัม 500 กรัม, ไก่ 3 กิโลกรัม 500 กรัม, ถ้าร้านอาหารตามสั่งซื้อเนื้อสัตว์หนักรวม 8 กิโลกรัม",
+    "prompt_text": "จากข้อมูล ถ้าร้านอาหารตามสั่งซื้อเนื้อสัตว์หนักรวม 8 กิโลกรัม จะซื้อปูหนักกี่กิโลกรัม",
+    "correct_answer": "2",
+    "correct_answer_text": "2 กิโลกรัม",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      60,
+      61
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "2",
+      "2 กิโลกรัม",
+      "๒",
+      "๒ กิโลกรัม"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2566",
+    "subject": "math",
+    "year_buddhist": 2566,
+    "grade": 3,
+    "question_id": 30,
+    "question_no": 30,
+    "section": "written_solution",
+    "answer_type": "worked_solution",
+    "max_score": 10,
+    "stimulus_text": "พ่อค้าขายไอศกรีมราคาแท่งละ 7 บาท ได้ดังนี้: รสกะทิ 55 แท่ง, รสช็อกโกแลต 75 แท่ง",
+    "prompt_text": "จากข้อมูล พ่อค้าจะขายไอศกรีมได้เงินทั้งหมดกี่บาท (แสดงวิธีทำ)",
+    "correct_answer": "910",
+    "correct_answer_text": "910 บาท",
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "worked_solution",
+      "word_problem",
+      "multiplication",
+      "addition"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      62,
+      63,
+      64,
+      65,
+      66
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "910",
+      "910 บาท",
+      "๙๑๐",
+      "๙๑๐ บาท"
+    ],
+    "rubric": {
+      "max_score": 10,
+      "summary": "ตรวจทั้งความถูกต้องของวิธีทำและคำตอบสุดท้าย",
+      "accepted_final_answers": [
+        "910",
+        "910 บาท",
+        "๙๑๐",
+        "๙๑๐ บาท"
+      ],
+      "dimensions": [
+        {
+          "name": "statement_and_units",
+          "description": "เขียนข้อความ/หน่วยสอดคล้องกับวิธีทำ",
+          "approx_points": 3
+        },
+        {
+          "name": "numbers_and_symbols",
+          "description": "เขียนจำนวนและเครื่องหมายถูกต้อง",
+          "approx_points": 2
+        },
+        {
+          "name": "addition",
+          "description": "คำนวณการบวกถูกต้อง",
+          "approx_points": 2
+        },
+        {
+          "name": "multiplication",
+          "description": "คำนวณการคูณถูกต้อง",
+          "approx_points": 3
+        }
+      ],
+      "reference_methods": [
+        "55 + 75 = 130 แล้ว 130 × 7 = 910",
+        "55 × 7 = 385 และ 75 × 7 = 525 แล้ว 385 + 525 = 910"
+      ]
+    },
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 1,
+    "question_no": 1,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ยอดขายสินค้าของบริษัทตั้งแต่เดือนกรกฎาคมถึงตุลาคม: กรกฎาคม 76,480 บาท; สิงหาคม 75,463 บาท; กันยายน 76,580 บาท; ตุลาคม 75,475 บาท",
+    "prompt_text": "จากข้อมูล ข้อใดเป็นการเรียงลำดับเดือนที่มียอดขายสินค้าจากมากไปน้อยได้ถูกต้อง",
+    "correct_answer": "3",
+    "correct_answer_text": "กันยายน กรกฎาคม ตุลาคม สิงหาคม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/2",
+    "skill_tag": [
+      "number_ordering",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      3
+    ],
+    "source_pages_answer": [
+      4
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "กรกฎาคม สิงหาคม กันยายน ตุลาคม",
+      "2": "สิงหาคม ตุลาคม กรกฎาคม กันยายน",
+      "3": "กันยายน กรกฎาคม ตุลาคม สิงหาคม",
+      "4": "ตุลาคม กันยายน สิงหาคม กรกฎาคม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 2,
+    "question_no": 2,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ร้านค้ามีน้ำผลไม้ที่เหลือจากการขายอยู่ในขวดโหลขนาดเท่ากัน: น้ำส้ม 5/9 โหล, น้ำมะนาว 5/8 โหล, น้ำฝรั่ง 5/11 โหล, น้ำลิ้นจี่ 5/6 โหล",
+    "prompt_text": "จากข้อมูล ข้อใดเป็นการเปรียบเทียบปริมาตรของน้ำผลไม้ที่เหลือได้ถูกต้อง",
+    "correct_answer": "2",
+    "correct_answer_text": "น้ำฝรั่ง น้อยกว่า น้ำมะนาว",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/4",
+    "skill_tag": [
+      "fraction_comparison"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      6
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "น้ำส้ม มากกว่า น้ำมะนาว",
+      "2": "น้ำฝรั่ง น้อยกว่า น้ำมะนาว",
+      "3": "น้ำมะนาว มากกว่า น้ำลิ้นจี่",
+      "4": "น้ำลิ้นจี่ น้อยกว่า น้ำส้ม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 3,
+    "question_no": 3,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตุ๊กติ๊กทำน้ำส้มคั้นได้ 90 ขวด ตูมตามทำน้ำส้มคั้นได้มากกว่าตุ๊กติ๊ก 42 ขวด แล้วบรรจุใส่กล่อง กล่องละ 6 ขวด",
+    "prompt_text": "จากข้อมูล ตูมตามจะใช้กล่องทั้งหมดกี่ใบ",
+    "correct_answer": "1",
+    "correct_answer_text": "22",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "two_step_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      7,
+      8
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "22",
+      "2": "15",
+      "3": "8",
+      "4": "7"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 4,
+    "question_no": 4,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ป้อมมีของเล่น 7 ลัง ลังละ 144 ชิ้น แล้วนำไปแจกนักเรียน 6 โรงเรียน โรงเรียนละเท่า ๆ กัน",
+    "prompt_text": "จากข้อมูล แต่ละโรงเรียนจะได้ของเล่นกี่ชิ้น",
+    "correct_answer": "1",
+    "correct_answer_text": "168",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "division",
+      "multiplication",
+      "word_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      9,
+      10
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "168",
+      "2": "144",
+      "3": "31",
+      "4": "24"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 5,
+    "question_no": 5,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "จินดาซื้อผลไม้อบแห้งมาขาย: ซื้อมา 8 ถุง ถุงละ 100 บาท และขายได้เงินจากการขาย 960 บาท",
+    "prompt_text": "จากข้อมูล เงินจากการขายมากกว่าราคาที่ซื้อมาอยู่กี่บาท",
+    "correct_answer": "2",
+    "correct_answer_text": "160",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      11
+    ],
+    "source_pages_answer": [
+      12
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "120",
+      "2": "160",
+      "3": "800",
+      "4": "860"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 6,
+    "question_no": 6,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "โรงเรียนแห่งหนึ่งได้รับเงินบริจาค 25,000 บาท นำไปจัดซื้อหนังสือให้ห้องสมุด 16,000 บาท และนำเงินที่เหลือทั้งหมดไปซื้อพัดลม 5 ตัว ราคาตัวละเท่า ๆ กัน",
+    "prompt_text": "จากข้อมูล พัดลมราคาตัวละกี่บาท",
+    "correct_answer": "1",
+    "correct_answer_text": "1,800",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "two_step_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      13,
+      14
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1,800",
+      "2": "3,200",
+      "3": "5,000",
+      "4": "9,000"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 7,
+    "question_no": 7,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ครูโกศลให้นักเรียนปลูกผักในแปลงเกษตร 1 แปลง: ปลูกผักคะน้า 5/12 แปลง ปลูกผักกวางตุ้ง 3/12 แปลง พื้นที่ที่เหลือปลูกต้นหอม",
+    "prompt_text": "จากข้อมูล นักเรียนปลูกต้นหอมเป็นพื้นที่เท่าใด",
+    "correct_answer": "2",
+    "correct_answer_text": "4/12 แปลง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      16
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "2/12 แปลง",
+      "2": "4/12 แปลง",
+      "3": "7/12 แปลง",
+      "4": "8/12 แปลง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 8,
+    "question_no": 8,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แม่ค้าทำขนมใส่ถาดที่มีขนาดเดียวกัน ในแต่ละถาดแบ่งขนมเป็น 20 ชิ้นเท่า ๆ กัน: วุ้นมะพร้าวขายไป 12 ชิ้น และขนมชั้นขายไป 15 ชิ้น",
+    "prompt_text": "จากข้อมูล แม่ค้าเหลือขนมทั้งสองชนิดรวมกันคิดเป็นเศษส่วนเท่าใดของถาด",
+    "correct_answer": "4",
+    "correct_answer_text": "13/20",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      18
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "3/20",
+      "2": "5/20",
+      "3": "8/20",
+      "4": "13/20"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 9,
+    "question_no": 9,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณยายทำขนมหม้อแกง 1 ถาด แบ่งไปทำบุญ 5/20 ถาด ให้เพื่อนบ้านมากกว่าทำบุญ 1/20 ถาด ให้หลานน้อยกว่าให้เพื่อนบ้าน 2/20 ถาด และที่เหลือนำไปขาย",
+    "prompt_text": "จากข้อมูล การแบ่งขนมในข้อใดที่ได้ขนมหม้อแกงน้อยที่สุด",
+    "correct_answer": "2",
+    "correct_answer_text": "แบ่งให้หลาน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/11",
+    "skill_tag": [
+      "fraction_addition",
+      "fraction_subtraction",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      19
+    ],
+    "source_pages_answer": [
+      20,
+      21
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นำไปขาย",
+      "2": "แบ่งให้หลาน",
+      "3": "แบ่งไปทำบุญ",
+      "4": "แบ่งให้เพื่อนบ้าน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 10,
+    "question_no": 10,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ชาวสวนเก็บมะเขือเทศและพริกตามแบบรูป: วันที่ 1-7 มะเขือเทศ = 153, 145, 137, ..., ..., 113, 105 กิโลกรัม; พริก = 58, 63, 68, ..., ..., 83, 88 กิโลกรัม",
+    "prompt_text": "จากข้อมูล ในวันที่ 5 ชาวสวนเก็บมะเขือเทศและพริกรวมกันได้กี่กิโลกรัม",
+    "correct_answer": "2",
+    "correct_answer_text": "199",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      22
+    ],
+    "source_pages_answer": [
+      23,
+      24
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "151",
+      "2": "199",
+      "3": "202",
+      "4": "250"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 11,
+    "question_no": 11,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แบบรูปก้านไม้ขีดไฟตามภาพ โดยรูปที่ 1 ใช้ 8 ก้าน รูปที่ 2 ใช้ 11 ก้าน และรูปที่ 3 ใช้ 14 ก้าน",
+    "prompt_text": "จากข้อมูล รูปที่ 6 ตะวันต้องใช้ก้านไม้ขีดไฟทั้งหมดกี่ก้าน",
+    "correct_answer": "2",
+    "correct_answer_text": "23",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 1.2 ป.3/1",
+    "skill_tag": [
+      "number_pattern"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      25
+    ],
+    "source_pages_answer": [
+      26
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "20",
+      "2": "23",
+      "3": "26",
+      "4": "29"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 12,
+    "question_no": 12,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ลิซ่ามีเงินออมดังนี้: ธนบัตร 100 บาท 2 ใบ, ธนบัตร 50 บาท 1 ใบ, ธนบัตร 20 บาท 5 ใบ, เหรียญ 10 บาท 2 เหรียญ, เหรียญ 5 บาท 1 เหรียญ, เหรียญ 1 บาท 1 เหรียญ และเหรียญ 50 สตางค์ 1 เหรียญ; ชุดนักเรียนราคา 450 บาท",
+    "prompt_text": "จากข้อมูล ถ้าลิซ่าต้องการซื้อชุดนักเรียนราคา 450 บาท ต้องออมเงินเพิ่มเท่าใดจึงจะซื้อได้พอดี",
+    "correct_answer": "3",
+    "correct_answer_text": "73.50 บาท",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      27
+    ],
+    "source_pages_answer": [
+      28
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "43.50 บาท",
+      "2": "68.50 บาท",
+      "3": "73.50 บาท",
+      "4": "93.50 บาท"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 13,
+    "question_no": 13,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คิมกับเพื่อนมีกิจกรรมต่อเนื่องกันดังนี้: เดินทางจากบ้านไปหาดบางแสน 1 ชั่วโมง 40 นาที, เล่นน้ำทะเลและก่อกองทราย 2 ชั่วโมง 20 นาที, รับประทานอาหารกลางวัน 30 นาที, ชมพิพิธภัณฑ์สัตว์น้ำ 2 ชั่วโมง; เที่ยวพิพิธภัณฑ์สัตว์น้ำเสร็จเวลา 15.00 น.",
+    "prompt_text": "จากข้อมูล คิมและเพื่อนต้องเดินทางออกจากบ้านเวลาใด",
+    "correct_answer": "1",
+    "correct_answer_text": "08.30 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration",
+      "table_reading"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      29
+    ],
+    "source_pages_answer": [
+      30
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "08.30 น.",
+      "2": "10.30 น.",
+      "3": "11.00 น.",
+      "4": "13.00 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 14,
+    "question_no": 14,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ครูจุ๊บทำขนมเปี๊ยะไส้ถั่วตามขั้นตอน: ขั้นที่ 1 ทำไส้ถั่ว 1 ชั่วโมง 20 นาที, ขั้นที่ 2 ทำแป้งขนมเปี๊ยะ 1 ชั่วโมง 30 นาที, ขั้นที่ 3 ห่อไส้แล้วนำไปอบ 2 ชั่วโมง 15 นาที; ครูจุ๊บเริ่มทำขนมเวลา 08.15 น.",
+    "prompt_text": "จากข้อมูล ครูจุ๊บทําขนมเปี๊ยะเสร็จเวลาใด",
+    "correct_answer": "4",
+    "correct_answer_text": "13.20 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      31
+    ],
+    "source_pages_answer": [
+      32
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "10.30 น.",
+      "2": "11.05 น.",
+      "3": "12.00 น.",
+      "4": "13.20 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 15,
+    "question_no": 15,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ธิดาเริ่มทำการบ้านเวลา 19.10 น. ใช้เวลาทำการบ้าน 40 นาที แล้วดูโทรทัศน์ต่ออีก 30 นาที หลังจากนั้นจึงเข้านอน",
+    "prompt_text": "จากข้อมูล ธิดาเข้านอนเวลาใด",
+    "correct_answer": "3",
+    "correct_answer_text": "20.20 น.",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/2",
+    "skill_tag": [
+      "time",
+      "duration"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      33
+    ],
+    "source_pages_answer": [
+      33,
+      34
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "19.10 น.",
+      "2": "19.40 น.",
+      "3": "20.20 น.",
+      "4": "20.30 น."
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 16,
+    "question_no": 16,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กรมทางหลวงชนบทเทคอนกรีตทำถนน: วันแรกได้ 145 เมตร 75 เซนติเมตร และวันที่สองได้ 315 เมตร 50 เซนติเมตร",
+    "prompt_text": "จากข้อมูล รวม 2 วัน เทคอนกรีตได้ระยะทางเท่าใด",
+    "correct_answer": "4",
+    "correct_answer_text": "461 เมตร 25 เซนติเมตร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      35
+    ],
+    "source_pages_answer": [
+      35,
+      36
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "169 เมตร 75 เซนติเมตร",
+      "2": "170 เมตร 75 เซนติเมตร",
+      "3": "460 เมตร 25 เซนติเมตร",
+      "4": "461 เมตร 25 เซนติเมตร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 17,
+    "question_no": 17,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "นักกีฬา 4 คน ปั่นจักรยานออกกำลังกายในเวลาเท่ากันได้ระยะทางดังนี้: สมศักดิ์ 24,700 เมตร, สมชาย 25 กิโลเมตร 200 เมตร, สมภพ 24 กิโลเมตร 100 เมตร, สมภูมิ 25,700 เมตร",
+    "prompt_text": "จากข้อมูล คนที่ปั่นจักรยานได้ระยะทางมากที่สุดและระยะทางน้อยที่สุดต่างกันกี่เมตร",
+    "correct_answer": "1",
+    "correct_answer_text": "1,600",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      37
+    ],
+    "source_pages_answer": [
+      38
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1,600",
+      "2": "1,000",
+      "3": "600",
+      "4": "500"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 18,
+    "question_no": 18,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ในงานกาชาดประจำปีมีโซนขายสินค้า: โซน A ยาว 800 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 500 เซนติเมตร; โซน B ยาว 600 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 4 เมตร",
+    "prompt_text": "จากข้อมูล โซน A กับ โซน B มีจำนวนร้านค้าต่างกันอย่างไร",
+    "correct_answer": "2",
+    "correct_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/6",
+    "skill_tag": [
+      "length",
+      "unit_conversion",
+      "comparison"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      39
+    ],
+    "source_pages_answer": [
+      40
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "โซน A น้อยกว่า โซน B 10 ร้าน",
+      "2": "โซน A มากกว่า โซน B 10 ร้าน",
+      "3": "โซน A น้อยกว่า โซน B 80 ร้าน",
+      "4": "โซน A มากกว่า โซน B 80 ร้าน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 19,
+    "question_no": 19,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แม่ไปตลาดซื้อผลไม้: ส้มหนัก 4 กิโลกรัม 300 กรัม, มังคุดหนัก 4 กิโลกรัมครึ่ง และแม่ซื้อส้ม มังคุด และมะม่วงรวมกันหนัก 14 กิโลกรัม",
+    "prompt_text": "จากข้อมูล มะม่วงหนักเท่าใด",
+    "correct_answer": "2",
+    "correct_answer_text": "5 กิโลกรัม 200 กรัม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      41
+    ],
+    "source_pages_answer": [
+      42,
+      43
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "5 กิโลกรัม 700 กรัม",
+      "2": "5 กิโลกรัม 200 กรัม",
+      "3": "6 กิโลกรัม 800 กรัม",
+      "4": "6 กิโลกรัม 300 กรัม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 20,
+    "question_no": 20,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "พ่อค้าส่งออกทุเรียนไปประเทศจีน: รถบรรทุกได้ครั้งละ 10 ตัน 500 กิโลกรัม ต้องจัดส่งสินค้า 71 ตัน 500 กิโลกรัม และส่งไปแล้ว 40 ตัน",
+    "prompt_text": "จากข้อมูล ต้องใช้รถบรรทุกทุเรียนไปส่งอีกกี่ครั้ง",
+    "correct_answer": "4",
+    "correct_answer_text": "3",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "unit_conversion",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      44
+    ],
+    "source_pages_answer": [
+      45
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "7",
+      "2": "6",
+      "3": "4",
+      "4": "3"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 21,
+    "question_no": 21,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "วีนาทำน้ำแดงโซดาโดยใช้น้ำแดงขวดละ 750 มิลลิลิตร และน้ำโซดาขวดละ 250 มิลลิลิตร; ใช้น้ำแดง 1 ขวดผสมกับน้ำโซดา 3 ขวด",
+    "prompt_text": "จากข้อมูล เมื่อผสมแล้วจะมีปริมาตรกี่มิลลิลิตร",
+    "correct_answer": "3",
+    "correct_answer_text": "1,500",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "multiplication",
+      "addition"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      46
+    ],
+    "source_pages_answer": [
+      46,
+      47
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1,000",
+      "2": "1,250",
+      "3": "1,500",
+      "4": "1,750"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 22,
+    "question_no": 22,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "จอยทำน้ำผลไม้รวม โดยมีส่วนผสมดังนี้: น้ำส้ม 1 ลิตร 600 มิลลิลิตร, น้ำแอปเปิล 480 มิลลิลิตร, น้ำองุ่น 240 มิลลิลิตร แล้วบรรจุใส่ขวดขนาดเท่า ๆ กัน 8 ขวด",
+    "prompt_text": "จากข้อมูล น้ำผลไม้รวมจะได้ขวดละกี่มิลลิลิตร",
+    "correct_answer": "4",
+    "correct_answer_text": "290",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/13",
+    "skill_tag": [
+      "capacity",
+      "unit_conversion"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      48
+    ],
+    "source_pages_answer": [
+      49
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "90",
+      "2": "165",
+      "3": "200",
+      "4": "290"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 23,
+    "question_no": 23,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ลวดลายบนรูปสี่เหลี่ยมจัตุรัสของ มิว แก้ม โอปอ และ ใบเตย ตามภาพ",
+    "prompt_text": "จากข้อมูล ลวดลายของใครมีแกนสมมาตรมากที่สุด",
+    "correct_answer": "2",
+    "correct_answer_text": "แก้ม",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 2.2 ป.3/1",
+    "skill_tag": [
+      "symmetry",
+      "geometry"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      50
+    ],
+    "source_pages_answer": [
+      50,
+      51
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "มิว",
+      "2": "แก้ม",
+      "3": "โอปอ",
+      "4": "ใบเตย"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 24,
+    "question_no": 24,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพจำนวนดอกทานตะวันในสวนลุงแบงค์ โดย 1 รูปแทน 5 ดอก: แปลงที่ 1 = 6 รูป, แปลงที่ 2 = ?, แปลงที่ 3 = 4 รูป, แปลงที่ 4 = 5 รูป และดอกทานตะวันทั้งหมดมี 90 ดอก",
+    "prompt_text": "จากข้อมูล ต้องเขียนรูปแทนดอกทานตะวันในแปลงที่ 2 กี่รูป",
+    "correct_answer": "1",
+    "correct_answer_text": "3",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      52
+    ],
+    "source_pages_answer": [
+      52,
+      53
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "3",
+      "2": "5",
+      "3": "15",
+      "4": "18"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 25,
+    "question_no": 25,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพจำนวนมะม่วงพันธุ์ต่าง ๆ ที่พ่อเก็บได้ใน 1 วัน โดย 1 รูปแทน 10 ผล: แก้วขมิ้น 5 รูป, อกร่อง 4 รูป, น้ำดอกไม้ 3 รูป, เขียวเสวย 6 รูป",
+    "prompt_text": "จากข้อมูล จำนวนมะม่วงอกร่องรวมกับมะม่วงเขียวเสวย มากกว่าหรือน้อยกว่าจำนวนมะม่วงแก้วขมิ้นรวมกับมะม่วงน้ำดอกไม้ กี่ผล",
+    "correct_answer": "3",
+    "correct_answer_text": "มากกว่า 20 ผล",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/1",
+    "skill_tag": [
+      "pictograph",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": true,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      54
+    ],
+    "source_pages_answer": [
+      55
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "มากกว่า 2 ผล",
+      "2": "น้อยกว่า 2 ผล",
+      "3": "มากกว่า 20 ผล",
+      "4": "น้อยกว่า 20 ผล"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 26,
+    "question_no": 26,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางเงินออมของนักเรียน 5 คน: สายฟ้า 415 บาท, พายุ 328 บาท, น้ำฝน ไม่ทราบจำนวน, ลมหนาว 395 บาท, เนตรดาว 429 บาท และเงินรวมทั้ง 5 คนเท่ากับ 2,000 บาท",
+    "prompt_text": "จากข้อมูล น้ำฝนออมเงินได้กี่บาท",
+    "correct_answer": "3",
+    "correct_answer_text": "433",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ค 3.1 ป.3/2",
+    "skill_tag": [
+      "table_reading",
+      "data_interpretation"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      56
+    ],
+    "source_pages_answer": [
+      57
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "467",
+      "2": "447",
+      "3": "433",
+      "4": "419"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 27,
+    "question_no": 27,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ซื้อขนมปังปี๊บราคา 400 บาท มาแบ่งใส่ถุงได้ 25 ถุง แล้วนำไปขายถุงละ 20 บาท",
+    "prompt_text": "จากข้อมูล เมื่อขายขนมปังจนหมด ได้เงินมากกว่าที่ซื้อมากี่บาท",
+    "correct_answer": "100",
+    "correct_answer_text": "100 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 1.1 ป.3/9",
+    "skill_tag": [
+      "word_problem",
+      "multiplication",
+      "two_step_problem"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      58
+    ],
+    "source_pages_answer": [
+      58
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "100",
+      "๑๐๐",
+      "100 บาท",
+      "๑๐๐ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 28,
+    "question_no": 28,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ปิงเก็บกระเป๋าเงินได้และนำไปให้ตำรวจเพื่อหาเจ้าของ พบว่ามีเงินดังนี้: ธนบัตร 1,000 บาท 2 ใบ, ธนบัตร 500 บาท 1 ใบ, ธนบัตร 100 บาท 2 ใบ, ธนบัตร 20 บาท 3 ใบ, เหรียญ 10 บาท 1 เหรียญ และเหรียญ 5 บาท 1 เหรียญ",
+    "prompt_text": "จากข้อมูล ถ้าเจ้าของกระเป๋าเงินให้เงินรางวัลแก่ปิง 150 บาท จะเหลือเงินกี่บาท",
+    "correct_answer": "2625",
+    "correct_answer_text": "2,625 บาท",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "money",
+      "word_problem"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      59
+    ],
+    "source_pages_answer": [
+      59
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "2625",
+      "๒๖๒๕",
+      "2,625",
+      "๒,๖๒๕",
+      "2625 บาท",
+      "๒๖๒๕ บาท",
+      "2,625 บาท",
+      "๒,๖๒๕ บาท"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 29,
+    "question_no": 29,
+    "section": "written_short",
+    "answer_type": "numeric_short",
+    "max_score": 4,
+    "stimulus_text": "ตะกร้าและผลไม้หนัก 2 กิโลกรัม 500 กรัม มะม่วงเขียวเสวยหนักผลละ 350 กรัม และมะม่วงแก้วขมิ้นหนักผลละ 300 กรัม",
+    "prompt_text": "จากข้อมูล ถ้าป้านำมะม่วงเขียวเสวยและมะม่วงแก้วขมิ้นอย่างละ 1 ผล มาใส่เพิ่มในตะกร้า ตะกร้าและผลไม้มีน้ำหนักทั้งหมดกี่กรัม",
+    "correct_answer": "3150",
+    "correct_answer_text": "3,150 กรัม",
+    "scoring_method": "normalized_exact_match",
+    "curriculum_standard": "ค 2.1 ป.3/10",
+    "skill_tag": [
+      "weight",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_auto",
+    "source_pages_question": [
+      60
+    ],
+    "source_pages_answer": [
+      60,
+      61
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "3150",
+      "๓๑๕๐",
+      "3,150",
+      "๓,๑๕๐",
+      "3150 กรัม",
+      "๓๑๕๐ กรัม",
+      "3,150 กรัม",
+      "๓,๑๕๐ กรัม"
+    ],
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_math_2567",
+    "subject": "math",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 30,
+    "question_no": 30,
+    "section": "written_solution",
+    "answer_type": "worked_solution",
+    "max_score": 10,
+    "stimulus_text": "สุชาติสะสมเงินได้ 275 บาท 25 สตางค์ นารีสะสมเงินได้มากกว่าสุชาติ 146 บาท 25 สตางค์ และสุดาสะสมเงินได้น้อยกว่านารี 79 บาท 75 สตางค์",
+    "prompt_text": "จากข้อมูล สุดามีเงินสะสมเท่าใด (แสดงวิธีทำ)",
+    "correct_answer": "341.75",
+    "correct_answer_text": "341 บาท 75 สตางค์",
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ค 2.1 ป.3/1",
+    "skill_tag": [
+      "worked_solution",
+      "money",
+      "word_problem",
+      "addition_subtraction_with_units"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      62
+    ],
+    "source_pages_answer": [
+      62,
+      63,
+      64,
+      65
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers": [
+      "341.75",
+      "๓๔๑.๗๕",
+      "341.75 บาท",
+      "๓๔๑.๗๕ บาท",
+      "341 บาท 75 สตางค์",
+      "๓๔๑ บาท ๗๕ สตางค์",
+      "สุดามีเงินสะสม 341.75 บาท",
+      "สุดามีเงินสะสม ๓๔๑.๗๕ บาท",
+      "สุดามีเงินสะสม 341 บาท 75 สตางค์",
+      "สุดามีเงินสะสม ๓๔๑ บาท ๗๕ สตางค์"
+    ],
+    "rubric": {
+      "max_score": 10,
+      "summary": "ตรวจทั้งความถูกต้องของวิธีทำ หน่วย/เครื่องหมาย และคำตอบสุดท้าย",
+      "accepted_final_answers": [
+        "341.75",
+        "๓๔๑.๗๕",
+        "341.75 บาท",
+        "๓๔๑.๗๕ บาท",
+        "341 บาท 75 สตางค์",
+        "๓๔๑ บาท ๗๕ สตางค์",
+        "สุดามีเงินสะสม 341.75 บาท",
+        "สุดามีเงินสะสม ๓๔๑.๗๕ บาท",
+        "สุดามีเงินสะสม 341 บาท 75 สตางค์",
+        "สุดามีเงินสะสม ๓๔๑ บาท ๗๕ สตางค์"
+      ],
+      "dimensions": [
+        {
+          "name": "statement_and_units",
+          "description": "เขียนข้อความ หน่วย และใส่เครื่องหมายสอดคล้องกับวิธีทำได้ถูกต้อง",
+          "approx_points": 6
+        },
+        {
+          "name": "addition",
+          "description": "คำนวณการบวกเพื่อหาจำนวนเงินของนารีได้ถูกต้อง",
+          "approx_points": 2
+        },
+        {
+          "name": "subtraction",
+          "description": "คำนวณการลบเพื่อหาจำนวนเงินของสุดาได้ถูกต้อง",
+          "approx_points": 2
+        }
+      ],
+      "reference_methods": [
+        "275 บาท 25 สตางค์ + 146 บาท 25 สตางค์ = 421 บาท 50 สตางค์ แล้ว 421 บาท 50 สตางค์ - 79 บาท 75 สตางค์ = 341 บาท 75 สตางค์",
+        "275.25 + 146.25 = 421.50 แล้ว 421.50 - 79.75 = 341.75"
+      ]
+    },
+    "reference_answers_json": null
+  }
+]

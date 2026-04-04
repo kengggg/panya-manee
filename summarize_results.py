@@ -74,6 +74,55 @@ def summarize(run_id=None, responses_dir=None):
     print("Random baseline (guessing '1' every time or uniform random): ~25%")
     print()
 
+    # Parse method distribution
+    print("=" * 65)
+    print("Parse method distribution")
+    print("=" * 65)
+    methods = ["direct", "markdown_bold", "thai_keyword", "fallback_digit", None]
+    method_labels = ["direct", "md_bold", "keyword", "fallback", "unparse"]
+    header_pm = "%-32s" % "Model"
+    for label in method_labels:
+        header_pm += " %8s" % label
+    print(header_pm)
+    print("-" * 65)
+    for model, *_ in summary:
+        rows = model_results[model]
+        counts = {m: 0 for m in methods}
+        for r in rows:
+            pm = r.get("parse_method")
+            if pm in counts:
+                counts[pm] += 1
+            else:
+                counts[None] += 1
+        row_pm = "%-32s" % model
+        for m in methods:
+            row_pm += " %8d" % counts[m]
+        print(row_pm)
+    print()
+
+    # Infra usage
+    has_infra = any("eval_tokens" in r for r in next(iter(model_results.values())))
+    if has_infra:
+        print("=" * 65)
+        print("Infra usage (per question average)")
+        print("=" * 65)
+        header_inf = "%-32s %7s %10s %10s %7s" % ("Model", "Tok/q", "Eval ms/q", "Prmt ms/q", "tok/s")
+        print(header_inf)
+        print("-" * 65)
+        for model, *_ in summary:
+            rows = model_results[model]
+            total = len(rows)
+            total_eval_tok = sum(r.get("eval_tokens", 0) for r in rows)
+            total_eval_ms = sum(r.get("eval_duration_ms", 0) for r in rows)
+            total_prompt_ms = sum(r.get("prompt_eval_duration_ms", 0) for r in rows)
+            avg_tok = total_eval_tok / total
+            avg_eval_ms = total_eval_ms / total
+            avg_prompt_ms = total_prompt_ms / total
+            tok_per_sec = total_eval_tok / (total_eval_ms / 1000) if total_eval_ms > 0 else 0
+            row_inf = "%-32s %7.0f %10.0f %10.0f %7.1f" % (model, avg_tok, avg_eval_ms, avg_prompt_ms, tok_per_sec)
+            print(row_inf)
+        print()
+
     # Skill breakdown
     print("=" * 65)
     print("Accuracy by skill tag (all models combined)")

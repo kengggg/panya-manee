@@ -1,6 +1,1304 @@
 [
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 1,
+    "question_no": 1,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "การให้อภัยเป็นสิ่งจำเป็นอย่างยิ่ง เพราะหากไม่มีการให้อภัยแล้ว ก็จะก่อให้เกิดการ.......................... เรื่องเล็กเรื่องน้อยก็สามารถเป็นเรื่องใหญ่ได้",
+    "prompt_text": "คำในข้อใด เมื่อนำไปเติมในช่องว่างแล้วสอดคล้องกับข้อความ",
+    "correct_answer": "4",
+    "correct_answer_text": "ขุ่นเคืองใจ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/2",
+    "skill_tag": [
+      "reading_comprehension",
+      "meaning_matching"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      4
+    ],
+    "source_pages_answer": [
+      4
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "แข็งใจ",
+      "2": "แปลกใจ",
+      "3": "ท้อแท้ใจ",
+      "4": "ขุ่นเคืองใจ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 2,
+    "question_no": 2,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ปัจจุบันมีการดิ้นรนหาเลี้ยงชีพชนิดตัวใครตัวมันมากขึ้น การช่วยเหลือกันก็มีน้อยลงและเต็มไปด้วยการเอารัดเอาเปรียบ",
+    "prompt_text": "คำที่ขีดเส้นใต้มีความหมายตรงกับข้อใด",
+    "correct_answer": "3",
+    "correct_answer_text": "การรู้จักเอาตัวรอดเพียงลำพัง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/2",
+    "skill_tag": [
+      "reading_comprehension",
+      "word_meaning"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      5
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "การเอาเปรียบผู้อื่นทุกอย่าง",
+      "2": "การเห็นแก่พรรคพวกของตน",
+      "3": "การรู้จักเอาตัวรอดเพียงลำพัง",
+      "4": "การช่วยเหลือเฉพาะญาติพี่น้องของตน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 3,
+    "question_no": 3,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ฟ้าทะลายโจรเป็นไม้ล้มลุก สูงประมาณ 30 - 70 เซนติเมตร ทุกส่วนมีรสขม ใช้เป็นยาแก้ไข้ แก้ไข้หวัดใหญ่ แก้ร้อนใน ช่วยสร้างภูมิคุ้มกันให้ร่างกาย หากรับประทานบ่อย ๆ จะช่วยป้องกันการเป็นหวัดได้ง่าย รักษาอาการท้องเสีย ลำไส้อักเสบ และริดสีดวงทวาร รสขมของฟ้าทะลายโจรยังช่วยให้เจริญอาหารอีกด้วย",
+    "prompt_text": "คำถามในข้อใดที่สามารถหาคำตอบได้จากข้อความ",
+    "correct_answer": "3",
+    "correct_answer_text": "เหตุใดจึงควรมีฟ้าทะลายโจรไว้เป็นยาประจำบ้าน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/3",
+    "skill_tag": [
+      "reasoning_question",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      6
+    ],
+    "source_pages_answer": [
+      6
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ควรปลูกฟ้าทะลายโจรในพื้นดินแบบใด",
+      "2": "วิธีการใช้ฟ้าทะลายโจรมีขั้นตอนอย่างไร",
+      "3": "เหตุใดจึงควรมีฟ้าทะลายโจรไว้เป็นยาประจำบ้าน",
+      "4": "ควรเก็บเกี่ยวฟ้าทะลายโจรเมื่อไรจึงจะได้ประโยชน์เต็มที่"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 4,
+    "question_no": 4,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ลาตัวหนึ่งกำลังกินหญ้าอยู่เชิงเขา มันเห็นหมาป่ากำลังเดินมาแล้วรู้สึกกลัว จึงร้องบอกกับหมาป่าว่ามันเจ็บเท้ามาก หมาป่าถามว่าไปโดนอะไรมา ลาตอบว่าหนามตำเท้า และขอให้หมาป่าช่วยดูเท้าที่เจ็บ พอหมาป่าเข้ามาใกล้ ลาก็ใช้ขาอีกข้างหนึ่งเตะปากหมาป่าอย่างแรง ทำให้ฟันของหมาป่าร่วงหมดปาก ลาได้โอกาสจึงรีบวิ่งหนีไป",
+    "prompt_text": "จากนิทาน ข้อใดเป็นเหตุผลสำคัญที่สุดที่ลาบอกหมาป่าว่าเจ็บเท้า",
+    "correct_answer": "2",
+    "correct_answer_text": "ต้องการหาวิธีเอาตัวรอดจากหมาป่า",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/3",
+    "skill_tag": [
+      "reasoning_question",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      7
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ต้องการให้หมาป่าสงสาร",
+      "2": "ต้องการหาวิธีเอาตัวรอดจากหมาป่า",
+      "3": "ต้องการให้หมาป่าเดินเข้ามาหาใกล้ ๆ",
+      "4": "ต้องการให้หมาป่าช่วยเอาหนามออกจากเท้า"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 5,
+    "question_no": 5,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "นกกระเรียนเห็นหมาป่านอนดิ้นอย่างเจ็บปวด จึงเข้าไปถาม ได้รู้ว่าหมาป่ากินเนื้อเข้าไปแล้วกระดูกติดคอ หมาป่าขอให้นกกระเรียนช่วยและจะให้รางวัล นกกระเรียนจึงยื่นหัวเข้าไปในปากหมาป่า คาบเอากระดูกออกมาได้ เมื่อนกกระเรียนทวงถามรางวัล หมาป่าไม่ให้และบอกว่า “ตอนเจ้ายื่นหัวเข้าไป ข้าไม่งับคอเจ้าก็ดีแล้ว”",
+    "prompt_text": "ข้อใดเป็นลำดับเหตุการณ์ที่เกิดขึ้นกับหมาป่าได้ถูกต้อง",
+    "correct_answer": "2",
+    "correct_answer_text": "กระดูกติดคอหมาป่า - นกกระเรียนนำกระดูกออกจากคอได้",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/4",
+    "skill_tag": [
+      "event_ordering",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      8
+    ],
+    "source_pages_answer": [
+      8
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมาป่าหายเจ็บคอ - หมาป่างับคอนกกระเรียน",
+      "2": "กระดูกติดคอหมาป่า - นกกระเรียนนำกระดูกออกจากคอได้",
+      "3": "หมาป่าขอให้นกกระเรียนช่วยเอากระดูกออก - หมาป่ารู้สึกเจ็บปวด",
+      "4": "นกกระเรียนยื่นหัวเข้าปากของหมาป่า - หมาป่าอ้าปากให้นกกระเรียนคาบกระดูก"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 6,
+    "question_no": 6,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "กรมอุตุนิยมวิทยาพยากรณ์ว่า “ในช่วงวันที่ 4 - 8 มีนาคม 2565 ประเทศไทยตอนบนจะมีพายุฤดูร้อนเกิดขึ้น โดยจะมีพายุฝนฟ้าคะนอง ลมกระโชกแรง อาจมีฟ้าผ่า และมีลูกเห็บตกบางส่วน จึงขอให้ประชาชนในบริเวณดังกล่าวระวังอันตรายจากพายุฤดูร้อนที่จะเกิดขึ้น”",
+    "prompt_text": "จากข้อความ ถ้าหมู่บ้านของเก่งอยู่ในบริเวณดังกล่าวในวันที่ 9 มีนาคม 2565 เหตุการณ์ใดน่าจะเกิดขึ้นกับหมู่บ้านของเก่ง",
+    "correct_answer": "1",
+    "correct_answer_text": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/4",
+    "skill_tag": [
+      "story_prediction",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      9,
+      10
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+      "2": "ถนนทางเข้าหมู่บ้านแห้งไม่ชื้นแฉะ",
+      "3": "น้ำในลำธารใสและมีระดับเพิ่มมากขึ้น",
+      "4": "พืชผลทางการเกษตรไม่ได้รับผลกระทบ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 7,
+    "question_no": 7,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+    "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+    "correct_answer": "2",
+    "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/5",
+    "skill_tag": [
+      "moral_application",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      11
+    ],
+    "source_pages_answer": [
+      11
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+      "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+      "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+      "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 8,
+    "question_no": 8,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "สิงโตตัวหนึ่งตื่นขึ้นมาด้วยความหิวโหย มันเดินไปพบกระต่ายกำลังวิ่งอยู่ จึงเข้าไปด้านหลังแล้วจับกระต่ายตัวนั้นไว้ ขณะที่กำลังจะกินกระต่าย มันเหลือบไปเห็นกวางตัวโต ด้วยความตะกละจึงปล่อยกระต่าย แล้วหันไปจับกวาง แต่กวางรู้ตัวก่อน จึงรีบวิ่งหนีไปด้วยความเร็ว มันจึงไม่ได้กินทั้งกระต่ายและกวาง",
+    "prompt_text": "ข้อคิดจากนิทานตรงกับสำนวนใด",
+    "correct_answer": "2",
+    "correct_answer_text": "โลภมากลาภหาย",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/5",
+    "skill_tag": [
+      "moral_extraction",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      12
+    ],
+    "source_pages_answer": [
+      12
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "จับปลาสองมือ",
+      "2": "โลภมากลาภหาย",
+      "3": "อดเปรี้ยวไว้กินหวาน",
+      "4": "ช้า ๆ ได้พร้าสองเล่มงาม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 9,
+    "question_no": 9,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อินโฟกราฟิกเรื่องวิตามิน A ดีอย่างไร ระบุสรรพคุณ เช่น ไม่ให้เป็นโรคตาฟาง ป้องกันตาแห้ง กระดูกแข็งแรง ผิวพรรณกระจ่างใส เสริมสร้างภูมิคุ้มกัน และสมานแผลให้หายเร็วขึ้น พร้อมแหล่งที่พบคือแคร์รอต ฟักทอง ผักบุ้ง และปริมาณที่ควรได้รับต่อวัน 900 ไมโครกรัม",
+    "prompt_text": "จากข้อมูล ต้องการแนะนำเกี่ยวกับเรื่องใดเป็นสำคัญ",
+    "correct_answer": "4",
+    "correct_answer_text": "สรรพคุณของวิตามินเอ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/7",
+    "skill_tag": [
+      "visual_reading",
+      "information_identification"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      13
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "วิธีการกินวิตามินเอ",
+      "2": "โรคที่เกิดจากวิตามินเอ",
+      "3": "ปริมาณการกินวิตามินเอ",
+      "4": "สรรพคุณของวิตามินเอ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 10,
+    "question_no": 10,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ข้อแนะนำ 5 วิธีประหยัดไฟฟ้าช่วงหน้าร้อน ได้แก่ ตั้งอุณหภูมิเครื่องปรับอากาศประมาณ 25 - 26 องศา ใช้หลอดไฟ LED เพื่อใช้ไฟน้อยอายุการใช้งานยาวนาน จัดของในตู้เย็นให้เป็นระเบียบ ถอดปลั๊กเครื่องใช้ไฟฟ้าทุกชนิดเมื่อไม่ใช้งาน และเลือกเครื่องใช้ไฟฟ้าที่มีฉลากเบอร์ 5",
+    "prompt_text": "ใครปฏิบัติตนสอดคล้องกับคำแนะนำ",
+    "correct_answer": "2",
+    "correct_answer_text": "อ้อวางผัก ผลไม้ และเนื้อสดในตู้เย็นไว้คนละชั้น",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/7",
+    "skill_tag": [
+      "applied_reading",
+      "judgment_from_text"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      14
+    ],
+    "source_pages_answer": [
+      14
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
+      "2": "อ้อวางผัก ผลไม้ และเนื้อสดในตู้เย็นไว้คนละชั้น",
+      "3": "อุ้มต้องการประหยัดพลังงานโดยการเปลี่ยนหลอดไฟทุกเดือน",
+      "4": "เอ๋ถอดปลั๊กพัดลมเฉพาะเมื่อต้องไปเที่ยวต่างจังหวัดกับครอบครัว"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 11,
+    "question_no": 11,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิรูปภาพแสดงจำนวนผลไม้ที่แม่ค้าขายได้ใน 1 สัปดาห์ที่ผ่านมา โดยรูปภาพ 1 รูปแทน 5 กิโลกรัม: ส้ม 8 รูป มะละกอ 4 รูป สตรอว์เบอร์รี 3 รูป ชมพู่ 5 รูป มะม่วง 7 รูป และมังคุด 4 รูป",
+    "prompt_text": "จากแผนภูมิ ข้อใดอธิบายผลไม้ที่ขายได้ถูกต้อง",
+    "correct_answer": "4",
+    "correct_answer_text": "ขายมะละกอรวมกับสตรอว์เบอร์รีได้เท่ากับมะม่วง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/8",
+    "skill_tag": [
+      "visual_reading",
+      "data_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      15,
+      16
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ขายชมพู่ได้น้อยกว่ามังคุด",
+      "2": "ขายมะละกอได้มากกว่าชมพู่",
+      "3": "ขายมังคุดรวมกับชมพู่ได้น้อยกว่าส้ม",
+      "4": "ขายมะละกอรวมกับสตรอว์เบอร์รีได้เท่ากับมะม่วง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 12,
+    "question_no": 12,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนภูมิวงกลมแสดงสีที่นักเรียนชอบในวิชาศิลปะ: สีฟ้า 45% สีเหลือง 30% สีส้ม 15% และสีชมพู 10%",
+    "prompt_text": "ข้อใดกล่าวถูกต้อง สอดคล้องกับแผนภูมิ",
+    "correct_answer": "1",
+    "correct_answer_text": "นักเรียนชอบสีฟ้ามากที่สุด",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/8",
+    "skill_tag": [
+      "visual_reading",
+      "data_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      17,
+      18
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นักเรียนชอบสีฟ้ามากที่สุด",
+      "2": "นักเรียนชอบสีส้มน้อยที่สุด",
+      "3": "นักเรียนชอบสีชมพูมากกว่าสีฟ้า",
+      "4": "นักเรียนชอบสีเหลืองน้อยกว่าสีส้ม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 13,
+    "question_no": 13,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ดวงสมรใกล้ชิดและสัมผัสกับแม่ซึ่งติดเชื้อไวรัสโคโรนา 2019 ดวงสมรจึงเขียนจดหมายลาครูเพื่อแจ้งให้ทราบถึงสาเหตุของการหยุดเรียน โดยมีเนื้อความในจดหมายว่า “เนื่องจากดิฉันมีความเสี่ยงต่อการติดเชื้อไวรัสโคโรนา 2019 ..................”",
+    "prompt_text": "ควรนำข้อความในข้อใดไปเติมลงในช่องว่างจึงจะถูกต้องและเหมาะสม",
+    "correct_answer": "4",
+    "correct_answer_text": "จึงขอลาหยุดเรียน เพื่อกักตัวและสังเกตอาการ หากไม่พบการติดเชื้อจะกลับมาเรียนตามปกติ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 2.1 ป.3/4",
+    "skill_tag": [
+      "functional_writing",
+      "formal_language"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      19
+    ],
+    "source_pages_answer": [
+      19
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "จึงขอลาหยุดเรียน จนกว่าอาการจะดีขึ้นแล้วกลับมาเรียนตามปกติ",
+      "2": "จึงขอลาหยุดเรียน เป็นเวลา 3 วัน เมื่ออาการดีขึ้นแล้วจะมาเรียนตามปกติ",
+      "3": "จึงขอลาหยุดเรียน เพื่อสังเกตอาการของคุณแม่เมื่อดีขึ้นแล้วจะกลับมาเรียนตามปกติ",
+      "4": "จึงขอลาหยุดเรียน เพื่อกักตัวและสังเกตอาการ หากไม่พบการติดเชื้อจะกลับมาเรียนตามปกติ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 14,
+    "question_no": 14,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อินโฟกราฟิกเรื่อง “เดินแล้วดีต่อใจ” ระบุว่าเดินวันละ 30 นาที หรือ 10,000 ก้าว จะช่วยลดความเครียด ลดความกังวล ลดอาการซึมเศร้า นอนหลับดีขึ้น รู้สึกผ่อนคลาย และเพิ่มฮอร์โมนความสุข",
+    "prompt_text": "ภาพนี้ต้องการสื่อถึงเรื่องใดเป็นสำคัญ",
+    "correct_answer": "1",
+    "correct_answer_text": "การเดินส่งผลต่อสุขภาพจิต",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 3.1 ป.3/2",
+    "skill_tag": [
+      "visual_reading",
+      "information_identification"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      20
+    ],
+    "source_pages_answer": [
+      20,
+      21
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "การเดินส่งผลต่อสุขภาพจิต",
+      "2": "การเดินทุกวันทำให้หลับง่าย",
+      "3": "การเดินเป็นการรักษาโรคหัวใจ",
+      "4": "การเดินเป็นวิธีการออกกำลังกายที่ดี"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 15,
+    "question_no": 15,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อินโฟกราฟิกเรื่อง “เดินแล้วดีต่อใจ” ระบุว่าเดินวันละ 30 นาที หรือ 10,000 ก้าว จะช่วยลดความเครียด ลดความกังวล ลดอาการซึมเศร้า นอนหลับดีขึ้น รู้สึกผ่อนคลาย และเพิ่มฮอร์โมนความสุข",
+    "prompt_text": "จากภาพ ไม่ได้กล่าวถึงเรื่องใด",
+    "correct_answer": "4",
+    "correct_answer_text": "ข้อพึงระวังในการเดิน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 3.1 ป.3/3",
+    "skill_tag": [
+      "visual_reading",
+      "information_identification"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      20,
+      22
+    ],
+    "source_pages_answer": [
+      22
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เวลาในการเดิน",
+      "2": "ผลดีของการเดิน",
+      "3": "ระยะทางในการเดิน",
+      "4": "ข้อพึงระวังในการเดิน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 16,
+    "question_no": 16,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "เดือนกุมภาพันธ์ แจ๋วและแพนไปทัศนศึกษากับทางโรงเรียน ที่สวนพฤกษศาสตร์ เป็นสถานที่ที่มีพรรณไม้ เช่น ต้นตะเคียนทอง จามจุรี ตีนเป็ด ฯลฯ จากนั้นจึงพาไปพิพิธภัณฑ์สัตว์น้ำ ซึ่งมีปลาหลากหลายสายพันธ์ให้ดู (1) เดือนกุมภาพันธ์ (2) พรรณไม้ (3) พิพิธภัณฑ์ (4) สายพันธ์",
+    "prompt_text": "จากข้อความ คำหมายเลขใดเขียนไม่ถูกต้อง",
+    "correct_answer": "4",
+    "correct_answer_text": "หมายเลข (4)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/1",
+    "skill_tag": [
+      "spelling",
+      "error_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      23
+    ],
+    "source_pages_answer": [
+      23
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1)",
+      "2": "หมายเลข (2)",
+      "3": "หมายเลข (3)",
+      "4": "หมายเลข (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 17,
+    "question_no": 17,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "(1) ลูกจันเป็นผลไม้ชนิดหนึ่ง มีสีเหลืองกลิ่นหอม (2) กะเพราเป็นผักสวนครัวที่นิยมปลูกในครัวเรือน (3) งานแกะสลักผักและผลไม้ต้องอาศัยความปราณีต (4) เทศกาลสงกรานต์ ผู้คนนิยมประแป้งและใส่เสื้อผ้าสีสันสดใส",
+    "prompt_text": "ข้อความหมายเลขใด มีคำที่สะกดผิด",
+    "correct_answer": "3",
+    "correct_answer_text": "หมายเลข (3)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/1",
+    "skill_tag": [
+      "spelling",
+      "error_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      24
+    ],
+    "source_pages_answer": [
+      24
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1)",
+      "2": "หมายเลข (2)",
+      "3": "หมายเลข (3)",
+      "4": "หมายเลข (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 18,
+    "question_no": 18,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แม่ย้อมผมสีน้ำตาล",
+    "prompt_text": "ข้อใดมีการใช้คำชนิดเดียวกับคำที่ขีดเส้นใต้ในประโยคข้างต้น",
+    "correct_answer": "3",
+    "correct_answer_text": "มันหัวนี้หวานมาก",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/2",
+    "skill_tag": [
+      "parts_of_speech",
+      "noun_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      25
+    ],
+    "source_pages_answer": [
+      25
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เธอไปกับเขาเมื่อเช้านี้",
+      "2": "เขามาหาฉันวันนี้",
+      "3": "มันหัวนี้หวานมาก",
+      "4": "มันเห่าส่งเสียงดังมาก"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 19,
+    "question_no": 19,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "บนถนนมีรถยนต์วิ่งขวักไขว่ หญิงสาวขยับตัวอย่างหงุดหงิด เธอปล่อยมือจากพวงมาลัย เอี้ยวตัวไปดึงกระดาษทิชชูจากเบาะด้านหลังมาซับเหงื่อบนใบหน้า (1) รถยนต์ (2) ขยับ (3) เธอ (4) กระดาษทิชชู",
+    "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+    "correct_answer": "2",
+    "correct_answer_text": "หมายเลข (2)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/2",
+    "skill_tag": [
+      "parts_of_speech",
+      "verb_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      26
+    ],
+    "source_pages_answer": [
+      26
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1)",
+      "2": "หมายเลข (2)",
+      "3": "หมายเลข (3)",
+      "4": "หมายเลข (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 20,
+    "question_no": 20,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "เธอกินข้าวกับอะไร",
+    "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+    "correct_answer": "2",
+    "correct_answer_text": "ใครสอนวิชาภาษาไทย",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/4",
+    "skill_tag": [
+      "sentence_type",
+      "interrogative_sentence"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      27
+    ],
+    "source_pages_answer": [
+      27
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เขาไปกินก๋วยเตี๋ยว",
+      "2": "ใครสอนวิชาภาษาไทย",
+      "3": "เราไม่กินขนมในห้องเรียน",
+      "4": "ฉันชอบอ่านหนังสือการ์ตูน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 21,
+    "question_no": 21,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ผีเสื้อเกาะดอกไม้สีแดง",
+    "prompt_text": "ประโยคในข้อใดมีโครงสร้างเหมือนกับประโยคที่กำหนด",
+    "correct_answer": "3",
+    "correct_answer_text": "จอยถือกระเป๋าใหม่",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/4",
+    "skill_tag": [
+      "sentence_structure",
+      "pattern_matching"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      28
+    ],
+    "source_pages_answer": [
+      28
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "โจไปโรงเรียน",
+      "2": "จอมขี่จักรยาน",
+      "3": "จอยถือกระเป๋าใหม่",
+      "4": "เพื่อนของจุ๋มซื้อข้าวผัด"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 22,
+    "question_no": 22,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "บ้านของวีณาเปิดขายอาหาร (1) มีรายการอาหารให้ลูกค้าสั่งเยอะแยะ (2) แถมยังมีบริการน้ำดื่มให้ฟรี (3) ทั้งที่ราคาสินค้าขึ้นฮวบฮาบ (4) แต่อาหารในร้านก็ยังมีราคาย่อมเยา",
+    "prompt_text": "ข้อความหมายเลขใด ใช้ภาษาได้เหมาะสม",
+    "correct_answer": "4",
+    "correct_answer_text": "หมายเลข (4)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/6",
+    "skill_tag": [
+      "standard_thai",
+      "register_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      29
+    ],
+    "source_pages_answer": [
+      29
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1)",
+      "2": "หมายเลข (2)",
+      "3": "หมายเลข (3)",
+      "4": "หมายเลข (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 23,
+    "question_no": 23,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ทางโรงเรียน เรียนเชิญคณะกรรมการสถานศึกษา เดินทางมา..............โรงเรียน เพื่อร่วม………………….อาหารกลางวัน และเชิญเข้าประชุม เพื่อเตรียมความพร้อมในการเปิดเรียน",
+    "prompt_text": "ควรเติมคำในข้อใดลงในช่องว่าง ตามลำดับจึงจะเหมาะสม",
+    "correct_answer": "4",
+    "correct_answer_text": "เยี่ยม รับประทาน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/6",
+    "skill_tag": [
+      "standard_thai",
+      "word_choice"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      30
+    ],
+    "source_pages_answer": [
+      30
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ดู กิน",
+      "2": "ชม กิน",
+      "3": "พบ รับประทาน",
+      "4": "เยี่ยม รับประทาน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 24,
+    "question_no": 24,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "“...เอาแรงเป็นทุน สู้งานเงินเดือนต่ำ ๆ เก็บเงินเข้าเรียนภาคค่ำ ก่อความฝันบนทางเปื้อนฝุ่น สังคมเมืองใหญ่ ขาดแคลนน้ำใจเจือจุน ใช้ความอดทนเติมทุน ให้ยืนสู้ไหวทุกวัน...”",
+    "prompt_text": "ข้อใดไม่ใช่ข้อคิดที่ได้จากเพลงนี้",
+    "correct_answer": "3",
+    "correct_answer_text": "ยอมรับในโชคชะตา",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/1",
+    "skill_tag": [
+      "moral_extraction",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      31
+    ],
+    "source_pages_answer": [
+      31
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หนักเอาเบาสู้",
+      "2": "คิดให้ไกลไปให้ถึง",
+      "3": "ยอมรับในโชคชะตา",
+      "4": "ทำงานหนักวันนี้เพื่อจะสบายวันหน้า"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 25,
+    "question_no": 25,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณตาบอกฉันว่า ทุกคนมีนาฬิกาเป็นของตัวเอง นาฬิกาชีวิตจะเดินทางไปเรื่อย ๆ แต่ละวันมีอะไรมากมาย บางทีก็มีประโยชน์มากบ้าง น้อยบ้าง และบางอย่างก็กลับเป็นโทษเสียอีก ถ้าจะทำชีวิตของเราให้มีคุณค่า มีอนาคตที่มุ่งหวัง เราจะต้องรู้จักใช้เวลาในแต่ละวันให้เกิดประโยชน์สูงสุด",
+    "prompt_text": "ใครนำข้อคิดที่ได้จากข้อความไปใช้ในชีวิตประจำวันได้อย่างเหมาะสม",
+    "correct_answer": "4",
+    "correct_answer_text": "โบว์ใช้เวลาศึกษาข้อมูลจากหลายแหล่งจึงมีผลการเรียนดี",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/1",
+    "skill_tag": [
+      "moral_application",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      32
+    ],
+    "source_pages_answer": [
+      32
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "บอลใช้เวลาว่างเล่นเกมจนดึกทุกวัน",
+      "2": "บุ๋มดูนาฬิกาตลอดเวลาเมื่อใกล้เลิกเรียน",
+      "3": "บัวใช้เวลาในการดูการ์ตูนจนจบแล้วจึงทำการบ้าน",
+      "4": "โบว์ใช้เวลาศึกษาข้อมูลจากหลายแหล่งจึงมีผลการเรียนดี"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 26,
+    "question_no": 26,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อวัยวะต่าง ๆ ในร่างกายสนทนากันว่า “พวกตนทำงานหนักด้วยความเหน็ดเหนื่อย ท้องอยู่เฉย ๆ ก็ได้รับอาหาร” จึงพากันประท้วง ขาไม่ยอมเดิน มือไม่ยอมหยิบอาหาร ปากไม่ยอมอ้า ฟันไม่ยอมเคี้ยว ไม่นาน ท้องก็หิว เมื่อไม่มีอาหารไปเลี้ยงอวัยวะอื่น ๆ ต่างอ่อนเพลีย ไม่มีแรงและเริ่มเข้าใจว่าแท้ที่จริง ท้องก็ทำหน้าที่ของตนเช่นกัน",
+    "prompt_text": "นิทานเรื่องนี้สะท้อนคุณธรรมในข้อใด",
+    "correct_answer": "1",
+    "correct_answer_text": "ความรับผิดชอบ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/3",
+    "skill_tag": [
+      "moral_extraction",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      33
+    ],
+    "source_pages_answer": [
+      33
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ความรับผิดชอบ",
+      "2": "ความอ่อนน้อม",
+      "3": "ความเสียสละ",
+      "4": "ความเอื้อเฟื้อ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 27,
+    "question_no": 27,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "ภาพแม่และเด็กกำลังช่วยกันทำอาหารในครัว มีหม้อ เขียง มีด ตะหลิว และผักหลายชนิด",
+    "prompt_text": "ให้นักเรียนเขียนบรรยายภาพโดยเขียนเรียบเรียงเป็นประโยคที่สมบูรณ์ ชัดเจน จำนวน 2 ประโยค",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 2.1 ป.3/2",
+    "skill_tag": [
+      "image_description",
+      "sentence_writing"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      34
+    ],
+    "source_pages_answer": [
+      35
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "เขียนบรรยายภาพโดยเรียบเรียงเป็นประโยคที่สมบูรณ์ ชัดเจน จำนวน 2 ประโยค โดยมีองค์ประกอบของภาพ เช่น อาหาร ห้องครัว ครอบครัว แม่ ลูก พี่ น้อง เพื่อน ฯลฯ",
+      "partial_score": 2.5,
+      "partial_score_rule": "เขียนเรียบเรียงเป็นประโยคที่สมบูรณ์ ชัดเจน ได้เพียง 1 ประโยค",
+      "zero_score": 0,
+      "zero_score_rule": "เขียนเป็นคำไม่เป็นประโยค หรือเขียนประโยคที่ไม่สอดคล้องกับภาพ หรือไม่ตอบ"
+    },
+    "reference_answers": [
+      "ฉันและแม่ทำอาหารในครัวด้วยกันอย่างมีความสุข",
+      "ฉันช่วยแม่เตรียมอุปกรณ์ในการทำอาหารมื้อเย็นให้ทุกคนในครอบครัว",
+      "ทุกวันหยุดครอบครัวของฉันจะทำก๋วยเตี๋ยวและขนมรับประทานร่วมกัน",
+      "แม่สอนฉันทำอาหารจานโปรดให้พ่อและน้องชาย",
+      "แม่หุงข้าวส่วนฉันช่วยแม่หั่นผักเพื่อมาปรุงอาหาร",
+      "ที่ห้องครัวของฉันมีหม้อหุงข้าว มีด เขียง ตะหลิว และผักหลากหลายชนิด",
+      "ฉันตักข้าว",
+      "น้องหั่นผัก",
+      "แม่ทำอาหารให้ฉัน",
+      "ฉันช่วยแม่หั่นผัก",
+      "ในครัวมีหม้อ มีเขียง มีผัก"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 28,
+    "question_no": 28,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "ภาพชายหาดและทะเลมีขยะจำนวนมาก น้ำสกปรก มีปลาและต้นไม้ริมทะเลได้รับผลกระทบ",
+    "prompt_text": "จากภาพ ให้นักเรียนเขียนคำขวัญเชิญชวนให้อนุรักษ์ทรัพยากรทางทะเล จำนวนไม่เกิน 16 คำ",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 4.1 ป.3/5",
+    "skill_tag": [
+      "slogan_writing",
+      "creative_writing"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      36
+    ],
+    "source_pages_answer": [
+      36,
+      37
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "เขียนคำขวัญได้ถูกต้องตามหลักการเขียนคำขวัญ และมีเนื้อหาสอดคล้องกับภาพ",
+      "partial_score": 2.5,
+      "partial_score_rule": "เขียนคำขวัญได้ถูกต้องตามหลักการเขียนคำขวัญ และมีเนื้อหาสอดคล้องกับภาพ แต่ไม่ได้เชิญชวนให้อนุรักษ์ทรัพยากรทางทะเล หรือมีจำนวนคำเกิน 16 คำ",
+      "zero_score": 0,
+      "zero_score_rule": "เขียนคำขวัญไม่ถูกต้องตามหลักการเขียนคำขวัญ หรือไม่สอดคล้องกับภาพที่กำหนด หรือไม่เขียนตอบ"
+    },
+    "reference_answers": [
+      "รู้รักษามหาสมุทร เพื่อชีวิตมนุษย์ที่ยั่งยืน",
+      "ก่อนทิ้งคิดสักนิด เพื่อชีวิตสัตว์ทะเล",
+      "สัตว์ทะเลมีคุณค่า รู้รักษาให้ยั่งยืน",
+      "ทะเลน้ำใส ถ้าใส่ใจเก็บขยะ",
+      "ทะเลสวย ถ้าช่วยกันรักษา"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 29,
+    "question_no": 29,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "กาสองพี่น้องอาศัยอยู่ในรังเดียวกัน ในรังมีรูโหว่อยู่รูหนึ่ง กาผู้พี่คิดว่าน้องคงซ่อมรังเองแน่ ๆ กาผู้น้องก็คิดว่าพี่คงต้องซ่อมรัง แต่ไม่มีใครลงมือซ่อมรัง เวลาผ่านไป รูโหว่ในรังก็ใหญ่ขึ้นเรื่อย ๆ ต่างฝ่ายก็คิดว่าอีกฝ่ายควรซ่อมรัง เมื่อฤดูหนาวมาถึงลมพัดแรง อากาศเย็นลง กาสองพี่น้องได้แต่กอดกันแน่น และขาดใจตายด้วยความหนาว",
+    "prompt_text": "จากนิทาน อะไรเป็นสาเหตุที่ทำให้กาสองพี่น้องขาดใจตายด้วยความหนาว ตอบมา 2 ข้อ",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 5.1 ป.3/3",
+    "skill_tag": [
+      "short_reasoning",
+      "literature_response"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      38
+    ],
+    "source_pages_answer": [
+      38,
+      39
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "บอกสาเหตุการตายของกาสองพี่น้องได้ถูกต้อง สมเหตุสมผล สอดคล้องกับนิทานครบทั้ง 2 ข้อ",
+      "partial_score": 2.5,
+      "partial_score_rule": "บอกสาเหตุการตายของกาสองพี่น้องได้ถูกต้องสมเหตุสมผล สอดคล้องกับนิทานได้ 1 ข้อ",
+      "zero_score": 0,
+      "zero_score_rule": "บอกสาเหตุการตายของกาสองพี่น้องไม่สมเหตุสมผล หรือไม่สอดคล้องกับนิทาน หรือเขียนคำตอบอื่นที่ไม่ใช่สาเหตุของการตาย หรือไม่เขียนตอบ"
+    },
+    "reference_answers": [
+      "ไม่ซ่อมรัง",
+      "เกี่ยงกันทำงาน",
+      "ขาดความรับผิดชอบ",
+      "ขาดความสามัคคี",
+      "การไม่พูดคุยกัน",
+      "ไม่ปรึกษากัน",
+      "ต่างคนต่างความคิด",
+      "ไม่มีความเสียสละ",
+      "ไม่มีจิตอาสา",
+      "ลมพัดแรง",
+      "อากาศเย็น",
+      "รังรั่ว",
+      "รูโหว่มีขนาดใหญ่ขึ้น"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2565",
+    "subject": "thai",
+    "year_buddhist": 2565,
+    "grade": 3,
+    "question_id": 30,
+    "question_no": 30,
+    "section": "written_free",
+    "answer_type": "free_written",
+    "max_score": 7,
+    "stimulus_text": "ภาพเด็ก ๆ กำลังเล่นในสนามเด็กเล่นหรือสวนสาธารณะ มีเด็กปั่นจักรยาน เด็กเล่นสไลเดอร์ และเด็กเล่นกองทราย",
+    "prompt_text": "ให้นักเรียนเขียนเรื่องจากภาพตามจินตนาการ พร้อมทั้งตั้งชื่อเรื่องให้สัมพันธ์กับภาพ ความยาว 5 - 7 บรรทัด",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 2.1 ป.3/5",
+    "skill_tag": [
+      "creative_writing",
+      "imaginative_story"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      40
+    ],
+    "source_pages_answer": [
+      41,
+      42
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "title",
+          "max_score": 1,
+          "rule": "มีการตั้งชื่อเรื่อง โดยอาจจะเป็นประโยค กลุ่มคำ หรือคำที่สอดคล้องกับภาพ เช่น สนามเด็กเล่น ปั่นจักรยาน บ่อทราย สนุกสนาน แสนสุข ความสุข ครอบครัว เพื่อน พี่น้อง กิจกรรม หรือวันหยุด"
+        },
+        {
+          "name": "story",
+          "max_score": 4,
+          "rule": "เขียนเรื่องได้สอดคล้อง สัมพันธ์กับชื่อเรื่องและภาพ โดยเชื่อมโยงความคิดได้เป็นลำดับและเป็นเรื่องเดียวกัน มีคำสำคัญที่ได้จากสาระสำคัญของภาพจำนวน 5 คำขึ้นไป และใช้ภาษาได้ถูกต้องตามหลักการใช้ภาษา"
+        },
+        {
+          "name": "spelling",
+          "max_score": 1,
+          "rule": "เขียนสะกดคำได้ถูกต้อง หรือเขียนสะกดคำผิดไม่เกิน 3 คำ"
+        },
+        {
+          "name": "length",
+          "max_score": 1,
+          "rule": "เขียนเรื่องได้สอดคล้องกับชื่อเรื่องหรือภาพ ความยาวอย่างน้อย 5 บรรทัด และไม่เกิน 7 บรรทัด"
+        }
+      ],
+      "special_note": "ถ้าเรื่องไม่สัมพันธ์กับภาพและชื่อเรื่อง ให้คะแนนการเขียนเรื่อง 0"
+    },
+    "reference_answers": [
+      "ชื่อเรื่อง เช่น สนามเด็กเล่น / ปั่นจักรยาน / บ่อทราย / สนุกสนาน / แสนสุข / ความสุข / ครอบครัว / เพื่อน / พี่น้อง / กิจกรรม / วันหยุด",
+      "คำสำคัญจากภาพ เช่น สนามเด็กเล่น สวนเด็กเล่น สวนสาธารณะ สวนสนุก บ่อทราย กองทราย สไลเดอร์ กระดานลื่น จักรยาน ถังทราย กระบะทราย เด็กชาย เด็กหญิง ครอบครัว เพื่อน พี่น้อง เด็ก ๆ เล่น ขี่จักรยาน เล่นกองทราย ก่อกองทราย เล่นสนุก ตักทราย สนุกสนาน ยิ้มแย้ม มีความสุข หัวเราะ เพลิดเพลิน กิจกรรม วันหยุด"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -42,7 +1340,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -83,7 +1381,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -125,7 +1423,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -166,7 +1464,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -208,7 +1506,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -249,7 +1547,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -291,7 +1589,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -332,7 +1630,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -374,7 +1672,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -415,7 +1713,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -457,7 +1755,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -498,7 +1796,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -539,7 +1837,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -581,7 +1879,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -623,7 +1921,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -665,7 +1963,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -706,7 +2004,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -747,7 +2045,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -788,7 +2086,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -829,7 +2127,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -870,7 +2168,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -911,7 +2209,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -953,7 +2251,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -994,7 +2292,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1035,7 +2333,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1077,7 +2375,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1127,7 +2425,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1177,7 +2475,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1228,7 +2526,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2566",
+    "exam_id": "nt_p3_th_2566",
     "subject": "thai",
     "year_buddhist": 2566,
     "grade": 3,
@@ -1293,7 +2591,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1334,7 +2632,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1375,7 +2673,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1416,7 +2714,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1457,7 +2755,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1498,7 +2796,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1539,7 +2837,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1581,7 +2879,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1622,7 +2920,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1663,7 +2961,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1704,7 +3002,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1746,7 +3044,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1788,7 +3086,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1830,7 +3128,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1872,7 +3170,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1913,7 +3211,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1954,7 +3252,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -1995,7 +3293,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2036,7 +3334,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2077,7 +3375,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2118,7 +3416,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2159,7 +3457,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2200,7 +3498,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2242,7 +3540,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2283,7 +3581,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2324,7 +3622,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2365,7 +3663,7 @@
     "reference_answers_json": null
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2422,7 +3720,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2472,7 +3770,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,
@@ -2525,7 +3823,7 @@
     ]
   },
   {
-    "﻿exam_id": "nt_p3_th_2567",
+    "exam_id": "nt_p3_th_2567",
     "subject": "thai",
     "year_buddhist": 2567,
     "grade": 3,

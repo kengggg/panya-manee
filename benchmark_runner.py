@@ -40,32 +40,33 @@ def build_prompt(item: dict) -> str:
 
 
 def parse_answer(raw: str):
-    """Extract single digit 1-4 from model output."""
+    """Extract single digit 1-4 from model output. Returns (digit, method) tuple."""
     raw = raw.strip()
     # Try first char
     if raw and raw[0] in "1234":
-        return raw[0]
+        return raw[0], "direct"
     # Handle markdown bold: **3) ...** or **ข้อ 3**
     m = re.search(r'\*\*\s*([1-4])[).]', raw)
     if m:
-        return m.group(1)
+        return m.group(1), "markdown_bold"
     # Handle "ข้อ 3" or "ตัวเลือก 3"
     m = re.search(r'(?:ข้อ|ตัวเลือก|คำตอบ|answer)[^1-4]*([1-4])', raw, re.IGNORECASE)
     if m:
-        return m.group(1)
+        return m.group(1), "thai_keyword"
     # Find any digit 1-4 in response
     m = re.search(r'[1-4]', raw)
-    return m.group(0) if m else None
+    if m:
+        return m.group(0), "fallback_digit"
+    return None, None
 
 
 def call_ollama(model, prompt, timeout=120):
-    """Call Ollama API. Returns (raw_output, latency_ms)."""
+    """Call Ollama API. Returns (raw_output, thinking_output, latency_ms)."""
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
-        "think": False,  # qwen3.5 fix: must be top-level, not in options
-        "options": {"temperature": 0, "num_predict": 100, "num_ctx": 4096},
+        "options": {"temperature": 0, "num_predict": 2048, "num_ctx": 4096},
     }
     t0 = time.time()
     req = urllib.request.Request(
@@ -78,7 +79,15 @@ def call_ollama(model, prompt, timeout=120):
     latency = (time.time() - t0) * 1000
     msg = data.get("message", {})
     raw = msg.get("content", "").strip()
-    return raw, latency
+    thinking = msg.get("thinking", "").strip()
+    metrics = {
+        "prompt_eval_count": data.get("prompt_eval_count", 0),
+        "prompt_eval_duration_ms": data.get("prompt_eval_duration", 0) / 1e6,
+        "eval_count": data.get("eval_count", 0),
+        "eval_duration_ms": data.get("eval_duration", 0) / 1e6,
+        "load_duration_ms": data.get("load_duration", 0) / 1e6,
+    }
+    return raw, thinking, latency, metrics
 
 
 def check_ollama():
@@ -122,22 +131,28 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
 
     for idx, item in enumerate(all_items, 1):
         qid = item["question_id"]
+        year = item.get("year_buddhist", "")
         subject = item["_subject"]
         ground_truth = str(item.get("correct_answer", ""))
 
         prompt = build_prompt(item)
 
+        empty_metrics = {"prompt_eval_count": 0, "prompt_eval_duration_ms": 0, "eval_count": 0, "eval_duration_ms": 0, "load_duration_ms": 0}
         if dry_run:
             raw = "3"
+            thinking = ""
             latency = 0.0
+            metrics = empty_metrics
         else:
             try:
-                raw, latency = call_ollama(model, prompt)
+                raw, thinking, latency, metrics = call_ollama(model, prompt)
             except Exception as e:
                 raw = f"ERROR: {e}"
+                thinking = ""
                 latency = -1.0
+                metrics = empty_metrics
 
-        parsed = parse_answer(raw)
+        parsed, parse_method = parse_answer(raw)
         is_parseable = parsed is not None
         is_correct = parsed == ground_truth if is_parseable else False
 
@@ -150,13 +165,16 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
             "model_id": model,
             "run_id": run_id,
             "exam_id": item.get("exam_id"),
+            "year_buddhist": year,
             "subject": subject,
             "question_id": qid,
             "eval_split": item.get("eval_split"),
             "skill_tag": item.get("skill_tag"),
             "curriculum_standard": item.get("curriculum_standard"),
+            "parse_method": parse_method,
             "prompt_version": "v1_answer_only",
             "raw_output": raw,
+            "thinking_output": thinking or None,
             "parsed_answer": parsed,
             "correct_answer": ground_truth,
             "is_parseable": is_parseable,
@@ -164,11 +182,15 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
             "score": item.get("max_score", 3) if is_correct else 0,
             "max_score": item.get("max_score", 3),
             "latency_ms": round(latency),
+            "prompt_tokens": metrics["prompt_eval_count"],
+            "eval_tokens": metrics["eval_count"],
+            "eval_duration_ms": round(metrics["eval_duration_ms"]),
+            "prompt_eval_duration_ms": round(metrics["prompt_eval_duration_ms"]),
         }
         results.append(result)
 
         status = "✓" if is_correct else ("?" if not is_parseable else "✗")
-        print(f"  [{idx:02d}] {subject} ข้อ{qid:02d} | raw={repr(raw[:20])} parsed={parsed} ans={ground_truth} {status} ({latency:.0f}ms)")
+        print(f"  [{idx:02d}] {subject}/{year} ข้อ{qid:02d} | raw={repr(raw[:20])} parsed={parsed} ans={ground_truth} {status} [{parse_method}] ({latency:.0f}ms, {metrics['eval_count']}tok)")
 
         if not dry_run:
             with open(out_path, "a", encoding="utf-8") as f:

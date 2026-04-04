@@ -1,0 +1,1298 @@
+[
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 1,
+    "question_no": 1,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "เพชรเป็นแก้วที่แข็งที่สุดและมีน้ำแวววาวมากกว่าพลอยอื่น ๆ มักนำมาใช้ทำเครื่องประดับ",
+    "prompt_text": "ข้อใดอ่านออกเสียงคำที่ขีดเส้นใต้ได้ถูกต้อง",
+    "correct_answer": "3",
+    "correct_answer_text": "เพ็ด",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/1",
+    "skill_tag": [
+      "reading_aloud",
+      "word_pronunciation"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      4
+    ],
+    "source_pages_answer": [
+      4
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เพ-ชะ-ระ",
+      "2": "เพ-ชอน",
+      "3": "เพ็ด",
+      "4": "พะ-เชน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 2,
+    "question_no": 2,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ยามเย็นวันนี้ มากมีขนม เราต่างชื่นชม นิยมของไทย ทองหยิบ ฝอยทอง ลอดช่องชื่นใจ บัวลอย ใส่ไส้ เชิญให้ลิ้มลอง",
+    "prompt_text": "จากบทร้อยกรองคำที่ขีดเส้นใต้มีความหมายตรงกับข้อใด",
+    "correct_answer": "3",
+    "correct_answer_text": "ชอบใจ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/2",
+    "skill_tag": [
+      "reading_comprehension",
+      "word_meaning"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      5
+    ],
+    "source_pages_answer": [
+      5
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ชื่นใจ",
+      "2": "ชื่นมื่น",
+      "3": "ชอบใจ",
+      "4": "ชอบพอ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 3,
+    "question_no": 3,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ทานตะวันมีถิ่นเดิมอยู่เม็กซิโก เป็นดอกไม้ที่มีวิวัฒนาการสูงสุดในพวกไม้ดอกด้วยกัน ออกดอกครั้งเดียวต้นก็ตาย เจริญเติบโตเร็ว และขึ้นได้ทุกที่ เมล็ดเป็นอาหารของมนุษย์ โดยจะรับประทานดิบ ๆ หรือคั่วรับประทานก็ได้",
+    "prompt_text": "คำที่ขีดเส้นใต้มีความหมายสอดคล้องกับข้อใด",
+    "correct_answer": "1",
+    "correct_answer_text": "เปลี่ยนแปลง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/2",
+    "skill_tag": [
+      "reading_comprehension",
+      "word_meaning"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      6
+    ],
+    "source_pages_answer": [
+      6
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เปลี่ยนแปลง",
+      "2": "แปลกปลอม",
+      "3": "ปลอดโปร่ง",
+      "4": "ปลอดภัย"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 4,
+    "question_no": 4,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ข้าวแช่ เป็นอาหารพื้นบ้านของไทยที่ได้รับความนิยมในช่วงฤดูร้อน เพราะเป็นอาหารที่รับประทานแล้วให้ความรู้สึกสดชื่น ทั้งมีส่วนผสมที่ช่วยลดอุณหภูมิร่างกาย ซึ่งข้าวแช่ประกอบด้วยข้าวที่หุงสุกแล้ว แช่น้ำเย็น และรับประทานพร้อมกับเครื่องเคียงที่หลากหลาย",
+    "prompt_text": "ข้อใดเป็นคำถามเชิงเหตุผลที่หาคำตอบได้จากข้อความนี้",
+    "correct_answer": "1",
+    "correct_answer_text": "ข้าวแช่นิยมกินในช่วงฤดูร้อนเนื่องจากอะไร",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/3",
+    "skill_tag": [
+      "reasoning_question",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      7
+    ],
+    "source_pages_answer": [
+      7
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ข้าวแช่นิยมกินในช่วงฤดูร้อนเนื่องจากอะไร",
+      "2": "ข้าวแช่ทำให้ร่างกายสดชื่นจริงหรือไม่",
+      "3": "ข้าวแช่มีส่วนประกอบอะไรบ้าง",
+      "4": "ข้าวแช่มีวิธีการทำอย่างไร"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 5,
+    "question_no": 5,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "นกชนหินเป็นหนึ่งในนกเงือกที่ใหญ่ที่สุดในเอเชีย กินมะเดื่อเป็นอาหาร มีการเลือกโพรงรังที่มีความเฉพาะตัวมาก หัวที่มีความแข็ง เป็นที่ต้องการของหลายประเทศ สำหรับทำเครื่องประดับ จึงมีการลักลอบนำนกไปขาย ทำให้เป็นสัตว์ป่าที่ใกล้สูญพันธุ์",
+    "prompt_text": "เหตุใดนกชนหินจึงเป็นสัตว์ป่าใกล้สูญพันธุ์",
+    "correct_answer": "1",
+    "correct_answer_text": "นิยมนำหัวไปทำเครื่องประดับ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/3",
+    "skill_tag": [
+      "reasoning_question",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      8
+    ],
+    "source_pages_answer": [
+      8
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นิยมนำหัวไปทำเครื่องประดับ",
+      "2": "ป่าถูกทำลายทำให้ไม่มีที่อยู่อาศัย",
+      "3": "คนนิยมนำนกชนหินไปเลี้ยงมากขึ้น",
+      "4": "ต้นมะเดื่อซึ่งเป็นแหล่งอาหารมีจำนวนลดลง"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 6,
+    "question_no": 6,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ภาพแสดงขั้นตอนการล้างจาน 4 ขั้นตอน พร้อมภาพหมายเลข (1) - (4)",
+    "prompt_text": "ข้อใดเรียงลำดับขั้นตอนในการล้างจานได้ถูกต้อง",
+    "correct_answer": "2",
+    "correct_answer_text": "หมายเลข (1) – (3) – (4) – (2)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/4",
+    "skill_tag": [
+      "event_ordering",
+      "procedure_understanding"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      9
+    ],
+    "source_pages_answer": [
+      9
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1) – (2) – (3) – (4)",
+      "2": "หมายเลข (1) – (3) – (4) – (2)",
+      "3": "หมายเลข (3) – (4) – (1) – (2)",
+      "4": "หมายเลข (3) – (1) – (2) – (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 7,
+    "question_no": 7,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ประกาศปิดสถานที่ท่องเที่ยว “อุทยานแห่งชาติเขาใหญ่ประกาศปิดพื้นที่บริเวณน้ำตกสาริกา น้ำตกเหวนรกและจุดชมวิวผาเดียวดาย เนื่องจากเป็นฤดูฝน อาจเกิดเหตุการณ์ฝนตกหนัก น้ำท่วมฉับพลัน ดินโคลนถล่ม และเพื่อให้ธรรมชาติฟื้นตัว จึงขอให้นักท่องเที่ยวงดเดินทางไปในสถานที่ดังกล่าว”",
+    "prompt_text": "จากข้อความ เหตุการณ์ใดที่มีโอกาสเกิดขึ้นกับอุทยานแห่งชาติเขาใหญ่",
+    "correct_answer": "2",
+    "correct_answer_text": "พ่อค้าที่ขายสินค้าในอุทยานมีรายได้ลดลง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/4",
+    "skill_tag": [
+      "story_prediction",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      10
+    ],
+    "source_pages_answer": [
+      10,
+      11
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "นักท่องเที่ยวจำนวนมากเดินทางมาพักผ่อน",
+      "2": "พ่อค้าที่ขายสินค้าในอุทยานมีรายได้ลดลง",
+      "3": "น้ำในลำคลองมีปริมาณลดลงจนแห้งขอด",
+      "4": "เด็ก ๆ ลงเล่นน้ำตกจำนวนมาก"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 8,
+    "question_no": 8,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+    "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+    "correct_answer": "4",
+    "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/5",
+    "skill_tag": [
+      "moral_extraction",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      12
+    ],
+    "source_pages_answer": [
+      12
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+      "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+      "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+      "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 9,
+    "question_no": 9,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+    "prompt_text": "ใครปฏิบัติตนไม่สอดคล้องกับข้อคิดที่ได้จากนิทาน",
+    "correct_answer": "2",
+    "correct_answer_text": "ด.ญ.สุกัญญาเป็นอาสาสมัครดับเพลิง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/5",
+    "skill_tag": [
+      "moral_application",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      13
+    ],
+    "source_pages_answer": [
+      13
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ด.ญ.กัลยาทำการบ้านส่งคุณครูทุกครั้ง",
+      "2": "ด.ญ.สุกัญญาเป็นอาสาสมัครดับเพลิง",
+      "3": "ด.ญ.ชาลิสาช่วยพ่อรดน้ำผักสวนครัวเป็นประจำ",
+      "4": "ด.ญ.ลลิตาแบ่งเงินที่คุณแม่ให้หยอดกระปุกออมสินทุกวัน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 10,
+    "question_no": 10,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คอมพิวเตอร์มีประโยชน์กับเด็ก ๆ ดังนี้ - ด้านการเรียน ค้นหาข้อมูลการเรียน - ด้านอารมณ์ รู้สึกผ่อนคลาย - ด้านพฤติกรรม พูดคุยกับเพื่อนทางไกล",
+    "prompt_text": "พฤติกรรมของใครที่ไม่ได้นำคำแนะนำไปปรับใช้",
+    "correct_answer": "4",
+    "correct_answer_text": "ตุ๊กใช้เวลาทั้งหมดในการเล่นเกมคอมพิวเตอร์",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/7",
+    "skill_tag": [
+      "applied_reading",
+      "judgment_from_text"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      14
+    ],
+    "source_pages_answer": [
+      14
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เต้ยค้นหาข้อมูลความรู้ในคอมพิวเตอร์",
+      "2": "ต่อพูดคุยกับเพื่อนที่อยู่ทางไกลผ่านไลน์",
+      "3": "แต้มทำงานบ้านเสร็จจึงดูการ์ตูนออนไลน์",
+      "4": "ตุ๊กใช้เวลาทั้งหมดในการเล่นเกมคอมพิวเตอร์"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 11,
+    "question_no": 11,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ตารางปริมาณการดื่มนมในแต่ละช่วงวัย: เด็กแรกเกิด - อายุ 2 ปี ควรได้รับแคลเซียม 800 - 1,000 มิลลิกรัมต่อวัน (ควรเป็นนมจากอกแม่); อายุ 3 - 12 ปี ควรดื่มนมวันละ 3 แก้ว (สามารถดื่มเพิ่มได้อีกจนถึง 1 ลิตร); อายุ 13 - 25 ปี ควรดื่มนมวันละ 3 - 4 แก้ว; อายุ 25 ปีขึ้นไป - วัยสูงอายุ ควรดื่มนมวันละ 2 - 3 แก้ว",
+    "prompt_text": "จากข้อความใครปฏิบัติตามคำแนะนำได้ถูกต้องและเหมาะสมกับช่วงวัย",
+    "correct_answer": "2",
+    "correct_answer_text": "ยายปิ่นดื่มนมวันละ 3 แก้ว",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/7",
+    "skill_tag": [
+      "table_reading",
+      "applied_reading"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      15
+    ],
+    "source_pages_answer": [
+      15,
+      16
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "พ่อโป้งดื่มนมวันละ 1 แก้ว",
+      "2": "ยายปิ่นดื่มนมวันละ 3 แก้ว",
+      "3": "น้องปลาเด็กทารกดื่มนมวัววันละ 1 ลิตร",
+      "4": "หนูแป้งเรียนอยู่ชั้น ป.3 ดื่มนมวันละ 2 แก้ว"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 12,
+    "question_no": 12,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "แผนที่สวนสัตว์พร้อมจุดที่จอดรถและตำแหน่งสัตว์ ได้แก่ ลีเมอร์ แรด กรงนก ลิง ม้า สิงโต ฮิปโปโปเตมัส และกวาง",
+    "prompt_text": "มารีนลงจากรถคุณแม่และจะไปดูการแสดงลิงที่กำลังจะแสดงในอีก 5 นาที เขาจึงต้องใช้เส้นทางที่ใกล้ที่สุด ระหว่างทางมารีนไม่ผ่านสัตว์ชนิดใด",
+    "correct_answer": "1",
+    "correct_answer_text": "กวาง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 1.1 ป.3/8",
+    "skill_tag": [
+      "map_reading",
+      "path_reasoning"
+    ],
+    "requires_image": true,
+    "requires_layout": true,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      17
+    ],
+    "source_pages_answer": [
+      17,
+      18
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "กวาง",
+      "2": "นก",
+      "3": "ลีเมอร์",
+      "4": "แรด"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 13,
+    "question_no": 13,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "จดหมายลาครู: “เรียน คุณครูประจำชั้นประถมศึกษาปีที่ 3 เนื่องจากดิฉันป่วยเป็นไข้หวัดตัวร้อนและหนาวสั่น ...................... ดิฉันไม่สามารถไปโรงเรียนได้ จึงขออนุญาตลาหยุดเป็นเวลา 3 วัน ตั้งแต่วันที่ 3 – 5 กุมภาพันธ์ พ.ศ. 2567 เมื่อดิฉันหายป่วยแล้วจะมาเรียนตามปกติ”",
+    "prompt_text": "ควรนำข้อความใดไปเติมลงในช่องว่างจึงจะถูกต้องและเหมาะสม",
+    "correct_answer": "3",
+    "correct_answer_text": "ปวดศีรษะและปวดเมื่อยร่างกาย",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 2.1 ป.3/4",
+    "skill_tag": [
+      "functional_writing",
+      "formal_language"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      19
+    ],
+    "source_pages_answer": [
+      19,
+      20
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เจ็บคอ ไอไม่หยุดสักที",
+      "2": "ปวดหัวหนักมากเลยค่ะคุณครู",
+      "3": "ปวดศีรษะและปวดเมื่อยร่างกาย",
+      "4": "ปวดศีรษะและปวดเมื่อยไปหมดเลย"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 14,
+    "question_no": 14,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "อินโฟกราฟิกเรื่องเหตุผลดี ๆ ที่ได้จากการออกกำลังกาย เช่น กล้ามเนื้อและกระดูกแข็งแรง หัวใจแข็งแรง ระบบหายใจและขับถ่ายดีขึ้น และลดความเสี่ยงต่อโรคหัวใจและหลอดเลือด",
+    "prompt_text": "ข้อใดไม่ใช่สาระสำคัญที่ได้จากภาพ",
+    "correct_answer": "2",
+    "correct_answer_text": "ออกกำลังกายเป็นประจำทำให้อารมณ์ดี",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 3.1 ป.3/2",
+    "skill_tag": [
+      "visual_reading",
+      "information_identification"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      21
+    ],
+    "source_pages_answer": [
+      21,
+      22
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ช่วยให้กล้ามเนื้อและกระดูกแข็งแรง",
+      "2": "ออกกำลังกายเป็นประจำทำให้อารมณ์ดี",
+      "3": "ลดความเสี่ยงของโรคหัวใจและหลอดเลือด",
+      "4": "ระบบหายใจและระบบขับถ่ายของร่างกายดีขึ้น"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 15,
+    "question_no": 15,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "มันเทศ เป็นแหล่งรวมคาร์โบไฮเดรต มักถูกนำมาใช้รับประทานแทนข้าว นอกจากนี้ยังเป็นแหล่งรวมสารอาหารชั้นดีที่ร่างกายควรได้รับ มันเทศเนื้อสีเหลืองหรือสีส้มช่วยบำรุงสายตา ส่วนมันเทศเนื้อสีม่วงช่วยให้รู้สึกอิ่มได้นานและช่วยรักษาโรคเบาหวาน",
+    "prompt_text": "ข้อความข้างต้นเป็นคำตอบของคำถามในข้อใด",
+    "correct_answer": "2",
+    "correct_answer_text": "สรรพคุณของมันเทศมีอะไรบ้าง",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 3.1 ป.3/3",
+    "skill_tag": [
+      "question_answer_matching",
+      "reading_comprehension"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      23
+    ],
+    "source_pages_answer": [
+      23
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หากรับประทานมันเทศจะเกิดผลเสียอย่างไร",
+      "2": "สรรพคุณของมันเทศมีอะไรบ้าง",
+      "3": "มันเทศปลูกได้ที่ไหน",
+      "4": "มันเทศมีกี่ชนิด"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 16,
+    "question_no": 16,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ภาพบทสนทนาเด็กผู้ชายถามเจนว่า “อ้าว เจนเกิดอะไรขึ้น ไปโดนอะไรมาครับ” โดยเจนมีบาดแผลที่เข่า",
+    "prompt_text": "จากภาพ คำพูดในข้อใดเป็นคำตอบที่สอดคล้องกับคำถาม",
+    "correct_answer": "3",
+    "correct_answer_text": "หนูวิ่งหกล้มมาค่ะพี่",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 3.1 ป.3/5",
+    "skill_tag": [
+      "dialogue_understanding",
+      "spoken_response"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      24
+    ],
+    "source_pages_answer": [
+      24
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หนูทำแผลมาค่ะพี่",
+      "2": "หนูเล่นกับแมวอยู่ค่ะ",
+      "3": "หนูวิ่งหกล้มมาค่ะพี่",
+      "4": "หนูเจ็บนิดหน่อยค่ะ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 17,
+    "question_no": 17,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "(1) วันนี้ผมตื่นนอนแต่เช้า (2) พ่อจะพาผมไป (3) ซื้อรองเท้ากีฬาคู่ใหม่ ถึงผมจะเตะฟุตบอลไม่เก่งแต่ความฝันของผมคืออยากเป็น (4) นักฟุตบอลทีมชาติ",
+    "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+    "correct_answer": "3",
+    "correct_answer_text": "หมายเลข (3)",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/2",
+    "skill_tag": [
+      "parts_of_speech",
+      "verb_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      25
+    ],
+    "source_pages_answer": [
+      25
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "หมายเลข (1)",
+      "2": "หมายเลข (2)",
+      "3": "หมายเลข (3)",
+      "4": "หมายเลข (4)"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 18,
+    "question_no": 18,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "พ่อแม่พาฉันไปเยี่ยมปู่กับย่าในช่วงเทศกาลสงกรานต์",
+    "prompt_text": "คำว่า “พัน” ในข้อใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+    "correct_answer": "4",
+    "correct_answer_text": "ส้มโอใช้ผ้าพันแผลให้แมวที่ถูกรถชน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/2",
+    "skill_tag": [
+      "parts_of_speech",
+      "verb_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      26
+    ],
+    "source_pages_answer": [
+      26
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ส้มหวานมีเงินหนึ่งพันบาท",
+      "2": "ส้มซ่ามีเพื่อนชื่อพันและแพม",
+      "3": "ส้มจี๊ดมีพ่อเป็นทหารยศนายพัน",
+      "4": "ส้มโอใช้ผ้าพันแผลให้แมวที่ถูกรถชน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 19,
+    "question_no": 19,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ไก่จิกหนอนอยู่ใต้ต้นไม้",
+    "prompt_text": "จากประโยค มีคำนามจำนวนกี่คำ",
+    "correct_answer": "3",
+    "correct_answer_text": "3 คำ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/2",
+    "skill_tag": [
+      "parts_of_speech",
+      "noun_identification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      27
+    ],
+    "source_pages_answer": [
+      27
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "1 คำ",
+      "2": "2 คำ",
+      "3": "3 คำ",
+      "4": "4 คำ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 20,
+    "question_no": 20,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ฉันเดินไปโรงเรียน",
+    "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+    "correct_answer": "1",
+    "correct_answer_text": "แม่แต่งตัวสวยทุกวัน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/4",
+    "skill_tag": [
+      "sentence_type",
+      "declarative_sentence"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      28
+    ],
+    "source_pages_answer": [
+      28
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "แม่แต่งตัวสวยทุกวัน",
+      "2": "ฉันไม่กินทุเรียน",
+      "3": "ทำไมเธอถึงมาสาย",
+      "4": "เพราะอะไรเธอจึงชอบฉัน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 21,
+    "question_no": 21,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณพ่อจะพาครอบครัวไปเที่ยวที่ไหน",
+    "prompt_text": "ข้อใดเป็นประโยคต่างชนิดกับประโยคข้างต้น",
+    "correct_answer": "1",
+    "correct_answer_text": "วินัยชอบเล่นกีฬาไทยทุกชนิด",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/4",
+    "skill_tag": [
+      "sentence_type",
+      "classification"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      29
+    ],
+    "source_pages_answer": [
+      29
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "วินัยชอบเล่นกีฬาไทยทุกชนิด",
+      "2": "วิภามักทำอะไรในวันหยุด",
+      "3": "วิทิตไปโรงเรียนกับใคร",
+      "4": "วิชัยร้องไห้ทำไม"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 22,
+    "question_no": 22,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "เสือดาวตัวหนึ่งภูมิใจในรูปร่างของตัวเอง มันชอบพูดกับสัตว์อื่นว่า “ข้าดูดีหรือไม่” สัตว์อื่นกลับคิดในใจว่า “ดูไม่ดีเลย” เสือดาวไม่ได้ยินคำตอบเลยพูดว่า “.........................”",
+    "prompt_text": "ข้อใดเมื่อนำมาเติมแล้วเป็นประโยคขอร้อง",
+    "correct_answer": "4",
+    "correct_answer_text": "ช่วยตอบข้ามาหน่อย",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/4",
+    "skill_tag": [
+      "sentence_type",
+      "request_sentence"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      30
+    ],
+    "source_pages_answer": [
+      30
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "จงตอบมาเดี๋ยวนี้",
+      "2": "ทำไมถึงไม่ตอบข้า",
+      "3": "ดูไม่ออกหรืออย่างไร",
+      "4": "ช่วยตอบข้ามาหน่อย"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 23,
+    "question_no": 23,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "ภาพเด็กช่วยกันแยกขยะ พร้อมสัญลักษณ์การใช้จักรยานและใช้ถุงผ้าแทนถุงพลาสติก",
+    "prompt_text": "คำขวัญในข้อใดไม่สอดคล้องกับภาพ",
+    "correct_answer": "4",
+    "correct_answer_text": "เผาขยะสร้างมลพิษ ชีวิตจะสั้น",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 4.1 ป.3/5",
+    "skill_tag": [
+      "visual_reading",
+      "slogan_interpretation"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "vision_extended",
+    "source_pages_question": [
+      31
+    ],
+    "source_pages_answer": [
+      31,
+      32
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ร่วมใจประหยัดพลังงาน ด้วยการแยกขยะก่อนทิ้ง",
+      "2": "หันมาปั่นจักรยาน ช่วยลดพลังงานน้ำมัน",
+      "3": "ร่วมใจใช้ถุงผ้า เพื่อรักษาสิ่งแวดล้อม",
+      "4": "เผาขยะสร้างมลพิษ ชีวิตจะสั้น"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 24,
+    "question_no": 24,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณตาให้เมล็ดพืชแก่หลานมาหนึ่งถุง เขาหากระถางมาปลูก รดน้ำทุกวัน แต่แมววิ่งชนกระถางแตก เขาจึงปลูกใหม่ ต่อมามีลมพัดแรง กระถางหล่นแตก เขาก็ยังไม่ย่อท้อปลูกใหม่อีกครั้ง คอยรดน้ำและดูแลรักษาเป็นอย่างดี ไม่นานต้นไม้ก็โต เขาจึงนำไปอวดคุณตา คุณตาชมหลานที่ดูแลต้นไม้จนโต",
+    "prompt_text": "ข้อใดเป็นข้อคิดที่ได้จากนิทาน",
+    "correct_answer": "1",
+    "correct_answer_text": "ความพยายามนำมาซึ่งความสำเร็จ",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/1",
+    "skill_tag": [
+      "moral_extraction",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      33
+    ],
+    "source_pages_answer": [
+      33
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "ความพยายามนำมาซึ่งความสำเร็จ",
+      "2": "การทำความดีเพื่อหวังสิ่งตอบแทน",
+      "3": "อย่าประมาทในการใช้ชีวิต",
+      "4": "จงพอใจในสิ่งที่ตนเองมี"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 25,
+    "question_no": 25,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "คุณตาให้เมล็ดพืชแก่หลานมาหนึ่งถุง เขาหากระถางมาปลูก รดน้ำทุกวัน แต่แมววิ่งชนกระถางแตก เขาจึงปลูกใหม่ ต่อมามีลมพัดแรง กระถางหล่นแตก เขาก็ยังไม่ย่อท้อปลูกใหม่อีกครั้ง คอยรดน้ำและดูแลรักษาเป็นอย่างดี ไม่นานต้นไม้ก็โต เขาจึงนำไปอวดคุณตา คุณตาชมหลานที่ดูแลต้นไม้จนโต",
+    "prompt_text": "ใครนำข้อคิดที่ได้จากนิทานไปปฏิบัติตนได้เหมาะสมที่สุด",
+    "correct_answer": "3",
+    "correct_answer_text": "หน่อยตั้งใจเรียนอย่างสม่ำเสมอจนสอบได้คะแนนดีขึ้น",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/1",
+    "skill_tag": [
+      "moral_application",
+      "reading_literature"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      34
+    ],
+    "source_pages_answer": [
+      34
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เหน่งทำเวรประจำวันที่ตนเองได้รับมอบหมาย",
+      "2": "โหน่งเหลือเงินมาใส่กระปุกออมสินทุกวัน",
+      "3": "หน่อยตั้งใจเรียนอย่างสม่ำเสมอจนสอบได้คะแนนดีขึ้น",
+      "4": "หนึ่งไปสอบท่องคำศัพท์กับคุณครูทุกวันเพื่อให้ได้คะแนนพิเศษ"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 26,
+    "question_no": 26,
+    "section": "multiple_choice",
+    "answer_type": "mcq_single",
+    "max_score": 3,
+    "stimulus_text": "มีความรู้ความสามารถฉลาดเฉลียว ทั้งปราดเปรียวปราดเปรื่องเรื่องทั้งหลาย แม้ไร้ทรัพย์เงินทองของนอกกาย ย่อมหาได้มีเป็นเช่นต้องการ",
+    "prompt_text": "สาระสำคัญที่ได้จากบทร้อยกรองนี้นักเรียนเห็นด้วยหรือไม่ เพราะเหตุใด",
+    "correct_answer": "1",
+    "correct_answer_text": "เห็นด้วย เพราะความรู้มีค่ามากกว่าเงิน",
+    "scoring_method": "exact_match",
+    "curriculum_standard": "ท 5.1 ป.3/3",
+    "skill_tag": [
+      "opinion_on_literature",
+      "social_judgment"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "text_only_core",
+    "source_pages_question": [
+      35
+    ],
+    "source_pages_answer": [
+      35
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices": {
+      "1": "เห็นด้วย เพราะความรู้มีค่ามากกว่าเงิน",
+      "2": "เห็นด้วย เพราะเงินและความรู้มีค่าเท่ากัน",
+      "3": "ไม่เห็นด้วย เพราะเงินซื้อได้ทุกอย่าง",
+      "4": "ไม่เห็นด้วย เพราะความรู้หายากกว่าเงิน"
+    },
+    "accepted_answers_json": null,
+    "rubric_json": null,
+    "reference_answers_json": null
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 27,
+    "question_no": 27,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "ภาพยายและหลานกำลังข้ามทางม้าลาย โดยมีตำรวจจราจรเป่านกหวีดหรือโบกรถ และรถจอดให้คนข้ามถนน",
+    "prompt_text": "ให้นักเรียนเขียนบรรยายภาพโดยแต่งเป็นประโยคที่สมบูรณ์ จำนวน 2 ประโยค",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 2.1 ป.3/2",
+    "skill_tag": [
+      "image_description",
+      "sentence_writing"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      36
+    ],
+    "source_pages_answer": [
+      36,
+      37,
+      38
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "เขียนประโยคบรรยายเรื่องราวจากภาพได้ถูกต้องตามหลักภาษา เรียบเรียงเป็นประโยคที่สมบูรณ์ มีความชัดเจน ครบจำนวน 2 ประโยค โดยมีคำที่เป็นองค์ประกอบของภาพ เช่น ทำความดี ข้ามถนน จูงมือ มีน้ำใจ คนแก่ เด็ก ทางม้าลาย ตำรวจ ฯลฯ และสะกดผิดไม่เกิน 2 คำ",
+      "partial_score": 2.5,
+      "partial_score_rule": "เขียนประโยคบรรยายภาพได้ถูกต้องตามหลักภาษา เรียบเรียงเป็นประโยคสมบูรณ์ครบ 2 ประโยค แต่สะกดผิด 3 - 5 คำ หรือเขียนได้ถูกต้องตามหลักภาษา เรียบเรียงเป็นประโยคสมบูรณ์ มีความชัดเจน ครบ 1 ประโยค หรือเขียนประโยคบรรยายภาพได้ไม่ถูกต้องตามหลักภาษา เรียบเรียงเป็นประโยคไม่สมบูรณ์ ครบ 2 ประโยค",
+      "zero_score": 0,
+      "zero_score_rule": "เขียนประโยคบรรยายภาพครบ 2 ประโยคแต่สะกดผิดตั้งแต่ 6 คำขึ้นไป หรือเขียนเป็นประโยคไม่สมบูรณ์เพียง 1 ประโยค หรือเขียนไม่สามารถจับใจความได้ ไม่มีคำที่เป็นองค์ประกอบของภาพ หรือเขียนสิ่งที่ไม่เกี่ยวข้องกับภาพ หรือไม่ตอบ"
+    },
+    "reference_answers": [
+      "ยายและหลานกำลังข้ามถนน",
+      "ยายและหลานกำลังข้ามทางม้าลาย",
+      "เด็กช่วยเหลือคุณยายข้ามถนน",
+      "เด็กช่วยเหลือคุณยายข้ามทางม้าลาย",
+      "ตำรวจจราจรเป่านกหวีด",
+      "ตำรวจกำลังโบกรถ",
+      "รถจอดให้คนข้ามถนน",
+      "ทางม้าลาย",
+      "ตำรวจจราจร",
+      "เด็กคนหนึ่ง",
+      "ยายและหลาน"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 28,
+    "question_no": 28,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "ภาพเด็กช่วยกันเก็บขยะและรักษาความสะอาดสิ่งแวดล้อม",
+    "prompt_text": "ให้นักเรียนเขียนคำขวัญให้สอดคล้องกับภาพที่กำหนด จำนวนไม่เกิน 16 คำ",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 4.1 ป.3/5",
+    "skill_tag": [
+      "slogan_writing",
+      "creative_writing"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      39
+    ],
+    "source_pages_answer": [
+      39,
+      40
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "เขียนคำขวัญได้ถูกต้องตามหลักการเขียนคำขวัญโดยมีจำนวนคำไม่เกิน 16 คำ มีเนื้อหาสอดคล้องกับภาพตามแนวคำตอบ และสะกดผิดไม่เกิน 2 คำ",
+      "partial_score": 2.5,
+      "partial_score_rule": "เขียนคำขวัญได้ถูกต้องตามหลักการเขียนคำขวัญโดยมีจำนวนคำไม่เกิน 16 คำ และมีเนื้อหาบางส่วนสอดคล้องกับภาพ แต่สะกดผิด 3 - 5 คำ",
+      "zero_score": 0,
+      "zero_score_rule": "เขียนคำขวัญไม่ถูกต้องตามหลักการเขียนคำขวัญ หรือเขียนไม่สอดคล้องกับภาพที่กำหนด หรือเขียนสะกดผิดตั้งแต่ 6 คำขึ้นไป หรือไม่เขียนตอบ"
+    },
+    "reference_answers": [
+      "รักษาสิ่งแวดล้อมสักนิด เพื่อชีวิตที่ยั่งยืน",
+      "พวกเราร่วมรักษา คุณค่าสิ่งแวดล้อม",
+      "ช่วยกันเก็บขยะ ลดภาระให้โลกเรา",
+      "เรามาเก็บขยะกันเถอะ ตัวเปรอะก็ไม่เป็นไร",
+      "บ้านเมืองจะสะอาด ประเทศชาติจะเจริญ"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 29,
+    "question_no": 29,
+    "section": "written_short",
+    "answer_type": "short_written",
+    "max_score": 5,
+    "stimulus_text": "กระรอกฝูงหนึ่งอยู่ในโพรงต้นยาง พวกมันเริ่มเห็นว่า มีการตัดต้นไม้และถมสระน้ำรอบ ๆ ต้นยางที่พวกมันอยู่ กระรอกตัวหนึ่งรู้สึกไม่ปลอดภัย มันเลยชวนกระรอกจ่าฝูงย้ายรัง แต่จ่าฝูงไม่ยอมย้ายเพราะคิดว่าต้นไม้นี้จะไม่โดนตัด ผ่านไปไม่นาน ต้นยางก็โดนตัด กระรอกฝูงนั้นค่อย ๆ ผอม ไม่มีแรงและอดตายในที่สุด",
+    "prompt_text": "จากนิทาน นักเรียนคิดว่าอะไรเป็นสาเหตุที่ทำให้กระรอกผอม ไม่มีแรงและอดตาย ตอบมา 2 ข้อ",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 5.1 ป.3/3",
+    "skill_tag": [
+      "short_reasoning",
+      "literature_response"
+    ],
+    "requires_image": false,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      41
+    ],
+    "source_pages_answer": [
+      41,
+      42
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "full_score": 5,
+      "full_score_rule": "เขียนสาเหตุการตายของกระรอกได้ถูกต้อง สมเหตุสมผล สอดคล้องกับนิทาน ตามแนวคำตอบครบทั้ง 2 ข้อ และสะกดผิดไม่เกิน 2 คำ",
+      "partial_score": 2.5,
+      "partial_score_rule": "เขียนสาเหตุการตายของกระรอกได้ถูกต้อง สมเหตุสมผล สอดคล้องกับนิทานได้ 2 ข้อ แต่สะกดผิด 3 - 5 คำ หรือเขียนบอกสาเหตุการตายของกระรอกได้ถูกต้องเพียง 1 ข้อ",
+      "zero_score": 0,
+      "zero_score_rule": "เขียนสาเหตุการตายของกระรอกไม่สมเหตุสมผลหรือไม่สอดคล้องกับนิทาน หรือเขียนคำตอบอื่นที่ไม่ใช่สาเหตุของการตาย หรือเขียนสะกดผิดตั้งแต่ 6 คำขึ้นไป หรือไม่เขียนตอบ"
+    },
+    "reference_answers": [
+      "ไม่มีแหล่งอาหาร",
+      "ไม่มีแหล่งน้ำ",
+      "ไม่มีที่อยู่",
+      "ต้นยางถูกตัด",
+      "ไม่คิดให้รอบคอบ",
+      "ประมาท",
+      "อยู่ในที่ไม่ปลอดภัย",
+      "ไม่รับฟังความคิดเห็นของผู้อื่น"
+    ]
+  },
+  {
+    "exam_id": "nt_p3_th_2567",
+    "subject": "thai",
+    "year_buddhist": 2567,
+    "grade": 3,
+    "question_id": 30,
+    "question_no": 30,
+    "section": "written_free",
+    "answer_type": "free_written",
+    "max_score": 7,
+    "stimulus_text": "ภาพเด็กชายและเด็กหญิงอยู่ในสวนหรือฟาร์ม มีแปลงผัก สัตว์ บ้าน และสระน้ำ",
+    "prompt_text": "ให้นักเรียนเขียนเรื่องจากภาพตามจินตนาการ พร้อมทั้งตั้งชื่อเรื่องให้สอดคล้องกับภาพ ความยาว 5 - 7 บรรทัด",
+    "correct_answer": null,
+    "correct_answer_text": null,
+    "scoring_method": "manual_rule_based",
+    "curriculum_standard": "ท 2.1 ป.3/5",
+    "skill_tag": [
+      "creative_writing",
+      "imaginative_story"
+    ],
+    "requires_image": true,
+    "requires_layout": false,
+    "eval_split": "written_manual",
+    "source_pages_question": [
+      43
+    ],
+    "source_pages_answer": [
+      43,
+      44
+    ],
+    "is_excluded": false,
+    "exclusion_reason": null,
+    "choices_json": null,
+    "accepted_answers_json": null,
+    "rubric": {
+      "dimensions": [
+        {
+          "name": "title",
+          "max_score": 1,
+          "rule": "มีการตั้งชื่อเรื่อง โดยอาจจะเป็นประโยค กลุ่มคำ หรือคำที่สอดคล้องกับภาพ เช่น ทำสวน ปลูกผัก เลี้ยงสัตว์ ครอบครัว หรือพอเพียง"
+        },
+        {
+          "name": "story",
+          "max_score": 4,
+          "rule": "เขียนเรื่องจากจินตนาการอย่างสร้างสรรค์ สอดคล้องกับชื่อเรื่องและภาพ มีคำสำคัญที่ได้จากสาระสำคัญของภาพจำนวน 5 คำขึ้นไป และใช้ภาษาได้ถูกต้องตามหลักการใช้ภาษา"
+        },
+        {
+          "name": "spelling",
+          "max_score": 1,
+          "rule": "เขียนสะกดคำได้ถูกต้องหรือเขียนสะกดคำผิดไม่เกิน 3 คำ"
+        },
+        {
+          "name": "length",
+          "max_score": 1,
+          "rule": "เขียนเรื่องได้สอดคล้องกับชื่อเรื่องหรือภาพ ความยาว 5 บรรทัดขึ้นไป แต่ไม่เกิน 7 บรรทัด"
+        }
+      ],
+      "special_note": "กรณีที่นักเรียนเขียนเรื่องไม่สอดคล้องกับภาพและชื่อเรื่อง ไม่ตรวจให้คะแนน"
+    },
+    "reference_answers": [
+      "ชื่อเรื่อง เช่น ทำสวน / ปลูกผัก / เลี้ยงสัตว์ / ครอบครัว / พอเพียง",
+      "คำสำคัญจากภาพ เช่น เด็กชาย เด็กหญิง ครอบครัว เพื่อน พี่น้อง เด็ก ๆ สวน แปลงผัก ผักสวนครัว สัตว์ เล่น พอเพียง ยิ้มแย้ม มีความสุข ขาย ประหยัด กิจกรรม ให้อาหารไก่ อดออม ทำอาหาร เก็บผัก ปลูกผัก เลี้ยงสัตว์ เก็บไข่ เดินไปสวน สระน้ำ แม่น้ำ กระท่อม บ้าน"
+    ]
+  }
+]
