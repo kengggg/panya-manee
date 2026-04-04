@@ -18,7 +18,7 @@ from config import (
     DATASET_FILES,
     RESPONSES_DIR,
     PROMPT_TEMPLATE,
-    fix_bom_keys,
+    validate_items,
 )
 
 
@@ -101,10 +101,11 @@ def check_ollama():
 
 
 def load_items(subject: str, eval_split: str = "text_only_core") -> list[dict]:
-    """Load items — returns only selected split, with BOM-cleaned keys."""
+    """Load items — validates data integrity, then filters by eval_split."""
     path = DATASET_FILES[subject]
     all_items = json.load(open(path, encoding="utf-8"))
-    return [fix_bom_keys(i) for i in all_items if i.get("eval_split") == eval_split]
+    validate_items(all_items, path)
+    return [i for i in all_items if i.get("eval_split") == eval_split]
 
 
 def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = False):
