@@ -11,3 +11,5 @@ wheels/
 
 # Benchmark output
 benchmark_responses/
+
+.DS_Store
