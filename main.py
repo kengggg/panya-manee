@@ -13,7 +13,8 @@ def cmd_run(args):
         sys.exit(1)
 
     subjects = [s.strip() for s in args.subjects.split(",")]
-    run_benchmark(args.model, subjects, args.run_id, args.dry_run)
+    think = None if args.no_think or args.think is None else args.think
+    run_benchmark(args.model, subjects, args.run_id, args.dry_run, think=think)
 
 
 def cmd_summarize(args):
@@ -35,6 +36,10 @@ def main():
     p_run.add_argument("--subjects", default="thai,math", help="Comma-separated subjects (default: thai,math)")
     p_run.add_argument("--run-id", default="run001", help="Run identifier (default: run001)")
     p_run.add_argument("--dry-run", action="store_true", help="Skip API calls, use fake answers")
+    p_run.add_argument("--think", type=int, default=None, metavar="TOKENS",
+                       help="Enable thinking mode with token budget (e.g. --think 4096)")
+    p_run.add_argument("--no-think", action="store_true",
+                       help="Explicitly disable thinking (default behavior)")
 
     # summarize
     p_sum = sub.add_parser("summarize", help="Summarize benchmark results")

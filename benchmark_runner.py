@@ -60,13 +60,19 @@ def parse_answer(raw: str):
     return None, None
 
 
-def call_ollama(model, prompt, timeout=120):
-    """Call Ollama API. Returns (raw_output, thinking_output, latency_ms)."""
+def call_ollama(model, prompt, timeout=120, think=None):
+    """Call Ollama API. Returns (raw_output, thinking_output, latency_ms, metrics).
+
+    Args:
+        think: None disables thinking. An int enables thinking with that num_predict budget.
+    """
+    num_predict = think if think is not None else 2048
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "stream": False,
-        "options": {"temperature": 0, "num_predict": 2048, "num_ctx": 4096},
+        "think": think is not None,
+        "options": {"temperature": 0, "num_predict": num_predict, "num_ctx": max(num_predict + 1024, 4096)},
     }
     t0 = time.time()
     req = urllib.request.Request(
@@ -108,7 +114,7 @@ def load_items(subject: str, eval_split: str = "text_only_core") -> list[dict]:
     return [i for i in all_items if i.get("eval_split") == eval_split]
 
 
-def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = False):
+def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = False, think: int | None = None):
     RESPONSES_DIR.mkdir(exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     out_path = RESPONSES_DIR / f"responses_{run_id}_{timestamp}.jsonl"
@@ -121,6 +127,7 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
         all_items.extend(items)
 
     print(f"\nModel: {model}")
+    print(f"Think: {'enabled (budget={think})'.format(think=think) if think else 'disabled'}")
     print(f"Items: {len(all_items)} ({', '.join(subjects)})")
     print(f"Output: {out_path}")
     if dry_run:
@@ -146,7 +153,7 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
             metrics = empty_metrics
         else:
             try:
-                raw, thinking, latency, metrics = call_ollama(model, prompt)
+                raw, thinking, latency, metrics = call_ollama(model, prompt, think=think)
             except Exception as e:
                 raw = f"ERROR: {e}"
                 thinking = ""
@@ -154,6 +161,10 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
                 metrics = empty_metrics
 
         parsed, parse_method = parse_answer(raw)
+        if parsed is None and thinking:
+            parsed, parse_method = parse_answer(thinking)
+            if parsed is not None:
+                parse_method = "thinking_fallback"
         is_parseable = parsed is not None
         is_correct = parsed == ground_truth if is_parseable else False
 
@@ -187,6 +198,7 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
             "eval_tokens": metrics["eval_count"],
             "eval_duration_ms": round(metrics["eval_duration_ms"]),
             "prompt_eval_duration_ms": round(metrics["prompt_eval_duration_ms"]),
+            "think_enabled": think is not None,
         }
         results.append(result)
 
