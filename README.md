@@ -8,32 +8,52 @@ Local LLM arena that benchmarks small models on Thailand's NT (National Test) Gr
 - [Ollama](https://ollama.com) running locally
 - At least one model pulled (e.g. `ollama pull qwen3:0.6b`)
 
+## Setup
+
+```bash
+uv sync            # or: pip install -e .
+```
+
 ## Usage
 
 ### Run a benchmark
 
 ```bash
-python main.py run --model qwen3:0.6b
-python main.py run --model gemma3:1b --subjects thai --run-id run002
-python main.py run --model llama3.2:1b --dry-run  # no API calls
+uv run python main.py run --model qwen3:0.6b
+uv run python main.py run --model gemma3:1b --subjects thai --run-id run002
+uv run python main.py run --model llama3.2:1b --dry-run  # no API calls
 ```
+
+### Thinking models
+
+For models with thinking/reasoning (e.g. qwen3.5), use `--think` to set a token budget:
+
+```bash
+uv run python main.py run --model qwen3.5:9b --think 4096   # enable thinking, 4096 token budget
+uv run python main.py run --model qwen3.5:9b --no-think     # disable thinking (default)
+```
+
+If the model hits the token limit mid-think (empty content), the runner will:
+- Attempt to parse an answer from the thinking output (`thinking_fallback`)
+- Show `⚠ BUDGET` warnings per-item and in the summary
 
 ### Summarize results
 
 ```bash
-python main.py summarize                  # all runs
-python main.py summarize --run-id run001  # specific run
+uv run python main.py summarize                  # all runs
+uv run python main.py summarize --run-id run001  # specific run
 ```
 
 ## How it works
 
 1. Loads MCQ items from `nt-tests/` JSON files
-2. Prompts the model in Thai to answer with just a digit (1-4)
-3. Parses model output and compares to ground truth
-4. Saves detailed JSONL results to `benchmark_responses/`
-5. Summarizes accuracy by model, subject, and skill tag
+2. Validates data integrity (no BOM, required keys present)
+3. Prompts the model in Thai to answer with just a digit (1-4)
+4. Parses model output and compares to ground truth
+5. Saves detailed JSONL results to `benchmark_responses/`
+6. Displays live progress and rich summary by subject and skill tag
 
-## Test Data Landscape (as of 2026-04-07)
+## Test Data Landscape (as of 2026-04-09)
 
 **Source**: NT (National Test) Grade 3, Thailand — Years 2565, 2566, 2567 (2022–2024)
 
