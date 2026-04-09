@@ -13,6 +13,12 @@ import urllib.request
 from collections import defaultdict
 from datetime import datetime
 
+from rich.console import Console, Group
+from rich.live import Live
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+
 from config import (
     OLLAMA_URL,
     DATASET_FILES,
@@ -20,6 +26,52 @@ from config import (
     PROMPT_TEMPLATE,
     validate_items,
 )
+
+console = Console()
+
+
+def _color_pct(value: float) -> str:
+    """Return a rich-colored percentage string."""
+    color = "green" if value >= 70 else "yellow" if value >= 40 else "red"
+    return f"[{color}]{value:.1f}%[/{color}]"
+
+
+def _bar(correct: int, total: int, width: int = 15) -> str:
+    """Return a colored bar string."""
+    if total == 0:
+        return ""
+    filled = round(correct / total * width)
+    return f"[green]{'█' * filled}[/green][dim]{'░' * (width - filled)}[/dim]"
+
+
+def _build_live_display(model, think, idx, total, correct, parseable,
+                        per_subj_correct, per_subj_total, current_label, last_status):
+    """Build the live progress panel."""
+    pct = correct / idx * 100 if idx > 0 else 0
+    parse_pct = parseable / idx * 100 if idx > 0 else 0
+
+    lines = []
+    # Progress bar
+    bar_filled = round(idx / total * 20) if total > 0 else 0
+    bar = f"[green]{'━' * bar_filled}[/green][dim]{'━' * (20 - bar_filled)}[/dim]"
+    lines.append(f"  Progress  {bar}  [bold]{idx}[/bold]/{total}")
+    # Accuracy
+    subj_parts = []
+    for subj in sorted(per_subj_total.keys()):
+        st = per_subj_total[subj]
+        sc = per_subj_correct[subj]
+        sp = sc / st * 100 if st > 0 else 0
+        subj_parts.append(f"{subj} {_color_pct(sp)}")
+    lines.append(f"  Accuracy  {_color_pct(pct)}  ({' │ '.join(subj_parts)})")
+    lines.append(f"  Parseable {parse_pct:.0f}%")
+    if current_label:
+        status_icon = last_status or "…"
+        lines.append(f"  Current   [dim]{current_label}[/dim]  {status_icon}")
+
+    think_label = f"Think: budget={think}" if think else "Think: off"
+    title = f"[bold]{model}[/bold] │ {think_label}"
+    body = "\n".join(lines)
+    return Panel(body, title=title, border_style="blue", width=60)
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -126,116 +178,187 @@ def run_benchmark(model: str, subjects: list[str], run_id: str, dry_run: bool = 
             item["_subject"] = subject
         all_items.extend(items)
 
-    print(f"\nModel: {model}")
-    print(f"Think: {'enabled (budget={think})'.format(think=think) if think else 'disabled'}")
-    print(f"Items: {len(all_items)} ({', '.join(subjects)})")
-    print(f"Output: {out_path}")
+    total = len(all_items)
     if dry_run:
-        print("[DRY RUN — no API calls]\n")
+        console.print(f"[dim]DRY RUN — no API calls[/dim]\n")
 
     results = []
     correct = 0
     parseable = 0
+    per_subj_correct = defaultdict(int)
+    per_subj_total = defaultdict(int)
 
-    for idx, item in enumerate(all_items, 1):
-        qid = item["question_id"]
-        year = item.get("year_buddhist", "")
-        subject = item["_subject"]
-        ground_truth = str(item.get("correct_answer", ""))
+    with Live(console=console, refresh_per_second=4, transient=True) as live:
+        for idx, item in enumerate(all_items, 1):
+            qid = item["question_id"]
+            year = item.get("year_buddhist", "")
+            subject = item["_subject"]
+            ground_truth = str(item.get("correct_answer", ""))
 
-        prompt = build_prompt(item)
+            current_label = f"{subject}/{year} ข้อ{qid:02d}"
+            live.update(_build_live_display(
+                model, think, idx - 1, total, correct, parseable,
+                per_subj_correct, per_subj_total, current_label, None))
 
-        empty_metrics = {"prompt_eval_count": 0, "prompt_eval_duration_ms": 0, "eval_count": 0, "eval_duration_ms": 0, "load_duration_ms": 0}
-        if dry_run:
-            raw = "3"
-            thinking = ""
-            latency = 0.0
-            metrics = empty_metrics
-        else:
-            try:
-                raw, thinking, latency, metrics = call_ollama(model, prompt, think=think)
-            except Exception as e:
-                raw = f"ERROR: {e}"
+            prompt = build_prompt(item)
+
+            empty_metrics = {"prompt_eval_count": 0, "prompt_eval_duration_ms": 0, "eval_count": 0, "eval_duration_ms": 0, "load_duration_ms": 0}
+            if dry_run:
+                raw = "3"
                 thinking = ""
-                latency = -1.0
+                latency = 0.0
                 metrics = empty_metrics
+            else:
+                try:
+                    raw, thinking, latency, metrics = call_ollama(model, prompt, think=think)
+                except Exception as e:
+                    raw = f"ERROR: {e}"
+                    thinking = ""
+                    latency = -1.0
+                    metrics = empty_metrics
 
-        parsed, parse_method = parse_answer(raw)
-        if parsed is None and thinking:
-            parsed, parse_method = parse_answer(thinking)
-            if parsed is not None:
-                parse_method = "thinking_fallback"
-        is_parseable = parsed is not None
-        is_correct = parsed == ground_truth if is_parseable else False
+            parsed, parse_method = parse_answer(raw)
+            think_budget_hit = think is not None and metrics["eval_count"] >= think
+            if parsed is None and thinking:
+                parsed, parse_method = parse_answer(thinking)
+                if parsed is not None:
+                    parse_method = "thinking_fallback"
+            is_parseable = parsed is not None
+            is_correct = parsed == ground_truth if is_parseable else False
 
-        if is_parseable:
-            parseable += 1
-        if is_correct:
-            correct += 1
+            if is_parseable:
+                parseable += 1
+            if is_correct:
+                correct += 1
+            per_subj_total[subject] += 1
+            if is_correct:
+                per_subj_correct[subject] += 1
 
-        result = {
-            "model_id": model,
-            "run_id": run_id,
-            "exam_id": item.get("exam_id"),
-            "year_buddhist": year,
-            "subject": subject,
-            "question_id": qid,
-            "eval_split": item.get("eval_split"),
-            "skill_tag": item.get("skill_tag"),
-            "curriculum_standard": item.get("curriculum_standard"),
-            "parse_method": parse_method,
-            "prompt_version": "v1_answer_only",
-            "raw_output": raw,
-            "thinking_output": thinking or None,
-            "parsed_answer": parsed,
-            "correct_answer": ground_truth,
-            "is_parseable": is_parseable,
-            "is_correct": is_correct,
-            "score": item.get("max_score", 3) if is_correct else 0,
-            "max_score": item.get("max_score", 3),
-            "latency_ms": round(latency),
-            "prompt_tokens": metrics["prompt_eval_count"],
-            "eval_tokens": metrics["eval_count"],
-            "eval_duration_ms": round(metrics["eval_duration_ms"]),
-            "prompt_eval_duration_ms": round(metrics["prompt_eval_duration_ms"]),
-            "think_enabled": think is not None,
-        }
-        results.append(result)
+            result = {
+                "model_id": model,
+                "run_id": run_id,
+                "exam_id": item.get("exam_id"),
+                "year_buddhist": year,
+                "subject": subject,
+                "question_id": qid,
+                "eval_split": item.get("eval_split"),
+                "skill_tag": item.get("skill_tag"),
+                "curriculum_standard": item.get("curriculum_standard"),
+                "parse_method": parse_method,
+                "prompt_version": "v1_answer_only",
+                "raw_output": raw,
+                "thinking_output": thinking or None,
+                "parsed_answer": parsed,
+                "correct_answer": ground_truth,
+                "is_parseable": is_parseable,
+                "is_correct": is_correct,
+                "score": item.get("max_score", 3) if is_correct else 0,
+                "max_score": item.get("max_score", 3),
+                "latency_ms": round(latency),
+                "prompt_tokens": metrics["prompt_eval_count"],
+                "eval_tokens": metrics["eval_count"],
+                "eval_duration_ms": round(metrics["eval_duration_ms"]),
+                "prompt_eval_duration_ms": round(metrics["prompt_eval_duration_ms"]),
+                "think_enabled": think is not None,
+                "think_budget_hit": think_budget_hit,
+            }
+            results.append(result)
 
-        status = "✓" if is_correct else ("?" if not is_parseable else "✗")
-        print(f"  [{idx:02d}] {subject}/{year} ข้อ{qid:02d} | raw={repr(raw[:20])} parsed={parsed} ans={ground_truth} {status} [{parse_method}] ({latency:.0f}ms, {metrics['eval_count']}tok)")
+            status_icon = "[green]✓[/green]" if is_correct else ("[yellow]?[/yellow]" if not is_parseable else "[red]✗[/red]")
+            if think_budget_hit:
+                status_icon += " [yellow]⚠ BUDGET[/yellow]"
+            live.update(_build_live_display(
+                model, think, idx, total, correct, parseable,
+                per_subj_correct, per_subj_total, current_label, status_icon))
 
-        if not dry_run:
-            with open(out_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(result, ensure_ascii=False) + "\n")
+            if not dry_run:
+                with open(out_path, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(result, ensure_ascii=False) + "\n")
 
     # ── Summary ──────────────────────────────────────────────────────────────
+    _print_summary(model, think, results, subjects, out_path, dry_run)
+    return results
+
+
+def _print_summary(model, think, results, subjects, out_path, dry_run):
+    """Print the rich summary after a benchmark run."""
     total = len(results)
-    print(f"\n{'='*50}")
-    print(f"Model: {model}")
-    print(f"Overall accuracy: {correct}/{total} = {correct/total*100:.1f}%")
-    print(f"Parseable rate:   {parseable}/{total} = {parseable/total*100:.1f}%")
+    correct = sum(1 for r in results if r["is_correct"])
+    parseable = sum(1 for r in results if r["is_parseable"])
+
+    # Subject table
+    subj_table = Table(show_header=True, show_edge=False, pad_edge=False, box=None)
+    subj_table.add_column("Subject", style="bold")
+    subj_table.add_column("Score", justify="right")
+    subj_table.add_column("%", justify="right")
+    subj_table.add_column("", min_width=15)
 
     for subj in subjects:
         sub_results = [r for r in results if r["subject"] == subj]
         sub_correct = sum(1 for r in sub_results if r["is_correct"])
-        print(f"  {subj}: {sub_correct}/{len(sub_results)} = {sub_correct/len(sub_results)*100:.1f}%")
+        pct = sub_correct / len(sub_results) * 100 if sub_results else 0
+        subj_table.add_row(
+            subj,
+            f"{sub_correct}/{len(sub_results)}",
+            _color_pct(pct),
+            _bar(sub_correct, len(sub_results)),
+        )
 
-    # By skill
-    skill_stats = defaultdict(lambda: {"correct": 0, "total": 0})
-    for r in results:
-        for tag in (r.get("skill_tag") or []):
-            skill_stats[tag]["total"] += 1
-            if r["is_correct"]:
-                skill_stats[tag]["correct"] += 1
+    overall_pct = correct / total * 100 if total else 0
+    think_label = f"think={think}" if think else "no-think"
+    header_text = (
+        f"[bold]{_color_pct(overall_pct)}[/bold]  {correct}/{total} correct  │  "
+        f"{parseable}/{total} parseable  │  {think_label}"
+    )
 
-    print("\nBy skill tag:")
-    for tag, stat in sorted(skill_stats.items(), key=lambda x: -x[1]["total"]):
-        if stat["total"] >= 2:
-            pct = stat["correct"] / stat["total"] * 100
-            print(f"  {tag}: {stat['correct']}/{stat['total']} ({pct:.0f}%)")
+    console.print()
+    console.print(Panel(
+        Group(header_text, "", subj_table),
+        title=f"[bold]{model}[/bold]",
+        border_style="blue",
+        width=60,
+    ))
+
+    # Budget warning
+    if think is not None:
+        budget_hits = sum(1 for r in results if r.get("think_budget_hit"))
+        if budget_hits:
+            console.print(Panel(
+                f"[bold]{budget_hits}/{total}[/bold] items hit the {think}-token limit.\n"
+                f"The model never finished reasoning — results unreliable.\n"
+                f"Try [bold]--think {think * 2}[/bold] or [bold]--no-think[/bold].",
+                title="⚠ Think budget exceeded",
+                border_style="yellow",
+                width=60,
+            ))
+
+    # Skill tables per subject
+    for subj in subjects:
+        sub_results = [r for r in results if r["subject"] == subj]
+        skill_stats = defaultdict(lambda: {"correct": 0, "total": 0})
+        for r in sub_results:
+            for tag in (r.get("skill_tag") or []):
+                skill_stats[tag]["total"] += 1
+                if r["is_correct"]:
+                    skill_stats[tag]["correct"] += 1
+
+        skill_table = Table(show_header=True, show_edge=False, pad_edge=False, box=None)
+        skill_table.add_column("Skill", style="dim", min_width=28)
+        skill_table.add_column("Score", justify="right")
+        skill_table.add_column("%", justify="right", min_width=6)
+        skill_table.add_column("", min_width=15)
+
+        for tag, stat in sorted(skill_stats.items(), key=lambda x: -x[1]["total"]):
+            if stat["total"] >= 2:
+                pct = stat["correct"] / stat["total"] * 100
+                skill_table.add_row(
+                    tag,
+                    f"{stat['correct']}/{stat['total']}",
+                    _color_pct(pct),
+                    _bar(stat["correct"], stat["total"]),
+                )
+
+        console.print(Panel(skill_table, title=f"[bold]{subj}[/bold] by skill", border_style="dim", width=60))
 
     if not dry_run:
-        print(f"\nSaved: {out_path}")
-
-    return results
+        console.print(f"\n[dim]Saved: {out_path}[/dim]")
