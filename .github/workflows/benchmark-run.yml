@@ -1,0 +1,143 @@
+# Run benchmark batch on the Mac mini baseline.
+#
+# SELF-HOSTED RUNNER REQUIRED
+#   Runner labels: [self-hosted, macOS, ARM64, panya-manee-baseline]
+#   Requires: Ollama running locally, models pre-pulled
+#
+# Safety model:
+#   - workflow_dispatch only — never triggered by PRs or pushes
+#   - Always checks out the trusted main branch
+#   - Concurrency lock prevents parallel benchmark jobs on the testbed
+#   - No secrets beyond GITHUB_TOKEN, no network access needed
+#
+# Setup:
+#   1. Register a self-hosted runner on the Mac mini with the labels above
+#   2. Install Ollama and pull the models you want to benchmark
+#   3. Trigger this workflow via Actions UI or: gh workflow run benchmark-run.yml -f ...
+
+name: Benchmark Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_id:
+        description: 'Batch identifier (e.g. mini-r10-20260415)'
+        required: true
+        type: string
+      models:
+        description: 'Comma-separated model names (e.g. qwen3:0.6b,gemma3:1b)'
+        required: true
+        type: string
+      runs_per_model:
+        description: 'Number of runs per model'
+        required: true
+        default: '10'
+        type: string
+      subjects:
+        description: 'Comma-separated subjects'
+        required: false
+        default: 'thai,math'
+        type: string
+      think_budget:
+        description: 'Think mode token budget (leave empty to disable)'
+        required: false
+        default: ''
+        type: string
+      dry_run:
+        description: 'Dry run — no API calls, fake answers'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: panya-manee-benchmark
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    # SELF-HOSTED: Mac mini M4 / 16GB / Ollama baseline testbed.
+    runs-on: [self-hosted, macOS, ARM64, panya-manee-baseline]
+    timeout-minutes: 720  # 12h — large batches with slow models
+    steps:
+      - name: Checkout trusted ref
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
+          clean: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Verify Ollama is reachable
+        run: |
+          if ! curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
+            echo "::error::Ollama is not running at localhost:11434. Start it with: ollama serve"
+            exit 1
+          fi
+          echo "Ollama is reachable — available models:"
+          curl -s http://localhost:11434/api/tags | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          for m in data.get('models', []):
+              print(f\"  {m['name']}  ({m.get('size', 'unknown size')})\")" 2>/dev/null || true
+
+      - name: Run benchmark batch
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+          MODELS: ${{ inputs.models }}
+          RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
+          SUBJECTS: ${{ inputs.subjects }}
+          THINK_BUDGET: ${{ inputs.think_budget }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          THINK_ARG=""
+          if [ -n "$THINK_BUDGET" ]; then
+            THINK_ARG="--think $THINK_BUDGET"
+          fi
+          DRY_ARG=""
+          if [ "$DRY_RUN" = "true" ]; then
+            DRY_ARG="--dry-run"
+          fi
+          python scripts/run_batch.py \
+            --batch-id "$BATCH_ID" \
+            --models "$MODELS" \
+            --runs-per-model "$RUNS_PER_MODEL" \
+            --subjects "$SUBJECTS" \
+            $THINK_ARG $DRY_ARG
+
+      - name: Generate repeat summary
+        if: inputs.dry_run != true
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: python scripts/summarize_batch.py --batch-id "$BATCH_ID"
+
+      - name: Job summary
+        if: always()
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          {
+            echo "## Benchmark Batch: \`${BATCH_ID}\`"
+            echo ""
+            echo "| Input | Value |"
+            echo "|---|---|"
+            echo "| Models | \`${{ inputs.models }}\` |"
+            echo "| Runs/model | ${{ inputs.runs_per_model }} |"
+            echo "| Subjects | ${{ inputs.subjects }} |"
+            echo "| Think | ${{ inputs.think_budget || 'off' }} |"
+            echo "| Dry run | ${{ inputs.dry_run }} |"
+            echo ""
+            echo "### Generated files"
+            echo "\`\`\`"
+            ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null || echo "(none found)"
+            echo "\`\`\`"
+          } >> "$GITHUB_STEP_SUMMARY"

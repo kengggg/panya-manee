@@ -1,0 +1,61 @@
+# Deploy static dashboard to GitHub Pages.
+#
+# Triggers on push to main when site/ or site data changes.
+# No build step required — site/ is plain HTML/CSS/JS with pre-built data.
+#
+# Prerequisites:
+#   1. In repo Settings → Pages → Source, select "GitHub Actions"
+#   2. Ensure site/data/latest/ contains snapshot data (run publish_snapshot.py first)
+
+name: Deploy Dashboard to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'registry/snapshots.json'
+
+  # Allow manual deploy
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify site data exists
+        run: |
+          if [ ! -f site/data/latest/manifest.json ]; then
+            echo "ERROR: site/data/latest/manifest.json not found."
+            echo "Run 'python scripts/publish_snapshot.py' and commit the results first."
+            exit 1
+          fi
+          echo "Site data found:"
+          ls -la site/data/latest/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

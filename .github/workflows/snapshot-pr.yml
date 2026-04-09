@@ -1,0 +1,176 @@
+# Create a PR that publishes a snapshot to the dashboard.
+#
+# SELF-HOSTED RUNNER REQUIRED
+#   benchmark_responses/ is gitignored — data lives only on the runner.
+#   This workflow reads batch data produced by a prior benchmark-run.yml execution.
+#
+# Safety model:
+#   - workflow_dispatch only — never triggered by PRs or pushes
+#   - Always checks out the trusted main branch
+#   - Concurrency lock prevents parallel snapshot publications
+#
+# What it does:
+#   1. Builds snapshot bundle from batch data (build_snapshot.py)
+#   2. Validates cross-file consistency (validate_snapshot.py)
+#   3. Syncs dashboard data to site/data/latest/
+#   4. Updates registry/snapshots.json
+#   5. Opens a PR with the changes
+#
+# After the PR is merged, pages-deploy.yml deploys the dashboard automatically.
+
+name: Snapshot PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_id:
+        description: 'Batch ID to publish (e.g. mini-r10-20260409)'
+        required: true
+        type: string
+      snapshot_id:
+        description: 'Override snapshot ID (default: nt-p3-mcq-text-only-{batch_id})'
+        required: false
+        default: ''
+        type: string
+      dry_run:
+        description: 'Dry run — build + validate only, no PR'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: snapshot-pr
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # SELF-HOSTED: needs benchmark_responses/ from prior benchmark runs.
+    runs-on: [self-hosted, macOS, ARM64, panya-manee-baseline]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
+          clean: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify benchmark data exists
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          # Check for repeat_summary (preferred) or raw JSONL files (fallback)
+          SUMMARY="benchmark_responses/repeat_summary_${BATCH_ID}.json"
+          if [ -f "$SUMMARY" ]; then
+            echo "Found repeat_summary: $SUMMARY"
+            python3 -c "
+          import json
+          d = json.load(open('$SUMMARY'))
+          print(f\"  {len(d.get('models', []))} models, {len(d.get('runs', []))} runs\")"
+          else
+            echo "::warning::No repeat_summary at $SUMMARY — build_snapshot will fall back to glob"
+          fi
+
+          COUNT=$(ls -1 benchmark_responses/responses_"${BATCH_ID}"-*.jsonl 2>/dev/null | wc -l | tr -d ' ')
+          if [ "$COUNT" -eq 0 ]; then
+            echo "::error::No response files found for batch '${BATCH_ID}'"
+            echo "Run benchmark-run.yml first, then retry."
+            ls -la benchmark_responses/ 2>/dev/null | head -20 || echo "(directory missing)"
+            exit 1
+          fi
+          echo "Found $COUNT response file(s) for batch '${BATCH_ID}'"
+
+      - name: Build and publish snapshot
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+          SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          SNAP_ARG=""
+          if [ -n "$SNAPSHOT_ID" ]; then
+            SNAP_ARG="--snapshot-id $SNAPSHOT_ID"
+          fi
+          if [ "$DRY_RUN" = "true" ]; then
+            python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG --dry-run
+          else
+            python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG
+          fi
+
+      - name: Create PR
+        if: inputs.dry_run == false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BATCH_ID: ${{ inputs.batch_id }}
+          SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+        run: |
+          # Resolve snapshot ID
+          SID="${SNAPSHOT_ID:-nt-p3-mcq-text-only-${BATCH_ID}}"
+          BRANCH="snapshot/${SID}"
+
+          # Stage site data and registry changes
+          git add site/data/ registry/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit — snapshot data already matches main."
+            exit 0
+          fi
+
+          # Configure git for the bot commit
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create branch (reset if it exists from a prior failed run)
+          git checkout -B "$BRANCH"
+          git commit -m "Publish snapshot ${SID}"
+
+          # Push (force-with-lease in case branch exists from prior attempt)
+          git push -u origin "$BRANCH" --force-with-lease
+
+          # Build PR body
+          PR_BODY="## Snapshot Publication
+
+          **Batch ID**: \`${BATCH_ID}\`
+          **Source**: benchmark data on self-hosted runner
+
+          ### What changed
+          - \`site/data/latest/\` updated snapshot bundle (leaderboard, model cards, examples)
+          - \`registry/snapshots.json\` updated snapshot index
+
+          ### Validation
+          Snapshot passed all cross-file consistency checks via \`validate_snapshot.py\`.
+
+          ### After merge
+          \`pages-deploy.yml\` will deploy the updated dashboard to GitHub Pages automatically."
+
+          # Open PR
+          gh pr create \
+            --title "Publish snapshot: ${SID}" \
+            --body "$PR_BODY" \
+            --base main \
+            --head "$BRANCH" \
+          || echo "::warning::PR creation failed — a PR for this branch may already exist"
+
+      - name: Job summary
+        if: always()
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+          SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+        run: |
+          SID="${SNAPSHOT_ID:-nt-p3-mcq-text-only-${BATCH_ID}}"
+          {
+            echo "## Snapshot: \`${SID}\`"
+            echo ""
+            echo "| Input | Value |"
+            echo "|---|---|"
+            echo "| Batch ID | \`${BATCH_ID}\` |"
+            echo "| Snapshot ID | \`${SID}\` |"
+            echo "| Dry run | ${{ inputs.dry_run }} |"
+          } >> "$GITHUB_STEP_SUMMARY"

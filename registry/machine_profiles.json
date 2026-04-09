@@ -1,0 +1,13 @@
+{
+  "_comment": "Approved benchmark testbeds for Panya Manee V1.",
+  "machine_profiles": [
+    {
+      "machine_profile": "macmini-m4-16gb-ollama",
+      "host_label": "Apple Mac mini M4 / 16GB / Ollama",
+      "chip": "M4",
+      "ram_gb": 16,
+      "backend": "ollama",
+      "runner_label": "panya-manee-baseline"
+    }
+  ]
+}
