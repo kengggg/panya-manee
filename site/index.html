@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NT P3 Local LLM Benchmark</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 id="benchmark-name">NT P3 Local LLM Benchmark</h1>
+      <div class="subtitle" id="benchmark-label"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <dl class="meta-bar" id="meta-bar"></dl>
+
+    <div class="caveat" id="caveat">
+      V1 includes only MCQ text-only items. Image-required and human-checked tasks are excluded from this ranking.
+    </div>
+
+    <div class="download-bar">
+      <a href="data/latest/snapshot-bundle.zip" download>Download raw bundle (.zip)</a>
+      <span id="snapshot-id-label" style="color: var(--text-secondary);"></span>
+    </div>
+
+    <div class="controls-bar">
+      <label for="model-filter">Model filter:</label>
+      <select id="model-filter">
+        <option value="">All models</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="num">Rank</th>
+            <th>Model</th>
+            <th class="num">BQS</th>
+            <th class="num">Thai</th>
+            <th class="num">Math</th>
+            <th class="num">Overall</th>
+            <th class="num">Parseable</th>
+            <th class="num">Compliance</th>
+            <th class="num">p50 (ms)</th>
+            <th class="num">p95 (ms)</th>
+            <th class="num">Q/min</th>
+            <th class="num">Correct/min</th>
+            <th class="num">N</th>
+            <th>Badges</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Panya Manee &mdash; NT P3 Local LLM Benchmark Dashboard
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

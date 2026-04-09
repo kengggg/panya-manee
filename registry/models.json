@@ -1,0 +1,37 @@
+{
+  "_comment": "Model metadata for Panya Manee V1. Classifications based on empirical observation on Mac mini M4 16GB.",
+  "models": [
+    {
+      "model_id": "gemma4:e4b",
+      "model_family": "gemma4",
+      "parameter_bucket": "4B\u20138B",
+      "ram_fit_class": "fits_tightly_16gb",
+      "loaded_size_gb_approx": 10.0,
+      "notes": "Runnable but closer to upper edge of 16GB. Best quality model in current benchmark."
+    },
+    {
+      "model_id": "gemma4:e2b",
+      "model_family": "gemma4",
+      "parameter_bucket": "1B\u20134B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "loaded_size_gb_approx": 7.9,
+      "notes": "Fastest model in current benchmark. Comfortable fit on 16GB."
+    },
+    {
+      "model_id": "qwen3.5:9b",
+      "model_family": "qwen3.5",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_tightly_16gb",
+      "loaded_size_gb_approx": 8.6,
+      "notes": "Conservative classification. Empirical observation listed as comfortable, but 8.6GB loaded on 16GB machine (54% RAM) is borderline. Classified tight to be explicit per project policy."
+    },
+    {
+      "model_id": "scb10x/typhoon2.1-gemma3-4b:latest",
+      "model_family": "typhoon2.1",
+      "parameter_bucket": "1B\u20134B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "loaded_size_gb_approx": 3.5,
+      "notes": "Smallest loaded footprint. Best size-aware efficiency."
+    }
+  ]
+}

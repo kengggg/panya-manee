@@ -1,0 +1,54 @@
+{
+  "snapshot_id": "nt-p3-mcq-text-only-mini-r10-20260409",
+  "published_at": "2026-04-09T19:54:20+07:00",
+  "benchmark_name": "NT P3 Local LLM Benchmark",
+  "benchmark_label": "NT P3 MCQ Text-Only",
+  "benchmark_scope": "mcq_text_only_v1",
+  "suite_ids": [
+    "thai_mcq_text_only_all",
+    "math_mcq_text_only_all",
+    "overall_mcq_text_only_all"
+  ],
+  "testbed": {
+    "host_label": "Apple Mac mini M4 / 16GB / Ollama",
+    "chip": "M4",
+    "ram_gb": 16,
+    "backend": "ollama",
+    "machine_profile": "macmini-m4-16gb-ollama"
+  },
+  "compatibility": {
+    "required_match_fields": [
+      "benchmark_scope",
+      "dataset_version",
+      "eval_split",
+      "prompt_version",
+      "scoring_version",
+      "machine_profile",
+      "think_mode"
+    ],
+    "values": {
+      "benchmark_scope": "mcq_text_only_v1",
+      "dataset_version": "nt-p3-text-only-2026-04-09",
+      "eval_split": "text_only_core",
+      "prompt_version": "v1_answer_only",
+      "scoring_version": "v1",
+      "machine_profile": "macmini-m4-16gb-ollama",
+      "think_mode": "off"
+    }
+  },
+  "snapshot_notes": {
+    "public_outputs_truncated": true,
+    "badges_enabled": true,
+    "auto_model_summary": true,
+    "ranking_excludes_image_required": true,
+    "ranking_excludes_human_checked": true,
+    "raw_bundle_downloadable": true
+  },
+  "artifacts": {
+    "leaderboard": "leaderboard.json",
+    "model_cards": "model_cards.json",
+    "examples": "examples.json",
+    "repeat_summary": "repeat_summary.json",
+    "results": "results.jsonl"
+  }
+}

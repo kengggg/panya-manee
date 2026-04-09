@@ -13,3 +13,7 @@ wheels/
 benchmark_responses/
 
 .DS_Store
+
+# Claude scratch artifacts
+claude_impl_round*_prompt.md
+claude_impl_round*_output.md

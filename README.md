@@ -25,6 +25,54 @@ python main.py summarize                  # all runs
 python main.py summarize --run-id run001  # specific run
 ```
 
+## Dashboard
+
+A static public dashboard shows benchmark results at a glance. No build step required — plain HTML/CSS/JS consuming pre-built JSON.
+
+### Local preview
+
+```bash
+# If you have a snapshot in dist/, publish it to site/data/latest/:
+python scripts/publish_snapshot.py --batch-id mini-r10-20260409
+
+# Or just preview what's already synced:
+sh scripts/serve.sh
+# Open http://localhost:8000
+```
+
+### Publish flow
+
+```bash
+# 1. Build, validate, sync to site, update registry — one command:
+python scripts/publish_snapshot.py --batch-id mini-r10-20260409
+
+# 2. Dry-run (build + validate only, no side effects):
+python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --dry-run
+
+# 3. Commit the updated site data and registry:
+git add site/data/ registry/
+git commit -m "Publish snapshot nt-p3-mcq-text-only-mini-r10-20260409"
+
+# 4. Open a PR to main. After merge, GitHub Pages deploys automatically.
+```
+
+### Individual scripts
+
+| Script | Purpose |
+|---|---|
+| `scripts/build_snapshot.py` | Build snapshot bundle from batch data |
+| `scripts/validate_snapshot.py` | Validate snapshot cross-file consistency |
+| `scripts/sync_site_data.py` | Copy snapshot files to `site/data/latest/` |
+| `scripts/verify_site.py` | Verify site HTML/JS wiring to data |
+| `scripts/publish_snapshot.py` | End-to-end: build → validate → sync → registry |
+
+### GitHub Pages deployment
+
+The `.github/workflows/pages-deploy.yml` workflow deploys `site/` to GitHub Pages on push to `main` when `site/**` or `registry/snapshots.json` changes. Prerequisites:
+
+1. In repo Settings → Pages → Source, select **GitHub Actions**
+2. Ensure `site/data/latest/` contains snapshot data (committed via publish flow above)
+
 ## How it works
 
 1. Loads MCQ items from `nt-tests/` JSON files

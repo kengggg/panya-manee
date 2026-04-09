@@ -1,0 +1,21 @@
+{
+  "_comment": "V1 compatibility gate. All models in a snapshot must share these exact values.",
+  "required_match_fields": [
+    "benchmark_scope",
+    "dataset_version",
+    "eval_split",
+    "prompt_version",
+    "scoring_version",
+    "machine_profile",
+    "think_mode"
+  ],
+  "v1_expected_values": {
+    "benchmark_scope": "mcq_text_only_v1",
+    "dataset_version": "nt-p3-text-only-2026-04-09",
+    "eval_split": "text_only_core",
+    "prompt_version": "v1_answer_only",
+    "scoring_version": "v1",
+    "machine_profile": "macmini-m4-16gb-ollama",
+    "think_mode": "off"
+  }
+}
