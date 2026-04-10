@@ -88,9 +88,9 @@
     },
     {
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
-      "model_family": "unknown",
-      "parameter_bucket": "unknown",
-      "ram_fit_class": "unknown",
+      "model_family": "typhoon2.1",
+      "parameter_bucket": "1B–4B",
+      "ram_fit_class": "fits_comfortably_16gb",
       "testbed": {
         "host_label": "Apple Mac mini M4 / 16GB / Ollama"
       },
