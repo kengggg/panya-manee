@@ -213,6 +213,7 @@
     return `<div class="example-card ${typeClass}">
       <div class="example-header">
         <span><strong>${typeLabel}</strong></span>
+        ${ex.year_buddhist ? `<span>Year: <strong>${ex.year_buddhist}</strong></span>` : ''}
         <span>Subject: <strong>${ex.subject}</strong></span>
         <span>Q#${ex.question_id}</span>
         <span>Skills: ${skillTags}</span>
