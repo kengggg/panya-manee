@@ -1,35 +1,87 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-smoke-real-20260410",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-rehearsal-r10-20260410",
   "benchmark_scope": "mcq_text_only_v1",
   "examples": [
     {
-      "example_id": "ex_gemma4_e2b_thai_8_good_0",
-      "model_id": "gemma4:e2b",
+      "example_id": "ex_gemma4_e4b_thai_7_good_0",
+      "model_id": "gemma4:e4b",
       "subject": "thai",
-      "question_id": 8,
+      "question_id": 7,
       "skill_tag": [
-        "moral_extraction",
+        "moral_application",
         "reading_literature"
       ],
       "curriculum_standard": "ท 1.1 ป.3/5",
+      "is_correct": true,
+      "correct_answer": "2",
+      "parsed_answer": "2",
+      "raw_output_truncated": "2",
+      "raw_output_full": "2",
+      "latency_ms": 741,
+      "selection_reason": "good_top_skill"
+    },
+    {
+      "example_id": "ex_gemma4_e4b_thai_25_good_1",
+      "model_id": "gemma4:e4b",
+      "subject": "thai",
+      "question_id": 25,
+      "skill_tag": [
+        "moral_application",
+        "reading_literature"
+      ],
+      "curriculum_standard": "ท 5.1 ป.3/1",
       "is_correct": true,
       "correct_answer": "4",
       "parsed_answer": "4",
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 426,
+      "latency_ms": 669,
       "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_gemma4_e2b_thai_24_good_1",
-      "model_id": "gemma4:e2b",
-      "subject": "thai",
-      "question_id": 24,
+      "example_id": "ex_gemma4_e4b_math_10_bad_0",
+      "model_id": "gemma4:e4b",
+      "subject": "math",
+      "question_id": 10,
       "skill_tag": [
-        "moral_extraction",
-        "reading_literature"
+        "number_pattern"
       ],
-      "curriculum_standard": "ท 5.1 ป.3/1",
+      "curriculum_standard": "ค 1.2 ป.3/1",
+      "is_correct": false,
+      "correct_answer": "4",
+      "parsed_answer": "3",
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 582,
+      "selection_reason": "bad_weak_skill"
+    },
+    {
+      "example_id": "ex_gemma4_e4b_math_10_bad_1",
+      "model_id": "gemma4:e4b",
+      "subject": "math",
+      "question_id": 10,
+      "skill_tag": [
+        "number_pattern"
+      ],
+      "curriculum_standard": "ค 1.2 ป.3/1",
+      "is_correct": false,
+      "correct_answer": "2",
+      "parsed_answer": "3",
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 574,
+      "selection_reason": "bad_weak_skill"
+    },
+    {
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "subject": "thai",
+      "question_id": 20,
+      "skill_tag": [
+        "sentence_type",
+        "declarative_sentence"
+      ],
+      "curriculum_standard": "ท 4.1 ป.3/4",
       "is_correct": true,
       "correct_answer": "1",
       "parsed_answer": "1",
@@ -39,39 +91,57 @@
       "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_gemma4_e2b_thai_19_bad_0",
-      "model_id": "gemma4:e2b",
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_1",
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
       "subject": "thai",
-      "question_id": 19,
+      "question_id": 20,
       "skill_tag": [
-        "parts_of_speech",
-        "verb_identification"
+        "sentence_type",
+        "declarative_sentence"
       ],
-      "curriculum_standard": "ท 4.1 ป.3/2",
+      "curriculum_standard": "ท 4.1 ป.3/4",
+      "is_correct": true,
+      "correct_answer": "1",
+      "parsed_answer": "1",
+      "raw_output_truncated": "1",
+      "raw_output_full": "1",
+      "latency_ms": 354,
+      "selection_reason": "good_top_skill"
+    },
+    {
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_0",
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "subject": "math",
+      "question_id": 8,
+      "skill_tag": [
+        "fraction_addition",
+        "fraction_subtraction"
+      ],
+      "curriculum_standard": "ค 1.1 ป.3/11",
       "is_correct": false,
-      "correct_answer": "2",
-      "parsed_answer": "4",
-      "raw_output_truncated": "4",
-      "raw_output_full": "4",
-      "latency_ms": 336,
+      "correct_answer": "4",
+      "parsed_answer": "3",
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 464,
       "selection_reason": "bad_weak_skill"
     },
     {
-      "example_id": "ex_gemma4_e2b_thai_17_bad_1",
-      "model_id": "gemma4:e2b",
-      "subject": "thai",
-      "question_id": 17,
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1",
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "subject": "math",
+      "question_id": 8,
       "skill_tag": [
-        "parts_of_speech",
-        "verb_identification"
+        "fraction_addition",
+        "fraction_subtraction"
       ],
-      "curriculum_standard": "ท 4.1 ป.3/2",
+      "curriculum_standard": "ค 1.1 ป.3/10",
       "is_correct": false,
-      "correct_answer": "3",
-      "parsed_answer": "4",
-      "raw_output_truncated": "4",
-      "raw_output_full": "4",
-      "latency_ms": 316,
+      "correct_answer": "1",
+      "parsed_answer": "3",
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 460,
       "selection_reason": "bad_weak_skill"
     }
   ]

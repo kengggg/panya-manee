@@ -1,30 +1,49 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-smoke-real-20260410",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-rehearsal-r10-20260410",
   "benchmark_scope": "mcq_text_only_v1",
   "rows": [
     {
       "rank": 1,
-      "model_id": "gemma4:e2b",
+      "model_id": "gemma4:e4b",
       "model_family": "gemma4",
-      "parameter_bucket": "1B–4B",
-      "ram_fit_class": "fits_comfortably_16gb",
-      "balanced_quality_score": 0.325,
-      "thai_score_rate": 0.65,
-      "math_score_rate": 0.0,
-      "overall_score_rate": 0.65,
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_tightly_16gb",
+      "balanced_quality_score": 0.5454,
+      "thai_score_rate": 0.6667,
+      "math_score_rate": 0.4242,
+      "overall_score_rate": 0.5806,
       "parseable_rate": 1.0,
       "answer_only_compliance_rate": 1.0,
-      "latency_p50_ms": 334,
-      "latency_p95_ms": 479,
-      "questions_per_min": 145.0,
-      "correct_per_min": 94.2,
-      "item_count": 60,
+      "latency_p50_ms": 512,
+      "latency_p95_ms": 749,
+      "questions_per_min": 108.6,
+      "correct_per_min": 63.0,
+      "item_count": 93,
       "badges": [
         "Best Quality",
         "Best Thai",
-        "Best Math",
-        "Fastest on Testbed",
-        "Best Small Model"
+        "Best Math"
+      ]
+    },
+    {
+      "rank": 2,
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "model_family": "unknown",
+      "parameter_bucket": "unknown",
+      "ram_fit_class": "unknown",
+      "balanced_quality_score": 0.4099,
+      "thai_score_rate": 0.5167,
+      "math_score_rate": 0.303,
+      "overall_score_rate": 0.4409,
+      "parseable_rate": 1.0,
+      "answer_only_compliance_rate": 1.0,
+      "latency_p50_ms": 462,
+      "latency_p95_ms": 652,
+      "questions_per_min": 123.8,
+      "correct_per_min": 54.6,
+      "item_count": 93,
+      "badges": [
+        "Fastest on Testbed"
       ]
     }
   ]
