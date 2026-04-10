@@ -114,12 +114,6 @@ jobs:
             --subjects "$SUBJECTS" \
             $THINK_ARG $DRY_ARG
 
-      - name: Generate repeat summary
-        if: inputs.dry_run != true
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-        run: uv run python scripts/summarize_batch.py --batch-id "$BATCH_ID"
-
       - name: Job summary
         if: always()
         env:

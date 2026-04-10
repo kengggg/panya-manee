@@ -58,10 +58,13 @@ jobs:
           # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
           clean: false
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Prepare Python and uv
+        run: |
+          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          /opt/homebrew/bin/python3 --version
+
+      - name: Install dependencies
+        run: uv sync --frozen
 
       - name: Verify benchmark data exists
         env:
@@ -71,7 +74,7 @@ jobs:
           SUMMARY="benchmark_responses/repeat_summary_${BATCH_ID}.json"
           if [ -f "$SUMMARY" ]; then
             echo "Found repeat_summary: $SUMMARY"
-            python3 -c "
+            uv run python -c "
           import json
           d = json.load(open('$SUMMARY'))
           print(f\"  {len(d.get('models', []))} models, {len(d.get('runs', []))} runs\")"
@@ -99,9 +102,9 @@ jobs:
             SNAP_ARG="--snapshot-id $SNAPSHOT_ID"
           fi
           if [ "$DRY_RUN" = "true" ]; then
-            python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG --dry-run
+            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG --dry-run
           else
-            python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG
+            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG
           fi
 
       - name: Create PR
