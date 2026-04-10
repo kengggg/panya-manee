@@ -171,6 +171,7 @@ jobs:
             echo "| Think | ${{ inputs.think_budget || 'off' }} |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
             echo ""
+            # Keep PY terminators flush with the run-block base indentation.
             if [ -f "benchmark_responses/repeat_summary_${BATCH_ID}.json" ]; then
               echo "### Repeat Summary"
               BATCH_ID="$BATCH_ID" uv run python - <<'PY' 2>/dev/null || echo "- Could not parse repeat summary"
@@ -183,7 +184,7 @@ jobs:
               print()
               print(f'- Models: **{len(d.get("models", []))}**')
               print(f'- Runs: **{len(d.get("runs", []))}**')
-              PY
+          PY
               echo ""
             fi
             echo "### Generated files"

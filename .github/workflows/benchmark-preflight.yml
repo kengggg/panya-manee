@@ -114,6 +114,7 @@ jobs:
             echo "| Preflight date | ${PREFLIGHT_DATE:-'(unknown)'} |"
             echo ""
 
+            # Keep PY terminators flush with the run-block base indentation.
             if [ -n "${PREFLIGHT_OUTPUT:-}" ] && [ -f "$PREFLIGHT_OUTPUT" ]; then
               echo "### Result"
               PREFLIGHT_OUTPUT="$PREFLIGHT_OUTPUT" PREFLIGHT_DATE="$PREFLIGHT_DATE" uv run python - <<'PY' 2>/dev/null || echo "- Could not render preflight summary"
@@ -154,7 +155,7 @@ jobs:
                   print(f'  -f preflight_date="{date}" \\\\')
                   print('  -f dry_run="false"')
                   print('```')
-              PY
+          PY
             else
               echo "### Result"
               echo "- Preflight output file not found"

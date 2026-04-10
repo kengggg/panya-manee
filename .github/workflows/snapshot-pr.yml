@@ -72,6 +72,7 @@ jobs:
         run: |
           # Check for repeat_summary (preferred) or raw JSONL files (fallback)
           SUMMARY="benchmark_responses/repeat_summary_${BATCH_ID}.json"
+          # Keep PY terminators flush with the run-block base indentation.
           if [ -f "$SUMMARY" ]; then
             echo "Found repeat_summary: $SUMMARY"
             SUMMARY="$SUMMARY" uv run python - <<'PY'
@@ -80,7 +81,7 @@ jobs:
 
             d = json.load(open(os.environ['SUMMARY']))
             print(f"  {len(d.get('models', []))} models, {len(d.get('runs', []))} runs")
-            PY
+          PY
           else
             echo "::warning::No repeat_summary at $SUMMARY — build_snapshot will fall back to glob"
           fi

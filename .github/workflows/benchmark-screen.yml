@@ -196,6 +196,7 @@ jobs:
             fi
 
             DECISION="benchmark_responses/screening_decision_${BATCH_ID}.json"
+            # Keep PY terminators flush with the run-block base indentation.
             if [ -f "$DECISION" ]; then
               echo "### Screening Results"
               echo ""
@@ -207,7 +208,7 @@ jobs:
               print(f"**{d['promoted_count']}/{d['total_models']}** models promoted")
               print()
               print('Promoted: `' + d['csv'] + '`')
-              PY
+          PY
               )
               echo "$PROMOTED"
               echo ""
@@ -227,7 +228,7 @@ jobs:
 
                 appendix = json.load(open(os.environ['APPENDIX']))
                 print(format_appendix_markdown(appendix))
-                PY
+          PY
               fi
 
               echo ""
@@ -250,7 +251,7 @@ jobs:
                     print('```')
                 else:
                     print('No models promoted — cannot proceed to publication.')
-                PY
+          PY
               fi
             else
               echo "*(Screening gate not run — dry run or batch incomplete)*"
