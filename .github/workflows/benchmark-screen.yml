@@ -147,6 +147,30 @@ jobs:
             --json-out "benchmark_responses/publication_batch_${BATCH_ID}.json" \
             --env-out "benchmark_responses/publication_${BATCH_ID}.env"
 
+      - name: Build artifact manifest
+        if: always()
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          mkdir -p benchmark_responses
+          ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null | sort -u \
+            > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" || true
+
+      - name: Upload screening artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-screen-${{ inputs.batch_id }}
+          path: |
+            benchmark_responses/repeat_summary_${{ inputs.batch_id }}.json
+            benchmark_responses/screening_decision_${{ inputs.batch_id }}.json
+            benchmark_responses/screening_appendix_${{ inputs.batch_id }}.json
+            benchmark_responses/publication_batch_${{ inputs.batch_id }}.json
+            benchmark_responses/publication_${{ inputs.batch_id }}.env
+            benchmark_responses/artifact_manifest_${{ inputs.batch_id }}.txt
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Job summary
         if: always()
         env:
@@ -163,17 +187,28 @@ jobs:
             echo "| Dry run | ${{ inputs.dry_run }} |"
             echo ""
 
+            if [ -f "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" ]; then
+              echo "### Artifacts"
+              echo "\`\`\`"
+              cat "benchmark_responses/artifact_manifest_${BATCH_ID}.txt"
+              echo "\`\`\`"
+              echo ""
+            fi
+
             DECISION="benchmark_responses/screening_decision_${BATCH_ID}.json"
             if [ -f "$DECISION" ]; then
               echo "### Screening Results"
               echo ""
-              PROMOTED=$(uv run python -c "
-          import json
-          d = json.load(open('$DECISION'))
-          print(f\"**{d['promoted_count']}/{d['total_models']}** models promoted\")
-          print()
-          print('Promoted: \`' + d['csv'] + '\`')
-          " 2>/dev/null || echo "(could not parse decision)")
+              PROMOTED=$(DECISION="$DECISION" uv run python - <<'PY' 2>/dev/null || echo "(could not parse decision)"
+              import json
+              import os
+
+              d = json.load(open(os.environ['DECISION']))
+              print(f"**{d['promoted_count']}/{d['total_models']}** models promoted")
+              print()
+              print('Promoted: `' + d['csv'] + '`')
+              PY
+              )
               echo "$PROMOTED"
               echo ""
 
@@ -182,34 +217,40 @@ jobs:
               if [ -f "$APPENDIX" ]; then
                 echo "### Screening Appendix"
                 echo ""
-                uv run python -c "
-          import json, sys
-          sys.path.insert(0, 'scripts')
-          from screening_gate import format_appendix_markdown
-          appendix = json.load(open('$APPENDIX'))
-          print(format_appendix_markdown(appendix))
-          " 2>/dev/null || echo "(could not render appendix)"
+                APPENDIX="$APPENDIX" uv run python - <<'PY' 2>/dev/null || echo "(could not render appendix)"
+                import json
+                import os
+                import sys
+
+                sys.path.insert(0, 'scripts')
+                from screening_gate import format_appendix_markdown
+
+                appendix = json.load(open(os.environ['APPENDIX']))
+                print(format_appendix_markdown(appendix))
+                PY
               fi
 
               echo ""
               echo "### Next Step"
               PUB="benchmark_responses/publication_batch_${BATCH_ID}.json"
               if [ -f "$PUB" ]; then
-                uv run python -c "
-          import json
-          d = json.load(open('$PUB'))
-          if d['status'] == 'ready':
-              print('Dispatch publication batch:')
-              print()
-              print('\`\`\`bash')
-              print(f'gh workflow run benchmark-run.yml \\\\')
-              print(f'  -f batch_id=\"{d[\"pub_batch_id\"]}\" \\\\')
-              print(f'  -f models=\"{d[\"promoted_csv\"]}\" \\\\')
-              print(f'  -f runs_per_model=\"{d[\"pub_runs\"]}\"')
-              print('\`\`\`')
-          else:
-              print('No models promoted — cannot proceed to publication.')
-          " 2>/dev/null || echo "(could not render next step)"
+                PUB="$PUB" uv run python - <<'PY' 2>/dev/null || echo "(could not render next step)"
+                import json
+                import os
+
+                d = json.load(open(os.environ['PUB']))
+                if d['status'] == 'ready':
+                    print('Dispatch publication batch:')
+                    print()
+                    print('```bash')
+                    print(f'gh workflow run benchmark-run.yml \\\\')
+                    print(f'  -f batch_id="{d["pub_batch_id"]}" \\\\')
+                    print(f'  -f models="{d["promoted_csv"]}" \\\\')
+                    print(f'  -f runs_per_model="{d["pub_runs"]}"')
+                    print('```')
+                else:
+                    print('No models promoted — cannot proceed to publication.')
+                PY
               fi
             else
               echo "*(Screening gate not run — dry run or batch incomplete)*"

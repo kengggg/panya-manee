@@ -1,0 +1,162 @@
+# Preflight the benchmark runner on the Mac mini baseline.
+#
+# SELF-HOSTED RUNNER REQUIRED
+#   Runner labels: [self-hosted, macOS, ARM64, panya-manee-baseline]
+#   Requires: Ollama running locally. Can optionally pull missing models.
+#
+# Safety model:
+#   - workflow_dispatch only — never triggered by PRs or pushes
+#   - Always checks out the trusted main branch
+#   - Concurrency lock shared with benchmark/screening (same testbed)
+#   - No secrets beyond GITHUB_TOKEN, no network access needed
+#
+# Outputs:
+#   - preflight_records/preflight_YYYYMMDD.json
+#   - GitHub artifact with the preflight record
+#   - Job summary with pass/fail and next-step command
+
+name: Benchmark Preflight
+
+on:
+  workflow_dispatch:
+    inputs:
+      models:
+        description: 'Comma-separated model names'
+        required: true
+        type: string
+      pull_missing:
+        description: 'Pull missing models before failing'
+        required: false
+        default: false
+        type: boolean
+      preflight_date:
+        description: 'Override output date YYYYMMDD (default: runner local date)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: panya-manee-benchmark
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: [self-hosted, macOS, ARM64, panya-manee-baseline]
+    timeout-minutes: 180
+    steps:
+      - name: Checkout trusted ref
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          clean: false
+
+      - name: Prepare Python and uv
+        run: |
+          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          /opt/homebrew/bin/python3 --version
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Verify Ollama is reachable
+        run: |
+          if ! curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
+            echo "::error::Ollama is not running at localhost:11434"
+            exit 1
+          fi
+
+      - name: Run preflight
+        env:
+          MODELS: ${{ inputs.models }}
+          PULL_MISSING: ${{ inputs.pull_missing }}
+          PREFLIGHT_DATE_INPUT: ${{ inputs.preflight_date }}
+        run: |
+          DATE="${PREFLIGHT_DATE_INPUT:-$(date +%Y%m%d)}"
+          OUTPUT="preflight_records/preflight_${DATE}.json"
+          PULL_ARG=""
+          if [ "$PULL_MISSING" = "true" ]; then
+            PULL_ARG="--pull"
+          fi
+
+          echo "PREFLIGHT_DATE=$DATE" >> "$GITHUB_ENV"
+          echo "PREFLIGHT_OUTPUT=$OUTPUT" >> "$GITHUB_ENV"
+
+          uv run python scripts/preflight.py \
+            --models "$MODELS" \
+            $PULL_ARG \
+            --output "$OUTPUT"
+
+      - name: Upload preflight artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preflight-${{ env.PREFLIGHT_DATE || 'unknown' }}
+          path: ${{ env.PREFLIGHT_OUTPUT }}
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Job summary
+        if: always()
+        env:
+          MODELS: ${{ inputs.models }}
+          PULL_MISSING: ${{ inputs.pull_missing }}
+        run: |
+          {
+            echo "## Benchmark Preflight"
+            echo ""
+            echo "| Input | Value |"
+            echo "|---|---|"
+            echo "| Models | \`${MODELS}\` |"
+            echo "| Pull missing | ${PULL_MISSING} |"
+            echo "| Preflight date | ${PREFLIGHT_DATE:-'(unknown)'} |"
+            echo ""
+
+            if [ -n "${PREFLIGHT_OUTPUT:-}" ] && [ -f "$PREFLIGHT_OUTPUT" ]; then
+              echo "### Result"
+              PREFLIGHT_OUTPUT="$PREFLIGHT_OUTPUT" PREFLIGHT_DATE="$PREFLIGHT_DATE" uv run python - <<'PY' 2>/dev/null || echo "- Could not render preflight summary"
+              import json
+              import os
+
+              p = os.environ['PREFLIGHT_OUTPUT']
+              d = json.load(open(p))
+              date = os.environ.get('PREFLIGHT_DATE', '')
+
+              print()
+              print(f'- Status: **{d["status"]}**')
+              print(f'- Output: `{p}`')
+              print(f'- Models checked: **{len(d.get("model_inventory", []))}**')
+              print(f'- Errors: **{len(d.get("errors", []))}**')
+              print(f'- Warnings: **{len(d.get("warnings", []))}**')
+
+              if d.get('errors'):
+                  print('- Error list:')
+                  for item in d['errors']:
+                      print(f'  - {item}')
+
+              if d.get('warnings'):
+                  print('- Warning list:')
+                  for item in d['warnings']:
+                      print(f'  - {item}')
+
+              if d.get('status') == 'pass':
+                  print()
+                  print('### Next Step')
+                  print('Dispatch screening:')
+                  print()
+                  print('```bash')
+                  print('gh workflow run benchmark-screen.yml \\\\')
+                  print(f'  -f batch_id="ntp3-screen-r3-{date}" \\\\')
+                  print(f'  -f models="{",".join(d["requested_models"])}" \\\\')
+                  print('  -f runs_per_model="3" \\\\')
+                  print(f'  -f preflight_date="{date}" \\\\')
+                  print('  -f dry_run="false"')
+                  print('```')
+              PY
+            else
+              echo "### Result"
+              echo "- Preflight output file not found"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

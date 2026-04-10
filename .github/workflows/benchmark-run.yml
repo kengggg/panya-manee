@@ -90,6 +90,23 @@ jobs:
           for m in data.get('models', []):
               print(f\"  {m['name']}  ({m.get('size', 'unknown size')})\")" 2>/dev/null || true
 
+      - name: Verify batch inputs
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+          MODELS: ${{ inputs.models }}
+          RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
+          THINK_BUDGET: ${{ inputs.think_budget }}
+        run: |
+          THINK_ARG=""
+          if [ -n "$THINK_BUDGET" ]; then
+            THINK_ARG="--think $THINK_BUDGET"
+          fi
+          uv run python scripts/verify_batch_inputs.py \
+            --batch-id "$BATCH_ID" \
+            --models "$MODELS" \
+            --runs-per-model "$RUNS_PER_MODEL" \
+            $THINK_ARG
+
       - name: Run benchmark batch
         env:
           BATCH_ID: ${{ inputs.batch_id }}
@@ -114,6 +131,28 @@ jobs:
             --subjects "$SUBJECTS" \
             $THINK_ARG $DRY_ARG
 
+      - name: Build artifact manifest
+        if: always()
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          mkdir -p benchmark_responses
+          {
+            echo "repeat_summary_${BATCH_ID}.json"
+            ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null || true
+          } | sed '/^$/d' | sort -u > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt"
+
+      - name: Upload benchmark artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-run-${{ inputs.batch_id }}
+          path: |
+            benchmark_responses/repeat_summary_${{ inputs.batch_id }}.json
+            benchmark_responses/artifact_manifest_${{ inputs.batch_id }}.txt
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Job summary
         if: always()
         env:
@@ -130,6 +169,21 @@ jobs:
             echo "| Think | ${{ inputs.think_budget || 'off' }} |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
             echo ""
+            if [ -f "benchmark_responses/repeat_summary_${BATCH_ID}.json" ]; then
+              echo "### Repeat Summary"
+              BATCH_ID="$BATCH_ID" uv run python - <<'PY' 2>/dev/null || echo "- Could not parse repeat summary"
+              import json
+              import os
+
+              batch_id = os.environ['BATCH_ID']
+              d = json.load(open(f'benchmark_responses/repeat_summary_{batch_id}.json'))
+
+              print()
+              print(f'- Models: **{len(d.get("models", []))}**')
+              print(f'- Runs: **{len(d.get("runs", []))}**')
+              PY
+              echo ""
+            fi
             echo "### Generated files"
             echo "\`\`\`"
             ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null || echo "(none found)"

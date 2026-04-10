@@ -154,12 +154,25 @@ jobs:
           \`pages-deploy.yml\` will deploy the updated dashboard to GitHub Pages automatically."
 
           # Open PR
-          gh pr create \
+          PR_URL=$(gh pr create \
             --title "Publish snapshot: ${SID}" \
             --body "$PR_BODY" \
             --base main \
-            --head "$BRANCH" \
-          || echo "::warning::PR creation failed — a PR for this branch may already exist"
+            --head "$BRANCH" 2>/dev/null || true)
+          if [ -z "$PR_URL" ]; then
+            echo "::warning::PR creation failed — a PR for this branch may already exist"
+          fi
+          if [ -z "$PR_URL" ]; then
+            PR_URL=$(gh pr list \
+              --head "$BRANCH" \
+              --state open \
+              --json url \
+              --jq '.[0].url' 2>/dev/null || true)
+          fi
+          if [ -n "$PR_URL" ]; then
+            echo "PR_URL=$PR_URL" >> "$GITHUB_ENV"
+            echo "Opened PR: $PR_URL"
+          fi
 
       - name: Job summary
         if: always()
@@ -176,4 +189,9 @@ jobs:
             echo "| Batch ID | \`${BATCH_ID}\` |"
             echo "| Snapshot ID | \`${SID}\` |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
+            if [ -n "${PR_URL:-}" ]; then
+              echo ""
+              echo "### Pull Request"
+              echo "- ${PR_URL}"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
