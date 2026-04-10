@@ -1,69 +1,69 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-smoke-real-20260410",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-rehearsal-r10-20260410",
   "benchmark_scope": "mcq_text_only_v1",
   "models": [
     {
-      "model_id": "gemma4:e2b",
+      "model_id": "gemma4:e4b",
       "model_family": "gemma4",
-      "parameter_bucket": "1B–4B",
-      "ram_fit_class": "fits_comfortably_16gb",
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_tightly_16gb",
       "testbed": {
         "host_label": "Apple Mac mini M4 / 16GB / Ollama"
       },
       "metrics": {
-        "balanced_quality_score": 0.325,
-        "thai_score_rate": 0.65,
-        "math_score_rate": 0.0,
-        "overall_score_rate": 0.65,
+        "balanced_quality_score": 0.5454,
+        "thai_score_rate": 0.6667,
+        "math_score_rate": 0.4242,
+        "overall_score_rate": 0.5806,
         "parseable_rate": 1.0,
         "answer_only_compliance_rate": 1.0,
-        "latency_p50_ms": 334,
-        "latency_p95_ms": 479,
-        "questions_per_min": 145.0,
-        "correct_per_min": 94.2,
-        "item_count": 60,
-        "total_correct": 39,
+        "latency_p50_ms": 512,
+        "latency_p95_ms": 749,
+        "questions_per_min": 108.6,
+        "correct_per_min": 63.0,
+        "item_count": 93,
+        "total_correct": 54,
         "average_output_length_chars": 1.0,
-        "throughput_toks_per_sec": 101.8
+        "throughput_toks_per_sec": 59.7
       },
       "strengths": [
         {
-          "skill_tag": "moral_extraction",
+          "skill_tag": "moral_application",
           "score_rate": 1.0,
-          "correct": 6,
-          "total": 6
+          "correct": 60,
+          "total": 60
         },
         {
-          "skill_tag": "declarative_sentence",
+          "skill_tag": "applied_reading",
           "score_rate": 1.0,
-          "correct": 2,
-          "total": 2
+          "correct": 30,
+          "total": 30
         },
         {
-          "skill_tag": "formal_language",
+          "skill_tag": "judgment_from_text",
           "score_rate": 1.0,
-          "correct": 2,
-          "total": 2
+          "correct": 30,
+          "total": 30
         }
       ],
       "weaknesses": [
         {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 30
+        },
+        {
           "skill_tag": "verb_identification",
           "score_rate": 0.0,
           "correct": 0,
-          "total": 3
+          "total": 30
         },
         {
-          "skill_tag": "error_identification",
+          "skill_tag": "classification",
           "score_rate": 0.0,
           "correct": 0,
-          "total": 2
-        },
-        {
-          "skill_tag": "pronoun_identification",
-          "score_rate": 0.0,
-          "correct": 0,
-          "total": 2
+          "total": 20
         }
       ],
       "common_failure_types": [
@@ -72,19 +72,99 @@
       "badges": [
         "Best Quality",
         "Best Thai",
-        "Best Math",
-        "Fastest on Testbed",
-        "Best Small Model"
+        "Best Math"
       ],
-      "auto_summary": "gemma4:e2b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, declarative_sentence, formal_language. Its weakest areas are verb_identification, error_identification, pronoun_identification. On the current Mac mini testbed, it is the only model tested.",
+      "auto_summary": "gemma4:e4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_application, applied_reading, judgment_from_text. Its weakest areas are number_pattern, verb_identification, classification. On the current Mac mini testbed, it is slower than peers.",
       "example_ids": {
         "good": [
-          "ex_gemma4_e2b_thai_8_good_0",
-          "ex_gemma4_e2b_thai_24_good_1"
+          "ex_gemma4_e4b_thai_7_good_0",
+          "ex_gemma4_e4b_thai_25_good_1"
         ],
         "bad": [
-          "ex_gemma4_e2b_thai_19_bad_0",
-          "ex_gemma4_e2b_thai_17_bad_1"
+          "ex_gemma4_e4b_math_10_bad_0",
+          "ex_gemma4_e4b_math_10_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "model_family": "unknown",
+      "parameter_bucket": "unknown",
+      "ram_fit_class": "unknown",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.4099,
+        "thai_score_rate": 0.5167,
+        "math_score_rate": 0.303,
+        "overall_score_rate": 0.4409,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 462,
+        "latency_p95_ms": 652,
+        "questions_per_min": 123.8,
+        "correct_per_min": 54.6,
+        "item_count": 93,
+        "total_correct": 41,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 55.9
+      },
+      "strengths": [
+        {
+          "skill_tag": "declarative_sentence",
+          "score_rate": 1.0,
+          "correct": 20,
+          "total": 20
+        },
+        {
+          "skill_tag": "duration",
+          "score_rate": 1.0,
+          "correct": 20,
+          "total": 20
+        },
+        {
+          "skill_tag": "event_ordering",
+          "score_rate": 1.0,
+          "correct": 20,
+          "total": 20
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "fraction_addition",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 70
+        },
+        {
+          "skill_tag": "fraction_subtraction",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 70
+        },
+        {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 30
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [
+        "Fastest on Testbed"
+      ],
+      "auto_summary": "scb10x/typhoon2.1-gemma3-4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are declarative_sentence, duration, event_ordering. Its weakest areas are fraction_addition, fraction_subtraction, number_pattern. On the current Mac mini testbed, it is among the fastest.",
+      "example_ids": {
+        "good": [
+          "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
+          "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_1"
+        ],
+        "bad": [
+          "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_0",
+          "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1"
         ]
       }
     }
