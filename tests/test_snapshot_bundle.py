@@ -195,6 +195,133 @@ class TestExampleEnrichment(unittest.TestCase):
             self.assertTrue(ex.get("prompt_text"))
             self.assertTrue(ex.get("choices"))
 
+    def test_select_examples_diversifies_subjects(self):
+        canonical_rows = [
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "subject": "thai",
+                "question_id": 1,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": True,
+                "correct_answer": "4",
+                "parsed_answer": "4",
+                "raw_output": "4",
+                "latency_ms": 1500,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_math_2565",
+                "subject": "math",
+                "question_id": 8,
+                "curriculum_standard": "ค 1.1 ป.3/10",
+                "skill_tag": ["fraction_addition"],
+                "is_correct": True,
+                "correct_answer": "1",
+                "parsed_answer": "1",
+                "raw_output": "1",
+                "latency_ms": 1200,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2566",
+                "subject": "thai",
+                "question_id": 8,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": True,
+                "correct_answer": "2",
+                "parsed_answer": "2",
+                "raw_output": "2",
+                "latency_ms": 1100,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "subject": "thai",
+                "question_id": 2,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": False,
+                "correct_answer": "2",
+                "parsed_answer": "1",
+                "raw_output": "1",
+                "latency_ms": 1250,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_math_2567",
+                "subject": "math",
+                "question_id": 8,
+                "curriculum_standard": "ค 1.1 ป.3/11",
+                "skill_tag": ["fraction_addition"],
+                "is_correct": False,
+                "correct_answer": "4",
+                "parsed_answer": "3",
+                "raw_output": "3",
+                "latency_ms": 1400,
+            },
+        ]
+        strengths = [{"skill_tag": "reading_comprehension", "correct": 2, "total": 3, "score_rate": 0.6667}]
+        weaknesses = [{"skill_tag": "fraction_addition", "correct": 0, "total": 1, "score_rate": 0.0}]
+
+        examples = select_examples(
+            canonical_rows,
+            strengths,
+            weaknesses,
+            "gemma4:e2b",
+            question_bank=self.question_bank,
+            n_good=2,
+            n_bad=2,
+        )
+
+        good_subjects = [ex["subject"] for ex in examples if ex["is_correct"]]
+        bad_subjects = [ex["subject"] for ex in examples if not ex["is_correct"]]
+        self.assertCountEqual(good_subjects, ["thai", "math"])
+        self.assertCountEqual(bad_subjects, ["thai", "math"])
+
+    def test_select_examples_does_not_duplicate_subject_when_only_one_subject_available(self):
+        canonical_rows = [
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "subject": "thai",
+                "question_id": 1,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": True,
+                "correct_answer": "4",
+                "parsed_answer": "4",
+                "raw_output": "4",
+                "latency_ms": 1500,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2566",
+                "subject": "thai",
+                "question_id": 8,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": True,
+                "correct_answer": "2",
+                "parsed_answer": "2",
+                "raw_output": "2",
+                "latency_ms": 1100,
+            },
+        ]
+        examples = select_examples(
+            canonical_rows,
+            [{"skill_tag": "reading_comprehension", "correct": 2, "total": 2, "score_rate": 1.0}],
+            [],
+            "gemma4:e2b",
+            question_bank=self.question_bank,
+            n_good=2,
+            n_bad=2,
+        )
+        good_examples = [ex for ex in examples if ex["is_correct"]]
+        self.assertEqual(len(good_examples), 1)
+
     def test_resolve_question_item_disambiguates_same_question_id(self):
         row = {
             "subject": "math",

@@ -487,12 +487,16 @@ def select_examples(
 ) -> list[dict]:
     """Deterministic example selection from canonical run.
 
-    Good examples: correct items from strongest skill tags, prefer higher latency.
-    Bad examples: incorrect items from weakest skill tags, prefer higher latency.
+    Good examples: one per subject when available, chosen from strongest skill tags.
+    Bad examples: one per subject when available, chosen from weakest skill tags.
     Stable tie-break: subject, question_id.
     """
     strong_tags = [s["skill_tag"] for s in strengths]
     weak_tags = [w["skill_tag"] for w in weaknesses]
+
+    def subject_rank(subject: str) -> tuple[int, str]:
+        order = {"thai": 0, "math": 1}
+        return (order.get(subject, 99), subject)
 
     def example_sort_key(row, preferred_tags):
         """Lower value = higher priority for selection."""
@@ -505,15 +509,27 @@ def select_examples(
                 break
         return (tag_priority, -row.get("latency_ms", 0), row.get("subject", ""), row.get("question_id", 0))
 
+    def select_subject_diverse_rows(rows: list[dict], preferred_tags: list[str], limit: int) -> list[dict]:
+        grouped: dict[str, list[dict]] = defaultdict(list)
+        for row in rows:
+            grouped[row.get("subject", "unknown")].append(row)
+
+        selected = []
+        for subject in sorted(grouped.keys(), key=subject_rank):
+            subject_rows = sorted(grouped[subject], key=lambda r: example_sort_key(r, preferred_tags))
+            if subject_rows:
+                selected.append(subject_rows[0])
+            if len(selected) >= limit:
+                break
+        return selected
+
     # Good: correct items
     correct_rows = [r for r in canonical_rows if r.get("is_correct")]
-    correct_rows.sort(key=lambda r: example_sort_key(r, strong_tags))
-    good = correct_rows[:n_good]
+    good = select_subject_diverse_rows(correct_rows, strong_tags, n_good)
 
     # Bad: incorrect items (parseable but wrong, or unparseable)
     incorrect_rows = [r for r in canonical_rows if not r.get("is_correct")]
-    incorrect_rows.sort(key=lambda r: example_sort_key(r, weak_tags))
-    bad = incorrect_rows[:n_bad]
+    bad = select_subject_diverse_rows(incorrect_rows, weak_tags, n_bad)
 
     examples = []
     for i, row in enumerate(good):
