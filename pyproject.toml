@@ -3,5 +3,7 @@ name = "panya-manee"
 version = "0.1.0"
 description = "NT Grade 3 Thai language LLM benchmark arena using Ollama"
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.12"
+classifiers = ["License :: OSI Approved :: Apache Software License"]
 dependencies = ["rich>=13"]

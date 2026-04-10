@@ -2,6 +2,8 @@
 
 Local LLM arena that benchmarks small models on Thailand's NT (National Test) Grade 3 exam questions via Ollama. Tests Thai language comprehension and math reasoning.
 
+License: Apache-2.0
+
 ## Prerequisites
 
 - Python 3.12+
@@ -91,6 +93,10 @@ The `.github/workflows/pages-deploy.yml` workflow deploys `site/` to GitHub Page
 
 1. In repo Settings → Pages → Source, select **GitHub Actions**
 2. Ensure `site/data/latest/` contains snapshot data (committed via publish flow above)
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. See `LICENSE`.
 
 ## How it works
 
