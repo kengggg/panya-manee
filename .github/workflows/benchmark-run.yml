@@ -95,6 +95,7 @@ jobs:
           BATCH_ID: ${{ inputs.batch_id }}
           MODELS: ${{ inputs.models }}
           RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
+          SUBJECTS: ${{ inputs.subjects }}
           THINK_BUDGET: ${{ inputs.think_budget }}
         run: |
           THINK_ARG=""
@@ -105,6 +106,7 @@ jobs:
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
             --runs-per-model "$RUNS_PER_MODEL" \
+            --subjects "$SUBJECTS" \
             $THINK_ARG
 
       - name: Run benchmark batch

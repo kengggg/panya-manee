@@ -74,10 +74,13 @@ jobs:
           SUMMARY="benchmark_responses/repeat_summary_${BATCH_ID}.json"
           if [ -f "$SUMMARY" ]; then
             echo "Found repeat_summary: $SUMMARY"
-            uv run python -c "
-          import json
-          d = json.load(open('$SUMMARY'))
-          print(f\"  {len(d.get('models', []))} models, {len(d.get('runs', []))} runs\")"
+            SUMMARY="$SUMMARY" uv run python - <<'PY'
+            import json
+            import os
+
+            d = json.load(open(os.environ['SUMMARY']))
+            print(f"  {len(d.get('models', []))} models, {len(d.get('runs', []))} runs")
+            PY
           else
             echo "::warning::No repeat_summary at $SUMMARY — build_snapshot will fall back to glob"
           fi
@@ -172,6 +175,9 @@ jobs:
           if [ -n "$PR_URL" ]; then
             echo "PR_URL=$PR_URL" >> "$GITHUB_ENV"
             echo "Opened PR: $PR_URL"
+          else
+            echo "::error::Could not create or resolve PR URL for branch '$BRANCH'"
+            exit 1
           fi
 
       - name: Job summary
