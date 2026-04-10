@@ -25,6 +25,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
 REGISTRY_DIR = PROJECT_ROOT / "registry"
+NT_TESTS_DIR = PROJECT_ROOT / "nt-tests"
 MODELS_CONFIG = REGISTRY_DIR / "models.json"
 MACHINE_PROFILES_CONFIG = REGISTRY_DIR / "machine_profiles.json"
 COMPATIBILITY_CONFIG = REGISTRY_DIR / "compatibility.json"
@@ -94,7 +95,7 @@ def suite_id_for_subject(subject: str) -> str:
 
 
 def normalize_raw_row(row: dict, snapshot_id: str, testbed: dict, model_meta: dict) -> dict:
-    meta = model_meta.get(row["model_id"], {})
+    meta = resolve_model_meta(row["model_id"], model_meta)
     raw_output = row.get("raw_output", "") or ""
     error_type = None
     if isinstance(raw_output, str) and raw_output.startswith("ERROR:"):
@@ -146,6 +147,23 @@ def common_failure_types(rows: list[dict], top_n: int = 3) -> list[str]:
     return [name for name, _count in ordered[:top_n]]
 
 
+def model_lookup_candidates(model_id: str, extra_aliases: list[str] | None = None) -> list[str]:
+    candidates = []
+
+    def add(value: str | None):
+        if value and value not in candidates:
+            candidates.append(value)
+
+    add(model_id)
+    if model_id and model_id.endswith(":latest"):
+        add(model_id[:-7])
+    for alias in extra_aliases or []:
+        add(alias)
+        if alias.endswith(":latest"):
+            add(alias[:-7])
+    return candidates
+
+
 # ── Model metadata lookup ───────────────────────────────────────────────────
 
 
@@ -155,12 +173,53 @@ def load_model_meta(config_path: Path) -> dict[str, dict]:
     return {m["model_id"]: m for m in data["models"]}
 
 
+def resolve_model_meta(model_id: str, model_meta: dict[str, dict]) -> dict:
+    if model_id in model_meta:
+        return model_meta[model_id]
+
+    candidates = model_lookup_candidates(model_id)
+    for meta in model_meta.values():
+        aliases = model_lookup_candidates(meta["model_id"], meta.get("aliases") or [])
+        if any(candidate in aliases for candidate in candidates):
+            return meta
+    return {}
+
+
+def load_question_bank() -> dict[tuple[str, int], dict]:
+    bank = {}
+    if not NT_TESTS_DIR.exists():
+        return bank
+
+    for path in sorted(NT_TESTS_DIR.glob("*.json")):
+        items = load_json(path)
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            exam_id = item.get("exam_id")
+            question_id = item.get("question_id")
+            if exam_id is None or question_id is None:
+                continue
+            bank[(str(exam_id), int(question_id))] = item
+    return bank
+
+
+def resolve_question_item(row: dict, question_bank: dict[tuple[str, int], dict] | None = None) -> dict:
+    if question_bank:
+        exam_id = row.get("exam_id")
+        question_id = row.get("question_id")
+        if exam_id is not None and question_id is not None:
+            item = question_bank.get((str(exam_id), int(question_id)))
+            if item:
+                return item
+    return {}
+
+
 # ── Core aggregation ────────────────────────────────────────────────────────
 
 
 def aggregate_model(model_id: str, all_rows: list[dict], model_meta: dict) -> dict:
     """Compute all metrics for one model from all its batch rows."""
-    meta = model_meta.get(model_id, {})
+    meta = resolve_model_meta(model_id, model_meta)
 
     thai_rows = [r for r in all_rows if r["subject"] == "thai"]
     math_rows = [r for r in all_rows if r["subject"] == "math"]
@@ -388,6 +447,7 @@ def select_examples(
     strengths: list[dict],
     weaknesses: list[dict],
     model_id: str,
+    question_bank: dict[tuple[str, int], dict] | None = None,
     n_good: int = 2,
     n_bad: int = 2,
 ) -> list[dict]:
@@ -423,14 +483,27 @@ def select_examples(
 
     examples = []
     for i, row in enumerate(good):
-        examples.append(_make_example(row, model_id, f"good_{i}", "good_top_skill"))
+        examples.append(_make_example(row, model_id, f"good_{i}", "good_top_skill", question_bank))
     for i, row in enumerate(bad):
-        examples.append(_make_example(row, model_id, f"bad_{i}", "bad_weak_skill"))
+        examples.append(_make_example(row, model_id, f"bad_{i}", "bad_weak_skill", question_bank))
     return examples
 
 
-def _make_example(row: dict, model_id: str, suffix: str, reason: str) -> dict:
+def _make_example(
+    row: dict,
+    model_id: str,
+    suffix: str,
+    reason: str,
+    question_bank: dict[tuple[str, int], dict] | None = None,
+) -> dict:
     raw = row.get("raw_output", "")
+    item = resolve_question_item(row, question_bank)
+    choices = row.get("choices") or item.get("choices") or {}
+    parsed_answer = row.get("parsed_answer")
+    model_answer_text = None
+    if isinstance(choices, dict) and parsed_answer is not None:
+        model_answer_text = choices.get(str(parsed_answer))
+
     # Stable example_id: model + subject + question_id + suffix
     safe_model = re.sub(r'[^a-zA-Z0-9]', '_', model_id)
     example_id = f"ex_{safe_model}_{row.get('subject', '')}_{row.get('question_id', 0)}_{suffix}"
@@ -443,7 +516,12 @@ def _make_example(row: dict, model_id: str, suffix: str, reason: str) -> dict:
         "curriculum_standard": row.get("curriculum_standard"),
         "is_correct": row.get("is_correct", False),
         "correct_answer": str(row.get("correct_answer", "")),
+        "correct_answer_text": row.get("correct_answer_text") or item.get("correct_answer_text"),
         "parsed_answer": row.get("parsed_answer"),
+        "model_answer_text": model_answer_text,
+        "stimulus_text": row.get("stimulus_text") or item.get("stimulus_text"),
+        "prompt_text": row.get("prompt_text") or item.get("prompt_text"),
+        "choices": choices,
         "raw_output_truncated": raw[:200],
         "raw_output_full": raw,
         "latency_ms": row.get("latency_ms", 0),
@@ -629,6 +707,7 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     model_meta = load_model_meta(MODELS_CONFIG)
     testbed = load_testbed(MACHINE_PROFILES_CONFIG)
     compat = load_compatibility(COMPATIBILITY_CONFIG)
+    question_bank = load_question_bank()
 
     # Find and load all batch files
     model_files = find_batch_files(batch_id, RESPONSES_DIR)
@@ -690,7 +769,7 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         strengths, weaknesses = pick_strengths_weaknesses(skill_stats)
         failure_types = common_failure_types(rows)
 
-        examples = select_examples(canonical, strengths, weaknesses, model_id)
+        examples = select_examples(canonical, strengths, weaknesses, model_id, question_bank=question_bank)
         all_examples.extend(examples)
 
         auto_summary = generate_auto_summary(
