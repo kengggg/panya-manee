@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-mini-r10-20260409",
-  "published_at": "2026-04-09T19:54:20+07:00",
+  "snapshot_id": "nt-p3-mcq-text-only-smoke-real-20260410",
+  "published_at": "2026-04-10T12:15:07+07:00",
   "benchmark_name": "NT P3 Local LLM Benchmark",
   "benchmark_label": "NT P3 MCQ Text-Only",
   "benchmark_scope": "mcq_text_only_v1",
