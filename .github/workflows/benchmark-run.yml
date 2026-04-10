@@ -69,13 +69,16 @@ jobs:
           # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
           clean: false
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Prepare Python environment
+        run: |
+          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          /opt/homebrew/bin/python3 --version
+          rm -rf .venv
+          /opt/homebrew/bin/python3 -m venv .venv
+          .venv/bin/python -m pip install --upgrade pip
 
       - name: Install dependencies
-        run: pip install -e .
+        run: .venv/bin/python -m pip install -e .
 
       - name: Verify Ollama is reachable
         run: |
@@ -107,7 +110,7 @@ jobs:
           if [ "$DRY_RUN" = "true" ]; then
             DRY_ARG="--dry-run"
           fi
-          python scripts/run_batch.py \
+          .venv/bin/python scripts/run_batch.py \
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
             --runs-per-model "$RUNS_PER_MODEL" \
@@ -118,7 +121,7 @@ jobs:
         if: inputs.dry_run != true
         env:
           BATCH_ID: ${{ inputs.batch_id }}
-        run: python scripts/summarize_batch.py --batch-id "$BATCH_ID"
+        run: .venv/bin/python scripts/summarize_batch.py --batch-id "$BATCH_ID"
 
       - name: Job summary
         if: always()
