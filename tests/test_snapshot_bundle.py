@@ -40,6 +40,7 @@ from scripts.build_snapshot import (
     load_question_bank,
     load_compatibility,
     resolve_model_meta,
+    resolve_question_item,
     resolve_compatibility_values,
     percentile,
     pick_strengths_weaknesses,
@@ -193,6 +194,17 @@ class TestExampleEnrichment(unittest.TestCase):
         for ex in examples:
             self.assertTrue(ex.get("prompt_text"))
             self.assertTrue(ex.get("choices"))
+
+    def test_resolve_question_item_disambiguates_same_question_id(self):
+        row = {
+            "subject": "math",
+            "question_id": 8,
+            "curriculum_standard": "ค 1.1 ป.3/11",
+            "correct_answer": "4",
+        }
+        item = resolve_question_item(row, self.question_bank)
+        self.assertEqual(item.get("exam_id"), "nt_p3_math_2567")
+        self.assertIn("แม่ค้าเหลือขนมทั้งสองชนิด", item.get("prompt_text", ""))
 
 
 class TestSkillAnalysis(unittest.TestCase):

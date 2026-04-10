@@ -211,6 +211,40 @@ def resolve_question_item(row: dict, question_bank: dict[tuple[str, int], dict] 
             item = question_bank.get((str(exam_id), int(question_id)))
             if item:
                 return item
+        if question_id is None:
+            return {}
+
+        candidates = [
+            item for (candidate_exam_id, candidate_qid), item in question_bank.items()
+            if candidate_qid == int(question_id)
+        ]
+
+        subject = row.get("subject")
+        if subject is not None:
+            subject_matches = [item for item in candidates if item.get("subject") == subject]
+            if subject_matches:
+                candidates = subject_matches
+
+        def filter_candidates(items: list[dict], field: str) -> list[dict]:
+            value = row.get(field)
+            if value in (None, "", []):
+                return items
+            matches = [item for item in items if item.get(field) == value]
+            return matches or items
+
+        candidates = filter_candidates(candidates, "curriculum_standard")
+        candidates = filter_candidates(candidates, "correct_answer")
+        candidates = filter_candidates(candidates, "prompt_text")
+        candidates = filter_candidates(candidates, "year_buddhist")
+
+        skill_tags = row.get("skill_tag") or []
+        if skill_tags:
+            skill_matches = [item for item in candidates if (item.get("skill_tag") or []) == skill_tags]
+            if skill_matches:
+                candidates = skill_matches
+
+        if len(candidates) == 1:
+            return candidates[0]
     return {}
 
 
@@ -510,8 +544,11 @@ def _make_example(
     return {
         "example_id": example_id,
         "model_id": model_id,
+        "exam_id": row.get("exam_id") or item.get("exam_id"),
+        "year_buddhist": row.get("year_buddhist") or item.get("year_buddhist"),
         "subject": row.get("subject", ""),
         "question_id": row.get("question_id", 0),
+        "question_no": row.get("question_no") or item.get("question_no"),
         "skill_tag": row.get("skill_tag") or [],
         "curriculum_standard": row.get("curriculum_standard"),
         "is_correct": row.get("is_correct", False),
