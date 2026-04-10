@@ -63,7 +63,7 @@ jobs:
     timeout-minutes: 720  # 12h — large batches with slow models
     steps:
       - name: Checkout trusted ref
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
           # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
