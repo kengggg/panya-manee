@@ -5,8 +5,11 @@
     {
       "example_id": "ex_gemma4_e4b_thai_7_good_0",
       "model_id": "gemma4:e4b",
+      "exam_id": "nt_p3_th_2565",
+      "year_buddhist": 2565,
       "subject": "thai",
       "question_id": 7,
+      "question_no": 7,
       "skill_tag": [
         "moral_application",
         "reading_literature"
@@ -14,11 +17,9 @@
       "curriculum_standard": "ท 1.1 ป.3/5",
       "is_correct": true,
       "correct_answer": "2",
+      "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
       "parsed_answer": "2",
-      "raw_output_truncated": "2",
-      "raw_output_full": "2",
-      "latency_ms": 741,
-      "selection_reason": "good_top_skill",
+      "model_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
       "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
       "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
       "choices": {
@@ -27,59 +28,90 @@
         "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
         "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
       },
-      "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
-      "model_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
-      "exam_id": "nt_p3_th_2565",
-      "year_buddhist": 2565,
-      "question_no": 7
+      "raw_output_truncated": "2",
+      "raw_output_full": "2",
+      "latency_ms": 741,
+      "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_gemma4_e4b_thai_25_good_1",
+      "example_id": "ex_gemma4_e4b_math_26_good_1",
       "model_id": "gemma4:e4b",
-      "subject": "thai",
-      "question_id": 25,
+      "exam_id": "nt_p3_math_2566",
+      "year_buddhist": 2566,
+      "subject": "math",
+      "question_id": 26,
+      "question_no": 26,
       "skill_tag": [
-        "moral_application",
-        "reading_literature"
+        "table_reading",
+        "data_interpretation"
       ],
-      "curriculum_standard": "ท 5.1 ป.3/1",
+      "curriculum_standard": "ค 3.1 ป.3/2",
       "is_correct": true,
       "correct_answer": "4",
+      "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
       "parsed_answer": "4",
+      "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+      "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+      "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+      "choices": {
+        "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+        "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+        "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+        "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+      },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 669,
-      "selection_reason": "good_top_skill",
-      "stimulus_text": "คุณตาบอกฉันว่า ทุกคนมีนาฬิกาเป็นของตัวเอง นาฬิกาชีวิตจะเดินทางไปเรื่อย ๆ แต่ละวันมีอะไรมากมาย บางทีก็มีประโยชน์มากบ้าง น้อยบ้าง และบางอย่างก็กลับเป็นโทษเสียอีก ถ้าจะทำชีวิตของเราให้มีคุณค่า มีอนาคตที่มุ่งหวัง เราจะต้องรู้จักใช้เวลาในแต่ละวันให้เกิดประโยชน์สูงสุด",
-      "prompt_text": "ใครนำข้อคิดที่ได้จากข้อความไปใช้ในชีวิตประจำวันได้อย่างเหมาะสม",
-      "choices": {
-        "1": "บอลใช้เวลาว่างเล่นเกมจนดึกทุกวัน",
-        "2": "บุ๋มดูนาฬิกาตลอดเวลาเมื่อใกล้เลิกเรียน",
-        "3": "บัวใช้เวลาในการดูการ์ตูนจนจบแล้วจึงทำการบ้าน",
-        "4": "โบว์ใช้เวลาศึกษาข้อมูลจากหลายแหล่งจึงมีผลการเรียนดี"
-      },
-      "correct_answer_text": "โบว์ใช้เวลาศึกษาข้อมูลจากหลายแหล่งจึงมีผลการเรียนดี",
-      "model_answer_text": "โบว์ใช้เวลาศึกษาข้อมูลจากหลายแหล่งจึงมีผลการเรียนดี",
-      "exam_id": "nt_p3_th_2565",
-      "year_buddhist": 2565,
-      "question_no": 25
+      "latency_ms": 650,
+      "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_gemma4_e4b_math_10_bad_0",
+      "example_id": "ex_gemma4_e4b_thai_19_bad_0",
       "model_id": "gemma4:e4b",
+      "exam_id": "nt_p3_th_2565",
+      "year_buddhist": 2565,
+      "subject": "thai",
+      "question_id": 19,
+      "question_no": 19,
+      "skill_tag": [
+        "parts_of_speech",
+        "verb_identification"
+      ],
+      "curriculum_standard": "ท 4.1 ป.3/2",
+      "is_correct": false,
+      "correct_answer": "2",
+      "correct_answer_text": "หมายเลข (2)",
+      "parsed_answer": "1",
+      "model_answer_text": "หมายเลข (1)",
+      "stimulus_text": "บนถนนมีรถยนต์วิ่งขวักไขว่ หญิงสาวขยับตัวอย่างหงุดหงิด เธอปล่อยมือจากพวงมาลัย เอี้ยวตัวไปดึงกระดาษทิชชูจากเบาะด้านหลังมาซับเหงื่อบนใบหน้า (1) รถยนต์ (2) ขยับ (3) เธอ (4) กระดาษทิชชู",
+      "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+      "choices": {
+        "1": "หมายเลข (1)",
+        "2": "หมายเลข (2)",
+        "3": "หมายเลข (3)",
+        "4": "หมายเลข (4)"
+      },
+      "raw_output_truncated": "1",
+      "raw_output_full": "1",
+      "latency_ms": 579,
+      "selection_reason": "bad_weak_skill"
+    },
+    {
+      "example_id": "ex_gemma4_e4b_math_10_bad_1",
+      "model_id": "gemma4:e4b",
+      "exam_id": "nt_p3_math_2566",
+      "year_buddhist": 2566,
       "subject": "math",
       "question_id": 10,
+      "question_no": 10,
       "skill_tag": [
         "number_pattern"
       ],
       "curriculum_standard": "ค 1.2 ป.3/1",
       "is_correct": false,
       "correct_answer": "4",
+      "correct_answer_text": "1,170",
       "parsed_answer": "3",
-      "raw_output_truncated": "3",
-      "raw_output_full": "3",
-      "latency_ms": 582,
-      "selection_reason": "bad_weak_skill",
+      "model_answer_text": "1,125",
       "stimulus_text": "แม่ให้เงินกระต่าย 405 บาท กระต่ายออมเงินเพิ่มขึ้นเท่ากันทุกวัน โดยมีเงินรวมในแต่ละวันดังนี้: วันที่ 1 = 450, วันที่ 2 = 495, วันที่ 3 = ..., วันที่ 4 = 585, วันที่ 5 = ...",
       "prompt_text": "จากข้อมูล จำนวนเงินในวันที่ 3 และวันที่ 5 รวมกันได้กี่บาท",
       "choices": {
@@ -88,47 +120,19 @@
         "3": "1,125",
         "4": "1,170"
       },
-      "correct_answer_text": "1,170",
-      "model_answer_text": "1,125",
-      "exam_id": "nt_p3_math_2566",
-      "year_buddhist": 2566,
-      "question_no": 10
-    },
-    {
-      "example_id": "ex_gemma4_e4b_math_10_bad_1",
-      "model_id": "gemma4:e4b",
-      "subject": "math",
-      "question_id": 10,
-      "skill_tag": [
-        "number_pattern"
-      ],
-      "curriculum_standard": "ค 1.2 ป.3/1",
-      "is_correct": false,
-      "correct_answer": "2",
-      "parsed_answer": "3",
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 574,
-      "selection_reason": "bad_weak_skill",
-      "stimulus_text": "ชาวสวนเก็บมะเขือเทศและพริกตามแบบรูป: วันที่ 1-7 มะเขือเทศ = 153, 145, 137, ..., ..., 113, 105 กิโลกรัม; พริก = 58, 63, 68, ..., ..., 83, 88 กิโลกรัม",
-      "prompt_text": "จากข้อมูล ในวันที่ 5 ชาวสวนเก็บมะเขือเทศและพริกรวมกันได้กี่กิโลกรัม",
-      "choices": {
-        "1": "151",
-        "2": "199",
-        "3": "202",
-        "4": "250"
-      },
-      "correct_answer_text": "199",
-      "model_answer_text": "202",
-      "exam_id": "nt_p3_math_2567",
-      "year_buddhist": 2567,
-      "question_no": 10
+      "latency_ms": 582,
+      "selection_reason": "bad_weak_skill"
     },
     {
       "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "exam_id": "nt_p3_th_2566",
+      "year_buddhist": 2566,
       "subject": "thai",
       "question_id": 20,
+      "question_no": 20,
       "skill_tag": [
         "sentence_type",
         "declarative_sentence"
@@ -136,55 +140,92 @@
       "curriculum_standard": "ท 4.1 ป.3/4",
       "is_correct": true,
       "correct_answer": "1",
+      "correct_answer_text": "เขาไปซื้อปลาทูให้แม่",
       "parsed_answer": "1",
+      "model_answer_text": "เขาไปซื้อปลาทูให้แม่",
+      "stimulus_text": "ฉันชอบกินผลไม้",
+      "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+      "choices": {
+        "1": "เขาไปซื้อปลาทูให้แม่",
+        "2": "เราไม่ให้เธอยืมดินสอ",
+        "3": "ทำไมเธอไม่มาโรงเรียน",
+        "4": "เธอช่วยหยิบสมุดให้ฉันหน่อย"
+      },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
       "latency_ms": 394,
-      "selection_reason": "good_top_skill",
-      "stimulus_text": "เธอกินข้าวกับอะไร",
-      "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
-      "choices": {
-        "1": "เขาไปกินก๋วยเตี๋ยว",
-        "2": "ใครสอนวิชาภาษาไทย",
-        "3": "เราไม่กินขนมในห้องเรียน",
-        "4": "ฉันชอบอ่านหนังสือการ์ตูน"
-      },
-      "correct_answer_text": "ใครสอนวิชาภาษาไทย",
-      "model_answer_text": "เขาไปกินก๋วยเตี๋ยว"
+      "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_1",
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_14_good_1",
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
-      "subject": "thai",
-      "question_id": 20,
+      "exam_id": "nt_p3_math_2566",
+      "year_buddhist": 2566,
+      "subject": "math",
+      "question_id": 14,
+      "question_no": 14,
       "skill_tag": [
-        "sentence_type",
-        "declarative_sentence"
+        "time",
+        "duration"
       ],
-      "curriculum_standard": "ท 4.1 ป.3/4",
+      "curriculum_standard": "ค 2.1 ป.3/2",
       "is_correct": true,
-      "correct_answer": "1",
-      "parsed_answer": "1",
-      "raw_output_truncated": "1",
-      "raw_output_full": "1",
-      "latency_ms": 354,
-      "selection_reason": "good_top_skill",
-      "stimulus_text": "เธอกินข้าวกับอะไร",
-      "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+      "correct_answer": "3",
+      "correct_answer_text": "14.55 น.",
+      "parsed_answer": "3",
+      "model_answer_text": "14.55 น.",
+      "stimulus_text": "รถบรรทุกดิน 3 รอบ แต่ละรอบใช้เวลา: รอบที่ 1 = 1 ชั่วโมง 30 นาที, รอบที่ 2 = 2 ชั่วโมง 5 นาที, รอบที่ 3 = 1 ชั่วโมง 50 นาที. เริ่มงานเวลา 09.30 น.",
+      "prompt_text": "จากข้อมูล ถ้ารถบรรทุกเริ่มงานเวลา 09.30 น. โดยไม่หยุดพักจะบรรทุกดินเสร็จในเวลาใด",
       "choices": {
-        "1": "เขาไปกินก๋วยเตี๋ยว",
-        "2": "ใครสอนวิชาภาษาไทย",
-        "3": "เราไม่กินขนมในห้องเรียน",
-        "4": "ฉันชอบอ่านหนังสือการ์ตูน"
+        "1": "13.55 น.",
+        "2": "14.15 น.",
+        "3": "14.55 น.",
+        "4": "15.40 น."
       },
-      "correct_answer_text": "ใครสอนวิชาภาษาไทย",
-      "model_answer_text": "เขาไปกินก๋วยเตี๋ยว"
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 531,
+      "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_0",
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_7_bad_0",
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "exam_id": "nt_p3_th_2565",
+      "year_buddhist": 2565,
+      "subject": "thai",
+      "question_id": 7,
+      "question_no": 7,
+      "skill_tag": [
+        "moral_application",
+        "reading_literature"
+      ],
+      "curriculum_standard": "ท 1.1 ป.3/5",
+      "is_correct": false,
+      "correct_answer": "2",
+      "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+      "parsed_answer": "3",
+      "model_answer_text": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+      "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+      "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+      "choices": {
+        "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+        "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+        "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+      },
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 659,
+      "selection_reason": "bad_weak_skill"
+    },
+    {
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1",
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "exam_id": "nt_p3_math_2567",
+      "year_buddhist": 2567,
       "subject": "math",
       "question_id": 8,
+      "question_no": 8,
       "skill_tag": [
         "fraction_addition",
         "fraction_subtraction"
@@ -192,11 +233,9 @@
       "curriculum_standard": "ค 1.1 ป.3/11",
       "is_correct": false,
       "correct_answer": "4",
+      "correct_answer_text": "13/20",
       "parsed_answer": "3",
-      "raw_output_truncated": "3",
-      "raw_output_full": "3",
-      "latency_ms": 464,
-      "selection_reason": "bad_weak_skill",
+      "model_answer_text": "8/20",
       "stimulus_text": "แม่ค้าทำขนมใส่ถาดที่มีขนาดเดียวกัน ในแต่ละถาดแบ่งขนมเป็น 20 ชิ้นเท่า ๆ กัน: วุ้นมะพร้าวขายไป 12 ชิ้น และขนมชั้นขายไป 15 ชิ้น",
       "prompt_text": "จากข้อมูล แม่ค้าเหลือขนมทั้งสองชนิดรวมกันคิดเป็นเศษส่วนเท่าใดของถาด",
       "choices": {
@@ -205,42 +244,10 @@
         "3": "8/20",
         "4": "13/20"
       },
-      "correct_answer_text": "13/20",
-      "model_answer_text": "8/20",
-      "exam_id": "nt_p3_math_2567",
-      "year_buddhist": 2567,
-      "question_no": 8
-    },
-    {
-      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1",
-      "model_id": "scb10x/typhoon2.1-gemma3-4b",
-      "subject": "math",
-      "question_id": 8,
-      "skill_tag": [
-        "fraction_addition",
-        "fraction_subtraction"
-      ],
-      "curriculum_standard": "ค 1.1 ป.3/10",
-      "is_correct": false,
-      "correct_answer": "1",
-      "parsed_answer": "3",
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 460,
-      "selection_reason": "bad_weak_skill",
-      "stimulus_text": "บอสมีที่ดิน 12/12 ไร่ ปลูกกล้วย 7/12 ไร่ ปลูกข้าวโพดน้อยกว่าปลูกกล้วย 3/12 ไร่ พื้นที่ที่เหลือปลูกทานตะวัน",
-      "prompt_text": "จากข้อมูล บอสใช้พื้นที่ในการปลูกทานตะวันกี่ไร่",
-      "choices": {
-        "1": "1/12",
-        "2": "2/12",
-        "3": "4/12",
-        "4": "10/12"
-      },
-      "correct_answer_text": "1/12",
-      "model_answer_text": "4/12",
-      "exam_id": "nt_p3_math_2565",
-      "year_buddhist": 2565,
-      "question_no": 8
+      "latency_ms": 464,
+      "selection_reason": "bad_weak_skill"
     }
   ]
 }

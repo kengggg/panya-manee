@@ -78,10 +78,10 @@
       "example_ids": {
         "good": [
           "ex_gemma4_e4b_thai_7_good_0",
-          "ex_gemma4_e4b_thai_25_good_1"
+          "ex_gemma4_e4b_math_26_good_1"
         ],
         "bad": [
-          "ex_gemma4_e4b_math_10_bad_0",
+          "ex_gemma4_e4b_thai_19_bad_0",
           "ex_gemma4_e4b_math_10_bad_1"
         ]
       }
@@ -160,10 +160,10 @@
       "example_ids": {
         "good": [
           "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
-          "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_1"
+          "ex_scb10x_typhoon2_1_gemma3_4b_math_14_good_1"
         ],
         "bad": [
-          "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_0",
+          "ex_scb10x_typhoon2_1_gemma3_4b_thai_7_bad_0",
           "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1"
         ]
       }
