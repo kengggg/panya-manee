@@ -112,11 +112,14 @@ def parse_answer(raw: str):
     return None, None
 
 
-def call_ollama(model, prompt, timeout=120, think=None):
+def call_ollama(model, prompt, timeout=120, think=None, max_attempts=2):
     """Call Ollama API. Returns (raw_output, thinking_output, latency_ms, metrics).
 
     Args:
         think: None disables thinking. An int enables thinking with that num_predict budget.
+        max_attempts: Total attempts before giving up (default 2).
+
+    Retries once on transient errors (connection reset, HTTP 5xx, timeout).
     """
     num_predict = think if think is not None else 2048
     payload = {
@@ -126,26 +129,40 @@ def call_ollama(model, prompt, timeout=120, think=None):
         "think": think is not None,
         "options": {"temperature": 0, "num_predict": num_predict, "num_ctx": max(num_predict + 1024, 4096)},
     }
-    t0 = time.time()
-    req = urllib.request.Request(
-        OLLAMA_URL,
-        data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        data = json.loads(r.read())
-    latency = (time.time() - t0) * 1000
-    msg = data.get("message", {})
-    raw = msg.get("content", "").strip()
-    thinking = msg.get("thinking", "").strip()
-    metrics = {
-        "prompt_eval_count": data.get("prompt_eval_count", 0),
-        "prompt_eval_duration_ms": data.get("prompt_eval_duration", 0) / 1e6,
-        "eval_count": data.get("eval_count", 0),
-        "eval_duration_ms": data.get("eval_duration", 0) / 1e6,
-        "load_duration_ms": data.get("load_duration", 0) / 1e6,
-    }
-    return raw, thinking, latency, metrics
+    body = json.dumps(payload).encode()
+
+    last_err = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            t0 = time.time()
+            req = urllib.request.Request(
+                OLLAMA_URL,
+                data=body,
+                headers={"Content-Type": "application/json"},
+            )
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = json.loads(r.read())
+            latency = (time.time() - t0) * 1000
+            msg = data.get("message", {})
+            raw = msg.get("content", "").strip()
+            thinking = msg.get("thinking", "").strip()
+            metrics = {
+                "prompt_eval_count": data.get("prompt_eval_count", 0),
+                "prompt_eval_duration_ms": data.get("prompt_eval_duration", 0) / 1e6,
+                "eval_count": data.get("eval_count", 0),
+                "eval_duration_ms": data.get("eval_duration", 0) / 1e6,
+                "load_duration_ms": data.get("load_duration", 0) / 1e6,
+            }
+            return raw, thinking, latency, metrics
+        except Exception as e:
+            last_err = e
+            if attempt < max_attempts:
+                time.sleep(2)
+
+    # All attempts exhausted — raise with clear context
+    raise RuntimeError(
+        f"Ollama call failed after {max_attempts} attempts: {type(last_err).__name__}: {last_err}"
+    ) from last_err
 
 
 def check_ollama():

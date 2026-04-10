@@ -30,6 +30,14 @@ uv run python main.py summarize                      # compare all models
 - JSONL output goes to `benchmark_responses/` with one file per run
 - Eval splits: `text_only_core` (runnable), `vision_extended` (needs images), `written_manual`/`written_auto` (needs scorers)
 
+## CI/CD pipeline (workflow_dispatch, ordered)
+
+1. **benchmark-run.yml** — manually dispatched on the self-hosted runner; runs benchmarks, produces JSONL + `repeat_summary` artifacts
+2. **snapshot-pr.yml** — manually dispatched after benchmark-run completes; consumes prior batch data, builds/validates the dashboard, syncs `site/data/latest`, updates `registry/snapshots.json`, and opens a PR
+3. **pages-deploy.yml** — triggered automatically when the snapshot PR merges to `main`; deploys the updated site to GitHub Pages
+
+Both step 1 and 2 are `workflow_dispatch` only and must be run in order (1 → 2). Step 3 is automatic.
+
 ## Dependencies
 
 - Python 3.12+
