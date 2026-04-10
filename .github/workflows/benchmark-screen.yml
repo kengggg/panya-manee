@@ -196,20 +196,10 @@ jobs:
             fi
 
             DECISION="benchmark_responses/screening_decision_${BATCH_ID}.json"
-            # Keep PY terminators flush with the run-block base indentation.
             if [ -f "$DECISION" ]; then
               echo "### Screening Results"
               echo ""
-              PROMOTED=$(DECISION="$DECISION" uv run python - <<'PY' 2>/dev/null || echo "(could not parse decision)"
-              import json
-              import os
-
-              d = json.load(open(os.environ['DECISION']))
-              print(f"**{d['promoted_count']}/{d['total_models']}** models promoted")
-              print()
-              print('Promoted: `' + d['csv'] + '`')
-          PY
-              )
+              PROMOTED=$(DECISION="$DECISION" uv run python scripts/ci/render_screening_decision.py 2>/dev/null || echo "(could not parse decision)")
               echo "$PROMOTED"
               echo ""
 
@@ -218,40 +208,14 @@ jobs:
               if [ -f "$APPENDIX" ]; then
                 echo "### Screening Appendix"
                 echo ""
-                APPENDIX="$APPENDIX" uv run python - <<'PY' 2>/dev/null || echo "(could not render appendix)"
-                import json
-                import os
-                import sys
-
-                sys.path.insert(0, 'scripts')
-                from screening_gate import format_appendix_markdown
-
-                appendix = json.load(open(os.environ['APPENDIX']))
-                print(format_appendix_markdown(appendix))
-          PY
+                APPENDIX="$APPENDIX" uv run python scripts/ci/render_screening_appendix.py 2>/dev/null || echo "(could not render appendix)"
               fi
 
               echo ""
               echo "### Next Step"
               PUB="benchmark_responses/publication_batch_${BATCH_ID}.json"
               if [ -f "$PUB" ]; then
-                PUB="$PUB" uv run python - <<'PY' 2>/dev/null || echo "(could not render next step)"
-                import json
-                import os
-
-                d = json.load(open(os.environ['PUB']))
-                if d['status'] == 'ready':
-                    print('Dispatch publication batch:')
-                    print()
-                    print('```bash')
-                    print(f'gh workflow run benchmark-run.yml \\\\')
-                    print(f'  -f batch_id="{d["pub_batch_id"]}" \\\\')
-                    print(f'  -f models="{d["promoted_csv"]}" \\\\')
-                    print(f'  -f runs_per_model="{d["pub_runs"]}"')
-                    print('```')
-                else:
-                    print('No models promoted — cannot proceed to publication.')
-          PY
+                PUB="$PUB" uv run python scripts/ci/render_publication_next_step.py 2>/dev/null || echo "(could not render next step)"
               fi
             else
               echo "*(Screening gate not run — dry run or batch incomplete)*"
