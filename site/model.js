@@ -69,6 +69,32 @@
 
       <div class="auto-summary">${card.auto_summary}</div>
 
+      <div class="section methodology-card">
+        <h2>How to read this card</h2>
+        <dl class="definition-list compact">
+          <div>
+            <dt>BQS</dt>
+            <dd>Average of Thai score rate and Math score rate.</dd>
+          </div>
+          <div>
+            <dt>Overall Score</dt>
+            <dd>Total correct answers divided by all evaluated items in this snapshot.</dd>
+          </div>
+          <div>
+            <dt>Parseable</dt>
+            <dd>Outputs where the evaluator could recover a valid answer choice.</dd>
+          </div>
+          <div>
+            <dt>Compliance</dt>
+            <dd>Outputs that were exactly one digit, 1-4, with no extra text.</dd>
+          </div>
+          <div>
+            <dt>Examples</dt>
+            <dd>Representative items from one canonical run in the published snapshot.</dd>
+          </div>
+        </dl>
+      </div>
+
       <!-- Identity -->
       <div class="section">
         <h2>Identity</h2>
@@ -176,6 +202,13 @@
     const typeLabel = ex.is_correct ? 'Correct' : 'Incorrect';
     const skillTags = (ex.skill_tag || []).join(', ') || '\u2014';
     const needsExpand = ex.raw_output_full && ex.raw_output_full.length > 80;
+    const choiceEntries = normalizeChoices(ex.choices);
+    const modelAnswerLabel = ex.parsed_answer
+      ? `${ex.parsed_answer}${ex.model_answer_text ? `. ${escapeHtml(ex.model_answer_text)}` : ''}`
+      : '\u2014';
+    const correctAnswerLabel = ex.correct_answer
+      ? `${ex.correct_answer}${ex.correct_answer_text ? `. ${escapeHtml(ex.correct_answer_text)}` : ''}`
+      : '\u2014';
 
     return `<div class="example-card ${typeClass}">
       <div class="example-header">
@@ -185,11 +218,46 @@
         <span>Skills: ${skillTags}</span>
         ${ex.curriculum_standard ? `<span>Standard: ${ex.curriculum_standard}</span>` : ''}
         <span>Latency: ${ex.latency_ms}ms</span>
-        <span>Answer: <strong>${ex.parsed_answer || '\u2014'}</strong> (correct: ${ex.correct_answer})</span>
       </div>
+
+      <div class="example-question-block">
+        ${ex.stimulus_text ? `<div class="example-stimulus">${escapeHtml(ex.stimulus_text)}</div>` : ''}
+        <div class="example-prompt">${ex.prompt_text ? escapeHtml(ex.prompt_text) : '<span class="muted">Question text unavailable in this snapshot.</span>'}</div>
+        ${choiceEntries.length > 0 ? `<ol class="choice-list">${choiceEntries.map(([key, value]) => renderChoice(key, value, ex)).join('')}</ol>` : ''}
+      </div>
+
+      <div class="answer-grid">
+        <div class="answer-pill model-answer">
+          <span class="answer-label">Model answer</span>
+          <strong>${modelAnswerLabel}</strong>
+        </div>
+        <div class="answer-pill correct-answer">
+          <span class="answer-label">Correct answer</span>
+          <strong>${correctAnswerLabel}</strong>
+        </div>
+      </div>
+
       <div class="example-output" data-full="${encodeURIComponent(ex.raw_output_full)}">${escapeHtml(ex.raw_output_truncated)}</div>
       ${needsExpand ? '<button class="expand-btn">Expand</button>' : ''}
     </div>`;
+  }
+
+  function normalizeChoices(choices) {
+    if (!choices || typeof choices !== 'object') return [];
+    return Object.entries(choices).sort((a, b) => Number(a[0]) - Number(b[0]));
+  }
+
+  function renderChoice(key, value, ex) {
+    const isSelected = String(ex.parsed_answer || '') === String(key);
+    const isCorrect = String(ex.correct_answer || '') === String(key);
+    return `<li class="choice-item${isSelected ? ' selected' : ''}${isCorrect ? ' correct' : ''}">
+      <span class="choice-key">${escapeHtml(String(key))}</span>
+      <span class="choice-text">${escapeHtml(String(value || ''))}</span>
+      <span class="choice-tags">
+        ${isSelected ? '<span class="choice-tag selected-tag">model</span>' : ''}
+        ${isCorrect ? '<span class="choice-tag correct-tag">correct</span>' : ''}
+      </span>
+    </li>`;
   }
 
   function escapeHtml(str) {

@@ -44,7 +44,22 @@ def load_model_sizes() -> dict[str, float]:
         return {}
     with open(MODELS_CONFIG, encoding="utf-8") as f:
         data = json.load(f)
-    return {m["model_id"]: m.get("loaded_size_gb_approx", 0.0) for m in data.get("models", [])}
+
+    sizes: dict[str, float] = {}
+    for model in data.get("models", []):
+        size = model.get("loaded_size_gb_approx", 0.0)
+        sizes[model["model_id"]] = size
+        for alias in model.get("aliases") or []:
+            sizes[alias] = size
+
+        model_id = model["model_id"]
+        if model_id.endswith(":latest"):
+            sizes[model_id[:-7]] = size
+
+        for alias in model.get("aliases") or []:
+            if alias.endswith(":latest"):
+                sizes[alias[:-7]] = size
+    return sizes
 
 
 def slugify(model_id: str) -> str:

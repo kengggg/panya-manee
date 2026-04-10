@@ -27,6 +27,7 @@
     },
     {
       "model_id": "scb10x/typhoon2.1-gemma3-4b:latest",
+      "aliases": ["scb10x/typhoon2.1-gemma3-4b"],
       "model_family": "typhoon2.1",
       "parameter_bucket": "1B\u20134B",
       "ram_fit_class": "fits_comfortably_16gb",

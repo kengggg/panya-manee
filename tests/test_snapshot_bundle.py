@@ -37,12 +37,15 @@ from scripts.build_snapshot import (
     load_jsonl,
     load_json,
     load_model_meta,
+    load_question_bank,
     load_compatibility,
+    resolve_model_meta,
     resolve_compatibility_values,
     percentile,
     pick_strengths_weaknesses,
     rank_models,
     select_examples,
+    _make_example,
     RESPONSES_DIR,
     MODELS_CONFIG,
     MACHINE_PROFILES_CONFIG,
@@ -109,6 +112,87 @@ class TestPercentile(unittest.TestCase):
 
     def test_empty(self):
         self.assertEqual(percentile([], 50), 0.0)
+
+
+class TestModelMetaResolution(unittest.TestCase):
+    def test_resolve_latest_alias(self):
+        model_meta = load_model_meta(MODELS_CONFIG)
+        meta = resolve_model_meta("scb10x/typhoon2.1-gemma3-4b", model_meta)
+        self.assertEqual(meta.get("model_family"), "typhoon2.1")
+        self.assertEqual(meta.get("ram_fit_class"), "fits_comfortably_16gb")
+
+
+class TestExampleEnrichment(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.question_bank = load_question_bank()
+
+    def test_make_example_backfills_question_fields_from_question_bank(self):
+        row = {
+            "model_id": "gemma4:e2b",
+            "exam_id": "nt_p3_th_2565",
+            "subject": "thai",
+            "question_id": 1,
+            "curriculum_standard": "ท 1.1 ป.3/2",
+            "skill_tag": ["reading_comprehension"],
+            "is_correct": True,
+            "correct_answer": "4",
+            "parsed_answer": "4",
+            "raw_output": "4",
+            "latency_ms": 1234,
+        }
+        ex = _make_example(row, "gemma4:e2b", "good_0", "good_top_skill", self.question_bank)
+        self.assertIn("คำในข้อใด", ex["prompt_text"])
+        self.assertEqual(ex["choices"]["4"], "ขุ่นเคืองใจ")
+        self.assertEqual(ex["model_answer_text"], "ขุ่นเคืองใจ")
+        self.assertEqual(ex["correct_answer_text"], "ขุ่นเคืองใจ")
+
+    def test_select_examples_includes_question_fields(self):
+        canonical_rows = [
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "subject": "thai",
+                "question_id": 1,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": True,
+                "correct_answer": "4",
+                "parsed_answer": "4",
+                "raw_output": "4",
+                "latency_ms": 1500,
+            },
+            {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "subject": "thai",
+                "question_id": 2,
+                "curriculum_standard": "ท 1.1 ป.3/2",
+                "skill_tag": ["reading_comprehension"],
+                "is_correct": False,
+                "correct_answer": "2",
+                "parsed_answer": "1",
+                "raw_output": "1",
+                "latency_ms": 1200,
+            },
+        ]
+        strengths = [{"skill_tag": "reading_comprehension", "correct": 1, "total": 2, "score_rate": 0.5}]
+        weaknesses = [{"skill_tag": "reading_comprehension", "correct": 1, "total": 2, "score_rate": 0.5}]
+
+        examples = select_examples(
+            canonical_rows,
+            strengths,
+            weaknesses,
+            "gemma4:e2b",
+            question_bank=self.question_bank,
+            n_good=1,
+            n_bad=1,
+        )
+
+        self.assertEqual(len(examples), 2)
+        for ex in examples:
+            self.assertTrue(ex.get("prompt_text"))
+            self.assertTrue(ex.get("choices"))
 
 
 class TestSkillAnalysis(unittest.TestCase):
@@ -351,7 +435,7 @@ class TestRealDataBadges(unittest.TestCase):
         """Best Small Model must only go to fits_comfortably_16gb models."""
         for model_id, model_badges in self.badges.items():
             if "Best Small Model" in model_badges:
-                meta = self.model_meta.get(model_id, {})
+                meta = resolve_model_meta(model_id, self.model_meta)
                 self.assertEqual(meta.get("ram_fit_class"), "fits_comfortably_16gb")
 
     def test_no_tight_model_gets_best_small(self):
@@ -440,10 +524,26 @@ class TestFullBuildAndValidate(unittest.TestCase):
             self.assertIn("average_output_length_chars", card["metrics"])
             self.assertIn("common_failure_types", card)
 
+    def test_typhoon_identity_resolves(self):
+        mc = read_json(self.out_dir / "model_cards.json")
+        typhoon = next((m for m in mc["models"] if "typhoon" in m["model_id"]), None)
+        self.assertIsNotNone(typhoon)
+        self.assertNotEqual(typhoon["model_family"], "unknown")
+        self.assertNotEqual(typhoon["parameter_bucket"], "unknown")
+        self.assertNotEqual(typhoon["ram_fit_class"], "unknown")
+
     def test_examples_truncation_correct(self):
         ex = read_json(self.out_dir / "examples.json")
         for e in ex["examples"]:
             self.assertEqual(e["raw_output_truncated"], e["raw_output_full"][:200])
+
+    def test_examples_include_question_context(self):
+        ex = read_json(self.out_dir / "examples.json")
+        for e in ex["examples"]:
+            self.assertIn("prompt_text", e)
+            self.assertIn("choices", e)
+            self.assertTrue(e["prompt_text"])
+            self.assertTrue(e["choices"])
 
     def test_strengths_weaknesses_min_n(self):
         mc = read_json(self.out_dir / "model_cards.json")

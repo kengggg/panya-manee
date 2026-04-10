@@ -16,6 +16,7 @@
     ]);
 
     renderMeta(manifest, leaderboard);
+    renderMethodology(manifest, leaderboard);
     allRows = leaderboard.rows;
     initModelFilter(allRows);
     renderLeaderboard(allRows);
@@ -76,6 +77,44 @@
       const filtered = selected ? allRows.filter(row => row.model_id === selected) : allRows;
       renderLeaderboard(filtered);
     });
+  }
+
+  function renderMethodology(manifest, leaderboard) {
+    const el = document.getElementById('methodology-card');
+    if (!el) return;
+
+    const itemCount = leaderboard.rows.length > 0 ? leaderboard.rows[0].item_count : 0;
+    const modelCount = leaderboard.rows.length;
+
+    el.innerHTML = `
+      <h2>Methodology</h2>
+      <p class="section-copy">
+        This leaderboard evaluates ${modelCount} local model${modelCount === 1 ? '' : 's'} on ${itemCount} NT Grade 3 text-only multiple-choice items per model.
+        Each item expects a single choice from 1-4. Rankings exclude image-required and human-checked tasks.
+      </p>
+      <dl class="definition-list">
+        <div>
+          <dt>BQS</dt>
+          <dd>Balanced Quality Score, the simple average of Thai score rate and Math score rate. It prevents a model from looking strong by overperforming in only one subject.</dd>
+        </div>
+        <div>
+          <dt>Overall Score</dt>
+          <dd>Total correct answers divided by all evaluated items in the published batch.</dd>
+        </div>
+        <div>
+          <dt>Parseable</dt>
+          <dd>How often the parser could recover a valid answer choice from the model output.</dd>
+        </div>
+        <div>
+          <dt>Compliance</dt>
+          <dd>How often the raw output was exactly one digit, 1-4, with no extra explanation.</dd>
+        </div>
+        <div>
+          <dt>p50 / p95</dt>
+          <dd>Median and tail latency per question. Lower is faster.</dd>
+        </div>
+      </dl>
+    `;
   }
 
   function renderLeaderboard(rows) {

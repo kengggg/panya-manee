@@ -28,9 +28,9 @@
     {
       "rank": 2,
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
-      "model_family": "unknown",
-      "parameter_bucket": "unknown",
-      "ram_fit_class": "unknown",
+      "model_family": "typhoon2.1",
+      "parameter_bucket": "1B–4B",
+      "ram_fit_class": "fits_comfortably_16gb",
       "balanced_quality_score": 0.4099,
       "thai_score_rate": 0.5167,
       "math_score_rate": 0.303,
