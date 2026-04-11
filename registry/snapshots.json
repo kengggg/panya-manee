@@ -20,6 +20,13 @@
       "batch_id": "ntp3-rehearsal-r10-20260410",
       "manifest_path": "dist/nt-p3-mcq-text-only-ntp3-rehearsal-r10-20260410/manifest.json",
       "status": "published"
+    },
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260411",
+      "published_at": "2026-04-11T18:44:52+07:00",
+      "batch_id": "ntp3-vr1-20260411",
+      "manifest_path": "dist/nt-p3-mcq-text-only-ntp3-vr1-20260411/manifest.json",
+      "status": "published"
     }
   ]
 }

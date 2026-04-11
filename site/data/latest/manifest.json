@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-ntp3-rehearsal-r10-20260410",
-  "published_at": "2026-04-11T06:10:29+07:00",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260411",
+  "published_at": "2026-04-11T18:44:52+07:00",
   "benchmark_name": "NT P3 Local LLM Benchmark",
   "benchmark_label": "NT P3 MCQ Text-Only",
   "benchmark_scope": "mcq_text_only_v1",
@@ -42,13 +42,23 @@
     "auto_model_summary": true,
     "ranking_excludes_image_required": true,
     "ranking_excludes_human_checked": true,
-    "raw_bundle_downloadable": true
+    "raw_bundle_downloadable": true,
+    "published_metrics_use_canonical_run_only": true,
+    "shadow_run_kept_for_verification_only": true
   },
   "artifacts": {
     "leaderboard": "leaderboard.json",
     "model_cards": "model_cards.json",
     "examples": "examples.json",
     "repeat_summary": "repeat_summary.json",
-    "results": "results.jsonl"
+    "results": "results.jsonl",
+    "verification_report": "verification_report.json"
+  },
+  "publication": {
+    "mode": "verified_single_run",
+    "verification_protocol": "canonical_shadow_v1",
+    "screening_batch_id": "ntp3-screen-r3-20260411",
+    "canonical_run_index": 1,
+    "shadow_run_index": 2
   }
 }
