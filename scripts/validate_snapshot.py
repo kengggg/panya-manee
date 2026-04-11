@@ -313,6 +313,17 @@ class SnapshotValidator:
             self.error("manifest.artifacts.repeat_summary missing or incorrect")
         if manifest_artifacts.get("results") != "results.jsonl":
             self.error("manifest.artifacts.results missing or incorrect")
+        verification_artifact = manifest_artifacts.get("verification_report")
+        if verification_artifact:
+            verification_path = self.dir / verification_artifact
+            if not verification_path.exists():
+                self.error(f"manifest.artifacts.verification_report points to missing file: {verification_artifact}")
+            else:
+                report = load_json(verification_path)
+                if report.get("status") != "pass":
+                    self.error("verification_report.json is present but status != 'pass'")
+                if not report.get("all_deterministic"):
+                    self.error("verification_report.json is present but all_deterministic is false")
 
     def report(self):
         if self.errors:

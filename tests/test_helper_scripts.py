@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Tests for helper scripts: preflight, check_batch_completeness, screening_gate,
-verify_batch_inputs, prepare_publication_batch.
+verify_batch_inputs, prepare_publication_batch, verification_gate.
 
 Unit tests use synthetic data. Integration tests require real batch data
 (mini-r10-20260409) and are skipped when unavailable.
@@ -51,6 +51,11 @@ from scripts.prepare_publication_batch import (
     prepare_publication_batch,
     derive_pub_batch_id,
     write_env_file,
+)
+import scripts.publish_snapshot as publish_snapshot_module
+from scripts.publish_snapshot import verify_publishable_batch
+from scripts.verification_gate import (
+    verify_publication_batch,
 )
 
 RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
@@ -819,8 +824,8 @@ class TestVerifyBatchInputs(unittest.TestCase):
 class TestDerivePubBatchId(unittest.TestCase):
     def test_standard_screening_id(self):
         self.assertEqual(
-            derive_pub_batch_id("ntp3-screen-r3-20260411", 10),
-            "ntp3-pub-r10-20260411",
+            derive_pub_batch_id("ntp3-screen-r3-20260411", 2),
+            "ntp3-vr1-20260411",
         )
 
     def test_different_run_count(self):
@@ -830,8 +835,8 @@ class TestDerivePubBatchId(unittest.TestCase):
         )
 
     def test_nonstandard_id_fallback(self):
-        result = derive_pub_batch_id("custom-screen-batch", 10)
-        self.assertIn("ntp3-pub-r10", result)
+        result = derive_pub_batch_id("custom-screen-batch", 2)
+        self.assertIn("ntp3-pub-r2", result)
         self.assertIn("custom-screen-batch", result)
 
 
@@ -866,14 +871,15 @@ class TestPreparePublicationBatch(unittest.TestCase):
         self.assertEqual(result["status"], "ready")
         self.assertEqual(result["promoted_models"], ["gemma4:e2b", "qwen3:8b"])
         self.assertEqual(result["promoted_count"], 2)
-        self.assertEqual(result["pub_runs"], 10)
-        self.assertEqual(result["pub_batch_id"], "ntp3-pub-r10-20260411")
+        self.assertEqual(result["pub_runs"], 2)
+        self.assertEqual(result["pub_batch_id"], "ntp3-vr1-20260411")
+        self.assertEqual(result["verification_protocol"], "canonical_shadow_v1")
 
     def test_total_expected_runs(self):
         result = prepare_publication_batch(
             screening_json_path=self.screening_path,
         )
-        self.assertEqual(result["total_expected_runs"], 20)
+        self.assertEqual(result["total_expected_runs"], 4)
 
     def test_custom_pub_batch_id(self):
         result = prepare_publication_batch(
@@ -932,17 +938,21 @@ class TestWriteEnvFile(unittest.TestCase):
         try:
             env_path = tmpdir / "pub.env"
             result = {
-                "pub_batch_id": "ntp3-pub-r10-20260411",
+                "pub_batch_id": "ntp3-vr1-20260411",
                 "promoted_csv": "gemma4:e2b,qwen3:8b",
-                "pub_runs": 10,
+                "pub_runs": 2,
                 "screening_batch_id": "ntp3-screen-r3-20260411",
+                "verification_protocol": "canonical_shadow_v1",
+                "canonical_run_index": 1,
+                "shadow_run_index": 2,
             }
             write_env_file(result, env_path)
             content = env_path.read_text()
-            self.assertIn('PUB_BATCH_ID="ntp3-pub-r10-20260411"', content)
+            self.assertIn('PUB_BATCH_ID="ntp3-vr1-20260411"', content)
             self.assertIn('PROMOTED_MODELS="gemma4:e2b,qwen3:8b"', content)
-            self.assertIn('PUB_RUNS="10"', content)
+            self.assertIn('PUB_RUNS="2"', content)
             self.assertIn('SCREENING_BATCH_ID="ntp3-screen-r3-20260411"', content)
+            self.assertIn('VERIFICATION_PROTOCOL="canonical_shadow_v1"', content)
         finally:
             shutil.rmtree(tmpdir)
 
@@ -988,8 +998,209 @@ class TestPreparePublicationFromScreeningGate(unittest.TestCase):
         self.assertEqual(result["status"], "ready")
         self.assertEqual(result["promoted_models"], ["gemma4:e2b"])
         self.assertEqual(result["promoted_count"], 1)
-        self.assertEqual(result["pub_batch_id"], "ntp3-pub-r10-20260411")
-        self.assertEqual(result["total_expected_runs"], 10)
+        self.assertEqual(result["pub_batch_id"], "ntp3-vr1-20260411")
+        self.assertEqual(result["total_expected_runs"], 2)
+
+
+class TestVerificationGate(unittest.TestCase):
+    def _write_jsonl(self, path: Path, rows: list[dict]):
+        with open(path, "w", encoding="utf-8") as f:
+            for row in rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    def test_matching_canonical_and_shadow_pass(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260411"
+            run1 = tmpdir / f"responses_{batch_id}-gemma4-e2b-r01.jsonl"
+            run2 = tmpdir / f"responses_{batch_id}-gemma4-e2b-r02.jsonl"
+            base = {
+                "model_id": "gemma4:e2b",
+                "exam_id": "nt_p3_th_2565",
+                "year_buddhist": 2565,
+                "subject": "thai",
+                "question_id": 1,
+                "eval_split": "text_only_core",
+                "prompt_version": "v1_answer_only",
+                "is_parseable": True,
+                "parsed_answer": "4",
+            }
+            rows1 = [{**base, "run_id": f"{batch_id}-gemma4-e2b-r01"}]
+            rows2 = [{**base, "run_id": f"{batch_id}-gemma4-e2b-r02"}]
+            self._write_jsonl(run1, rows1)
+            self._write_jsonl(run2, rows2)
+
+            summary = {
+                "batch_id": batch_id,
+                "models": [{"model_id": "gemma4:e2b", "runs": 2}],
+                "runs": [
+                    {"model_id": "gemma4:e2b", "run_id": rows1[0]["run_id"], "run_index": 1, "output_file": str(run1)},
+                    {"model_id": "gemma4:e2b", "run_id": rows2[0]["run_id"], "run_index": 2, "output_file": str(run2)},
+                ],
+            }
+            (tmpdir / f"repeat_summary_{batch_id}.json").write_text(json.dumps(summary), encoding="utf-8")
+
+            result = verify_publication_batch(
+                batch_id=batch_id,
+                responses_dir=tmpdir,
+                screening_batch_id="ntp3-screen-r3-20260411",
+                expected_models=["gemma4:e2b"],
+            )
+            self.assertEqual(result["status"], "pass")
+            self.assertTrue(result["all_deterministic"])
+            self.assertEqual(result["models"][0]["matching_items"], 1)
+            self.assertEqual(result["models"][0]["divergent_count"], 0)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestVerifyPublishableBatch(unittest.TestCase):
+    def test_missing_verification_report_rejected(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                with self.assertRaisesRegex(RuntimeError, "verification report is missing"):
+                    verify_publishable_batch("ntp3-vr1-20260411")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestPublishSnapshotCli(unittest.TestCase):
+    def test_verification_required_by_default(self):
+        with mock.patch.object(sys, "argv", [
+            "publish_snapshot.py",
+            "--batch-id", "hobby-r1-20260411",
+            "--dry-run",
+        ]):
+            with mock.patch.object(publish_snapshot_module, "verify_publishable_batch", side_effect=RuntimeError("blocked")) as verify_mock:
+                with mock.patch.object(publish_snapshot_module, "build_snapshot") as build_mock:
+                    with self.assertRaisesRegex(RuntimeError, "blocked"):
+                        publish_snapshot_module.main()
+        verify_mock.assert_called_once_with("hobby-r1-20260411")
+        build_mock.assert_not_called()
+
+    def test_allow_unverified_publication_bypasses_gate(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            validator = mock.Mock()
+            validator.validate.return_value = True
+            validator.report.return_value = None
+            with mock.patch.object(sys, "argv", [
+                "publish_snapshot.py",
+                "--batch-id", "hobby-r1-20260411",
+                "--dry-run",
+                "--allow-unverified-publication",
+            ]):
+                with mock.patch.object(publish_snapshot_module, "verify_publishable_batch") as verify_mock:
+                    with mock.patch.object(publish_snapshot_module, "build_snapshot", return_value=tmpdir) as build_mock:
+                        with mock.patch.object(publish_snapshot_module, "SnapshotValidator", return_value=validator):
+                            publish_snapshot_module.main()
+            verify_mock.assert_not_called()
+            build_mock.assert_called_once()
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_failed_verification_rejected(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            report = {
+                "status": "fail",
+                "protocol": "canonical_shadow_v1",
+                "all_deterministic": False,
+                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "models": [],
+            }
+            (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
+                json.dumps(report), encoding="utf-8"
+            )
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                with self.assertRaisesRegex(RuntimeError, "status is not pass"):
+                    verify_publishable_batch("ntp3-vr1-20260411")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_missing_screening_batch_id_rejected(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            report = {
+                "status": "pass",
+                "protocol": "canonical_shadow_v1",
+                "all_deterministic": True,
+                "screening_batch_id": None,
+                "models": [],
+            }
+            (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
+                json.dumps(report), encoding="utf-8"
+            )
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                with self.assertRaisesRegex(RuntimeError, "hobby/test batch is not publishable"):
+                    verify_publishable_batch("ntp3-vr1-20260411")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_valid_verified_batch_passes(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            report = {
+                "status": "pass",
+                "protocol": "canonical_shadow_v1",
+                "all_deterministic": True,
+                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "models": [{
+                    "model_id": "gemma4:e2b",
+                    "deterministic": True,
+                    "canonical_run_id": "ntp3-vr1-20260411-gemma4-e2b-r01",
+                    "shadow_run_id": "ntp3-vr1-20260411-gemma4-e2b-r02",
+                }],
+            }
+            (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
+                json.dumps(report), encoding="utf-8"
+            )
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                loaded = verify_publishable_batch("ntp3-vr1-20260411")
+            self.assertEqual(loaded["status"], "pass")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_divergent_shadow_fails(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260411"
+            run1 = tmpdir / f"responses_{batch_id}-gemma4-e2b-r01.jsonl"
+            run2 = tmpdir / f"responses_{batch_id}-gemma4-e2b-r02.jsonl"
+            row1 = {
+                "model_id": "gemma4:e2b",
+                "run_id": f"{batch_id}-gemma4-e2b-r01",
+                "exam_id": "nt_p3_th_2565",
+                "year_buddhist": 2565,
+                "subject": "thai",
+                "question_id": 1,
+                "eval_split": "text_only_core",
+                "prompt_version": "v1_answer_only",
+                "is_parseable": True,
+                "parsed_answer": "4",
+            }
+            row2 = {**row1, "run_id": f"{batch_id}-gemma4-e2b-r02", "parsed_answer": "3"}
+            with open(run1, "w", encoding="utf-8") as f:
+                f.write(json.dumps(row1) + "\n")
+            with open(run2, "w", encoding="utf-8") as f:
+                f.write(json.dumps(row2) + "\n")
+            summary = {
+                "batch_id": batch_id,
+                "models": [{"model_id": "gemma4:e2b", "runs": 2}],
+                "runs": [
+                    {"model_id": "gemma4:e2b", "run_id": row1["run_id"], "run_index": 1, "output_file": str(run1)},
+                    {"model_id": "gemma4:e2b", "run_id": row2["run_id"], "run_index": 2, "output_file": str(run2)},
+                ],
+            }
+            (tmpdir / f"repeat_summary_{batch_id}.json").write_text(json.dumps(summary), encoding="utf-8")
+
+            result = verify_publication_batch(batch_id=batch_id, responses_dir=tmpdir)
+            self.assertEqual(result["status"], "fail")
+            self.assertFalse(result["all_deterministic"])
+            self.assertEqual(result["models"][0]["divergent_count"], 1)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 # ── Integration tests with real data ─────────────────────────────────────

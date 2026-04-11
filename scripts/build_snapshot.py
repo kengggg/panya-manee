@@ -692,6 +692,14 @@ def get_canonical_run_id(batch_id: str, model_id: str, responses_dir: Path) -> s
     return model_runs[0]["run_id"]
 
 
+def load_verification_report(batch_id: str, responses_dir: Path) -> dict | None:
+    """Load canonical+shadow verification report for a batch if present."""
+    path = responses_dir / f"verification_report_{batch_id}.json"
+    if not path.exists():
+        return None
+    return load_json(path)
+
+
 # ── Main build ──────────────────────────────────────────────────────────────
 
 
@@ -770,8 +778,17 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     print(f"Found {len(model_files)} models: {', '.join(sorted(model_files.keys()))}")
 
     # Load all rows per model
+    verification_report = load_verification_report(batch_id, RESPONSES_DIR)
+    verified_models: dict[str, dict] = {}
+    if verification_report and verification_report.get("status") == "pass":
+        verified_models = {
+            model["model_id"]: model for model in verification_report.get("models", [])
+            if model.get("deterministic")
+        }
+
     model_all_rows = {}
     model_canonical_rows = {}
+    model_public_rows = {}
     for model_id, files in model_files.items():
         all_rows = []
         for f in files:
@@ -786,13 +803,29 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
             # Fallback: use first file
             model_canonical_rows[model_id] = load_jsonl(files[0])
 
+        if model_id in verified_models:
+            verified_canonical_run_id = verified_models[model_id].get("canonical_run_id")
+            if not verified_canonical_run_id:
+                raise RuntimeError(
+                    f"Verification report missing canonical_run_id for verified model '{model_id}'"
+                )
+            public_rows = [r for r in all_rows if r["run_id"] == verified_canonical_run_id]
+            if not public_rows:
+                raise RuntimeError(
+                    f"Verification report canonical_run_id '{verified_canonical_run_id}' for model '{model_id}' "
+                    f"did not match any rows in batch '{batch_id}'"
+                )
+            model_public_rows[model_id] = public_rows
+        else:
+            model_public_rows[model_id] = all_rows
+
     # Resolve compatibility values from actual data
-    all_rows_flat = [r for rows in model_all_rows.values() for r in rows]
+    all_rows_flat = [r for rows in model_public_rows.values() for r in rows]
     compat_values = resolve_compatibility_values(compat, all_rows_flat, testbed)
 
     # Aggregate metrics
     model_aggs = []
-    for model_id, rows in model_all_rows.items():
+    for model_id, rows in model_public_rows.items():
         agg = aggregate_model(model_id, rows, model_meta)
         model_aggs.append(agg)
 
@@ -815,7 +848,7 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     model_cards = []
     for agg in ranked:
         model_id = agg["model_id"]
-        rows = model_all_rows[model_id]
+        rows = model_public_rows[model_id]
         canonical = model_canonical_rows[model_id]
 
         skill_stats = compute_skill_stats(rows)
@@ -898,6 +931,18 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         },
     }
 
+    if verification_report and verification_report.get("status") == "pass":
+        manifest["publication"] = {
+            "mode": "verified_single_run",
+            "verification_protocol": verification_report.get("protocol"),
+            "screening_batch_id": verification_report.get("screening_batch_id"),
+            "canonical_run_index": verification_report.get("canonical_run_index", 1),
+            "shadow_run_index": verification_report.get("shadow_run_index", 2),
+        }
+        manifest["snapshot_notes"]["published_metrics_use_canonical_run_only"] = True
+        manifest["snapshot_notes"]["shadow_run_kept_for_verification_only"] = True
+        manifest["artifacts"]["verification_report"] = "verification_report.json"
+
     leaderboard = {
         "snapshot_id": snapshot_id,
         "benchmark_scope": BENCHMARK_SCOPE,
@@ -947,11 +992,13 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     write_json(out_dir / "model_cards.json", model_cards_json)
     write_json(out_dir / "examples.json", examples_json)
 
-    # Transparency: combined normalized row-level source rows across the full published batch
+    # Transparency: combined normalized row-level source rows across the published metric rows.
+    # For verified single-run publication, this is canonical-only. The shadow run remains in
+    # raw/ plus verification_report.json for auditability.
     results_path = out_dir / "results.jsonl"
     with open(results_path, "w", encoding="utf-8") as f:
-        for model_id in sorted(model_all_rows):
-            for row in model_all_rows[model_id]:
+        for model_id in sorted(model_public_rows):
+            for row in model_public_rows[model_id]:
                 normalized = normalize_raw_row(row, snapshot_id, testbed, model_meta)
                 f.write(json.dumps(normalized, ensure_ascii=False) + "\n")
     print(f"  wrote {results_path}")
@@ -961,6 +1008,11 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     if repeat_src.exists():
         shutil.copy2(repeat_src, out_dir / "repeat_summary.json")
         print(f"  copied {out_dir / 'repeat_summary.json'}")
+
+    verification_src = RESPONSES_DIR / f"verification_report_{batch_id}.json"
+    if verification_src.exists():
+        shutil.copy2(verification_src, out_dir / "verification_report.json")
+        print(f"  copied {out_dir / 'verification_report.json'}")
 
     # Transparency: copy underlying per-run source files
     raw_dir = out_dir / "raw"
