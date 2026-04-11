@@ -5,7 +5,8 @@ End-to-end publish pipeline: build → validate → sync to site → update regi
 Usage:
   python scripts/publish_snapshot.py --batch-id mini-r10-20260409
   python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --snapshot-id my-custom-id
-  python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --dry-run
+  python scripts/publish_snapshot.py --batch-id ntp3-vr1-20260411 --dry-run
+  python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --dry-run --allow-unverified-publication
 """
 
 import argparse
@@ -22,6 +23,7 @@ from validate_snapshot import SnapshotValidator
 from sync_site_data import sync, SITE_DATA_DIR
 
 REGISTRY_PATH = PROJECT_ROOT / "registry" / "snapshots.json"
+RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
 
 
 def load_registry() -> dict:
@@ -59,15 +61,59 @@ def update_registry(snapshot_id: str, batch_id: str, manifest_path: str, publish
     print(f"  registry: updated {REGISTRY_PATH}")
 
 
+def verify_publishable_batch(batch_id: str) -> dict:
+    """Require a canonical+shadow verification report before publication."""
+    verification_path = RESPONSES_DIR / f"verification_report_{batch_id}.json"
+    if not verification_path.exists():
+        raise RuntimeError(
+            f"Verified publication required, but verification report is missing: {verification_path}"
+        )
+
+    with open(verification_path, encoding="utf-8") as f:
+        report = json.load(f)
+
+    if report.get("status") != "pass":
+        raise RuntimeError(f"Verification report status is not pass: {report.get('status')!r}")
+    if report.get("protocol") != "canonical_shadow_v1":
+        raise RuntimeError(f"Unsupported verification protocol: {report.get('protocol')!r}")
+    if not report.get("all_deterministic"):
+        raise RuntimeError("Verification report indicates non-deterministic publication batch")
+    if not report.get("screening_batch_id"):
+        raise RuntimeError("Verification report missing screening_batch_id; hobby/test batch is not publishable")
+
+    for model in report.get("models", []):
+        if not model.get("deterministic"):
+            raise RuntimeError(f"Model failed canonical+shadow verification: {model.get('model_id')}")
+        if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
+            raise RuntimeError(f"Model missing canonical/shadow run IDs: {model.get('model_id')}")
+
+    return report
+
+
 def main():
     parser = argparse.ArgumentParser(description="Build, validate, and publish a snapshot")
     parser.add_argument("--batch-id", required=True, help="Batch id, e.g. mini-r10-20260409")
     parser.add_argument("--snapshot-id", default=None, help="Override snapshot id")
     parser.add_argument("--dry-run", action="store_true", help="Build and validate only, do not sync or update registry")
+    parser.add_argument(
+        "--allow-unverified-publication",
+        "--allow-unverified",
+        action="store_true",
+        help="Allow building/publishing from an unverified batch (local smoke use only)",
+    )
+    parser.add_argument(
+        "--require-verified-publication",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
     args = parser.parse_args()
 
     batch_id = args.batch_id
     snapshot_id = args.snapshot_id or f"nt-p3-mcq-text-only-{batch_id}"
+
+    if not args.allow_unverified_publication:
+        print(f"Requiring verified publication contract for batch '{batch_id}'")
+        verify_publishable_batch(batch_id)
 
     # Step 1: Build
     print(f"\n{'='*60}")

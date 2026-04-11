@@ -1,0 +1,189 @@
+# Verified publication pass: canonical + shadow only.
+#
+# SELF-HOSTED RUNNER REQUIRED
+#   Requires a prior screening pass that produced
+#   benchmark_responses/publication_batch_{screening_batch_id}.json on the same runner.
+#
+# Safety model:
+#   - workflow_dispatch only
+#   - Always checks out trusted main
+#   - Shared concurrency lock with other benchmark jobs
+#   - Refuses to run without a screening-derived publication contract
+
+name: Benchmark Verified
+
+on:
+  workflow_dispatch:
+    inputs:
+      screening_batch_id:
+        description: 'Source screening batch ID (e.g. ntp3-screen-r3-20260411)'
+        required: true
+        type: string
+      dry_run:
+        description: 'Dry run — no API calls, fake answers'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: panya-manee-benchmark
+  cancel-in-progress: false
+
+jobs:
+  verified:
+    runs-on: [self-hosted, macOS, ARM64, panya-manee-baseline]
+    timeout-minutes: 360
+    steps:
+      - name: Checkout trusted ref
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          clean: false
+
+      - name: Prepare Python and uv
+        run: |
+          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
+          /opt/homebrew/bin/python3 --version
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Verify Ollama is reachable
+        run: |
+          if ! curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
+            echo "::error::Ollama is not running at localhost:11434"
+            exit 1
+          fi
+
+      - name: Load publication contract from screening
+        env:
+          SCREENING_BATCH_ID: ${{ inputs.screening_batch_id }}
+        run: |
+          CONTRACT="benchmark_responses/publication_batch_${SCREENING_BATCH_ID}.json"
+          if [ ! -f "$CONTRACT" ]; then
+            echo "::error::Publication contract not found: $CONTRACT"
+            echo "Run benchmark-screen.yml first, then retry."
+            exit 1
+          fi
+
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import json, os, sys
+          from pathlib import Path
+
+          contract = Path(f"benchmark_responses/publication_batch_{os.environ['SCREENING_BATCH_ID']}.json")
+          d = json.loads(contract.read_text(encoding='utf-8'))
+
+          if d.get('status') != 'ready':
+              raise SystemExit(f"publication contract not ready: {d.get('status')!r}")
+          if d.get('pub_runs') != 2:
+              raise SystemExit(f"verified publication requires pub_runs=2, got {d.get('pub_runs')!r}")
+          if d.get('verification_protocol') != 'canonical_shadow_v1':
+              raise SystemExit(f"unexpected verification protocol: {d.get('verification_protocol')!r}")
+
+          print(f"BATCH_ID={d['pub_batch_id']}")
+          print(f"MODELS={d['promoted_csv']}")
+          print(f"RUNS_PER_MODEL={d['pub_runs']}")
+          print(f"VERIFICATION_PROTOCOL={d['verification_protocol']}")
+          print(f"CANONICAL_RUN_INDEX={d['canonical_run_index']}")
+          print(f"SHADOW_RUN_INDEX={d['shadow_run_index']}")
+          PY
+
+      - name: Verify derived batch inputs
+        run: |
+          uv run python scripts/verify_batch_inputs.py \
+            --batch-id "$BATCH_ID" \
+            --models "$MODELS" \
+            --runs-per-model "$RUNS_PER_MODEL" \
+            --subjects "thai,math"
+
+      - name: Run verified publication batch
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          DRY_ARG=""
+          if [ "$DRY_RUN" = "true" ]; then
+            DRY_ARG="--dry-run"
+          fi
+          uv run python scripts/run_batch.py \
+            --batch-id "$BATCH_ID" \
+            --models "$MODELS" \
+            --runs-per-model "$RUNS_PER_MODEL" \
+            --subjects "thai,math" \
+            $DRY_ARG
+
+      - name: Check batch completeness
+        if: inputs.dry_run == false
+        run: |
+          uv run python scripts/check_batch_completeness.py \
+            --batch-id "$BATCH_ID" \
+            --models "$MODELS" \
+            --runs-per-model "$RUNS_PER_MODEL"
+
+      - name: Apply canonical+shadow verification gate
+        if: inputs.dry_run == false
+        env:
+          SCREENING_BATCH_ID: ${{ inputs.screening_batch_id }}
+        run: |
+          uv run python scripts/verification_gate.py \
+            --batch-id "$BATCH_ID" \
+            --screening-batch-id "$SCREENING_BATCH_ID" \
+            --expected-models "$MODELS" \
+            --expected-runs "$RUNS_PER_MODEL" \
+            --canonical-run-index "$CANONICAL_RUN_INDEX" \
+            --shadow-run-index "$SHADOW_RUN_INDEX" \
+            --json-out "benchmark_responses/verification_report_${BATCH_ID}.json"
+
+      - name: Build artifact manifest
+        if: always()
+        run: |
+          mkdir -p benchmark_responses
+          ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null | sort -u \
+            > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" || true
+
+      - name: Upload verified publication artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-verified-${{ inputs.screening_batch_id }}
+          path: |
+            benchmark_responses/repeat_summary_${{ env.BATCH_ID }}.json
+            benchmark_responses/verification_report_${{ env.BATCH_ID }}.json
+            benchmark_responses/artifact_manifest_${{ env.BATCH_ID }}.txt
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Job summary
+        if: always()
+        env:
+          SCREENING_BATCH_ID: ${{ inputs.screening_batch_id }}
+        run: |
+          {
+            echo "## Verified Publication Batch: \`${BATCH_ID:-unknown}\`"
+            echo ""
+            echo "| Input | Value |"
+            echo "|---|---|"
+            echo "| Screening batch | \`${SCREENING_BATCH_ID}\` |"
+            echo "| Models | \`${MODELS:-unknown}\` |"
+            echo "| Runs/model | ${RUNS_PER_MODEL:-unknown} |"
+            echo "| Protocol | ${VERIFICATION_PROTOCOL:-unknown} |"
+            echo "| Dry run | ${{ inputs.dry_run }} |"
+            echo ""
+
+            REPORT="benchmark_responses/verification_report_${BATCH_ID}.json"
+            if [ -f "$REPORT" ]; then
+              echo "### Verification Report"
+              echo "\`\`\`json"
+              cat "$REPORT"
+              echo "\`\`\`"
+              echo ""
+              echo "### Next Step"
+              echo "\`\`\`bash"
+              echo "gh workflow run snapshot-pr.yml -f batch_id=\"${BATCH_ID}\""
+              echo "\`\`\`"
+            else
+              echo "*(Verification report not generated yet)*"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

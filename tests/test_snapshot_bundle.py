@@ -21,6 +21,7 @@ import unittest
 import zipfile
 from collections import defaultdict
 from pathlib import Path
+from unittest import mock
 
 # Add project root to path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -708,6 +709,204 @@ class TestFullBuildAndValidate(unittest.TestCase):
         for row in lb["rows"]:
             self.assertGreaterEqual(row["answer_only_compliance_rate"], 0.0)
             self.assertLessEqual(row["answer_only_compliance_rate"], 1.0)
+
+
+@unittest.skipIf(SKIP_NO_DATA, SKIP_MSG)
+class TestVerifiedSingleRunBuild(unittest.TestCase):
+    """Verified publication batches should publish canonical-only metrics."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmpdir = Path(tempfile.mkdtemp(prefix="verified_snapshot_test_"))
+        cls.responses_dir = cls.tmpdir / "responses"
+        cls.responses_dir.mkdir(parents=True, exist_ok=True)
+        cls.batch_id = "ntp3-vr1-test"
+        cls.model_id = "gemma4:e2b"
+
+        summary = read_json(RESPONSES_DIR / f"repeat_summary_{BATCH_ID}.json")
+        source_run = next(r for r in summary["runs"] if r["model_id"] == cls.model_id)
+        source_path = Path(source_run["output_file"])
+        if not source_path.exists():
+            source_path = RESPONSES_DIR / source_path.name
+        rows = load_jsonl(source_path)
+
+        cls.canonical_rows = []
+        cls.shadow_rows = []
+        for row in rows:
+            canonical = dict(row)
+            canonical["run_id"] = f"{cls.batch_id}-gemma4-e2b-r01"
+            shadow = dict(canonical)
+            shadow["run_id"] = f"{cls.batch_id}-gemma4-e2b-r02"
+            shadow["latency_ms"] = canonical.get("latency_ms", 0) * 3 or 3
+            shadow["eval_duration_ms"] = canonical.get("eval_duration_ms", 0) * 3
+            shadow["prompt_eval_duration_ms"] = canonical.get("prompt_eval_duration_ms", 0) * 3
+            cls.canonical_rows.append(canonical)
+            cls.shadow_rows.append(shadow)
+
+        cls.canonical_path = cls.responses_dir / f"responses_{cls.batch_id}-gemma4-e2b-r01.jsonl"
+        cls.shadow_path = cls.responses_dir / f"responses_{cls.batch_id}-gemma4-e2b-r02.jsonl"
+        for path, payload in [(cls.canonical_path, cls.canonical_rows), (cls.shadow_path, cls.shadow_rows)]:
+            with open(path, "w", encoding="utf-8") as f:
+                for row in payload:
+                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+        repeat_summary = {
+            "batch_id": cls.batch_id,
+            "started_at_epoch": 0.0,
+            "finished_at_epoch": 0.0,
+            "models": [{
+                "model_id": cls.model_id,
+                "runs": 2,
+                "mean_correct": 54,
+                "min_correct": 54,
+                "max_correct": 54,
+                "mean_accuracy": 54 / 93,
+                "stdev_accuracy": 0.0,
+                "mean_thai_accuracy": 0.6,
+                "mean_math_accuracy": 0.45,
+                "mean_time_s": 1.0,
+                "median_time_s": 1.0,
+                "mean_correct_per_min": 1.0,
+                "mean_correct_per_gb_min": 1.0,
+                "memory_gb": 2.0,
+            }],
+            "runs": [
+                {
+                    "model_id": cls.model_id,
+                    "run_id": f"{cls.batch_id}-gemma4-e2b-r01",
+                    "run_index": 1,
+                    "output_file": str(cls.canonical_path),
+                    "parse_rate": 1.0,
+                    "accuracy": 54 / 93,
+                },
+                {
+                    "model_id": cls.model_id,
+                    "run_id": f"{cls.batch_id}-gemma4-e2b-r02",
+                    "run_index": 2,
+                    "output_file": str(cls.shadow_path),
+                    "parse_rate": 1.0,
+                    "accuracy": 54 / 93,
+                },
+            ],
+        }
+        (cls.responses_dir / f"repeat_summary_{cls.batch_id}.json").write_text(
+            json.dumps(repeat_summary, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        verification_report = {
+            "batch_id": cls.batch_id,
+            "screening_batch_id": "ntp3-screen-r3-20260411",
+            "protocol": "canonical_shadow_v1",
+            "expected_runs_per_model": 2,
+            "canonical_run_index": 1,
+            "shadow_run_index": 2,
+            "status": "pass",
+            "all_deterministic": True,
+            "models": [{
+                "model_id": cls.model_id,
+                "canonical_run_id": f"{cls.batch_id}-gemma4-e2b-r01",
+                "shadow_run_id": f"{cls.batch_id}-gemma4-e2b-r02",
+                "total_items": len(cls.canonical_rows),
+                "matching_items": len(cls.canonical_rows),
+                "divergent_count": 0,
+                "divergent_items": [],
+                "deterministic": True,
+            }],
+        }
+        (cls.responses_dir / f"verification_report_{cls.batch_id}.json").write_text(
+            json.dumps(verification_report, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        cls.out_dir = cls.tmpdir / "out"
+        with mock.patch("scripts.build_snapshot.RESPONSES_DIR", cls.responses_dir):
+            build_snapshot(cls.batch_id, snapshot_id="verified-single-run", out_dir=cls.out_dir)
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmpdir, ignore_errors=True)
+
+    def test_manifest_carries_verification_artifact(self):
+        manifest = read_json(self.out_dir / "manifest.json")
+        self.assertEqual(manifest["artifacts"].get("verification_report"), "verification_report.json")
+        self.assertEqual(manifest["publication"]["mode"], "verified_single_run")
+
+    def test_results_jsonl_contains_canonical_rows_only(self):
+        with open(self.out_dir / "results.jsonl", encoding="utf-8") as f:
+            rows = [json.loads(line) for line in f if line.strip()]
+        self.assertEqual(len(rows), len(self.canonical_rows))
+
+    def test_latency_metrics_use_canonical_run_only(self):
+        leaderboard = read_json(self.out_dir / "leaderboard.json")
+        row = leaderboard["rows"][0]
+        expected = aggregate_model(self.model_id, self.canonical_rows, load_model_meta(MODELS_CONFIG))
+        self.assertEqual(row["latency_p50_ms"], expected["latency_p50_ms"])
+        self.assertEqual(row["latency_p95_ms"], expected["latency_p95_ms"])
+
+
+@unittest.skipIf(SKIP_NO_DATA, SKIP_MSG)
+class TestVerifiedSingleRunErrors(unittest.TestCase):
+    def test_missing_verified_canonical_rows_raises(self):
+        tmpdir = Path(tempfile.mkdtemp(prefix="verified_snapshot_error_test_"))
+        try:
+            responses_dir = tmpdir / "responses"
+            responses_dir.mkdir(parents=True, exist_ok=True)
+            batch_id = "ntp3-vr1-badcanon"
+            model_id = "gemma4:e2b"
+
+            summary = read_json(RESPONSES_DIR / f"repeat_summary_{BATCH_ID}.json")
+            source_run = next(r for r in summary["runs"] if r["model_id"] == model_id)
+            source_path = Path(source_run["output_file"])
+            if not source_path.exists():
+                source_path = RESPONSES_DIR / source_path.name
+            rows = load_jsonl(source_path)
+
+            run1 = responses_dir / f"responses_{batch_id}-gemma4-e2b-r01.jsonl"
+            run2 = responses_dir / f"responses_{batch_id}-gemma4-e2b-r02.jsonl"
+            for path, run_id in [(run1, f"{batch_id}-gemma4-e2b-r01"), (run2, f"{batch_id}-gemma4-e2b-r02")]:
+                with open(path, "w", encoding="utf-8") as f:
+                    for row in rows:
+                        payload = dict(row)
+                        payload["run_id"] = run_id
+                        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+
+            repeat_summary = {
+                "batch_id": batch_id,
+                "models": [{"model_id": model_id, "runs": 2}],
+                "runs": [
+                    {"model_id": model_id, "run_id": f"{batch_id}-gemma4-e2b-r01", "run_index": 1, "output_file": str(run1)},
+                    {"model_id": model_id, "run_id": f"{batch_id}-gemma4-e2b-r02", "run_index": 2, "output_file": str(run2)},
+                ],
+            }
+            (responses_dir / f"repeat_summary_{batch_id}.json").write_text(
+                json.dumps(repeat_summary, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+
+            verification_report = {
+                "batch_id": batch_id,
+                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "protocol": "canonical_shadow_v1",
+                "status": "pass",
+                "all_deterministic": True,
+                "models": [{
+                    "model_id": model_id,
+                    "canonical_run_id": f"{batch_id}-gemma4-e2b-r99",
+                    "shadow_run_id": f"{batch_id}-gemma4-e2b-r02",
+                    "deterministic": True,
+                }],
+            }
+            (responses_dir / f"verification_report_{batch_id}.json").write_text(
+                json.dumps(verification_report, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+
+            with mock.patch("scripts.build_snapshot.RESPONSES_DIR", responses_dir):
+                with self.assertRaisesRegex(RuntimeError, "did not match any rows"):
+                    build_snapshot(batch_id, snapshot_id="verified-bad-canon", out_dir=tmpdir / "out")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 # ── Registry and compatibility tests ────────────────────────────────────────
