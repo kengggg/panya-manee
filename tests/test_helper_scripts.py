@@ -11,10 +11,12 @@ Run: python -m pytest tests/test_helper_scripts.py -v
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import sys
 import tempfile
 import unittest
+import zipfile
 from unittest import mock
 from pathlib import Path
 
@@ -51,6 +53,12 @@ from scripts.prepare_publication_batch import (
     prepare_publication_batch,
     derive_pub_batch_id,
     write_env_file,
+)
+from scripts.ci.stage_batch_artifact import stage_batch_artifact
+from scripts.ci.fetch_batch_artifact import (
+    verify_manifest as verify_downloaded_batch_manifest,
+    materialize_benchmark_responses,
+    ArtifactFetchError,
 )
 import scripts.publish_snapshot as publish_snapshot_module
 from scripts.publish_snapshot import verify_publishable_batch
@@ -1329,6 +1337,196 @@ class TestPublishSnapshotCli(unittest.TestCase):
             self.assertEqual(result["publishable_count"], 0)
             self.assertFalse(result["models"][0]["publishable"])
             self.assertEqual(result["models"][0]["divergent_count"], 1)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestBatchArtifactStaging(unittest.TestCase):
+    def test_stage_batch_artifact_copies_required_files_and_manifest(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            responses_dir = tmpdir / "responses"
+            output_dir = tmpdir / "bundle"
+            responses_dir.mkdir()
+            batch_id = "ntp3-vr1-20260412"
+
+            summary_path = responses_dir / f"repeat_summary_{batch_id}.json"
+            summary_path.write_text(json.dumps({"batch_id": batch_id}), encoding="utf-8")
+
+            verification_path = responses_dir / f"verification_report_{batch_id}.json"
+            verification_path.write_text(json.dumps({"status": "pass"}), encoding="utf-8")
+
+            manifest_txt = responses_dir / f"artifact_manifest_{batch_id}.txt"
+            manifest_txt.write_text("example\n", encoding="utf-8")
+
+            raw_path = responses_dir / f"responses_{batch_id}-gemma4-e2b-r01.jsonl"
+            raw_path.write_text(json.dumps({"run_id": "r1"}) + "\n", encoding="utf-8")
+
+            result = stage_batch_artifact(
+                batch_id=batch_id,
+                artifact_name=f"benchmark-verified-{batch_id}",
+                responses_dir=responses_dir,
+                output_dir=output_dir,
+            )
+
+            self.assertEqual(result["file_count"], 4)
+            staged_responses = output_dir / "benchmark_responses"
+            self.assertTrue((staged_responses / summary_path.name).exists())
+            self.assertTrue((staged_responses / verification_path.name).exists())
+            self.assertTrue((staged_responses / raw_path.name).exists())
+            manifest_path = staged_responses / f"batch_manifest_{batch_id}.json"
+            self.assertTrue(manifest_path.exists())
+
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(manifest["artifact_name"], f"benchmark-verified-{batch_id}")
+            self.assertEqual(manifest["batch_id"], batch_id)
+            self.assertEqual(manifest["file_count"], 4)
+            self.assertEqual(len(manifest["files"]), 4)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestDownloadedBatchManifestVerification(unittest.TestCase):
+    def test_zip_round_trip_materialize_and_verify_manifest(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260412"
+            responses_dir = tmpdir / "responses"
+            bundle_dir = tmpdir / "bundle"
+            responses_dir.mkdir()
+
+            summary_path = responses_dir / f"repeat_summary_{batch_id}.json"
+            summary_path.write_text(json.dumps({"batch_id": batch_id}), encoding="utf-8")
+            raw_path = responses_dir / f"responses_{batch_id}-gemma4-e2b-r01.jsonl"
+            raw_path.write_text(json.dumps({"run_id": "r1"}) + "\n", encoding="utf-8")
+
+            stage_batch_artifact(
+                batch_id=batch_id,
+                artifact_name=f"benchmark-verified-{batch_id}",
+                responses_dir=responses_dir,
+                output_dir=bundle_dir,
+            )
+
+            zip_path = tmpdir / "artifact.zip"
+            with zipfile.ZipFile(zip_path, "w") as zf:
+                for path in bundle_dir.rglob("*"):
+                    if path.is_file():
+                        zf.write(path, path.relative_to(tmpdir))
+
+            extracted_root = tmpdir / "extract"
+            with zipfile.ZipFile(zip_path) as zf:
+                zf.extractall(extracted_root)
+
+            dest_root = tmpdir / "dest"
+            materialize_benchmark_responses(batch_id, extracted_root, dest_root)
+            loaded = verify_downloaded_batch_manifest(
+                batch_id=batch_id,
+                artifact_name=f"benchmark-verified-{batch_id}",
+                dest_root=dest_root,
+            )
+            self.assertEqual(loaded["file_count"], 2)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_materialize_benchmark_responses_handles_nested_extract_prefix(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260412"
+            extracted_root = tmpdir / "extract"
+            nested_responses = extracted_root / "artifact_bundles" / batch_id / "benchmark_responses"
+            nested_responses.mkdir(parents=True)
+
+            payload = nested_responses / f"repeat_summary_{batch_id}.json"
+            payload.write_text(json.dumps({"batch_id": batch_id}), encoding="utf-8")
+            manifest = {
+                "batch_id": batch_id,
+                "artifact_name": f"benchmark-verified-{batch_id}",
+                "file_count": 1,
+                "files": [
+                    {
+                        "path": f"benchmark_responses/{payload.name}",
+                        "sha256": hashlib.sha256(payload.read_bytes()).hexdigest(),
+                    }
+                ],
+            }
+            (nested_responses / f"batch_manifest_{batch_id}.json").write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+
+            dest_root = tmpdir / "dest"
+            materialize_benchmark_responses(batch_id, extracted_root, dest_root)
+
+            self.assertTrue((dest_root / "benchmark_responses" / payload.name).exists())
+            self.assertTrue((dest_root / "benchmark_responses" / f"batch_manifest_{batch_id}.json").exists())
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_verify_downloaded_manifest_accepts_matching_files(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260412"
+            responses_dir = tmpdir / "benchmark_responses"
+            responses_dir.mkdir(parents=True)
+
+            payload = responses_dir / f"repeat_summary_{batch_id}.json"
+            payload.write_text(json.dumps({"batch_id": batch_id}), encoding="utf-8")
+
+            sha = hashlib.sha256(payload.read_bytes()).hexdigest()
+            manifest = {
+                "batch_id": batch_id,
+                "artifact_name": f"benchmark-verified-{batch_id}",
+                "file_count": 1,
+                "files": [
+                    {
+                        "path": f"benchmark_responses/{payload.name}",
+                        "sha256": sha,
+                    }
+                ],
+            }
+            (responses_dir / f"batch_manifest_{batch_id}.json").write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+
+            loaded = verify_downloaded_batch_manifest(
+                batch_id=batch_id,
+                artifact_name=f"benchmark-verified-{batch_id}",
+                dest_root=tmpdir,
+            )
+            self.assertEqual(loaded["file_count"], 1)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_verify_downloaded_manifest_rejects_hash_mismatch(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260412"
+            responses_dir = tmpdir / "benchmark_responses"
+            responses_dir.mkdir(parents=True)
+
+            payload = responses_dir / f"repeat_summary_{batch_id}.json"
+            payload.write_text(json.dumps({"batch_id": batch_id}), encoding="utf-8")
+
+            manifest = {
+                "batch_id": batch_id,
+                "artifact_name": f"benchmark-verified-{batch_id}",
+                "file_count": 1,
+                "files": [
+                    {
+                        "path": f"benchmark_responses/{payload.name}",
+                        "sha256": "deadbeef",
+                    }
+                ],
+            }
+            (responses_dir / f"batch_manifest_{batch_id}.json").write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+
+            with self.assertRaisesRegex(ArtifactFetchError, "sha256 mismatch"):
+                verify_downloaded_batch_manifest(
+                    batch_id=batch_id,
+                    artifact_name=f"benchmark-verified-{batch_id}",
+                    dest_root=tmpdir,
+                )
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 

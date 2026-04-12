@@ -29,6 +29,10 @@ on:
         description: 'Batch ID to publish (e.g. mini-r10-20260409)'
         required: true
         type: string
+      source_run_id:
+        description: 'Workflow run ID that produced the batch artifact bundle'
+        required: true
+        type: string
       snapshot_id:
         description: 'Override snapshot ID (default: nt-p3-mcq-text-only-{batch_id})'
         required: false
@@ -57,8 +61,6 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main
-          # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
-          clean: false
 
       - name: Prepare Python and uv
         run: |
@@ -67,6 +69,18 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --frozen
+
+      - name: Fetch verified batch artifact bundle
+        env:
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ inputs.source_run_id }}
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          uv run python scripts/ci/fetch_batch_artifact.py \
+            --repo "$REPO" \
+            --run-id "$RUN_ID" \
+            --artifact-name "benchmark-verified-${BATCH_ID}" \
+            --batch-id "$BATCH_ID"
 
       - name: Verify benchmark data exists
         env:
@@ -189,6 +203,7 @@ jobs:
             echo "| Input | Value |"
             echo "|---|---|"
             echo "| Batch ID | \`${BATCH_ID}\` |"
+            echo "| Source run ID | \`${{ inputs.source_run_id }}\` |"
             echo "| Snapshot ID | \`${SID}\` |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
             if [ -n "${PR_URL:-}" ]; then

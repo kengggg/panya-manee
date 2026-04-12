@@ -66,8 +66,6 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main
-          # Preserve benchmark_responses/ from prior runs (gitignored, lives on runner)
-          clean: false
 
       - name: Prepare Python and uv
         run: |
@@ -144,14 +142,22 @@ jobs:
             ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null || true
           } | sed '/^$/d' | sort -u > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt"
 
+      - name: Stage benchmark batch artifact bundle
+        if: inputs.dry_run == false
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          uv run python scripts/ci/stage_batch_artifact.py \
+            --batch-id "$BATCH_ID" \
+            --artifact-name "benchmark-run-${BATCH_ID}" \
+            --output-dir "artifact_bundles/${BATCH_ID}"
+
       - name: Upload benchmark artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: benchmark-run-${{ inputs.batch_id }}
-          path: |
-            benchmark_responses/repeat_summary_${{ inputs.batch_id }}.json
-            benchmark_responses/artifact_manifest_${{ inputs.batch_id }}.txt
+          path: artifact_bundles/${{ inputs.batch_id }}
           retention-days: 30
           if-no-files-found: warn
 

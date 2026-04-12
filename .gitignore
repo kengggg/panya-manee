@@ -12,6 +12,7 @@ wheels/
 # Benchmark output
 benchmark_responses/
 preflight_records/
+artifact_bundles/
 
 .DS_Store
 

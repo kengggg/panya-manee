@@ -60,6 +60,13 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
+      - name: Clear stale files for this batch
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          mkdir -p benchmark_responses
+          find benchmark_responses -maxdepth 1 -type f -name "*${BATCH_ID}*" -delete
+
       - name: Verify Ollama is reachable
         run: |
           if ! curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
@@ -135,15 +142,22 @@ jobs:
           ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null | sort -u \
             > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" || true
 
+      - name: Stage verified batch artifact bundle
+        if: inputs.dry_run == false
+        env:
+          BATCH_ID: ${{ inputs.batch_id }}
+        run: |
+          uv run python scripts/ci/stage_batch_artifact.py \
+            --batch-id "$BATCH_ID" \
+            --artifact-name "benchmark-verified-${BATCH_ID}" \
+            --output-dir "artifact_bundles/${BATCH_ID}"
+
       - name: Upload verified publication artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: benchmark-verified-${{ inputs.batch_id }}
-          path: |
-            benchmark_responses/repeat_summary_${{ inputs.batch_id }}.json
-            benchmark_responses/verification_report_${{ inputs.batch_id }}.json
-            benchmark_responses/artifact_manifest_${{ inputs.batch_id }}.txt
+          path: artifact_bundles/${{ inputs.batch_id }}
           retention-days: 30
           if-no-files-found: warn
 
@@ -181,7 +195,7 @@ PY
               echo ""
               echo "### Next Step"
               echo '\`\`\`bash'
-              echo "gh workflow run snapshot-pr.yml -f batch_id=\"${BATCH_ID}\""
+              echo "gh workflow run snapshot-pr.yml -f batch_id=\"${BATCH_ID}\" -f source_run_id=\"${GITHUB_RUN_ID}\""
               echo '\`\`\`'
             else
               echo "*(Verification report not generated yet)*"
