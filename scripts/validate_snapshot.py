@@ -322,7 +322,19 @@ class SnapshotValidator:
                 report = load_json(verification_path)
                 if report.get("status") != "pass":
                     self.error("verification_report.json is present but status != 'pass'")
-                if not report.get("all_deterministic"):
+                models = report.get("models", [])
+                has_posthoc_gate = (
+                    report.get("publication_mode") == "verified_posthoc_gate_v1"
+                    or any("publishable" in model for model in models)
+                )
+                if has_posthoc_gate:
+                    for model in models:
+                        if model.get("publishable") and not model.get("deterministic"):
+                            self.error(
+                                "verification_report.json has a publishable model that is not deterministic: "
+                                f"{model.get('model_id')}"
+                            )
+                elif not report.get("all_deterministic"):
                     self.error("verification_report.json is present but all_deterministic is false")
 
     def report(self):

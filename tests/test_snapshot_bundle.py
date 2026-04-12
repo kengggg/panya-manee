@@ -964,6 +964,12 @@ class TestVerifiedSingleRunBuildExcludesRejectedModels(unittest.TestCase):
             with open(out_dir / "results.jsonl", encoding="utf-8") as f:
                 models = {json.loads(line)["model_id"] for line in f if line.strip()}
             self.assertEqual(models, {"gemma4:e2b"})
+
+            validator = SnapshotValidator(out_dir)
+            valid = validator.validate()
+            if not valid:
+                validator.report()
+            self.assertTrue(valid, f"Validator errors: {validator.errors}")
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 
