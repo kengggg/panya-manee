@@ -11,7 +11,7 @@
 #
 # What it does:
 #   0. Refuses plain hobby/test batches — requires a passing canonical+shadow
-#      verification report tied to a screening-driven publication contract
+#      verification report from the verified-only publication pipeline
 #   1. Builds snapshot bundle from batch data (build_snapshot.py)
 #   2. Validates cross-file consistency (validate_snapshot.py)
 #   3. Syncs dashboard data to site/data/latest/

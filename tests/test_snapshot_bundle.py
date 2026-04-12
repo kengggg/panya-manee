@@ -796,13 +796,20 @@ class TestVerifiedSingleRunBuild(unittest.TestCase):
 
         verification_report = {
             "batch_id": cls.batch_id,
-            "screening_batch_id": "ntp3-screen-r3-20260411",
+            "publication_mode": "verified_posthoc_gate_v1",
+            "preflight_record": "preflight_records/preflight_20260411.json",
             "protocol": "canonical_shadow_v1",
             "expected_runs_per_model": 2,
             "canonical_run_index": 1,
             "shadow_run_index": 2,
             "status": "pass",
             "all_deterministic": True,
+            "publishable_count": 1,
+            "publishable_models": [cls.model_id],
+            "thresholds": {
+                "parse_rate_gte": 0.95,
+                "accuracy_gt": 0.25,
+            },
             "models": [{
                 "model_id": cls.model_id,
                 "canonical_run_id": f"{cls.batch_id}-gemma4-e2b-r01",
@@ -812,6 +819,7 @@ class TestVerifiedSingleRunBuild(unittest.TestCase):
                 "divergent_count": 0,
                 "divergent_items": [],
                 "deterministic": True,
+                "publishable": True,
             }],
         }
         (cls.responses_dir / f"verification_report_{cls.batch_id}.json").write_text(
@@ -886,15 +894,18 @@ class TestVerifiedSingleRunErrors(unittest.TestCase):
 
             verification_report = {
                 "batch_id": batch_id,
-                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "publication_mode": "verified_posthoc_gate_v1",
                 "protocol": "canonical_shadow_v1",
                 "status": "pass",
                 "all_deterministic": True,
+                "publishable_count": 1,
+                "publishable_models": [model_id],
                 "models": [{
                     "model_id": model_id,
                     "canonical_run_id": f"{batch_id}-gemma4-e2b-r99",
                     "shadow_run_id": f"{batch_id}-gemma4-e2b-r02",
                     "deterministic": True,
+                    "publishable": True,
                 }],
             }
             (responses_dir / f"verification_report_{batch_id}.json").write_text(

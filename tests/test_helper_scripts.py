@@ -1034,8 +1034,8 @@ class TestVerificationGate(unittest.TestCase):
                 "batch_id": batch_id,
                 "models": [{"model_id": "gemma4:e2b", "runs": 2}],
                 "runs": [
-                    {"model_id": "gemma4:e2b", "run_id": rows1[0]["run_id"], "run_index": 1, "output_file": str(run1)},
-                    {"model_id": "gemma4:e2b", "run_id": rows2[0]["run_id"], "run_index": 2, "output_file": str(run2)},
+                    {"model_id": "gemma4:e2b", "run_id": rows1[0]["run_id"], "run_index": 1, "output_file": str(run1), "parse_rate": 1.0, "accuracy": 1.0},
+                    {"model_id": "gemma4:e2b", "run_id": rows2[0]["run_id"], "run_index": 2, "output_file": str(run2), "parse_rate": 1.0, "accuracy": 1.0},
                 ],
             }
             (tmpdir / f"repeat_summary_{batch_id}.json").write_text(json.dumps(summary), encoding="utf-8")
@@ -1043,11 +1043,13 @@ class TestVerificationGate(unittest.TestCase):
             result = verify_publication_batch(
                 batch_id=batch_id,
                 responses_dir=tmpdir,
-                screening_batch_id="ntp3-screen-r3-20260411",
                 expected_models=["gemma4:e2b"],
             )
             self.assertEqual(result["status"], "pass")
             self.assertTrue(result["all_deterministic"])
+            self.assertEqual(result["publishable_count"], 1)
+            self.assertEqual(result["publishable_models"], ["gemma4:e2b"])
+            self.assertTrue(result["models"][0]["publishable"])
             self.assertEqual(result["models"][0]["matching_items"], 1)
             self.assertEqual(result["models"][0]["divergent_count"], 0)
         finally:
@@ -1125,15 +1127,17 @@ class TestPublishSnapshotCli(unittest.TestCase):
             report = {
                 "status": "pass",
                 "protocol": "canonical_shadow_v1",
+                "publication_mode": "verified_posthoc_gate_v1",
                 "all_deterministic": True,
-                "screening_batch_id": None,
+                "publishable_count": 0,
+                "publishable_models": [],
                 "models": [],
             }
             (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
                 json.dumps(report), encoding="utf-8"
             )
             with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
-                with self.assertRaisesRegex(RuntimeError, "hobby/test batch is not publishable"):
+                with self.assertRaisesRegex(RuntimeError, "no publishable models"):
                     verify_publishable_batch("ntp3-vr1-20260411")
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
@@ -1144,13 +1148,22 @@ class TestPublishSnapshotCli(unittest.TestCase):
             report = {
                 "status": "pass",
                 "protocol": "canonical_shadow_v1",
-                "all_deterministic": True,
-                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "publication_mode": "verified_posthoc_gate_v1",
+                "all_deterministic": False,
+                "publishable_count": 1,
+                "publishable_models": ["gemma4:e2b"],
                 "models": [{
                     "model_id": "gemma4:e2b",
+                    "publishable": True,
                     "deterministic": True,
                     "canonical_run_id": "ntp3-vr1-20260411-gemma4-e2b-r01",
                     "shadow_run_id": "ntp3-vr1-20260411-gemma4-e2b-r02",
+                }, {
+                    "model_id": "bad-model:1b",
+                    "publishable": False,
+                    "deterministic": False,
+                    "canonical_run_id": "ntp3-vr1-20260411-bad-model-1b-r01",
+                    "shadow_run_id": "ntp3-vr1-20260411-bad-model-1b-r02",
                 }],
             }
             (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
@@ -1159,6 +1172,32 @@ class TestPublishSnapshotCli(unittest.TestCase):
             with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
                 loaded = verify_publishable_batch("ntp3-vr1-20260411")
             self.assertEqual(loaded["status"], "pass")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_publishable_model_must_have_shadow_ids(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            report = {
+                "status": "pass",
+                "protocol": "canonical_shadow_v1",
+                "publication_mode": "verified_posthoc_gate_v1",
+                "publishable_count": 1,
+                "publishable_models": ["gemma4:e2b"],
+                "models": [{
+                    "model_id": "gemma4:e2b",
+                    "publishable": True,
+                    "deterministic": True,
+                    "canonical_run_id": None,
+                    "shadow_run_id": "ntp3-vr1-20260411-gemma4-e2b-r02",
+                }],
+            }
+            (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
+                json.dumps(report), encoding="utf-8"
+            )
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                with self.assertRaisesRegex(RuntimeError, "missing canonical/shadow run IDs"):
+                    verify_publishable_batch("ntp3-vr1-20260411")
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 
@@ -1198,6 +1237,8 @@ class TestPublishSnapshotCli(unittest.TestCase):
             result = verify_publication_batch(batch_id=batch_id, responses_dir=tmpdir)
             self.assertEqual(result["status"], "fail")
             self.assertFalse(result["all_deterministic"])
+            self.assertEqual(result["publishable_count"], 0)
+            self.assertFalse(result["models"][0]["publishable"])
             self.assertEqual(result["models"][0]["divergent_count"], 1)
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)

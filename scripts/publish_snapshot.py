@@ -76,16 +76,34 @@ def verify_publishable_batch(batch_id: str) -> dict:
         raise RuntimeError(f"Verification report status is not pass: {report.get('status')!r}")
     if report.get("protocol") != "canonical_shadow_v1":
         raise RuntimeError(f"Unsupported verification protocol: {report.get('protocol')!r}")
-    if not report.get("all_deterministic"):
-        raise RuntimeError("Verification report indicates non-deterministic publication batch")
-    if not report.get("screening_batch_id"):
-        raise RuntimeError("Verification report missing screening_batch_id; hobby/test batch is not publishable")
 
-    for model in report.get("models", []):
-        if not model.get("deterministic"):
-            raise RuntimeError(f"Model failed canonical+shadow verification: {model.get('model_id')}")
-        if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
-            raise RuntimeError(f"Model missing canonical/shadow run IDs: {model.get('model_id')}")
+    models = report.get("models", [])
+    has_posthoc_gate = (
+        report.get("publication_mode") == "verified_posthoc_gate_v1"
+        or any("publishable" in model for model in models)
+    )
+
+    if has_posthoc_gate:
+        if report.get("publishable_count", 0) < 1:
+            raise RuntimeError("Verification report has no publishable models")
+
+        for model in models:
+            if model.get("publishable"):
+                if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
+                    raise RuntimeError(f"Publishable model missing canonical/shadow run IDs: {model.get('model_id')}")
+                if not model.get("deterministic"):
+                    raise RuntimeError(f"Publishable model is not deterministic: {model.get('model_id')}")
+    else:
+        if not report.get("all_deterministic"):
+            raise RuntimeError("Verification report indicates non-deterministic publication batch")
+        if not report.get("screening_batch_id"):
+            raise RuntimeError("Verification report missing screening_batch_id; hobby/test batch is not publishable")
+
+        for model in models:
+            if not model.get("deterministic"):
+                raise RuntimeError(f"Model failed canonical+shadow verification: {model.get('model_id')}")
+            if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
+                raise RuntimeError(f"Model missing canonical/shadow run IDs: {model.get('model_id')}")
 
     return report
 

@@ -1,223 +1,35 @@
-# Screening pass: run 3x repeats, verify completeness, apply promotion gate.
-#
-# SELF-HOSTED RUNNER REQUIRED
-#   Wraps benchmark-run conventions with screening-specific defaults.
-#   After the benchmark runs, verifies batch completeness and applies
-#   the deterministic screening gate to produce promoted model list.
-#
-# Safety model:
-#   - workflow_dispatch only — never triggered by PRs or pushes
-#   - Always checks out the trusted main branch
-#   - Concurrency lock shared with benchmark-run (same testbed)
-#   - No secrets beyond GITHUB_TOKEN, no network access needed
-#
-# Outputs:
-#   - JSONL response files in benchmark_responses/
-#   - repeat_summary_{batch_id}.json
-#   - screening_decision_{batch_id}.json (gate verdicts)
-#   - Job summary with promotion table
+# Deprecated workflow kept only to stop accidental use of the retired screen -> verified pipeline.
 
-name: Benchmark Screen
+name: Benchmark Screen (Deprecated)
 
 on:
   workflow_dispatch:
     inputs:
       batch_id:
-        description: 'Screening batch ID (e.g. ntp3-screen-r3-20260411)'
-        required: true
-        type: string
-      models:
-        description: 'Comma-separated model names'
-        required: true
-        type: string
-      runs_per_model:
-        description: 'Screening repeats per model'
-        required: false
-        default: '3'
-        type: string
-      preflight_date:
-        description: 'Preflight record date YYYYMMDD (for digest check, optional)'
+        description: 'Deprecated input, ignored'
         required: false
         default: ''
         type: string
-      dry_run:
-        description: 'Dry run — no API calls, fake answers'
+      models:
+        description: 'Deprecated input, ignored'
         required: false
-        default: false
-        type: boolean
+        default: ''
+        type: string
+      preflight_date:
+        description: 'Deprecated input, ignored'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
 
-concurrency:
-  group: panya-manee-benchmark
-  cancel-in-progress: false
-
 jobs:
-  screen:
-    runs-on: [self-hosted, macOS, ARM64, panya-manee-baseline]
-    timeout-minutes: 360  # 6h — screening is 3x, shorter than publication
+  stop:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout trusted ref
-        uses: actions/checkout@v6
-        with:
-          ref: main
-          clean: false
-
-      - name: Prepare Python and uv
+      - name: Stop retired workflow
         run: |
-          echo "/opt/homebrew/bin" >> "$GITHUB_PATH"
-          /opt/homebrew/bin/python3 --version
-
-      - name: Install dependencies
-        run: uv sync --frozen
-
-      - name: Verify Ollama is reachable
-        run: |
-          if ! curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
-            echo "::error::Ollama is not running at localhost:11434"
-            exit 1
-          fi
-
-      - name: Verify batch inputs
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-          MODELS: ${{ inputs.models }}
-          RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
-        run: |
-          uv run python scripts/verify_batch_inputs.py \
-            --batch-id "$BATCH_ID" \
-            --models "$MODELS" \
-            --runs-per-model "$RUNS_PER_MODEL"
-
-      - name: Run screening batch
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-          MODELS: ${{ inputs.models }}
-          RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
-          DRY_RUN: ${{ inputs.dry_run }}
-        run: |
-          DRY_ARG=""
-          if [ "$DRY_RUN" = "true" ]; then
-            DRY_ARG="--dry-run"
-          fi
-          uv run python scripts/run_batch.py \
-            --batch-id "$BATCH_ID" \
-            --models "$MODELS" \
-            --runs-per-model "$RUNS_PER_MODEL" \
-            --subjects "thai,math" \
-            $DRY_ARG
-
-      - name: Check batch completeness
-        if: inputs.dry_run == false
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-          MODELS: ${{ inputs.models }}
-          RUNS_PER_MODEL: ${{ inputs.runs_per_model }}
-        run: |
-          uv run python scripts/check_batch_completeness.py \
-            --batch-id "$BATCH_ID" \
-            --models "$MODELS" \
-            --runs-per-model "$RUNS_PER_MODEL"
-
-      - name: Apply screening gate
-        if: inputs.dry_run == false
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-          PREFLIGHT_DATE: ${{ inputs.preflight_date }}
-        run: |
-          PREFLIGHT_ARG=""
-          if [ -n "$PREFLIGHT_DATE" ]; then
-            PREFLIGHT_ARG="--preflight preflight_records/preflight_${PREFLIGHT_DATE}.json"
-          fi
-          uv run python scripts/screening_gate.py \
-            --batch-id "$BATCH_ID" \
-            $PREFLIGHT_ARG \
-            --json-out "benchmark_responses/screening_decision_${BATCH_ID}.json" \
-            --appendix-out "benchmark_responses/screening_appendix_${BATCH_ID}.json" \
-            --markdown
-
-      - name: Prepare publication batch metadata
-        if: inputs.dry_run == false
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-        run: |
-          uv run python scripts/prepare_publication_batch.py \
-            --screening-json "benchmark_responses/screening_decision_${BATCH_ID}.json" \
-            --json-out "benchmark_responses/publication_batch_${BATCH_ID}.json" \
-            --env-out "benchmark_responses/publication_${BATCH_ID}.env"
-
-      - name: Build artifact manifest
-        if: always()
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-        run: |
-          mkdir -p benchmark_responses
-          ls -1 benchmark_responses/*"${BATCH_ID}"* 2>/dev/null | sort -u \
-            > "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" || true
-
-      - name: Upload screening artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: benchmark-screen-${{ inputs.batch_id }}
-          path: |
-            benchmark_responses/repeat_summary_${{ inputs.batch_id }}.json
-            benchmark_responses/screening_decision_${{ inputs.batch_id }}.json
-            benchmark_responses/screening_appendix_${{ inputs.batch_id }}.json
-            benchmark_responses/publication_batch_${{ inputs.batch_id }}.json
-            benchmark_responses/publication_${{ inputs.batch_id }}.env
-            benchmark_responses/artifact_manifest_${{ inputs.batch_id }}.txt
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Job summary
-        if: always()
-        env:
-          BATCH_ID: ${{ inputs.batch_id }}
-        run: |
-          {
-            echo "## Screening Batch: \`${BATCH_ID}\`"
-            echo ""
-            echo "| Input | Value |"
-            echo "|---|---|"
-            echo "| Models | \`${{ inputs.models }}\` |"
-            echo "| Runs/model | ${{ inputs.runs_per_model }} |"
-            echo "| Preflight date | ${{ inputs.preflight_date || '(none)' }} |"
-            echo "| Dry run | ${{ inputs.dry_run }} |"
-            echo ""
-
-            if [ -f "benchmark_responses/artifact_manifest_${BATCH_ID}.txt" ]; then
-              echo "### Artifacts"
-              echo "\`\`\`"
-              cat "benchmark_responses/artifact_manifest_${BATCH_ID}.txt"
-              echo "\`\`\`"
-              echo ""
-            fi
-
-            DECISION="benchmark_responses/screening_decision_${BATCH_ID}.json"
-            if [ -f "$DECISION" ]; then
-              echo "### Screening Results"
-              echo ""
-              PROMOTED=$(DECISION="$DECISION" uv run python scripts/ci/render_screening_decision.py 2>/dev/null || echo "(could not parse decision)")
-              echo "$PROMOTED"
-              echo ""
-
-              # Include markdown appendix if available
-              APPENDIX="benchmark_responses/screening_appendix_${BATCH_ID}.json"
-              if [ -f "$APPENDIX" ]; then
-                echo "### Screening Appendix"
-                echo ""
-                APPENDIX="$APPENDIX" uv run python scripts/ci/render_screening_appendix.py 2>/dev/null || echo "(could not render appendix)"
-              fi
-
-              echo ""
-              echo "### Next Step"
-              PUB="benchmark_responses/publication_batch_${BATCH_ID}.json"
-              if [ -f "$PUB" ]; then
-                PUB="$PUB" uv run python scripts/ci/render_publication_next_step.py 2>/dev/null || echo "(could not render next step)"
-              fi
-            else
-              echo "*(Screening gate not run — dry run or batch incomplete)*"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::benchmark-screen.yml is retired. Use benchmark-verified.yml instead."
+          echo "New flow: preflight -> benchmark-verified (2x on all candidates) -> snapshot-pr"
+          exit 1
