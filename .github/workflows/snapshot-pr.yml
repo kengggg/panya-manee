@@ -145,12 +145,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Refresh remote-tracking refs on self-hosted runners so force-with-lease
+          # does not fail against branches that were deleted after merge.
+          git fetch origin --prune
+
           # Create branch (reset if it exists from a prior failed run)
           git checkout -B "$BRANCH"
           git commit -m "Publish snapshot ${SID}"
 
-          # Push (force-with-lease in case branch exists from prior attempt)
-          git push -u origin "$BRANCH" --force-with-lease
+          # Push safely when a remote branch exists, or create it cleanly when it doesn't.
+          if git show-ref --verify --quiet "refs/remotes/origin/$BRANCH"; then
+            git push -u origin "$BRANCH" --force-with-lease
+          else
+            git push -u origin "$BRANCH"
+          fi
 
           # Build PR body
           PR_BODY="## Snapshot Publication
