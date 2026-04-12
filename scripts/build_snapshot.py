@@ -1036,7 +1036,9 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         shutil.copy2(verification_src, out_dir / "verification_report.json")
         print(f"  copied {out_dir / 'verification_report.json'}")
 
-    # Transparency: copy underlying per-run source files
+    # Transparency: copy underlying per-run source files.
+    # Intentionally includes excluded-model raw runs too, so the downloadable
+    # bundle preserves the full audited verified batch rather than only winners.
     raw_dir = out_dir / "raw"
     raw_dir.mkdir(exist_ok=True)
     copied = 0

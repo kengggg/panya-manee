@@ -1055,6 +1055,72 @@ class TestVerificationGate(unittest.TestCase):
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 
+    def test_mixed_publishable_and_excluded_models(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            batch_id = "ntp3-vr1-20260411"
+
+            def write_model(model_slug: str, model_id: str, answer1: str, answer2: str, accuracy1: float, accuracy2: float):
+                run1 = tmpdir / f"responses_{batch_id}-{model_slug}-r01.jsonl"
+                run2 = tmpdir / f"responses_{batch_id}-{model_slug}-r02.jsonl"
+                row1 = {
+                    "model_id": model_id,
+                    "run_id": f"{batch_id}-{model_slug}-r01",
+                    "exam_id": "nt_p3_th_2565",
+                    "year_buddhist": 2565,
+                    "subject": "thai",
+                    "question_id": 1,
+                    "eval_split": "text_only_core",
+                    "prompt_version": "v1_answer_only",
+                    "is_parseable": True,
+                    "parsed_answer": answer1,
+                }
+                row2 = {**row1, "run_id": f"{batch_id}-{model_slug}-r02", "parsed_answer": answer2}
+                self._write_jsonl(run1, [row1])
+                self._write_jsonl(run2, [row2])
+                return run1, run2, row1, row2, accuracy1, accuracy2
+
+            good = write_model("gemma4-e2b", "gemma4:e2b", "4", "4", 0.8, 0.8)
+            low_acc = write_model("bad-accuracy-1b", "bad-accuracy:1b", "3", "3", 0.2, 0.2)
+            nondet = write_model("nondet-2b", "nondet:2b", "1", "2", 0.8, 0.8)
+
+            summary = {
+                "batch_id": batch_id,
+                "models": [
+                    {"model_id": "gemma4:e2b", "runs": 2},
+                    {"model_id": "bad-accuracy:1b", "runs": 2},
+                    {"model_id": "nondet:2b", "runs": 2},
+                ],
+                "runs": [
+                    {"model_id": "gemma4:e2b", "run_id": good[2]["run_id"], "run_index": 1, "output_file": str(good[0]), "parse_rate": 1.0, "accuracy": good[4]},
+                    {"model_id": "gemma4:e2b", "run_id": good[3]["run_id"], "run_index": 2, "output_file": str(good[1]), "parse_rate": 1.0, "accuracy": good[5]},
+                    {"model_id": "bad-accuracy:1b", "run_id": low_acc[2]["run_id"], "run_index": 1, "output_file": str(low_acc[0]), "parse_rate": 1.0, "accuracy": low_acc[4]},
+                    {"model_id": "bad-accuracy:1b", "run_id": low_acc[3]["run_id"], "run_index": 2, "output_file": str(low_acc[1]), "parse_rate": 1.0, "accuracy": low_acc[5]},
+                    {"model_id": "nondet:2b", "run_id": nondet[2]["run_id"], "run_index": 1, "output_file": str(nondet[0]), "parse_rate": 1.0, "accuracy": nondet[4]},
+                    {"model_id": "nondet:2b", "run_id": nondet[3]["run_id"], "run_index": 2, "output_file": str(nondet[1]), "parse_rate": 1.0, "accuracy": nondet[5]},
+                ],
+            }
+            (tmpdir / f"repeat_summary_{batch_id}.json").write_text(json.dumps(summary), encoding="utf-8")
+
+            result = verify_publication_batch(
+                batch_id=batch_id,
+                responses_dir=tmpdir,
+                expected_models=["gemma4:e2b", "bad-accuracy:1b", "nondet:2b"],
+            )
+
+            self.assertEqual(result["status"], "pass")
+            self.assertEqual(result["publishable_count"], 1)
+            self.assertEqual(result["publishable_models"], ["gemma4:e2b"])
+
+            model_map = {m["model_id"]: m for m in result["models"]}
+            self.assertTrue(model_map["gemma4:e2b"]["publishable"])
+            self.assertFalse(model_map["bad-accuracy:1b"]["publishable"])
+            self.assertFalse(model_map["nondet:2b"]["publishable"])
+            self.assertIn("canonical accuracy 0.2000 <= 0.25", model_map["bad-accuracy:1b"]["exclusion_reasons"])
+            self.assertIn("1 divergent item(s)", model_map["nondet:2b"]["exclusion_reasons"])
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
 
 class TestVerifyPublishableBatch(unittest.TestCase):
     def test_missing_verification_report_rejected(self):
@@ -1121,7 +1187,7 @@ class TestPublishSnapshotCli(unittest.TestCase):
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 
-    def test_missing_screening_batch_id_rejected(self):
+    def test_invalid_non_posthoc_report_rejected(self):
         tmpdir = Path(tempfile.mkdtemp())
         try:
             report = {
@@ -1138,6 +1204,29 @@ class TestPublishSnapshotCli(unittest.TestCase):
             )
             with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
                 with self.assertRaisesRegex(RuntimeError, "no publishable models"):
+                    verify_publishable_batch("ntp3-vr1-20260411")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_ambiguous_legacy_shaped_report_rejected_with_clear_error(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            report = {
+                "status": "pass",
+                "protocol": "canonical_shadow_v1",
+                "all_deterministic": True,
+                "models": [{
+                    "model_id": "gemma4:e2b",
+                    "deterministic": True,
+                    "canonical_run_id": "ntp3-vr1-20260411-gemma4-e2b-r01",
+                    "shadow_run_id": "ntp3-vr1-20260411-gemma4-e2b-r02",
+                }],
+            }
+            (tmpdir / "verification_report_ntp3-vr1-20260411.json").write_text(
+                json.dumps(report), encoding="utf-8"
+            )
+            with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
+                with self.assertRaisesRegex(RuntimeError, "neither verified_posthoc_gate_v1 nor legacy screening-based"):
                     verify_publishable_batch("ntp3-vr1-20260411")
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)

@@ -97,7 +97,10 @@ def verify_publishable_batch(batch_id: str) -> dict:
         if not report.get("all_deterministic"):
             raise RuntimeError("Verification report indicates non-deterministic publication batch")
         if not report.get("screening_batch_id"):
-            raise RuntimeError("Verification report missing screening_batch_id; hobby/test batch is not publishable")
+            raise RuntimeError(
+                "Verification report is neither verified_posthoc_gate_v1 nor legacy screening-based; "
+                "missing publication_mode/publishable markers and screening_batch_id"
+            )
 
         for model in models:
             if not model.get("deterministic"):
