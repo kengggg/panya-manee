@@ -29,6 +29,11 @@ class ArtifactFetchError(RuntimeError):
     pass
 
 
+class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[override]
+        return None
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with open(path, "rb") as f:
@@ -37,12 +42,12 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def github_request(url: str, token: str) -> urllib.request.Request:
+def github_request(url: str, token: str, *, accept: str = "application/vnd.github+json") -> urllib.request.Request:
     return urllib.request.Request(
         url,
         headers={
             "Authorization": f"Bearer {token}",
-            "Accept": "application/vnd.github+json",
+            "Accept": accept,
             "X-GitHub-Api-Version": "2022-11-28",
             "User-Agent": "panya-manee-artifact-fetcher",
         },
@@ -57,8 +62,22 @@ def fetch_json(url: str, token: str) -> dict:
 
 def fetch_bytes(url: str, token: str) -> bytes:
     req = github_request(url, token)
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return resp.read()
+    opener = urllib.request.build_opener(NoRedirectHandler())
+    try:
+        with opener.open(req, timeout=120) as resp:
+            return resp.read()
+    except urllib.error.HTTPError as exc:
+        if exc.code not in (301, 302, 303, 307, 308):
+            raise
+        redirect_url = exc.headers.get("Location")
+        if not redirect_url:
+            raise
+        redirected_req = urllib.request.Request(
+            redirect_url,
+            headers={"User-Agent": "panya-manee-artifact-fetcher"},
+        )
+        with urllib.request.urlopen(redirected_req, timeout=120) as resp:
+            return resp.read()
 
 
 def find_artifact_id(repo: str, run_id: str, artifact_name: str, token: str) -> int:
