@@ -27,6 +27,13 @@
       "batch_id": "ntp3-vr1-20260411",
       "manifest_path": "dist/nt-p3-mcq-text-only-ntp3-vr1-20260411/manifest.json",
       "status": "published"
+    },
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr2-20260412-no-yi",
+      "published_at": "2026-04-12T19:53:08+07:00",
+      "batch_id": "ntp3-vr2-20260412-no-yi",
+      "manifest_path": "dist/nt-p3-mcq-text-only-ntp3-vr2-20260412-no-yi/manifest.json",
+      "status": "published"
     }
   ]
 }
