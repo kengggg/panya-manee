@@ -77,6 +77,68 @@ git commit -m "Publish snapshot nt-p3-mcq-text-only-mini-r10-20260409"
 # 4. Open a PR to main. After merge, GitHub Pages deploys automatically.
 ```
 
+### Benchmark publication pipeline
+
+```mermaid
+flowchart TD
+    A[Select candidate models] --> B[Benchmark Preflight<br/>benchmark-preflight.yml]
+    B --> B1[Check Ollama reachable]
+    B --> B2[Verify dataset plus inputs]
+    B --> B3[Record model digests]
+    B --> B4[Upload preflight artifact<br/>preflight-YYYYMMDD]
+
+    B --> C{Optional smoke?}
+    C -->|Yes| D[Smoke batch<br/>operational confidence only]
+    C -->|No| E[Verified batch]
+    D --> E
+
+    E[Benchmark Verified<br/>benchmark-verified.yml] --> E1[Run full benchmark<br/>2 runs per model]
+    E1 --> E2[Check batch completeness]
+    E2 --> E3[Fetch matching preflight artifact]
+    E3 --> E4[Verification gate<br/>canonical vs shadow]
+
+    E4 --> G1{Deterministic<br/>item by item match?}
+    G1 -->|No| X1[Exclude model]
+    G1 -->|Yes| G2{Parse rate >= 95%?}
+    G2 -->|No| X1
+    G2 -->|Yes| G3{Accuracy > 25%?}
+    G3 -->|No| X1
+    G3 -->|Yes| G4{Digest matches preflight<br/>when requested?}
+    G4 -->|No| X1
+    G4 -->|Yes| P[Publishable survivor]
+
+    X1 --> R[verification_report.json]
+    P --> R
+
+    R --> S[Stage verified artifact bundle]
+    S --> T[Upload verified artifact]
+
+    T --> U[Snapshot PR<br/>snapshot-pr.yml]
+    U --> U1[Fetch verified artifact bundle]
+    U1 --> U2[Build snapshot]
+    U2 --> U3[Validate snapshot]
+    U3 --> U4[Sync site/data/latest]
+    U4 --> U5[Update registry/snapshots.json]
+    U5 --> U6[Open PR]
+
+    U6 --> V[Merge PR]
+    V --> W[pages-deploy.yml]
+    W --> Z[Published dashboard]
+
+    N[Deprecated old flow:<br/>benchmark-screen.yml] -. stop sign only .-> E
+```
+
+Current production path:
+
+- `benchmark-preflight.yml`
+- optional smoke batch
+- `benchmark-verified.yml` on all candidates, 2x each
+- post-hoc survivor filter from `verification_report_{batch_id}.json`
+- `snapshot-pr.yml`
+- `pages-deploy.yml`
+
+`benchmark-screen.yml` is deprecated and intentionally not part of the live publication flow.
+
 ### Individual scripts
 
 | Script | Purpose |
