@@ -796,13 +796,20 @@ class TestVerifiedSingleRunBuild(unittest.TestCase):
 
         verification_report = {
             "batch_id": cls.batch_id,
-            "screening_batch_id": "ntp3-screen-r3-20260411",
+            "publication_mode": "verified_posthoc_gate_v1",
+            "preflight_record": "preflight_records/preflight_20260411.json",
             "protocol": "canonical_shadow_v1",
             "expected_runs_per_model": 2,
             "canonical_run_index": 1,
             "shadow_run_index": 2,
             "status": "pass",
             "all_deterministic": True,
+            "publishable_count": 1,
+            "publishable_models": [cls.model_id],
+            "thresholds": {
+                "parse_rate_gte": 0.95,
+                "accuracy_gt": 0.25,
+            },
             "models": [{
                 "model_id": cls.model_id,
                 "canonical_run_id": f"{cls.batch_id}-gemma4-e2b-r01",
@@ -812,6 +819,7 @@ class TestVerifiedSingleRunBuild(unittest.TestCase):
                 "divergent_count": 0,
                 "divergent_items": [],
                 "deterministic": True,
+                "publishable": True,
             }],
         }
         (cls.responses_dir / f"verification_report_{cls.batch_id}.json").write_text(
@@ -843,6 +851,127 @@ class TestVerifiedSingleRunBuild(unittest.TestCase):
         expected = aggregate_model(self.model_id, self.canonical_rows, load_model_meta(MODELS_CONFIG))
         self.assertEqual(row["latency_p50_ms"], expected["latency_p50_ms"])
         self.assertEqual(row["latency_p95_ms"], expected["latency_p95_ms"])
+
+
+class TestVerifiedSingleRunBuildExcludesRejectedModels(unittest.TestCase):
+    def test_snapshot_includes_only_publishable_models(self):
+        tmpdir = Path(tempfile.mkdtemp(prefix="verified_snapshot_filter_test_"))
+        try:
+            responses_dir = tmpdir / "responses"
+            responses_dir.mkdir(parents=True, exist_ok=True)
+            batch_id = "ntp3-vr1-filtered"
+
+            def write_rows(model_slug: str, model_id: str, answer: str):
+                rows = []
+                for qid in range(1, 3):
+                    rows.append({
+                        "model_id": model_id,
+                        "run_id": "",
+                        "exam_id": "nt_p3_th_2565",
+                        "year_buddhist": 2565,
+                        "subject": "thai",
+                        "question_id": qid,
+                        "eval_split": "text_only_core",
+                        "prompt_version": "v1_answer_only",
+                        "is_parseable": True,
+                        "parsed_answer": answer,
+                        "choice_count": 4,
+                        "correct_answer": answer,
+                        "is_correct": True,
+                        "latency_ms": 100 + qid,
+                        "raw_response": answer,
+                        "question": f"Question {qid}",
+                        "choices": ["1", "2", "3", "4"],
+                        "subject_label": "Thai",
+                        "skill_tag": ["reading_comprehension"],
+                        "curriculum_standard": "ท 1.1 ป.3/2",
+                    })
+                return rows
+
+            def write_run(model_slug: str, model_id: str, run_idx: int, rows: list[dict]):
+                path = responses_dir / f"responses_{batch_id}-{model_slug}-r0{run_idx}.jsonl"
+                run_id = f"{batch_id}-{model_slug}-r0{run_idx}"
+                with open(path, "w", encoding="utf-8") as f:
+                    for row in rows:
+                        payload = dict(row)
+                        payload["run_id"] = run_id
+                        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+                return path, run_id
+
+            good_rows = write_rows("gemma4-e2b", "gemma4:e2b", "4")
+            excluded_rows = write_rows("bad-model-1b", "bad-model:1b", "3")
+
+            good_r1, good_id1 = write_run("gemma4-e2b", "gemma4:e2b", 1, good_rows)
+            good_r2, good_id2 = write_run("gemma4-e2b", "gemma4:e2b", 2, good_rows)
+            bad_r1, bad_id1 = write_run("bad-model-1b", "bad-model:1b", 1, excluded_rows)
+            bad_r2, bad_id2 = write_run("bad-model-1b", "bad-model:1b", 2, excluded_rows)
+
+            repeat_summary = {
+                "batch_id": batch_id,
+                "models": [
+                    {"model_id": "gemma4:e2b", "runs": 2},
+                    {"model_id": "bad-model:1b", "runs": 2},
+                ],
+                "runs": [
+                    {"model_id": "gemma4:e2b", "run_id": good_id1, "run_index": 1, "output_file": str(good_r1), "parse_rate": 1.0, "accuracy": 1.0},
+                    {"model_id": "gemma4:e2b", "run_id": good_id2, "run_index": 2, "output_file": str(good_r2), "parse_rate": 1.0, "accuracy": 1.0},
+                    {"model_id": "bad-model:1b", "run_id": bad_id1, "run_index": 1, "output_file": str(bad_r1), "parse_rate": 1.0, "accuracy": 1.0},
+                    {"model_id": "bad-model:1b", "run_id": bad_id2, "run_index": 2, "output_file": str(bad_r2), "parse_rate": 1.0, "accuracy": 1.0},
+                ],
+            }
+            (responses_dir / f"repeat_summary_{batch_id}.json").write_text(
+                json.dumps(repeat_summary, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+
+            verification_report = {
+                "batch_id": batch_id,
+                "publication_mode": "verified_posthoc_gate_v1",
+                "protocol": "canonical_shadow_v1",
+                "status": "pass",
+                "all_deterministic": False,
+                "publishable_count": 1,
+                "publishable_models": ["gemma4:e2b"],
+                "models": [
+                    {
+                        "model_id": "gemma4:e2b",
+                        "canonical_run_id": good_id1,
+                        "shadow_run_id": good_id2,
+                        "deterministic": True,
+                        "publishable": True,
+                    },
+                    {
+                        "model_id": "bad-model:1b",
+                        "canonical_run_id": bad_id1,
+                        "shadow_run_id": bad_id2,
+                        "deterministic": True,
+                        "publishable": False,
+                    },
+                ],
+            }
+            (responses_dir / f"verification_report_{batch_id}.json").write_text(
+                json.dumps(verification_report, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+
+            out_dir = tmpdir / "out"
+            with mock.patch("scripts.build_snapshot.RESPONSES_DIR", responses_dir):
+                build_snapshot(batch_id, snapshot_id="verified-filtered", out_dir=out_dir)
+
+            leaderboard = read_json(out_dir / "leaderboard.json")
+            self.assertEqual([row["model_id"] for row in leaderboard["rows"]], ["gemma4:e2b"])
+
+            with open(out_dir / "results.jsonl", encoding="utf-8") as f:
+                models = {json.loads(line)["model_id"] for line in f if line.strip()}
+            self.assertEqual(models, {"gemma4:e2b"})
+
+            validator = SnapshotValidator(out_dir)
+            valid = validator.validate()
+            if not valid:
+                validator.report()
+            self.assertTrue(valid, f"Validator errors: {validator.errors}")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 @unittest.skipIf(SKIP_NO_DATA, SKIP_MSG)
@@ -886,15 +1015,18 @@ class TestVerifiedSingleRunErrors(unittest.TestCase):
 
             verification_report = {
                 "batch_id": batch_id,
-                "screening_batch_id": "ntp3-screen-r3-20260411",
+                "publication_mode": "verified_posthoc_gate_v1",
                 "protocol": "canonical_shadow_v1",
                 "status": "pass",
                 "all_deterministic": True,
+                "publishable_count": 1,
+                "publishable_models": [model_id],
                 "models": [{
                     "model_id": model_id,
                     "canonical_run_id": f"{batch_id}-gemma4-e2b-r99",
                     "shadow_run_id": f"{batch_id}-gemma4-e2b-r02",
                     "deterministic": True,
+                    "publishable": True,
                 }],
             }
             (responses_dir / f"verification_report_{batch_id}.json").write_text(

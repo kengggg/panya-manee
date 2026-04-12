@@ -33,18 +33,20 @@ uv run python main.py summarize                      # compare all models
 ## CI/CD pipeline (workflow_dispatch, ordered)
 
 1. **benchmark-preflight.yml** — manually dispatched on the self-hosted runner; verifies Ollama, datasets, and model availability, and writes `preflight_records/preflight_YYYYMMDD.json`
-2. **benchmark-screen.yml** — manually dispatched after preflight; runs the 3x screening batch, checks completeness, applies the screening gate, and prepares publication metadata
-3. **benchmark-run.yml** — manually dispatched for publication batches; runs the real benchmark batch and produces `repeat_summary` artifacts
-4. **snapshot-pr.yml** — manually dispatched after benchmark-run completes; consumes prior batch data, builds/validates the dashboard, syncs `site/data/latest`, updates `registry/snapshots.json`, and opens a PR
-5. **pages-deploy.yml** — triggered automatically when the snapshot PR merges to `main`; deploys the updated site to GitHub Pages
+2. **benchmark-verified.yml** — manually dispatched after preflight; runs the verified batch exactly 2x on all candidate models, checks completeness, and applies the canonical+shadow verification gate plus post-hoc publication thresholds
+3. **snapshot-pr.yml** — manually dispatched after benchmark-verified completes; consumes prior batch data, builds/validates the dashboard, syncs `site/data/latest`, updates `registry/snapshots.json`, and opens a PR
+4. **pages-deploy.yml** — triggered automatically when the snapshot PR merges to `main`; deploys the updated site to GitHub Pages
+5. **benchmark-run.yml** — retained for smoke/ad-hoc benchmark batches only; not part of the publication path
 
-Steps 1 through 4 are `workflow_dispatch` only and must be run in order. Step 5 is automatic.
+`benchmark-screen.yml` is deprecated and exits with an error if dispatched.
+
+Steps 1 through 3 are `workflow_dispatch` only and must be run in order. Step 4 is automatic.
 
 ## Ops policy
 
 - Samantha stays in the control plane: launch workflows, monitor turning points, and report status.
 - Long-running benchmark work belongs in GitHub Actions or a detached worker session, not the live chat lane.
-- Local foreground execution is for short bounded checks only, not preflight, screening, or publication runs.
+- Local foreground execution is for short bounded checks only, not preflight or verified publication runs.
 - GitHub job summaries and uploaded artifacts are the preferred inspection surface; do not rely solely on the self-hosted runner filesystem.
 
 ## Dependencies

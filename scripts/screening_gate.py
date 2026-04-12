@@ -32,6 +32,10 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
 OLLAMA_TAGS_URL = "http://localhost:11434/api/tags"
 
+# NOTE: verification_gate.py imports the digest helpers and thresholds below.
+# Keep those shared utilities stable until they are moved into a dedicated
+# common module.
+
 # Hard promotion thresholds
 MIN_PARSE_RATE = 0.95
 MIN_MEAN_ACCURACY = 0.25

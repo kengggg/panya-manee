@@ -780,16 +780,28 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     # Load all rows per model
     verification_report = load_verification_report(batch_id, RESPONSES_DIR)
     verified_models: dict[str, dict] = {}
+    restrict_to_verified_models = False
     if verification_report and verification_report.get("status") == "pass":
-        verified_models = {
-            model["model_id"]: model for model in verification_report.get("models", [])
-            if model.get("deterministic")
-        }
+        report_models = verification_report.get("models", [])
+        if any("publishable" in model for model in report_models):
+            verified_models = {
+                model["model_id"]: model for model in report_models
+                if model.get("publishable")
+            }
+        else:
+            verified_models = {
+                model["model_id"]: model for model in report_models
+                if model.get("deterministic")
+            }
+        restrict_to_verified_models = True
 
     model_all_rows = {}
     model_canonical_rows = {}
     model_public_rows = {}
     for model_id, files in model_files.items():
+        if restrict_to_verified_models and model_id not in verified_models:
+            continue
+
         all_rows = []
         for f in files:
             all_rows.extend(load_jsonl(f))
@@ -818,6 +830,11 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
             model_public_rows[model_id] = public_rows
         else:
             model_public_rows[model_id] = all_rows
+
+    if not model_public_rows:
+        raise RuntimeError(
+            f"Verification report for batch '{batch_id}' did not leave any publishable models"
+        )
 
     # Resolve compatibility values from actual data
     all_rows_flat = [r for rows in model_public_rows.values() for r in rows]
@@ -935,10 +952,15 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         manifest["publication"] = {
             "mode": "verified_single_run",
             "verification_protocol": verification_report.get("protocol"),
-            "screening_batch_id": verification_report.get("screening_batch_id"),
             "canonical_run_index": verification_report.get("canonical_run_index", 1),
             "shadow_run_index": verification_report.get("shadow_run_index", 2),
         }
+        if verification_report.get("screening_batch_id"):
+            manifest["publication"]["screening_batch_id"] = verification_report.get("screening_batch_id")
+        if verification_report.get("preflight_record"):
+            manifest["publication"]["preflight_record"] = verification_report.get("preflight_record")
+        if verification_report.get("thresholds"):
+            manifest["publication"]["thresholds"] = verification_report.get("thresholds")
         manifest["snapshot_notes"]["published_metrics_use_canonical_run_only"] = True
         manifest["snapshot_notes"]["shadow_run_kept_for_verification_only"] = True
         manifest["artifacts"]["verification_report"] = "verification_report.json"
@@ -1014,7 +1036,9 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         shutil.copy2(verification_src, out_dir / "verification_report.json")
         print(f"  copied {out_dir / 'verification_report.json'}")
 
-    # Transparency: copy underlying per-run source files
+    # Transparency: copy underlying per-run source files.
+    # Intentionally includes excluded-model raw runs too, so the downloadable
+    # bundle preserves the full audited verified batch rather than only winners.
     raw_dir = out_dir / "raw"
     raw_dir.mkdir(exist_ok=True)
     copied = 0
