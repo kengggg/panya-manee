@@ -1,5 +1,5 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260411",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
   "benchmark_scope": "mcq_text_only_v1",
   "examples": [
     {
@@ -30,7 +30,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1464,
+      "latency_ms": 1461,
       "selection_reason": "good_top_skill"
     },
     {
@@ -62,7 +62,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 1184,
+      "latency_ms": 1186,
       "selection_reason": "good_top_skill"
     },
     {
@@ -93,38 +93,38 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 639,
+      "latency_ms": 644,
       "selection_reason": "bad_weak_skill"
     },
     {
-      "example_id": "ex_qwen2_5_7b_math_25_bad_1",
+      "example_id": "ex_qwen2_5_7b_math_26_bad_1",
       "model_id": "qwen2.5:7b",
-      "exam_id": "nt_p3_math_2567",
-      "year_buddhist": 2567,
+      "exam_id": "nt_p3_math_2565",
+      "year_buddhist": 2565,
       "subject": "math",
-      "question_id": 25,
-      "question_no": 25,
+      "question_id": 26,
+      "question_no": 26,
       "skill_tag": [
-        "pictograph",
+        "table_reading",
         "data_interpretation"
       ],
-      "curriculum_standard": "ค 3.1 ป.3/1",
+      "curriculum_standard": "ค 3.1 ป.3/2",
       "is_correct": false,
       "correct_answer": "3",
-      "correct_answer_text": "มากกว่า 20 ผล",
-      "parsed_answer": "2",
-      "model_answer_text": "น้อยกว่า 2 ผล",
-      "stimulus_text": "แผนภูมิรูปภาพจำนวนมะม่วงพันธุ์ต่าง ๆ ที่พ่อเก็บได้ใน 1 วัน โดย 1 รูปแทน 10 ผล: แก้วขมิ้น 5 รูป, อกร่อง 4 รูป, น้ำดอกไม้ 3 รูป, เขียวเสวย 6 รูป",
-      "prompt_text": "จากข้อมูล จำนวนมะม่วงอกร่องรวมกับมะม่วงเขียวเสวย มากกว่าหรือน้อยกว่าจำนวนมะม่วงแก้วขมิ้นรวมกับมะม่วงน้ำดอกไม้ กี่ผล",
+      "correct_answer_text": "ข้าวหอมมะลิ",
+      "parsed_answer": "1",
+      "model_answer_text": "ข้าวกล้อง",
+      "stimulus_text": "ตารางข้าวสารที่ขาย: ข้าวกล้อง 500 ถุง ถุงละ 1 กิโลกรัม; ข้าวเสาไห้ 100 ถุง ถุงละ 5 กิโลกรัม; ข้าวหอมมะลิ 30 ถุง ถุงละ 15 กิโลกรัม; ข้าวขาวนาปี 20 ถุง ถุงละ 25 กิโลกรัม",
+      "prompt_text": "จากข้อมูล ร้านค้าขายข้าวสารชนิดใดที่มีน้ำหนักรวมต่างจากชนิดอื่น",
       "choices": {
-        "1": "มากกว่า 2 ผล",
-        "2": "น้อยกว่า 2 ผล",
-        "3": "มากกว่า 20 ผล",
-        "4": "น้อยกว่า 20 ผล"
+        "1": "ข้าวกล้อง",
+        "2": "ข้าวเสาไห้",
+        "3": "ข้าวหอมมะลิ",
+        "4": "ข้าวขาวนาปี"
       },
-      "raw_output_truncated": "2",
-      "raw_output_full": "2",
-      "latency_ms": 1056,
+      "raw_output_truncated": "1",
+      "raw_output_full": "1",
+      "latency_ms": 1060,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -155,7 +155,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 758,
+      "latency_ms": 753,
       "selection_reason": "good_top_skill"
     },
     {
@@ -186,7 +186,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 659,
+      "latency_ms": 683,
       "selection_reason": "good_top_skill"
     },
     {
@@ -217,14 +217,14 @@
       },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
-      "latency_ms": 576,
+      "latency_ms": 582,
       "selection_reason": "bad_weak_skill"
     },
     {
       "example_id": "ex_gemma4_e4b_math_10_bad_1",
       "model_id": "gemma4:e4b",
-      "exam_id": "nt_p3_math_2566",
-      "year_buddhist": 2566,
+      "exam_id": "nt_p3_math_2567",
+      "year_buddhist": 2567,
       "subject": "math",
       "question_id": 10,
       "question_no": 10,
@@ -233,21 +233,21 @@
       ],
       "curriculum_standard": "ค 1.2 ป.3/1",
       "is_correct": false,
-      "correct_answer": "4",
-      "correct_answer_text": "1,170",
+      "correct_answer": "2",
+      "correct_answer_text": "199",
       "parsed_answer": "3",
-      "model_answer_text": "1,125",
-      "stimulus_text": "แม่ให้เงินกระต่าย 405 บาท กระต่ายออมเงินเพิ่มขึ้นเท่ากันทุกวัน โดยมีเงินรวมในแต่ละวันดังนี้: วันที่ 1 = 450, วันที่ 2 = 495, วันที่ 3 = ..., วันที่ 4 = 585, วันที่ 5 = ...",
-      "prompt_text": "จากข้อมูล จำนวนเงินในวันที่ 3 และวันที่ 5 รวมกันได้กี่บาท",
+      "model_answer_text": "202",
+      "stimulus_text": "ชาวสวนเก็บมะเขือเทศและพริกตามแบบรูป: วันที่ 1-7 มะเขือเทศ = 153, 145, 137, ..., ..., 113, 105 กิโลกรัม; พริก = 58, 63, 68, ..., ..., 83, 88 กิโลกรัม",
+      "prompt_text": "จากข้อมูล ในวันที่ 5 ชาวสวนเก็บมะเขือเทศและพริกรวมกันได้กี่กิโลกรัม",
       "choices": {
-        "1": "630",
-        "2": "1,080",
-        "3": "1,125",
-        "4": "1,170"
+        "1": "151",
+        "2": "199",
+        "3": "202",
+        "4": "250"
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 584,
+      "latency_ms": 602,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -278,7 +278,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1579,
+      "latency_ms": 1577,
       "selection_reason": "good_top_skill"
     },
     {
@@ -309,7 +309,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1435,
+      "latency_ms": 1437,
       "selection_reason": "good_top_skill"
     },
     {
@@ -340,7 +340,7 @@
       },
       "raw_output_truncated": "2) หมายเลข (2)",
       "raw_output_full": "2) หมายเลข (2)",
-      "latency_ms": 1004,
+      "latency_ms": 1009,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -371,7 +371,7 @@
       },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
-      "latency_ms": 1141,
+      "latency_ms": 1144,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -402,7 +402,7 @@
       },
       "raw_output_truncated": "4) อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
       "raw_output_full": "4) อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
-      "latency_ms": 1453,
+      "latency_ms": 1456,
       "selection_reason": "good_top_skill"
     },
     {
@@ -434,7 +434,7 @@
       },
       "raw_output_truncated": "3) ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
       "raw_output_full": "3) ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
-      "latency_ms": 1576,
+      "latency_ms": 1578,
       "selection_reason": "good_top_skill"
     },
     {
@@ -465,7 +465,7 @@
       },
       "raw_output_truncated": "3) พบ รับประทาน",
       "raw_output_full": "3) พบ รับประทาน",
-      "latency_ms": 681,
+      "latency_ms": 690,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -496,7 +496,7 @@
       },
       "raw_output_truncated": "2) 3,200",
       "raw_output_full": "2) 3,200",
-      "latency_ms": 666,
+      "latency_ms": 667,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -527,7 +527,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 2349,
+      "latency_ms": 2352,
       "selection_reason": "good_top_skill"
     },
     {
@@ -558,7 +558,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1991,
+      "latency_ms": 1996,
       "selection_reason": "good_top_skill"
     },
     {
@@ -589,7 +589,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 1793,
+      "latency_ms": 1806,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -621,7 +621,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1982,
+      "latency_ms": 1983,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -652,7 +652,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 423,
+      "latency_ms": 434,
       "selection_reason": "good_top_skill"
     },
     {
@@ -683,7 +683,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 395,
+      "latency_ms": 389,
       "selection_reason": "good_top_skill"
     },
     {
@@ -714,7 +714,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 338,
+      "latency_ms": 354,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -745,7 +745,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 311,
+      "latency_ms": 312,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -776,7 +776,7 @@
       },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
-      "latency_ms": 382,
+      "latency_ms": 380,
       "selection_reason": "good_top_skill"
     },
     {
@@ -808,69 +808,70 @@
       },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
-      "latency_ms": 539,
+      "latency_ms": 518,
       "selection_reason": "good_top_skill"
     },
     {
-      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_13_bad_0",
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_7_bad_0",
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
       "exam_id": "nt_p3_th_2565",
       "year_buddhist": 2565,
       "subject": "thai",
-      "question_id": 13,
-      "question_no": 13,
+      "question_id": 7,
+      "question_no": 7,
       "skill_tag": [
-        "functional_writing",
-        "formal_language"
+        "moral_application",
+        "reading_literature"
       ],
-      "curriculum_standard": "ท 2.1 ป.3/4",
+      "curriculum_standard": "ท 1.1 ป.3/5",
       "is_correct": false,
-      "correct_answer": "4",
-      "correct_answer_text": "จึงขอลาหยุดเรียน เพื่อกักตัวและสังเกตอาการ หากไม่พบการติดเชื้อจะกลับมาเรียนตามปกติ",
-      "parsed_answer": "1",
-      "model_answer_text": "จึงขอลาหยุดเรียน จนกว่าอาการจะดีขึ้นแล้วกลับมาเรียนตามปกติ",
-      "stimulus_text": "ดวงสมรใกล้ชิดและสัมผัสกับแม่ซึ่งติดเชื้อไวรัสโคโรนา 2019 ดวงสมรจึงเขียนจดหมายลาครูเพื่อแจ้งให้ทราบถึงสาเหตุของการหยุดเรียน โดยมีเนื้อความในจดหมายว่า “เนื่องจากดิฉันมีความเสี่ยงต่อการติดเชื้อไวรัสโคโรนา 2019 ..................”",
-      "prompt_text": "ควรนำข้อความในข้อใดไปเติมลงในช่องว่างจึงจะถูกต้องและเหมาะสม",
+      "correct_answer": "2",
+      "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+      "parsed_answer": "3",
+      "model_answer_text": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+      "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+      "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
       "choices": {
-        "1": "จึงขอลาหยุดเรียน จนกว่าอาการจะดีขึ้นแล้วกลับมาเรียนตามปกติ",
-        "2": "จึงขอลาหยุดเรียน เป็นเวลา 3 วัน เมื่ออาการดีขึ้นแล้วจะมาเรียนตามปกติ",
-        "3": "จึงขอลาหยุดเรียน เพื่อสังเกตอาการของคุณแม่เมื่อดีขึ้นแล้วจะกลับมาเรียนตามปกติ",
-        "4": "จึงขอลาหยุดเรียน เพื่อกักตัวและสังเกตอาการ หากไม่พบการติดเชื้อจะกลับมาเรียนตามปกติ"
+        "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+        "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+        "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
       },
-      "raw_output_truncated": "1",
-      "raw_output_full": "1",
-      "latency_ms": 661,
+      "raw_output_truncated": "3",
+      "raw_output_full": "3",
+      "latency_ms": 657,
       "selection_reason": "bad_weak_skill"
     },
     {
-      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_8_bad_1",
+      "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_9_bad_1",
       "model_id": "scb10x/typhoon2.1-gemma3-4b",
       "exam_id": "nt_p3_math_2567",
       "year_buddhist": 2567,
       "subject": "math",
-      "question_id": 8,
-      "question_no": 8,
+      "question_id": 9,
+      "question_no": 9,
       "skill_tag": [
         "fraction_addition",
-        "fraction_subtraction"
+        "fraction_subtraction",
+        "comparison"
       ],
       "curriculum_standard": "ค 1.1 ป.3/11",
       "is_correct": false,
-      "correct_answer": "4",
-      "correct_answer_text": "13/20",
+      "correct_answer": "2",
+      "correct_answer_text": "แบ่งให้หลาน",
       "parsed_answer": "3",
-      "model_answer_text": "8/20",
-      "stimulus_text": "แม่ค้าทำขนมใส่ถาดที่มีขนาดเดียวกัน ในแต่ละถาดแบ่งขนมเป็น 20 ชิ้นเท่า ๆ กัน: วุ้นมะพร้าวขายไป 12 ชิ้น และขนมชั้นขายไป 15 ชิ้น",
-      "prompt_text": "จากข้อมูล แม่ค้าเหลือขนมทั้งสองชนิดรวมกันคิดเป็นเศษส่วนเท่าใดของถาด",
+      "model_answer_text": "แบ่งไปทำบุญ",
+      "stimulus_text": "คุณยายทำขนมหม้อแกง 1 ถาด แบ่งไปทำบุญ 5/20 ถาด ให้เพื่อนบ้านมากกว่าทำบุญ 1/20 ถาด ให้หลานน้อยกว่าให้เพื่อนบ้าน 2/20 ถาด และที่เหลือนำไปขาย",
+      "prompt_text": "จากข้อมูล การแบ่งขนมในข้อใดที่ได้ขนมหม้อแกงน้อยที่สุด",
       "choices": {
-        "1": "3/20",
-        "2": "5/20",
-        "3": "8/20",
-        "4": "13/20"
+        "1": "นำไปขาย",
+        "2": "แบ่งให้หลาน",
+        "3": "แบ่งไปทำบุญ",
+        "4": "แบ่งให้เพื่อนบ้าน"
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 466,
+      "latency_ms": 468,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -901,7 +902,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 1643,
+      "latency_ms": 1576,
       "selection_reason": "good_top_skill"
     },
     {
@@ -933,7 +934,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 1004,
+      "latency_ms": 997,
       "selection_reason": "good_top_skill"
     },
     {
@@ -964,7 +965,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 844,
+      "latency_ms": 842,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -995,7 +996,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 844,
+      "latency_ms": 841,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1026,7 +1027,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 1603,
+      "latency_ms": 1555,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1058,7 +1059,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 986,
+      "latency_ms": 988,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1089,7 +1090,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 4427,
+      "latency_ms": 4804,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1120,7 +1121,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 827,
+      "latency_ms": 829,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1151,7 +1152,7 @@
       },
       "raw_output_truncated": "4) ขุ่นเคืองใจ",
       "raw_output_full": "4) ขุ่นเคืองใจ",
-      "latency_ms": 2815,
+      "latency_ms": 2776,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1182,7 +1183,7 @@
       },
       "raw_output_truncated": "3) มากกว่าสองสิบผล",
       "raw_output_full": "3) มากกว่าสองสิบผล",
-      "latency_ms": 790,
+      "latency_ms": 777,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1213,7 +1214,7 @@
       },
       "raw_output_truncated": "1) โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
       "raw_output_full": "1) โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
-      "latency_ms": 1517,
+      "latency_ms": 1491,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1243,7 +1244,7 @@
       },
       "raw_output_truncated": "1,175",
       "raw_output_full": "1,175",
-      "latency_ms": 489,
+      "latency_ms": 483,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1274,7 +1275,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1797,
+      "latency_ms": 1909,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1304,7 +1305,7 @@
       },
       "raw_output_truncated": "2) 199",
       "raw_output_full": "2) 199",
-      "latency_ms": 1676,
+      "latency_ms": 1715,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1335,7 +1336,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 3261,
+      "latency_ms": 3510,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1366,7 +1367,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 1450,
+      "latency_ms": 1491,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1397,7 +1398,7 @@
       },
       "raw_output_truncated": "1 (วินัยชอบเล่นกีฬาไทยทุกชนิด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่มีผู้หลัก (คุณพ่อ) และเกี่ยวข้องกับกิจกรรมที่คุณพ่อต้องการทำ (เที่ยว) ซึ่งไม่เป็นประโยคที่แสดงถึงผู้",
       "raw_output_full": "1 (วินัยชอบเล่นกีฬาไทยทุกชนิด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่มีผู้หลัก (คุณพ่อ) และเกี่ยวข้องกับกิจกรรมที่คุณพ่อต้องการทำ (เที่ยว) ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n2 (วิภามักทำอะไรในวันหยุด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิภา) และเกี่ยวข้องกับการทำอะไรในช่วงเวลาวันหยุด ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n3 (วิทิตไปโรงเรียนกับใคร) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิทิต) และเกี่ยวข้องกับการไปโรงเรียนกับใคร ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n4 (วิชัยร้องไห้ทำไม) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิชัย) และเกี่ยวข้องกับการร้องไห้ทำไม ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\nข้อที่ถูกต้องคือ 1) วินัยชอบเล่นกีฬาไทยทุกชนิด (1)",
-      "latency_ms": 41282,
+      "latency_ms": 41577,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1428,7 +1429,7 @@
       },
       "raw_output_truncated": "3) 14.55 น. (1 ชั่วโมง 30 นาที + 2 ชั่วโมง 5 นาที + 1 ชั่วโมง 50 นาที = 4 ชั่วโมง 35 นาที, เพิ่มเวลาเริ่มงาน 09.30 น. ได้ 14.55 น.)",
       "raw_output_full": "3) 14.55 น. (1 ชั่วโมง 30 นาที + 2 ชั่วโมง 5 นาที + 1 ชั่วโมง 50 นาที = 4 ชั่วโมง 35 นาที, เพิ่มเวลาเริ่มงาน 09.30 น. ได้ 14.55 น.)",
-      "latency_ms": 6980,
+      "latency_ms": 7010,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1459,7 +1460,7 @@
       },
       "raw_output_truncated": "2) จอมขี่จักรยาน\n\n(1) โจไปโรงเรียน - โจ (subject) + ไป (verb) + โรงเรียน (object)\n(2) จอมขี่จักรยาน - จอ (subject) + ม (auxiliary verb) + ขี่ (verb) + จักรยาน (object)\n(3) จอยถือกระเป๋าใหม่ - จอ (subj",
       "raw_output_full": "2) จอมขี่จักรยาน\n\n(1) โจไปโรงเรียน - โจ (subject) + ไป (verb) + โรงเรียน (object)\n(2) จอมขี่จักรยาน - จอ (subject) + ม (auxiliary verb) + ขี่ (verb) + จักรยาน (object)\n(3) จอยถือกระเป๋าใหม่ - จอ (subject) + ย (auxiliary verb) + ถือ (verb) + กระเป๋า (object)\n(4) เพื่อนของจุ๋มซื้อข้าวผัด - เพื่อน (subject) + ของ (possessive pronoun) + จุ๋ม (noun) + ซื้อ (verb) + ข้าว (object) + ผัด (adjective)\n\nThe structure of the sentence \"จอมขี่จักรยาน\" is similar to the given sentence pattern, where the subject is followed by an auxiliary verb, a verb, and an object.",
-      "latency_ms": 15029,
+      "latency_ms": 15081,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1491,7 +1492,7 @@
       },
       "raw_output_truncated": "1) โซน A น้อยกว่า โซน B 10 ร้าน (ในโซน A มี 800/500 = 1.6 ร้านค้า และในโซน B มี 600/4 = 150 ร้านค้า ซึ่ง 150 - 1.6 = 148.4 > 10)",
       "raw_output_full": "1) โซน A น้อยกว่า โซน B 10 ร้าน (ในโซน A มี 800/500 = 1.6 ร้านค้า และในโซน B มี 600/4 = 150 ร้านค้า ซึ่ง 150 - 1.6 = 148.4 > 10)",
-      "latency_ms": 6918,
+      "latency_ms": 6929,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1522,7 +1523,7 @@
       },
       "raw_output_truncated": "1",
       "raw_output_full": "1",
-      "latency_ms": 2794,
+      "latency_ms": 2835,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1553,7 +1554,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 2306,
+      "latency_ms": 2318,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1584,7 +1585,7 @@
       },
       "raw_output_truncated": "1\n\nExplanation: The question asks for an action that is inappropriate according to the information provided about air pollutants. Option 1, \"a student asking their father to stop smoking,\" aligns with",
       "raw_output_full": "1\n\nExplanation: The question asks for an action that is inappropriate according to the information provided about air pollutants. Option 1, \"a student asking their father to stop smoking,\" aligns with this context as smoking releases harmful pollutants into the air. The other options (2, 3, and 4) involve actions related to preventing forest fires, managing industrial emissions, or transportation, which are not directly inappropriate based on the given information about air pollution sources.",
-      "latency_ms": 8378,
+      "latency_ms": 8426,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1616,7 +1617,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 2126,
+      "latency_ms": 2123,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1647,7 +1648,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1741,
+      "latency_ms": 1736,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1678,7 +1679,7 @@
       },
       "raw_output_truncated": "4",
       "raw_output_full": "4",
-      "latency_ms": 1884,
+      "latency_ms": 1883,
       "selection_reason": "good_top_skill"
     },
     {
@@ -1709,7 +1710,7 @@
       },
       "raw_output_truncated": "2",
       "raw_output_full": "2",
-      "latency_ms": 2160,
+      "latency_ms": 2154,
       "selection_reason": "bad_weak_skill"
     },
     {
@@ -1739,7 +1740,7 @@
       },
       "raw_output_truncated": "3",
       "raw_output_full": "3",
-      "latency_ms": 1048,
+      "latency_ms": 1054,
       "selection_reason": "bad_weak_skill"
     }
   ]

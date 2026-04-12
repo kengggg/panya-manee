@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260411",
-  "published_at": "2026-04-11T18:44:52+07:00",
+  "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+  "published_at": "2026-04-12T17:37:13+07:00",
   "benchmark_name": "NT P3 Local LLM Benchmark",
   "benchmark_label": "NT P3 MCQ Text-Only",
   "benchmark_scope": "mcq_text_only_v1",
@@ -57,8 +57,12 @@
   "publication": {
     "mode": "verified_single_run",
     "verification_protocol": "canonical_shadow_v1",
-    "screening_batch_id": "ntp3-screen-r3-20260411",
     "canonical_run_index": 1,
-    "shadow_run_index": 2
+    "shadow_run_index": 2,
+    "preflight_record": "/Users/openclaw/.openclaw/workspace/tmp/preflight-verify-fetched.json",
+    "thresholds": {
+      "parse_rate_gte": 0.95,
+      "accuracy_gt": 0.25
+    }
   }
 }
