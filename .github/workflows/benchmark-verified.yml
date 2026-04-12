@@ -182,12 +182,12 @@ jobs:
             REPORT="benchmark_responses/verification_report_${BATCH_ID}.json"
             if [ -f "$REPORT" ]; then
               echo "### Verification Summary"
-              REPORT="$REPORT" python3 -c 'import json, os; report = json.load(open(os.environ["REPORT"], encoding="utf-8")); print(f"- Status: **{report.get(\"status\", \"unknown\")}**"); print(f"- Publishable models: **{report.get(\"publishable_count\", 0)}**"); print(f"- All deterministic: **{report.get(\"all_deterministic\", False)}**"); [print(f"  - `{model[\"model_id\"]}`: {\"publish\" if model.get(\"publishable\") else \"exclude\"}") for model in report.get("models", [])]'
+              REPORT="$REPORT" python3 scripts/ci/render_verification_summary.py
               echo ""
               echo "### Next Step"
-              echo '\`\`\`bash'
+              echo '```bash'
               echo "gh workflow run snapshot-pr.yml -f batch_id=\"${BATCH_ID}\" -f source_run_id=\"${GITHUB_RUN_ID}\""
-              echo '\`\`\`'
+              echo '```'
             else
               echo "*(Verification report not generated yet)*"
             fi
