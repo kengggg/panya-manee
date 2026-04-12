@@ -36,6 +36,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: panya-manee-benchmark
@@ -112,6 +113,18 @@ jobs:
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
             --runs-per-model "2"
+
+      - name: Ensure preflight record is available
+        if: inputs.dry_run == false && inputs.preflight_date != ''
+        env:
+          REPO: ${{ github.repository }}
+          PREFLIGHT_DATE: ${{ inputs.preflight_date }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          uv run python scripts/ci/fetch_preflight_artifact.py \
+            --repo "$REPO" \
+            --preflight-date "$PREFLIGHT_DATE" \
+            --output "preflight_records/preflight_${PREFLIGHT_DATE}.json"
 
       - name: Apply canonical plus shadow verification gate
         if: inputs.dry_run == false

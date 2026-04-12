@@ -56,6 +56,11 @@ def load_jsonl(path: Path) -> list[dict]:
 def load_preflight_digests(preflight_path: Path | None) -> dict[str, str]:
     if preflight_path is None:
         return {}
+    if not preflight_path.exists():
+        raise FileNotFoundError(
+            f"preflight record not found: {preflight_path}. "
+            "Fetch the matching preflight artifact or omit --preflight to skip digest verification."
+        )
     with open(preflight_path, encoding="utf-8") as f:
         preflight = json.load(f)
     digests: dict[str, str] = {}
