@@ -75,6 +75,7 @@ jobs:
           REPO: ${{ github.repository }}
           RUN_ID: ${{ inputs.source_run_id }}
           BATCH_ID: ${{ inputs.batch_id }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           uv run python scripts/ci/fetch_batch_artifact.py \
             --repo "$REPO" \
