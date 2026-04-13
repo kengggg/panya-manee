@@ -15,6 +15,12 @@
   --bad-bg: #fef2f2;
   --caveat-bg: #fffbeb;
   --caveat-border: #f59e0b;
+  --tier-strong: #d1fae5;
+  --tier-good: #ecfdf5;
+  --tier-ok: #fffbeb;
+  --tier-weak: #fef2f2;
+  --zebra: #fcfcfd;
+  --row-hover: #f1f5f9;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, monospace;
 }
@@ -165,9 +171,53 @@ tr:last-child td {
   border-bottom: none;
 }
 
-tr:hover td {
-  background: #f8f9fb;
+tbody tr:nth-child(even) td {
+  background: var(--zebra);
 }
+
+tr:hover td {
+  background: var(--row-hover);
+}
+
+/* Sortable headers */
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+th.sortable:hover {
+  color: var(--text);
+  background: #f1f3f5;
+}
+
+th.sort-active {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.sort-ind {
+  display: inline-block;
+  min-width: 0.9em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Medal emoji on top-3 rank cells */
+td.rank-top3 { font-weight: 700; }
+
+.rank-medal {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 15px;
+  line-height: 1;
+  vertical-align: -1px;
+}
+
+/* Score-tier cell shading */
+td.tier-strong { background: var(--tier-strong); }
+td.tier-good   { background: var(--tier-good); }
+td.tier-ok     { background: var(--tier-ok); }
+td.tier-weak   { background: var(--tier-weak); }
 
 td.model-link a {
   color: var(--accent);
@@ -191,6 +241,12 @@ td.model-link a:hover {
   margin-right: 4px;
   white-space: nowrap;
 }
+
+.badge.badge-gold   { background: #fef3c7; color: #92400e; }
+.badge.badge-blue   { background: #dbeafe; color: #1d4ed8; }
+.badge.badge-violet { background: #ede9fe; color: #5b21b6; }
+.badge.badge-green  { background: #d1fae5; color: #065f46; }
+.badge.badge-teal   { background: #ccfbf1; color: #115e59; }
 
 /* Model detail page */
 .back-link {

@@ -2,6 +2,33 @@
 (async function () {
   const DATA_ROOT = 'data/latest';
   let allRows = [];
+  let currentFilteredRows = [];
+  let bounds = {};
+  let sortState = { key: null, dir: null };
+
+  const COLUMNS = [
+    { key: 'rank',       field: 'rank',                        type: 'num',    defaultDir: 'asc'  },
+    { key: 'model',      field: 'model_id',                    type: 'string', defaultDir: 'asc'  },
+    { key: 'bqs',        field: 'balanced_quality_score',      type: 'num',    defaultDir: 'desc' },
+    { key: 'thai',       field: 'thai_score_rate',             type: 'num',    defaultDir: 'desc' },
+    { key: 'math',       field: 'math_score_rate',             type: 'num',    defaultDir: 'desc' },
+    { key: 'overall',    field: 'overall_score_rate',          type: 'num',    defaultDir: 'desc' },
+    { key: 'parseable',  field: 'parseable_rate',              type: 'num',    defaultDir: 'desc' },
+    { key: 'compliance', field: 'answer_only_compliance_rate', type: 'num',    defaultDir: 'desc' },
+    { key: 'p50',        field: 'latency_p50_ms',              type: 'num',    defaultDir: 'asc'  },
+    { key: 'p95',        field: 'latency_p95_ms',              type: 'num',    defaultDir: 'asc'  },
+    { key: 'qmin',       field: 'questions_per_min',           type: 'num',    defaultDir: 'desc' },
+    { key: 'cmin',       field: 'correct_per_min',             type: 'num',    defaultDir: 'desc' },
+    { key: 'n',          field: 'item_count',                  type: 'num',    defaultDir: 'desc' },
+  ];
+
+  const BADGE_CLASS = {
+    'Best Quality':   'badge-gold',
+    'Best Thai':      'badge-blue',
+    'Best Math':      'badge-violet',
+    'Fastest':        'badge-green',
+    'Most Parseable': 'badge-teal',
+  };
 
   async function loadJSON(filename) {
     const resp = await fetch(`${DATA_ROOT}/${filename}`);
@@ -18,8 +45,11 @@
     renderMeta(manifest, leaderboard);
     renderMethodology(manifest, leaderboard);
     allRows = leaderboard.rows;
+    bounds = computeBounds(allRows);
+    currentFilteredRows = allRows;
     initModelFilter(allRows);
-    renderLeaderboard(allRows);
+    initSorting();
+    renderLeaderboard(currentFilteredRows);
   } catch (err) {
     document.getElementById('leaderboard-body').innerHTML =
       `<tr><td colspan="14" style="text-align:center;padding:40px;color:#991b1b;">
@@ -74,8 +104,8 @@
 
     select.addEventListener('change', () => {
       const selected = select.value;
-      const filtered = selected ? allRows.filter(row => row.model_id === selected) : allRows;
-      renderLeaderboard(filtered);
+      currentFilteredRows = selected ? allRows.filter(row => row.model_id === selected) : allRows;
+      renderLeaderboard(currentFilteredRows);
     });
   }
 
@@ -117,26 +147,141 @@
     `;
   }
 
+  function computeBounds(rows) {
+    const b = {};
+    for (const field of ['questions_per_min', 'correct_per_min']) {
+      const vals = rows.map(r => r[field])
+        .filter(v => typeof v === 'number')
+        .sort((x, y) => x - y);
+      if (!vals.length) {
+        b[field] = { p25: 0, p50: 0, p75: 0 };
+        continue;
+      }
+      const pick = (p) => vals[Math.min(vals.length - 1, Math.floor(p * vals.length))];
+      b[field] = { p25: pick(0.25), p50: pick(0.5), p75: pick(0.75) };
+    }
+    return b;
+  }
+
+  function tierClass(field, value) {
+    if (value == null || typeof value !== 'number' || Number.isNaN(value)) return '';
+    if (field === 'latency_p50_ms' || field === 'latency_p95_ms') {
+      if (value <= 600) return 'tier-strong';
+      if (value <= 1200) return 'tier-good';
+      if (value <= 2500) return 'tier-ok';
+      return 'tier-weak';
+    }
+    if (field === 'questions_per_min' || field === 'correct_per_min') {
+      const b = bounds[field] || { p25: 0, p50: 0, p75: 0 };
+      if (value >= b.p75) return 'tier-strong';
+      if (value >= b.p50) return 'tier-good';
+      if (value >= b.p25) return 'tier-ok';
+      return 'tier-weak';
+    }
+    // rates (0-1)
+    if (value >= 0.70) return 'tier-strong';
+    if (value >= 0.50) return 'tier-good';
+    if (value >= 0.30) return 'tier-ok';
+    return 'tier-weak';
+  }
+
+  function rankDisplay(rank) {
+    if (rank === 1) return { medal: '\u{1F947}', cls: 'rank-top3' }; // gold
+    if (rank === 2) return { medal: '\u{1F948}', cls: 'rank-top3' }; // silver
+    if (rank === 3) return { medal: '\u{1F949}', cls: 'rank-top3' }; // bronze
+    return { medal: '', cls: '' };
+  }
+
+  function sortRows(rows) {
+    if (!sortState.key) return rows;
+    const col = COLUMNS.find(c => c.key === sortState.key);
+    if (!col) return rows;
+    const mult = sortState.dir === 'asc' ? 1 : -1;
+    return [...rows].sort((a, b) => {
+      const av = a[col.field];
+      const bv = b[col.field];
+      if (col.type === 'string') {
+        return mult * String(av ?? '').localeCompare(String(bv ?? ''));
+      }
+      const an = typeof av === 'number' ? av : 0;
+      const bn = typeof bv === 'number' ? bv : 0;
+      return mult * (an - bn);
+    });
+  }
+
+  function onHeaderClick(key) {
+    const col = COLUMNS.find(c => c.key === key);
+    if (!col) return;
+
+    if (sortState.key === key) {
+      if (sortState.dir === col.defaultDir) {
+        sortState = { key, dir: col.defaultDir === 'asc' ? 'desc' : 'asc' };
+      } else {
+        sortState = { key: null, dir: null };
+      }
+    } else {
+      sortState = { key, dir: col.defaultDir };
+    }
+    renderLeaderboard(currentFilteredRows);
+    updateSortIndicators();
+  }
+
+  function updateSortIndicators() {
+    document.querySelectorAll('th.sortable').forEach(th => {
+      const key = th.dataset.sortKey;
+      const active = sortState.key === key;
+      th.classList.toggle('sort-active', active);
+      const ind = th.querySelector('.sort-ind');
+      if (!ind) return;
+      if (active) {
+        ind.textContent = sortState.dir === 'asc' ? ' \u2191' : ' \u2193';
+      } else {
+        ind.textContent = '';
+      }
+    });
+  }
+
+  function initSorting() {
+    document.querySelectorAll('th.sortable').forEach(th => {
+      th.addEventListener('click', () => onHeaderClick(th.dataset.sortKey));
+    });
+  }
+
   function renderLeaderboard(rows) {
+    const sorted = sortRows(rows);
     const tbody = document.getElementById('leaderboard-body');
-    tbody.innerHTML = rows.map(row => {
-      const badges = (row.badges || []).map(b =>
-        `<span class="badge">${b}</span>`
-      ).join('');
+    tbody.innerHTML = sorted.map(row => {
+      const badges = (row.badges || []).map(b => {
+        const cls = BADGE_CLASS[b] || '';
+        return `<span class="badge ${cls}">${b}</span>`;
+      }).join('');
+
+      const rd = rankDisplay(row.rank);
+      const medal = rd.medal ? `<span class="rank-medal">${rd.medal}</span>` : '';
+      const cBqs = tierClass('balanced_quality_score', row.balanced_quality_score);
+      const cThai = tierClass('thai_score_rate', row.thai_score_rate);
+      const cMath = tierClass('math_score_rate', row.math_score_rate);
+      const cOverall = tierClass('overall_score_rate', row.overall_score_rate);
+      const cParse = tierClass('parseable_rate', row.parseable_rate);
+      const cComp = tierClass('answer_only_compliance_rate', row.answer_only_compliance_rate);
+      const cP50 = tierClass('latency_p50_ms', row.latency_p50_ms);
+      const cP95 = tierClass('latency_p95_ms', row.latency_p95_ms);
+      const cQmin = tierClass('questions_per_min', row.questions_per_min);
+      const cCmin = tierClass('correct_per_min', row.correct_per_min);
 
       return `<tr>
-        <td class="num">${row.rank}</td>
+        <td class="num ${rd.cls}">${medal}${row.rank}</td>
         <td class="model-link"><a href="model.html?model=${encodeURIComponent(row.model_id)}">${row.model_id}</a></td>
-        <td class="num"><strong>${fmtRate(row.balanced_quality_score)}</strong></td>
-        <td class="num">${fmtRate(row.thai_score_rate)}</td>
-        <td class="num">${fmtRate(row.math_score_rate)}</td>
-        <td class="num">${fmtRate(row.overall_score_rate)}</td>
-        <td class="num">${fmtRate(row.parseable_rate)}</td>
-        <td class="num">${fmtRate(row.answer_only_compliance_rate)}</td>
-        <td class="num">${fmtNum(row.latency_p50_ms)}</td>
-        <td class="num">${fmtNum(row.latency_p95_ms)}</td>
-        <td class="num">${row.questions_per_min}</td>
-        <td class="num">${row.correct_per_min}</td>
+        <td class="num ${cBqs}"><strong>${fmtRate(row.balanced_quality_score)}</strong></td>
+        <td class="num ${cThai}">${fmtRate(row.thai_score_rate)}</td>
+        <td class="num ${cMath}">${fmtRate(row.math_score_rate)}</td>
+        <td class="num ${cOverall}">${fmtRate(row.overall_score_rate)}</td>
+        <td class="num ${cParse}">${fmtRate(row.parseable_rate)}</td>
+        <td class="num ${cComp}">${fmtRate(row.answer_only_compliance_rate)}</td>
+        <td class="num ${cP50}">${fmtNum(row.latency_p50_ms)}</td>
+        <td class="num ${cP95}">${fmtNum(row.latency_p95_ms)}</td>
+        <td class="num ${cQmin}">${row.questions_per_min}</td>
+        <td class="num ${cCmin}">${row.correct_per_min}</td>
         <td class="num">${row.item_count}</td>
         <td>${badges || '\u2014'}</td>
       </tr>`;
