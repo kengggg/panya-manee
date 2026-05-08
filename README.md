@@ -156,6 +156,23 @@ The `.github/workflows/pages-deploy.yml` workflow deploys `site/` to GitHub Page
 1. In repo Settings → Pages → Source, select **GitHub Actions**
 2. Ensure `site/data/latest/` contains snapshot data (committed via publish flow above)
 
+
+## Development checks
+
+```bash
+uv sync --dev
+uv run pytest -q
+uv run python scripts/verify_site.py
+```
+
+For a no-network/no-Ollama smoke run of the benchmark path:
+
+```bash
+uv run python main.py run --model qwen3:0.6b --subjects thai --run-id restore-smoke --dry-run
+```
+
+Restored OpenClaw workspace notes live in `docs/RESTORED_OPENCLAW_20260508.md`. Dashboard planning/reference docs from the earlier workspace are under `docs/dashboard/`.
+
 ## License
 
 This project is licensed under the Apache License, Version 2.0. See `LICENSE`.
