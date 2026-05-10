@@ -17,7 +17,7 @@ The verified publication batch_id is derived deterministically:
 
 Usage:
   python scripts/prepare_publication_batch.py --screening-batch-id ntp3-screen-r3-20260411
-  python scripts/prepare_publication_batch.py --screening-batch-id ntp3-screen-r3-20260411 --pub-runs 2 --env-out pub.env
+  python scripts/prepare_publication_batch.py --screening-batch-id ntp3-screen-r3-20260411 --pub-runs 1 --env-out pub.env
   python scripts/prepare_publication_batch.py --screening-json screening_decision.json --pub-batch-id ntp3-vr1-20260412
 """
 from __future__ import annotations
@@ -36,20 +36,20 @@ from screening_gate import apply_screening_gate
 from verify_batch_inputs import load_compatibility
 
 DEFAULT_RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
-DEFAULT_PUB_RUNS = 2
-DEFAULT_VERIFICATION_PROTOCOL = "canonical_shadow_v1"
+DEFAULT_PUB_RUNS = 1
+DEFAULT_VERIFICATION_PROTOCOL = "single_run_publication_v1"
 
 
 def derive_pub_batch_id(screening_batch_id: str, pub_runs: int) -> str:
     """Derive publication batch_id from screening batch_id.
 
-    ntp3-screen-r3-20260411 -> ntp3-vr1-20260411  (for the canonical+shadow path)
+    ntp3-screen-r3-20260510 -> ntp3-pub-r1-20260510  (restart-baseline path)
     Falls back to ntp3-pub-r{N}-{screening_batch_id} if pattern doesn't match.
     """
     m = re.match(r"^(ntp3)-screen-r\d+-([\d]+)$", screening_batch_id)
     if m:
         if pub_runs == DEFAULT_PUB_RUNS:
-            return f"{m.group(1)}-vr1-{m.group(2)}"
+            return f"{m.group(1)}-pub-r1-{m.group(2)}"
         return f"{m.group(1)}-pub-r{pub_runs}-{m.group(2)}"
     # Fallback: append to screening batch_id
     return f"ntp3-pub-r{pub_runs}-{screening_batch_id}"
@@ -119,7 +119,7 @@ def prepare_publication_batch(
         "total_expected_runs": len(promoted) * pub_runs,
         "verification_protocol": DEFAULT_VERIFICATION_PROTOCOL,
         "canonical_run_index": 1,
-        "shadow_run_index": 2,
+        "shadow_run_index": None,
         "contract": contract,
         "status": status,
     }
@@ -142,6 +142,7 @@ def prepare_publication_batch(
 
 def write_env_file(result: dict, path: Path) -> None:
     """Write shell-sourceable env file for workflow dispatch."""
+    shadow_run_index = "" if result.get("shadow_run_index") is None else str(result["shadow_run_index"])
     lines = [
         f'PUB_BATCH_ID="{result["pub_batch_id"]}"',
         f'PROMOTED_MODELS="{result["promoted_csv"]}"',
@@ -149,7 +150,7 @@ def write_env_file(result: dict, path: Path) -> None:
         f'SCREENING_BATCH_ID="{result["screening_batch_id"]}"',
         f'VERIFICATION_PROTOCOL="{result["verification_protocol"]}"',
         f'CANONICAL_RUN_INDEX="{result["canonical_run_index"]}"',
-        f'SHADOW_RUN_INDEX="{result["shadow_run_index"]}"',
+        f'SHADOW_RUN_INDEX="{shadow_run_index}"',
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

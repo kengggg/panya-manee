@@ -45,7 +45,7 @@ def check_site_assets():
 
 def check_data_files():
     print("\n[2] Data files in site/data/latest/")
-    required = ["manifest.json", "leaderboard.json", "model_cards.json", "examples.json"]
+    required = ["current.json", "manifest.json", "leaderboard.json", "model_cards.json", "examples.json"]
     for name in required:
         path = DATA_DIR / name
         if path.exists() and path.stat().st_size > 0:
@@ -63,13 +63,19 @@ def check_data_files():
 def check_data_consistency():
     print("\n[3] Data consistency")
     try:
-        manifest = json.loads((DATA_DIR / "manifest.json").read_text())
-        leaderboard = json.loads((DATA_DIR / "leaderboard.json").read_text())
-        model_cards = json.loads((DATA_DIR / "model_cards.json").read_text())
-        examples = json.loads((DATA_DIR / "examples.json").read_text())
+        current = json.loads((DATA_DIR / "current.json").read_text())
+        manifest = current["manifest"]
+        leaderboard = current["leaderboard"]
+        model_cards = current["model_cards"]
+        examples = current["examples"]
     except Exception as e:
         error(f"Cannot parse JSON files: {e}")
         return
+
+    if current.get("schema_version") == "panya_current_v1":
+        ok("current.json uses panya_current_v1 schema")
+    else:
+        error("current.json missing panya_current_v1 schema")
 
     # Snapshot ID consistency
     sid = manifest["snapshot_id"]
@@ -137,6 +143,11 @@ def check_html_wiring():
         ok("model.js references data/latest")
     else:
         error("model.js does not reference data/latest")
+
+    if "current.json" in app_js and "current.json" in model_js:
+        ok("Dashboard JS loads current.json as the canonical data entrypoint")
+    else:
+        error("Dashboard JS does not load current.json")
 
     index_html = (SITE_DIR / "index.html").read_text()
     if "model.html?model=" in app_js or "model.html?model=" in index_html:

@@ -13,7 +13,7 @@ Also validates:
   - think budget is consistent with contract (off = no budget)
 
 Usage:
-  python scripts/verify_batch_inputs.py --batch-id ntp3-pub-r10-20260412 --models "gemma4:e2b,gemma4:e4b" --runs-per-model 10
+  python scripts/verify_batch_inputs.py --batch-id ntp3-pub-r1-20260510 --models "gemma4:e2b,gemma4:e4b" --runs-per-model 1
   python scripts/verify_batch_inputs.py --batch-id ntp3-smoke-r1-20260411 --models "gemma4:e2b" --runs-per-model 1 --think 4096
 """
 from __future__ import annotations

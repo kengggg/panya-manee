@@ -1,14 +1,14 @@
-# Verified publication pass: canonical + shadow over the full candidate set.
+# Verified publication pass over the full candidate set.
 #
 # SELF-HOSTED RUNNER REQUIRED
-#   Runs the exact benchmark twice per model on the Mac mini baseline, then
-#   applies deterministic verification plus post-hoc publication thresholds.
+#   Runs the benchmark once per model on the Mac mini baseline, then applies
+#   post-hoc publication thresholds.
 #
 # Safety model:
 #   - workflow_dispatch only
 #   - Always checks out trusted main
 #   - Shared concurrency lock with other benchmark jobs
-#   - Requires passing canonical+shadow match before a model can be published
+#   - Requires passing publication verification before a model can be published
 
 name: Benchmark Verified
 
@@ -83,7 +83,7 @@ jobs:
           uv run python scripts/verify_batch_inputs.py \
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
-            --runs-per-model "2" \
+            --runs-per-model "1" \
             --subjects "thai,math"
 
       - name: Run verified publication batch
@@ -99,7 +99,7 @@ jobs:
           uv run python scripts/run_batch.py \
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
-            --runs-per-model "2" \
+            --runs-per-model "1" \
             --subjects "thai,math" \
             $DRY_ARG
 
@@ -112,7 +112,7 @@ jobs:
           uv run python scripts/check_batch_completeness.py \
             --batch-id "$BATCH_ID" \
             --models "$MODELS" \
-            --runs-per-model "2"
+            --runs-per-model "1"
 
       - name: Ensure preflight record is available
         if: inputs.dry_run == false && inputs.preflight_date != ''
@@ -126,7 +126,7 @@ jobs:
             --preflight-date "$PREFLIGHT_DATE" \
             --output "preflight_records/preflight_${PREFLIGHT_DATE}.json"
 
-      - name: Apply canonical plus shadow verification gate
+      - name: Apply single-run publication verification gate
         if: inputs.dry_run == false
         env:
           BATCH_ID: ${{ inputs.batch_id }}
@@ -140,9 +140,8 @@ jobs:
           uv run python scripts/verification_gate.py \
             --batch-id "$BATCH_ID" \
             --expected-models "$MODELS" \
-            --expected-runs "2" \
+            --expected-runs "1" \
             --canonical-run-index "1" \
-            --shadow-run-index "2" \
             $PREFLIGHT_ARG \
             --json-out "benchmark_responses/verification_report_${BATCH_ID}.json"
 
@@ -187,7 +186,7 @@ jobs:
             echo "| Input | Value |"
             echo "|---|---|"
             echo "| Models | \`${MODELS}\` |"
-            echo "| Runs/model | 2 |"
+            echo "| Runs/model | 1 |"
             echo "| Preflight date | ${PREFLIGHT_DATE:-'(none)'} |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
             echo ""

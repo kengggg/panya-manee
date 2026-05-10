@@ -53,14 +53,10 @@ TIER_RULES: list[tuple[str, str]] = [
     ("qwen2.5", "core-international"),
     ("qwen3", "core-international"),
     ("llama3.1", "core-international"),
-    ("mistral", "core-international"),
-    ("phi4-mini", "core-international"),
+    ("granite4.1", "core-international"),
     # Extended international
     ("phi3", "extended-international"),
-    ("falcon3", "extended-international"),
-    ("olmo2", "extended-international"),
     ("yi", "extended-international"),
-    ("granite3.3", "extended-international"),
 ]
 
 

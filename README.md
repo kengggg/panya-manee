@@ -53,8 +53,8 @@ A static public dashboard shows benchmark results at a glance. No build step req
 ### Local preview
 
 ```bash
-# If you have a snapshot in dist/, publish it to site/data/latest/:
-python scripts/publish_snapshot.py --batch-id mini-r10-20260409
+# If you have a verified snapshot in dist/, publish it to site/data/latest/:
+python scripts/publish_snapshot.py --batch-id ntp3-pub-r1-20260510
 
 # Or just preview what's already synced:
 sh scripts/serve.sh
@@ -65,14 +65,14 @@ sh scripts/serve.sh
 
 ```bash
 # 1. Build, validate, sync to site, update registry — one command:
-python scripts/publish_snapshot.py --batch-id mini-r10-20260409
+python scripts/publish_snapshot.py --batch-id ntp3-pub-r1-20260510
 
 # 2. Dry-run (build + validate only, no side effects):
-python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --dry-run
+python scripts/publish_snapshot.py --batch-id ntp3-pub-r1-20260510 --dry-run
 
 # 3. Commit the updated site data and registry:
 git add site/data/ registry/
-git commit -m "Publish snapshot nt-p3-mcq-text-only-mini-r10-20260409"
+git commit -m "Publish snapshot nt-p3-mcq-text-only-ntp3-pub-r1-20260510"
 
 # 4. Open a PR to main. After merge, GitHub Pages deploys automatically.
 ```
@@ -92,15 +92,13 @@ flowchart TD
     C -->|No| E[Verified batch]
     D --> E
 
-    E[Benchmark Verified<br/>benchmark-verified.yml] --> E1[Run full benchmark<br/>2 runs per model]
+    E[Benchmark Verified<br/>benchmark-verified.yml] --> E1[Run full benchmark<br/>1 run per model]
     E1 --> E2[Check batch completeness]
     E2 --> E3[Fetch matching preflight artifact]
-    E3 --> E4[Verification gate<br/>canonical vs shadow]
+    E3 --> E4[Verification gate<br/>single canonical run]
 
-    E4 --> G1{Deterministic<br/>item by item match?}
-    G1 -->|No| X1[Exclude model]
-    G1 -->|Yes| G2{Parse rate >= 95%?}
-    G2 -->|No| X1
+    E4 --> G2{Parse rate >= 95%?}
+    G2 -->|No| X1[Exclude model]
     G2 -->|Yes| G3{Accuracy > 25%?}
     G3 -->|No| X1
     G3 -->|Yes| G4{Digest matches preflight<br/>when requested?}
@@ -132,10 +130,16 @@ Current production path:
 
 - `benchmark-preflight.yml`
 - optional smoke batch
-- `benchmark-verified.yml` on all candidates, 2x each
+- `benchmark-verified.yml` on all candidates, 1x each
 - post-hoc survivor filter from `verification_report_{batch_id}.json`
 - `snapshot-pr.yml`
 - `pages-deploy.yml`
+
+The dashboard consumes one canonical `site/data/latest/current.json`. That file
+is generated from one or more compatible snapshot bundles; when a later input
+contains the same `model_id`, it replaces the earlier row for the next current
+view. This keeps the 2026-05-10 restart baseline comparable while allowing
+future snapshots to append only new or retested model batches.
 
 `benchmark-screen.yml` is deprecated and intentionally not part of the live publication flow.
 
@@ -144,8 +148,9 @@ Current production path:
 | Script | Purpose |
 |---|---|
 | `scripts/build_snapshot.py` | Build snapshot bundle from batch data |
+| `scripts/build_current_json.py` | Merge one or more snapshot bundles into the single dashboard `current.json` |
 | `scripts/validate_snapshot.py` | Validate snapshot cross-file consistency |
-| `scripts/sync_site_data.py` | Copy snapshot files to `site/data/latest/` |
+| `scripts/sync_site_data.py` | Copy snapshot files to `site/data/latest/` and write `current.json` |
 | `scripts/verify_site.py` | Verify site HTML/JS wiring to data |
 | `scripts/publish_snapshot.py` | End-to-end: build → validate → sync → registry |
 

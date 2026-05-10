@@ -693,7 +693,7 @@ def get_canonical_run_id(batch_id: str, model_id: str, responses_dir: Path) -> s
 
 
 def load_verification_report(batch_id: str, responses_dir: Path) -> dict | None:
-    """Load canonical+shadow verification report for a batch if present."""
+    """Load publication verification report for a batch if present."""
     path = responses_dir / f"verification_report_{batch_id}.json"
     if not path.exists():
         return None
@@ -949,12 +949,14 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     }
 
     if verification_report and verification_report.get("status") == "pass":
+        protocol = verification_report.get("protocol")
         manifest["publication"] = {
             "mode": "verified_single_run",
-            "verification_protocol": verification_report.get("protocol"),
+            "verification_protocol": protocol,
             "canonical_run_index": verification_report.get("canonical_run_index", 1),
-            "shadow_run_index": verification_report.get("shadow_run_index", 2),
         }
+        if verification_report.get("shadow_run_index") is not None:
+            manifest["publication"]["shadow_run_index"] = verification_report.get("shadow_run_index")
         if verification_report.get("screening_batch_id"):
             manifest["publication"]["screening_batch_id"] = verification_report.get("screening_batch_id")
         if verification_report.get("preflight_record"):
@@ -962,7 +964,10 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
         if verification_report.get("thresholds"):
             manifest["publication"]["thresholds"] = verification_report.get("thresholds")
         manifest["snapshot_notes"]["published_metrics_use_canonical_run_only"] = True
-        manifest["snapshot_notes"]["shadow_run_kept_for_verification_only"] = True
+        if protocol == "canonical_shadow_v1":
+            manifest["snapshot_notes"]["shadow_run_kept_for_verification_only"] = True
+        else:
+            manifest["snapshot_notes"]["single_run_publication"] = True
         manifest["artifacts"]["verification_report"] = "verification_report.json"
 
     leaderboard = {
@@ -1015,7 +1020,7 @@ def build_snapshot(batch_id: str, snapshot_id: str | None = None, out_dir: Path 
     write_json(out_dir / "examples.json", examples_json)
 
     # Transparency: combined normalized row-level source rows across the published metric rows.
-    # For verified single-run publication, this is canonical-only. The shadow run remains in
+    # For publication, this is canonical-only. Any non-public shadow/extra runs remain in
     # raw/ plus verification_report.json for auditability.
     results_path = out_dir / "results.jsonl"
     with open(results_path, "w", encoding="utf-8") as f:

@@ -1,0 +1,3276 @@
+{
+  "schema_version": "panya_current_v1",
+  "current_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+  "generated_at": "2026-05-10T16:09:31+07:00",
+  "sources": [
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+      "published_at": "2026-04-12T17:37:13+07:00",
+      "path": "dist/nt-p3-mcq-text-only-ntp3-vr1-20260412"
+    }
+  ],
+  "model_sources": {
+    "qwen2.5:7b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "gemma4:e4b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "qwen3:8b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "scb10x/typhoon2.5-qwen3-4b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "qwen3.5:9b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "gemma4:e2b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "scb10x/typhoon2.1-gemma3-4b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "scb10x/llama3.1-typhoon2-8b-instruct": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "llama3.1:8b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "phi4-mini:3.8b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "falcon3:7b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "mistral:7b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "granite3.3:8b": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "olmo2:7b": "nt-p3-mcq-text-only-ntp3-vr1-20260412"
+  },
+  "manifest": {
+    "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "published_at": "2026-04-12T17:37:13+07:00",
+    "benchmark_name": "NT P3 Local LLM Benchmark",
+    "benchmark_label": "NT P3 MCQ Text-Only",
+    "benchmark_scope": "mcq_text_only_v1",
+    "suite_ids": [
+      "thai_mcq_text_only_all",
+      "math_mcq_text_only_all",
+      "overall_mcq_text_only_all"
+    ],
+    "testbed": {
+      "host_label": "Apple Mac mini M4 / 16GB / Ollama",
+      "chip": "M4",
+      "ram_gb": 16,
+      "backend": "ollama",
+      "machine_profile": "macmini-m4-16gb-ollama"
+    },
+    "compatibility": {
+      "required_match_fields": [
+        "benchmark_scope",
+        "dataset_version",
+        "eval_split",
+        "prompt_version",
+        "scoring_version",
+        "machine_profile",
+        "think_mode"
+      ],
+      "values": {
+        "benchmark_scope": "mcq_text_only_v1",
+        "dataset_version": "nt-p3-text-only-2026-04-09",
+        "eval_split": "text_only_core",
+        "prompt_version": "v1_answer_only",
+        "scoring_version": "v1",
+        "machine_profile": "macmini-m4-16gb-ollama",
+        "think_mode": "off"
+      }
+    },
+    "snapshot_notes": {
+      "public_outputs_truncated": true,
+      "badges_enabled": true,
+      "auto_model_summary": true,
+      "ranking_excludes_image_required": true,
+      "ranking_excludes_human_checked": true,
+      "raw_bundle_downloadable": true,
+      "published_metrics_use_canonical_run_only": true,
+      "shadow_run_kept_for_verification_only": true,
+      "current_json_merge_policy": "Built from one or more compatible snapshot bundles; later inputs replace earlier rows for duplicate model_id."
+    },
+    "artifacts": {
+      "leaderboard": "leaderboard.json",
+      "model_cards": "model_cards.json",
+      "examples": "examples.json",
+      "repeat_summary": "repeat_summary.json",
+      "results": "results.jsonl",
+      "verification_report": "verification_report.json"
+    },
+    "publication": {
+      "mode": "verified_single_run",
+      "verification_protocol": "canonical_shadow_v1",
+      "canonical_run_index": 1,
+      "shadow_run_index": 2,
+      "preflight_record": "/Users/openclaw/.openclaw/workspace/tmp/preflight-verify-fetched.json",
+      "thresholds": {
+        "parse_rate_gte": 0.95,
+        "accuracy_gt": 0.25
+      }
+    },
+    "current_json": true,
+    "source_snapshots": [
+      {
+        "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+        "published_at": "2026-04-12T17:37:13+07:00",
+        "path": "dist/nt-p3-mcq-text-only-ntp3-vr1-20260412"
+      }
+    ]
+  },
+  "leaderboard": {
+    "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "benchmark_scope": "mcq_text_only_v1",
+    "rows": [
+      {
+        "rank": 1,
+        "model_id": "qwen2.5:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.5757,
+        "thai_score_rate": 0.6667,
+        "math_score_rate": 0.4848,
+        "overall_score_rate": 0.6022,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 916,
+        "latency_p95_ms": 1509,
+        "questions_per_min": 60.3,
+        "correct_per_min": 36.3,
+        "item_count": 93,
+        "badges": [
+          "Best Quality",
+          "Best Math"
+        ]
+      },
+      {
+        "rank": 2,
+        "model_id": "gemma4:e4b",
+        "model_family": "gemma4",
+        "parameter_bucket": "4B–8B",
+        "ram_fit_class": "fits_tightly_16gb",
+        "balanced_quality_score": 0.5454,
+        "thai_score_rate": 0.6667,
+        "math_score_rate": 0.4242,
+        "overall_score_rate": 0.5806,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 518,
+        "latency_p95_ms": 753,
+        "questions_per_min": 99.2,
+        "correct_per_min": 57.6,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 3,
+        "model_id": "qwen3:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.5356,
+        "thai_score_rate": 0.6167,
+        "math_score_rate": 0.4545,
+        "overall_score_rate": 0.5591,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9247,
+        "latency_p50_ms": 1053,
+        "latency_p95_ms": 1650,
+        "questions_per_min": 53.0,
+        "correct_per_min": 29.6,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 4,
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.5083,
+        "thai_score_rate": 0.6833,
+        "math_score_rate": 0.3333,
+        "overall_score_rate": 0.5591,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.3011,
+        "latency_p50_ms": 726,
+        "latency_p95_ms": 15696,
+        "questions_per_min": 15.9,
+        "correct_per_min": 8.9,
+        "item_count": 93,
+        "badges": [
+          "Best Thai"
+        ]
+      },
+      {
+        "rank": 5,
+        "model_id": "qwen3.5:9b",
+        "model_family": "qwen3.5",
+        "parameter_bucket": "8B+",
+        "ram_fit_class": "fits_tightly_16gb",
+        "balanced_quality_score": 0.4765,
+        "thai_score_rate": 0.65,
+        "math_score_rate": 0.303,
+        "overall_score_rate": 0.5269,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 1809,
+        "latency_p95_ms": 2436,
+        "questions_per_min": 32.5,
+        "correct_per_min": 17.1,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 6,
+        "model_id": "gemma4:e2b",
+        "model_family": "gemma4",
+        "parameter_bucket": "1B–4B",
+        "ram_fit_class": "fits_comfortably_16gb",
+        "balanced_quality_score": 0.4311,
+        "thai_score_rate": 0.65,
+        "math_score_rate": 0.2121,
+        "overall_score_rate": 0.4946,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 328,
+        "latency_p95_ms": 435,
+        "questions_per_min": 159.6,
+        "correct_per_min": 79.0,
+        "item_count": 93,
+        "badges": [
+          "Fastest on Testbed",
+          "Best Small Model"
+        ]
+      },
+      {
+        "rank": 7,
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "model_family": "typhoon2.1",
+        "parameter_bucket": "1B–4B",
+        "ram_fit_class": "fits_comfortably_16gb",
+        "balanced_quality_score": 0.4099,
+        "thai_score_rate": 0.5167,
+        "math_score_rate": 0.303,
+        "overall_score_rate": 0.4409,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 464,
+        "latency_p95_ms": 650,
+        "questions_per_min": 119.4,
+        "correct_per_min": 52.6,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 8,
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.356,
+        "thai_score_rate": 0.5,
+        "math_score_rate": 0.2121,
+        "overall_score_rate": 0.3978,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9892,
+        "latency_p50_ms": 846,
+        "latency_p95_ms": 1495,
+        "questions_per_min": 60.9,
+        "correct_per_min": 24.2,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 9,
+        "model_id": "llama3.1:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.3546,
+        "thai_score_rate": 0.4667,
+        "math_score_rate": 0.2424,
+        "overall_score_rate": 0.3871,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9032,
+        "latency_p50_ms": 837,
+        "latency_p95_ms": 1675,
+        "questions_per_min": 60.1,
+        "correct_per_min": 23.3,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 10,
+        "model_id": "phi4-mini:3.8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.3447,
+        "thai_score_rate": 0.4167,
+        "math_score_rate": 0.2727,
+        "overall_score_rate": 0.3656,
+        "parseable_rate": 0.9677,
+        "answer_only_compliance_rate": 0.0645,
+        "latency_p50_ms": 707,
+        "latency_p95_ms": 1948,
+        "questions_per_min": 66.7,
+        "correct_per_min": 24.4,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 11,
+        "model_id": "falcon3:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.2916,
+        "thai_score_rate": 0.25,
+        "math_score_rate": 0.3333,
+        "overall_score_rate": 0.2796,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9785,
+        "latency_p50_ms": 1909,
+        "latency_p95_ms": 3680,
+        "questions_per_min": 28.5,
+        "correct_per_min": 8.0,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 12,
+        "model_id": "mistral:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.2909,
+        "thai_score_rate": 0.4,
+        "math_score_rate": 0.1818,
+        "overall_score_rate": 0.3226,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.1505,
+        "latency_p50_ms": 2420,
+        "latency_p95_ms": 9386,
+        "questions_per_min": 13.0,
+        "correct_per_min": 4.2,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 13,
+        "model_id": "granite3.3:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.278,
+        "thai_score_rate": 0.2833,
+        "math_score_rate": 0.2727,
+        "overall_score_rate": 0.2796,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.8065,
+        "latency_p50_ms": 1638,
+        "latency_p95_ms": 4891,
+        "questions_per_min": 27.9,
+        "correct_per_min": 7.8,
+        "item_count": 93,
+        "badges": []
+      },
+      {
+        "rank": 14,
+        "model_id": "olmo2:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "balanced_quality_score": 0.2712,
+        "thai_score_rate": 0.3,
+        "math_score_rate": 0.2424,
+        "overall_score_rate": 0.2796,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9892,
+        "latency_p50_ms": 1320,
+        "latency_p95_ms": 2477,
+        "questions_per_min": 40.7,
+        "correct_per_min": 11.4,
+        "item_count": 93,
+        "badges": []
+      }
+    ]
+  },
+  "model_cards": {
+    "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "benchmark_scope": "mcq_text_only_v1",
+    "models": [
+      {
+        "model_id": "qwen2.5:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.5757,
+          "thai_score_rate": 0.6667,
+          "math_score_rate": 0.4848,
+          "overall_score_rate": 0.6022,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 1.0,
+          "latency_p50_ms": 916,
+          "latency_p95_ms": 1509,
+          "questions_per_min": 60.3,
+          "correct_per_min": 36.3,
+          "item_count": 93,
+          "total_correct": 56,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 44.1
+        },
+        "strengths": [
+          {
+            "skill_tag": "comparison",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 1.0,
+            "correct": 5,
+            "total": 5
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "declarative_sentence",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          },
+          {
+            "skill_tag": "pronoun_identification",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          },
+          {
+            "skill_tag": "word_choice",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer"
+        ],
+        "badges": [
+          "Best Quality",
+          "Best Math"
+        ],
+        "auto_summary": "qwen2.5:7b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are comparison, moral_extraction, reasoning_question. Its weakest areas are declarative_sentence, pronoun_identification, word_choice. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_qwen2_5_7b_thai_8_good_0",
+            "ex_qwen2_5_7b_math_18_good_1"
+          ],
+          "bad": [
+            "ex_qwen2_5_7b_thai_20_bad_0",
+            "ex_qwen2_5_7b_math_26_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "gemma4:e4b",
+        "model_family": "gemma4",
+        "parameter_bucket": "4B–8B",
+        "ram_fit_class": "fits_tightly_16gb",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.5454,
+          "thai_score_rate": 0.6667,
+          "math_score_rate": 0.4242,
+          "overall_score_rate": 0.5806,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 1.0,
+          "latency_p50_ms": 518,
+          "latency_p95_ms": 753,
+          "questions_per_min": 99.2,
+          "correct_per_min": 57.6,
+          "item_count": 93,
+          "total_correct": 54,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 59.9
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_application",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "applied_reading",
+            "score_rate": 1.0,
+            "correct": 3,
+            "total": 3
+          },
+          {
+            "skill_tag": "judgment_from_text",
+            "score_rate": 1.0,
+            "correct": 3,
+            "total": 3
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "verb_identification",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "classification",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer"
+        ],
+        "badges": [],
+        "auto_summary": "gemma4:e4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_application, applied_reading, judgment_from_text. Its weakest areas are number_pattern, verb_identification, classification. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_gemma4_e4b_thai_7_good_0",
+            "ex_gemma4_e4b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_gemma4_e4b_thai_19_bad_0",
+            "ex_gemma4_e4b_math_10_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "qwen3:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.5356,
+          "thai_score_rate": 0.6167,
+          "math_score_rate": 0.4545,
+          "overall_score_rate": 0.5591,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.9247,
+          "latency_p50_ms": 1053,
+          "latency_p95_ms": 1650,
+          "questions_per_min": 53.0,
+          "correct_per_min": 29.6,
+          "item_count": 93,
+          "total_correct": 52,
+          "average_output_length_chars": 1.5,
+          "throughput_toks_per_sec": 34.0
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 1.0,
+            "correct": 5,
+            "total": 5
+          },
+          {
+            "skill_tag": "applied_reading",
+            "score_rate": 1.0,
+            "correct": 3,
+            "total": 3
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "pictograph",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "classification",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          },
+          {
+            "skill_tag": "declarative_sentence",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "qwen3:8b performs stronger on Thai than Math. It is mostly reliable on answer-only formatting. Its strongest areas are moral_extraction, reasoning_question, applied_reading. Its weakest areas are pictograph, classification, declarative_sentence. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_qwen3_8b_thai_8_good_0",
+            "ex_qwen3_8b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_qwen3_8b_thai_21_bad_0",
+            "ex_qwen3_8b_math_25_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.5083,
+          "thai_score_rate": 0.6833,
+          "math_score_rate": 0.3333,
+          "overall_score_rate": 0.5591,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.3011,
+          "latency_p50_ms": 726,
+          "latency_p95_ms": 15696,
+          "questions_per_min": 15.9,
+          "correct_per_min": 8.9,
+          "item_count": 93,
+          "total_correct": 52,
+          "average_output_length_chars": 194.3,
+          "throughput_toks_per_sec": 35.0
+        },
+        "strengths": [
+          {
+            "skill_tag": "comparison",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 1.0,
+            "correct": 5,
+            "total": 5
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "two_step_problem",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 4
+          },
+          {
+            "skill_tag": "pictograph",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "standard_thai",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "non_answer_only_output",
+          "wrong_answer"
+        ],
+        "badges": [
+          "Best Thai"
+        ],
+        "auto_summary": "scb10x/typhoon2.5-qwen3-4b performs stronger on Thai than Math. It is format-unstable on answer-only formatting. Its strongest areas are comparison, moral_extraction, reasoning_question. Its weakest areas are two_step_problem, pictograph, standard_thai. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_scb10x_typhoon2_5_qwen3_4b_thai_8_good_0",
+            "ex_scb10x_typhoon2_5_qwen3_4b_math_18_good_1"
+          ],
+          "bad": [
+            "ex_scb10x_typhoon2_5_qwen3_4b_thai_23_bad_0",
+            "ex_scb10x_typhoon2_5_qwen3_4b_math_6_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "qwen3.5:9b",
+        "model_family": "qwen3.5",
+        "parameter_bucket": "8B+",
+        "ram_fit_class": "fits_tightly_16gb",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.4765,
+          "thai_score_rate": 0.65,
+          "math_score_rate": 0.303,
+          "overall_score_rate": 0.5269,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 1.0,
+          "latency_p50_ms": 1809,
+          "latency_p95_ms": 2436,
+          "questions_per_min": 32.5,
+          "correct_per_min": 17.1,
+          "item_count": 93,
+          "total_correct": 49,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 26.3
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 1.0,
+            "correct": 5,
+            "total": 5
+          },
+          {
+            "skill_tag": "word_meaning",
+            "score_rate": 1.0,
+            "correct": 4,
+            "total": 4
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "parts_of_speech",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 7
+          },
+          {
+            "skill_tag": "unit_conversion",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 5
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer"
+        ],
+        "badges": [],
+        "auto_summary": "qwen3.5:9b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, reasoning_question, word_meaning. Its weakest areas are parts_of_speech, unit_conversion, number_pattern. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_qwen3_5_9b_thai_8_good_0",
+            "ex_qwen3_5_9b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_qwen3_5_9b_thai_19_bad_0",
+            "ex_qwen3_5_9b_math_18_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "gemma4:e2b",
+        "model_family": "gemma4",
+        "parameter_bucket": "1B–4B",
+        "ram_fit_class": "fits_comfortably_16gb",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.4311,
+          "thai_score_rate": 0.65,
+          "math_score_rate": 0.2121,
+          "overall_score_rate": 0.4946,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 1.0,
+          "latency_p50_ms": 328,
+          "latency_p95_ms": 435,
+          "questions_per_min": 159.6,
+          "correct_per_min": 79.0,
+          "item_count": 93,
+          "total_correct": 46,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 110.2
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "declarative_sentence",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "formal_language",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "two_step_problem",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 4
+          },
+          {
+            "skill_tag": "pictograph",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "verb_identification",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer"
+        ],
+        "badges": [
+          "Fastest on Testbed",
+          "Best Small Model"
+        ],
+        "auto_summary": "gemma4:e2b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, declarative_sentence, formal_language. Its weakest areas are two_step_problem, pictograph, verb_identification. On the current Mac mini testbed, it is among the fastest.",
+        "example_ids": {
+          "good": [
+            "ex_gemma4_e2b_thai_8_good_0",
+            "ex_gemma4_e2b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_gemma4_e2b_thai_19_bad_0",
+            "ex_gemma4_e2b_math_6_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "model_family": "typhoon2.1",
+        "parameter_bucket": "1B–4B",
+        "ram_fit_class": "fits_comfortably_16gb",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.4099,
+          "thai_score_rate": 0.5167,
+          "math_score_rate": 0.303,
+          "overall_score_rate": 0.4409,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 1.0,
+          "latency_p50_ms": 464,
+          "latency_p95_ms": 650,
+          "questions_per_min": 119.4,
+          "correct_per_min": 52.6,
+          "item_count": 93,
+          "total_correct": 41,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 56.0
+        },
+        "strengths": [
+          {
+            "skill_tag": "declarative_sentence",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "duration",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "event_ordering",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "fraction_addition",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 7
+          },
+          {
+            "skill_tag": "fraction_subtraction",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 7
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer"
+        ],
+        "badges": [],
+        "auto_summary": "scb10x/typhoon2.1-gemma3-4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are declarative_sentence, duration, event_ordering. Its weakest areas are fraction_addition, fraction_subtraction, number_pattern. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
+            "ex_scb10x_typhoon2_1_gemma3_4b_math_13_good_1"
+          ],
+          "bad": [
+            "ex_scb10x_typhoon2_1_gemma3_4b_thai_7_bad_0",
+            "ex_scb10x_typhoon2_1_gemma3_4b_math_9_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.356,
+          "thai_score_rate": 0.5,
+          "math_score_rate": 0.2121,
+          "overall_score_rate": 0.3978,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.9892,
+          "latency_p50_ms": 846,
+          "latency_p95_ms": 1495,
+          "questions_per_min": 60.9,
+          "correct_per_min": 24.2,
+          "item_count": 93,
+          "total_correct": 37,
+          "average_output_length_chars": 1.0,
+          "throughput_toks_per_sec": 41.3
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_application",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "meaning_matching",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "opinion_on_literature",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "two_step_problem",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 4
+          },
+          {
+            "skill_tag": "pictograph",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "standard_thai",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "scb10x/llama3.1-typhoon2-8b-instruct performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_application, meaning_matching, opinion_on_literature. Its weakest areas are two_step_problem, pictograph, standard_thai. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_7_good_0",
+            "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_18_good_1"
+          ],
+          "bad": [
+            "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_23_bad_0",
+            "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_6_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "llama3.1:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.3546,
+          "thai_score_rate": 0.4667,
+          "math_score_rate": 0.2424,
+          "overall_score_rate": 0.3871,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.9032,
+          "latency_p50_ms": 837,
+          "latency_p95_ms": 1675,
+          "questions_per_min": 60.1,
+          "correct_per_min": 23.3,
+          "item_count": 93,
+          "total_correct": 36,
+          "average_output_length_chars": 2.3,
+          "throughput_toks_per_sec": 33.6
+        },
+        "strengths": [
+          {
+            "skill_tag": "moral_application",
+            "score_rate": 1.0,
+            "correct": 6,
+            "total": 6
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 1.0,
+            "correct": 5,
+            "total": 5
+          },
+          {
+            "skill_tag": "opinion_on_literature",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "two_step_problem",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 4
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "addition_subtraction_with_units",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 2
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "llama3.1:8b performs stronger on Thai than Math. It is mostly reliable on answer-only formatting. Its strongest areas are moral_application, reasoning_question, opinion_on_literature. Its weakest areas are two_step_problem, number_pattern, addition_subtraction_with_units. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_llama3_1_8b_thai_7_good_0",
+            "ex_llama3_1_8b_math_18_good_1"
+          ],
+          "bad": [
+            "ex_llama3_1_8b_thai_1_bad_0",
+            "ex_llama3_1_8b_math_6_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "phi4-mini:3.8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.3447,
+          "thai_score_rate": 0.4167,
+          "math_score_rate": 0.2727,
+          "overall_score_rate": 0.3656,
+          "parseable_rate": 0.9677,
+          "answer_only_compliance_rate": 0.0645,
+          "latency_p50_ms": 707,
+          "latency_p95_ms": 1948,
+          "questions_per_min": 66.7,
+          "correct_per_min": 24.4,
+          "item_count": 93,
+          "total_correct": 34,
+          "average_output_length_chars": 25.0,
+          "throughput_toks_per_sec": 39.6
+        },
+        "strengths": [
+          {
+            "skill_tag": "meaning_matching",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "noun_identification",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "opinion_on_literature",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "applied_reading",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "judgment_from_text",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "non_answer_only_output",
+          "unparseable_output",
+          "wrong_answer"
+        ],
+        "badges": [],
+        "auto_summary": "phi4-mini:3.8b performs at a balanced level across subjects. It is format-unstable on answer-only formatting. Its strongest areas are meaning_matching, noun_identification, opinion_on_literature. Its weakest areas are applied_reading, judgment_from_text, number_pattern. On the current Mac mini testbed, it is mid-pack on speed.",
+        "example_ids": {
+          "good": [
+            "ex_phi4_mini_3_8b_thai_1_good_0",
+            "ex_phi4_mini_3_8b_math_25_good_1"
+          ],
+          "bad": [
+            "ex_phi4_mini_3_8b_thai_10_bad_0",
+            "ex_phi4_mini_3_8b_math_10_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "falcon3:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.2916,
+          "thai_score_rate": 0.25,
+          "math_score_rate": 0.3333,
+          "overall_score_rate": 0.2796,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.9785,
+          "latency_p50_ms": 1909,
+          "latency_p95_ms": 3680,
+          "questions_per_min": 28.5,
+          "correct_per_min": 8.0,
+          "item_count": 93,
+          "total_correct": 26,
+          "average_output_length_chars": 1.1,
+          "throughput_toks_per_sec": 41.9
+        },
+        "strengths": [
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.6667,
+            "correct": 2,
+            "total": 3
+          },
+          {
+            "skill_tag": "standard_thai",
+            "score_rate": 0.6667,
+            "correct": 2,
+            "total": 3
+          },
+          {
+            "skill_tag": "word_meaning",
+            "score_rate": 0.5,
+            "correct": 2,
+            "total": 4
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "two_step_problem",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 4
+          },
+          {
+            "skill_tag": "pictograph",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          },
+          {
+            "skill_tag": "story_prediction",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "falcon3:7b performs at a balanced level across subjects. It is very reliable on answer-only formatting. Its strongest areas are number_pattern, standard_thai, word_meaning. Its weakest areas are two_step_problem, pictograph, story_prediction. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_falcon3_7b_thai_22_good_0",
+            "ex_falcon3_7b_math_10_good_1"
+          ],
+          "bad": [
+            "ex_falcon3_7b_thai_6_bad_0",
+            "ex_falcon3_7b_math_6_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "mistral:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.2909,
+          "thai_score_rate": 0.4,
+          "math_score_rate": 0.1818,
+          "overall_score_rate": 0.3226,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.1505,
+          "latency_p50_ms": 2420,
+          "latency_p95_ms": 9386,
+          "questions_per_min": 13.0,
+          "correct_per_min": 4.2,
+          "item_count": 93,
+          "total_correct": 30,
+          "average_output_length_chars": 71.6,
+          "throughput_toks_per_sec": 22.5
+        },
+        "strengths": [
+          {
+            "skill_tag": "classification",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "meaning_matching",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "question_answer_matching",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "comparison",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 6
+          },
+          {
+            "skill_tag": "length",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 5
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "non_answer_only_output",
+          "wrong_answer"
+        ],
+        "badges": [],
+        "auto_summary": "mistral:7b performs stronger on Thai than Math. It is format-unstable on answer-only formatting. Its strongest areas are classification, meaning_matching, question_answer_matching. Its weakest areas are comparison, length, number_pattern. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_mistral_7b_thai_21_good_0",
+            "ex_mistral_7b_math_14_good_1"
+          ],
+          "bad": [
+            "ex_mistral_7b_thai_21_bad_0",
+            "ex_mistral_7b_math_18_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "granite3.3:8b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.278,
+          "thai_score_rate": 0.2833,
+          "math_score_rate": 0.2727,
+          "overall_score_rate": 0.2796,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.8065,
+          "latency_p50_ms": 1638,
+          "latency_p95_ms": 4891,
+          "questions_per_min": 27.9,
+          "correct_per_min": 7.8,
+          "item_count": 93,
+          "total_correct": 26,
+          "average_output_length_chars": 20.5,
+          "throughput_toks_per_sec": 21.7
+        },
+        "strengths": [
+          {
+            "skill_tag": "story_prediction",
+            "score_rate": 0.6667,
+            "correct": 2,
+            "total": 3
+          },
+          {
+            "skill_tag": "reasoning_question",
+            "score_rate": 0.6,
+            "correct": 3,
+            "total": 5
+          },
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 0.5,
+            "correct": 3,
+            "total": 6
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "length",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 5
+          },
+          {
+            "skill_tag": "unit_conversion",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 5
+          },
+          {
+            "skill_tag": "applied_reading",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "granite3.3:8b performs at a balanced level across subjects. It is mostly reliable on answer-only formatting. Its strongest areas are story_prediction, reasoning_question, moral_extraction. Its weakest areas are length, unit_conversion, applied_reading. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_granite3_3_8b_thai_6_good_0",
+            "ex_granite3_3_8b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_granite3_3_8b_thai_7_bad_0",
+            "ex_granite3_3_8b_math_18_bad_1"
+          ]
+        }
+      },
+      {
+        "model_id": "olmo2:7b",
+        "model_family": "unknown",
+        "parameter_bucket": "unknown",
+        "ram_fit_class": "unknown",
+        "testbed": {
+          "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+        },
+        "metrics": {
+          "balanced_quality_score": 0.2712,
+          "thai_score_rate": 0.3,
+          "math_score_rate": 0.2424,
+          "overall_score_rate": 0.2796,
+          "parseable_rate": 1.0,
+          "answer_only_compliance_rate": 0.9892,
+          "latency_p50_ms": 1320,
+          "latency_p95_ms": 2477,
+          "questions_per_min": 40.7,
+          "correct_per_min": 11.4,
+          "item_count": 93,
+          "total_correct": 26,
+          "average_output_length_chars": 1.7,
+          "throughput_toks_per_sec": 34.1
+        },
+        "strengths": [
+          {
+            "skill_tag": "error_identification",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "formal_language",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          },
+          {
+            "skill_tag": "functional_writing",
+            "score_rate": 1.0,
+            "correct": 2,
+            "total": 2
+          }
+        ],
+        "weaknesses": [
+          {
+            "skill_tag": "moral_extraction",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 6
+          },
+          {
+            "skill_tag": "sentence_type",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 6
+          },
+          {
+            "skill_tag": "number_pattern",
+            "score_rate": 0.0,
+            "correct": 0,
+            "total": 3
+          }
+        ],
+        "common_failure_types": [
+          "wrong_answer",
+          "non_answer_only_output"
+        ],
+        "badges": [],
+        "auto_summary": "olmo2:7b performs at a balanced level across subjects. It is very reliable on answer-only formatting. Its strongest areas are error_identification, formal_language, functional_writing. Its weakest areas are moral_extraction, sentence_type, number_pattern. On the current Mac mini testbed, it is slower than peers.",
+        "example_ids": {
+          "good": [
+            "ex_olmo2_7b_thai_16_good_0",
+            "ex_olmo2_7b_math_26_good_1"
+          ],
+          "bad": [
+            "ex_olmo2_7b_thai_8_bad_0",
+            "ex_olmo2_7b_math_10_bad_1"
+          ]
+        }
+      }
+    ]
+  },
+  "examples": {
+    "snapshot_id": "nt-p3-mcq-text-only-ntp3-vr1-20260412",
+    "benchmark_scope": "mcq_text_only_v1",
+    "examples": [
+      {
+        "example_id": "ex_falcon3_7b_math_10_good_1",
+        "model_id": "falcon3:7b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 10,
+        "question_no": 10,
+        "skill_tag": [
+          "number_pattern"
+        ],
+        "curriculum_standard": "ค 1.2 ป.3/1",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "199",
+        "parsed_answer": "2",
+        "model_answer_text": "199",
+        "stimulus_text": "ชาวสวนเก็บมะเขือเทศและพริกตามแบบรูป: วันที่ 1-7 มะเขือเทศ = 153, 145, 137, ..., ..., 113, 105 กิโลกรัม; พริก = 58, 63, 68, ..., ..., 83, 88 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ในวันที่ 5 ชาวสวนเก็บมะเขือเทศและพริกรวมกันได้กี่กิโลกรัม",
+        "choices": {
+          "1": "151",
+          "2": "199",
+          "3": "202",
+          "4": "250"
+        },
+        "raw_output_truncated": "2) 199",
+        "raw_output_full": "2) 199",
+        "latency_ms": 1715,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_falcon3_7b_math_6_bad_1",
+        "model_id": "falcon3:7b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "word_problem",
+          "two_step_problem"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/9",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "24",
+        "parsed_answer": "3",
+        "model_answer_text": "14",
+        "stimulus_text": "ร้านค้า มีลูกชิ้นไก่ 50 กิโลกรัม มีลูกชิ้นปลา มากกว่าลูกชิ้นไก่ 70 กิโลกรัม ถ้าร้านค้าแบ่งลูกชิ้นปลาใส่ถุง ถุงละ 5 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ร้านค้าจะแบ่งลูกชิ้นปลาได้ทั้งหมดกี่ถุง",
+        "choices": {
+          "1": "4",
+          "2": "10",
+          "3": "14",
+          "4": "24"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 1491,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_falcon3_7b_thai_22_good_0",
+        "model_id": "falcon3:7b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 22,
+        "question_no": 22,
+        "skill_tag": [
+          "standard_thai",
+          "register_identification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/6",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "หมายเลข (4)",
+        "parsed_answer": "4",
+        "model_answer_text": "หมายเลข (4)",
+        "stimulus_text": "บ้านของวีณาเปิดขายอาหาร (1) มีรายการอาหารให้ลูกค้าสั่งเยอะแยะ (2) แถมยังมีบริการน้ำดื่มให้ฟรี (3) ทั้งที่ราคาสินค้าขึ้นฮวบฮาบ (4) แต่อาหารในร้านก็ยังมีราคาย่อมเยา",
+        "prompt_text": "ข้อความหมายเลขใด ใช้ภาษาได้เหมาะสม",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1909,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_falcon3_7b_thai_6_bad_0",
+        "model_id": "falcon3:7b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "story_prediction",
+          "reading_comprehension"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/4",
+        "is_correct": false,
+        "correct_answer": "1",
+        "correct_answer_text": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+        "parsed_answer": "3",
+        "model_answer_text": "น้ำในลำธารใสและมีระดับเพิ่มมากขึ้น",
+        "stimulus_text": "กรมอุตุนิยมวิทยาพยากรณ์ว่า “ในช่วงวันที่ 4 - 8 มีนาคม 2565 ประเทศไทยตอนบนจะมีพายุฤดูร้อนเกิดขึ้น โดยจะมีพายุฝนฟ้าคะนอง ลมกระโชกแรง อาจมีฟ้าผ่า และมีลูกเห็บตกบางส่วน จึงขอให้ประชาชนในบริเวณดังกล่าวระวังอันตรายจากพายุฤดูร้อนที่จะเกิดขึ้น”",
+        "prompt_text": "จากข้อความ ถ้าหมู่บ้านของเก่งอยู่ในบริเวณดังกล่าวในวันที่ 9 มีนาคม 2565 เหตุการณ์ใดน่าจะเกิดขึ้นกับหมู่บ้านของเก่ง",
+        "choices": {
+          "1": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+          "2": "ถนนทางเข้าหมู่บ้านแห้งไม่ชื้นแฉะ",
+          "3": "น้ำในลำธารใสและมีระดับเพิ่มมากขึ้น",
+          "4": "พืชผลทางการเกษตรไม่ได้รับผลกระทบ"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 3510,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e2b_math_26_good_1",
+        "model_id": "gemma4:e2b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 389,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e2b_math_6_bad_1",
+        "model_id": "gemma4:e2b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "word_problem",
+          "two_step_problem"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/9",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "24",
+        "parsed_answer": "2",
+        "model_answer_text": "10",
+        "stimulus_text": "ร้านค้า มีลูกชิ้นไก่ 50 กิโลกรัม มีลูกชิ้นปลา มากกว่าลูกชิ้นไก่ 70 กิโลกรัม ถ้าร้านค้าแบ่งลูกชิ้นปลาใส่ถุง ถุงละ 5 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ร้านค้าจะแบ่งลูกชิ้นปลาได้ทั้งหมดกี่ถุง",
+        "choices": {
+          "1": "4",
+          "2": "10",
+          "3": "14",
+          "4": "24"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 312,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e2b_thai_19_bad_0",
+        "model_id": "gemma4:e2b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 19,
+        "question_no": 19,
+        "skill_tag": [
+          "parts_of_speech",
+          "verb_identification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/2",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "หมายเลข (2)",
+        "parsed_answer": "4",
+        "model_answer_text": "หมายเลข (4)",
+        "stimulus_text": "บนถนนมีรถยนต์วิ่งขวักไขว่ หญิงสาวขยับตัวอย่างหงุดหงิด เธอปล่อยมือจากพวงมาลัย เอี้ยวตัวไปดึงกระดาษทิชชูจากเบาะด้านหลังมาซับเหงื่อบนใบหน้า (1) รถยนต์ (2) ขยับ (3) เธอ (4) กระดาษทิชชู",
+        "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 354,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e2b_thai_8_good_0",
+        "model_id": "gemma4:e2b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "4",
+        "model_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 434,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e4b_math_10_bad_1",
+        "model_id": "gemma4:e4b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 10,
+        "question_no": 10,
+        "skill_tag": [
+          "number_pattern"
+        ],
+        "curriculum_standard": "ค 1.2 ป.3/1",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "199",
+        "parsed_answer": "3",
+        "model_answer_text": "202",
+        "stimulus_text": "ชาวสวนเก็บมะเขือเทศและพริกตามแบบรูป: วันที่ 1-7 มะเขือเทศ = 153, 145, 137, ..., ..., 113, 105 กิโลกรัม; พริก = 58, 63, 68, ..., ..., 83, 88 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ในวันที่ 5 ชาวสวนเก็บมะเขือเทศและพริกรวมกันได้กี่กิโลกรัม",
+        "choices": {
+          "1": "151",
+          "2": "199",
+          "3": "202",
+          "4": "250"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 602,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e4b_math_26_good_1",
+        "model_id": "gemma4:e4b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 683,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e4b_thai_19_bad_0",
+        "model_id": "gemma4:e4b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 19,
+        "question_no": 19,
+        "skill_tag": [
+          "parts_of_speech",
+          "verb_identification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/2",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "หมายเลข (2)",
+        "parsed_answer": "1",
+        "model_answer_text": "หมายเลข (1)",
+        "stimulus_text": "บนถนนมีรถยนต์วิ่งขวักไขว่ หญิงสาวขยับตัวอย่างหงุดหงิด เธอปล่อยมือจากพวงมาลัย เอี้ยวตัวไปดึงกระดาษทิชชูจากเบาะด้านหลังมาซับเหงื่อบนใบหน้า (1) รถยนต์ (2) ขยับ (3) เธอ (4) กระดาษทิชชู",
+        "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 582,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_gemma4_e4b_thai_7_good_0",
+        "model_id": "gemma4:e4b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 7,
+        "question_no": 7,
+        "skill_tag": [
+          "moral_application",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "parsed_answer": "2",
+        "model_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+        "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+        "choices": {
+          "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+          "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+          "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+          "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 753,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_granite3_3_8b_math_18_bad_1",
+        "model_id": "granite3.3:8b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "parsed_answer": "4",
+        "model_answer_text": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร",
+        "stimulus_text": "เส้นทาง A ยาว 3 กิโลเมตร 500 เมตร, เส้นทาง B สั้นกว่าเส้นทาง A อยู่ 1,200 เมตร, เส้นทาง C ยาว 2 กิโลเมตร 500 เมตร",
+        "prompt_text": "จากข้อมูล ข้อใดสรุปเส้นทางไปโรงเรียนของเด็กชายบอลได้ถูกต้อง",
+        "choices": {
+          "1": "ใช้เส้นทาง B เป็นระยะทางยาว 2,375 เมตร",
+          "2": "ใช้เส้นทาง C เป็นระยะทางยาวกว่า เส้นทาง B อยู่ 175 เมตร",
+          "3": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+          "4": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 2123,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_granite3_3_8b_math_26_good_1",
+        "model_id": "granite3.3:8b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 2318,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_granite3_3_8b_thai_6_good_0",
+        "model_id": "granite3.3:8b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "story_prediction",
+          "reading_comprehension"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/4",
+        "is_correct": true,
+        "correct_answer": "1",
+        "correct_answer_text": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+        "parsed_answer": "1",
+        "model_answer_text": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+        "stimulus_text": "กรมอุตุนิยมวิทยาพยากรณ์ว่า “ในช่วงวันที่ 4 - 8 มีนาคม 2565 ประเทศไทยตอนบนจะมีพายุฤดูร้อนเกิดขึ้น โดยจะมีพายุฝนฟ้าคะนอง ลมกระโชกแรง อาจมีฟ้าผ่า และมีลูกเห็บตกบางส่วน จึงขอให้ประชาชนในบริเวณดังกล่าวระวังอันตรายจากพายุฤดูร้อนที่จะเกิดขึ้น”",
+        "prompt_text": "จากข้อความ ถ้าหมู่บ้านของเก่งอยู่ในบริเวณดังกล่าวในวันที่ 9 มีนาคม 2565 เหตุการณ์ใดน่าจะเกิดขึ้นกับหมู่บ้านของเก่ง",
+        "choices": {
+          "1": "กิ่งไม้หักขวางถนนทางเข้าหมู่บ้าน",
+          "2": "ถนนทางเข้าหมู่บ้านแห้งไม่ชื้นแฉะ",
+          "3": "น้ำในลำธารใสและมีระดับเพิ่มมากขึ้น",
+          "4": "พืชผลทางการเกษตรไม่ได้รับผลกระทบ"
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 2835,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_granite3_3_8b_thai_7_bad_0",
+        "model_id": "granite3.3:8b",
+        "exam_id": "nt_p3_th_2566",
+        "year_buddhist": 2566,
+        "subject": "thai",
+        "question_id": 7,
+        "question_no": 7,
+        "skill_tag": [
+          "applied_reading",
+          "judgment_from_text"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "ใบเฟิร์นเผาอ้อยก่อนตัดผลผลิตส่งโรงงาน",
+        "parsed_answer": "1",
+        "model_answer_text": "ใบเตยขอร้องให้พ่อเลิกสูบบุหรี่",
+        "stimulus_text": "ฝุ่นพิษ คือ ฝุ่นละอองในอากาศขนาดเล็กกว่า 2.5 ไมครอน ที่มีปริมาณมากจนส่งผลต่อร่างกาย และระบบทางเดินหายใจ ซึ่งฝุ่นพิษนี้เกิดขึ้นทั้งจากแหล่งธรรมชาติ และมนุษย์สร้างขึ้น เช่น ไฟป่า การเผาขยะ การเผาเพื่อทำการเกษตร ควันจากรถยนต์ โรงงาน และกิจวัตรประจำวันต่าง ๆ เป็นต้น",
+        "prompt_text": "จากข้อความ การปฏิบัติของใครไม่เหมาะสม",
+        "choices": {
+          "1": "ใบเตยขอร้องให้พ่อเลิกสูบบุหรี่",
+          "2": "ใบปอช่วยพ่อทำแนวป้องกันไฟป่า",
+          "3": "ใบเฟิร์นเผาอ้อยก่อนตัดผลผลิตส่งโรงงาน",
+          "4": "ใบบัวนั่งรถโดยสารประจำทางไปโรงเรียนทุกวัน"
+        },
+        "raw_output_truncated": "1\n\nExplanation: The question asks for an action that is inappropriate according to the information provided about air pollutants. Option 1, \"a student asking their father to stop smoking,\" aligns with",
+        "raw_output_full": "1\n\nExplanation: The question asks for an action that is inappropriate according to the information provided about air pollutants. Option 1, \"a student asking their father to stop smoking,\" aligns with this context as smoking releases harmful pollutants into the air. The other options (2, 3, and 4) involve actions related to preventing forest fires, managing industrial emissions, or transportation, which are not directly inappropriate based on the given information about air pollution sources.",
+        "latency_ms": 8426,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_llama3_1_8b_math_18_good_1",
+        "model_id": "llama3.1:8b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+        "parsed_answer": "2",
+        "model_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+        "stimulus_text": "ในงานกาชาดประจำปีมีโซนขายสินค้า: โซน A ยาว 800 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 500 เซนติเมตร; โซน B ยาว 600 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 4 เมตร",
+        "prompt_text": "จากข้อมูล โซน A กับ โซน B มีจำนวนร้านค้าต่างกันอย่างไร",
+        "choices": {
+          "1": "โซน A น้อยกว่า โซน B 10 ร้าน",
+          "2": "โซน A มากกว่า โซน B 10 ร้าน",
+          "3": "โซน A น้อยกว่า โซน B 80 ร้าน",
+          "4": "โซน A มากกว่า โซน B 80 ร้าน"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 988,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_llama3_1_8b_math_6_bad_1",
+        "model_id": "llama3.1:8b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "word_problem",
+          "two_step_problem"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/9",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "24",
+        "parsed_answer": "2",
+        "model_answer_text": "10",
+        "stimulus_text": "ร้านค้า มีลูกชิ้นไก่ 50 กิโลกรัม มีลูกชิ้นปลา มากกว่าลูกชิ้นไก่ 70 กิโลกรัม ถ้าร้านค้าแบ่งลูกชิ้นปลาใส่ถุง ถุงละ 5 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ร้านค้าจะแบ่งลูกชิ้นปลาได้ทั้งหมดกี่ถุง",
+        "choices": {
+          "1": "4",
+          "2": "10",
+          "3": "14",
+          "4": "24"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 829,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_llama3_1_8b_thai_1_bad_0",
+        "model_id": "llama3.1:8b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 1,
+        "question_no": 1,
+        "skill_tag": [
+          "reading_comprehension",
+          "meaning_matching"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/2",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "ขุ่นเคืองใจ",
+        "parsed_answer": "3",
+        "model_answer_text": "ท้อแท้ใจ",
+        "stimulus_text": "การให้อภัยเป็นสิ่งจำเป็นอย่างยิ่ง เพราะหากไม่มีการให้อภัยแล้ว ก็จะก่อให้เกิดการ.......................... เรื่องเล็กเรื่องน้อยก็สามารถเป็นเรื่องใหญ่ได้",
+        "prompt_text": "คำในข้อใด เมื่อนำไปเติมในช่องว่างแล้วสอดคล้องกับข้อความ",
+        "choices": {
+          "1": "แข็งใจ",
+          "2": "แปลกใจ",
+          "3": "ท้อแท้ใจ",
+          "4": "ขุ่นเคืองใจ"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 4804,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_llama3_1_8b_thai_7_good_0",
+        "model_id": "llama3.1:8b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 7,
+        "question_no": 7,
+        "skill_tag": [
+          "moral_application",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "parsed_answer": "2",
+        "model_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+        "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+        "choices": {
+          "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+          "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+          "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+          "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 1555,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_mistral_7b_math_14_good_1",
+        "model_id": "mistral:7b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 14,
+        "question_no": 14,
+        "skill_tag": [
+          "time",
+          "duration"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "3",
+        "correct_answer_text": "14.55 น.",
+        "parsed_answer": "3",
+        "model_answer_text": "14.55 น.",
+        "stimulus_text": "รถบรรทุกดิน 3 รอบ แต่ละรอบใช้เวลา: รอบที่ 1 = 1 ชั่วโมง 30 นาที, รอบที่ 2 = 2 ชั่วโมง 5 นาที, รอบที่ 3 = 1 ชั่วโมง 50 นาที. เริ่มงานเวลา 09.30 น.",
+        "prompt_text": "จากข้อมูล ถ้ารถบรรทุกเริ่มงานเวลา 09.30 น. โดยไม่หยุดพักจะบรรทุกดินเสร็จในเวลาใด",
+        "choices": {
+          "1": "13.55 น.",
+          "2": "14.15 น.",
+          "3": "14.55 น.",
+          "4": "15.40 น."
+        },
+        "raw_output_truncated": "3) 14.55 น. (1 ชั่วโมง 30 นาที + 2 ชั่วโมง 5 นาที + 1 ชั่วโมง 50 นาที = 4 ชั่วโมง 35 นาที, เพิ่มเวลาเริ่มงาน 09.30 น. ได้ 14.55 น.)",
+        "raw_output_full": "3) 14.55 น. (1 ชั่วโมง 30 นาที + 2 ชั่วโมง 5 นาที + 1 ชั่วโมง 50 นาที = 4 ชั่วโมง 35 นาที, เพิ่มเวลาเริ่มงาน 09.30 น. ได้ 14.55 น.)",
+        "latency_ms": 7010,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_mistral_7b_math_18_bad_1",
+        "model_id": "mistral:7b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+        "parsed_answer": "1",
+        "model_answer_text": "โซน A น้อยกว่า โซน B 10 ร้าน",
+        "stimulus_text": "ในงานกาชาดประจำปีมีโซนขายสินค้า: โซน A ยาว 800 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 500 เซนติเมตร; โซน B ยาว 600 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 4 เมตร",
+        "prompt_text": "จากข้อมูล โซน A กับ โซน B มีจำนวนร้านค้าต่างกันอย่างไร",
+        "choices": {
+          "1": "โซน A น้อยกว่า โซน B 10 ร้าน",
+          "2": "โซน A มากกว่า โซน B 10 ร้าน",
+          "3": "โซน A น้อยกว่า โซน B 80 ร้าน",
+          "4": "โซน A มากกว่า โซน B 80 ร้าน"
+        },
+        "raw_output_truncated": "1) โซน A น้อยกว่า โซน B 10 ร้าน (ในโซน A มี 800/500 = 1.6 ร้านค้า และในโซน B มี 600/4 = 150 ร้านค้า ซึ่ง 150 - 1.6 = 148.4 > 10)",
+        "raw_output_full": "1) โซน A น้อยกว่า โซน B 10 ร้าน (ในโซน A มี 800/500 = 1.6 ร้านค้า และในโซน B มี 600/4 = 150 ร้านค้า ซึ่ง 150 - 1.6 = 148.4 > 10)",
+        "latency_ms": 6929,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_mistral_7b_thai_21_bad_0",
+        "model_id": "mistral:7b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 21,
+        "question_no": 21,
+        "skill_tag": [
+          "sentence_structure",
+          "pattern_matching"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/4",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "จอยถือกระเป๋าใหม่",
+        "parsed_answer": "2",
+        "model_answer_text": "จอมขี่จักรยาน",
+        "stimulus_text": "ผีเสื้อเกาะดอกไม้สีแดง",
+        "prompt_text": "ประโยคในข้อใดมีโครงสร้างเหมือนกับประโยคที่กำหนด",
+        "choices": {
+          "1": "โจไปโรงเรียน",
+          "2": "จอมขี่จักรยาน",
+          "3": "จอยถือกระเป๋าใหม่",
+          "4": "เพื่อนของจุ๋มซื้อข้าวผัด"
+        },
+        "raw_output_truncated": "2) จอมขี่จักรยาน\n\n(1) โจไปโรงเรียน - โจ (subject) + ไป (verb) + โรงเรียน (object)\n(2) จอมขี่จักรยาน - จอ (subject) + ม (auxiliary verb) + ขี่ (verb) + จักรยาน (object)\n(3) จอยถือกระเป๋าใหม่ - จอ (subj",
+        "raw_output_full": "2) จอมขี่จักรยาน\n\n(1) โจไปโรงเรียน - โจ (subject) + ไป (verb) + โรงเรียน (object)\n(2) จอมขี่จักรยาน - จอ (subject) + ม (auxiliary verb) + ขี่ (verb) + จักรยาน (object)\n(3) จอยถือกระเป๋าใหม่ - จอ (subject) + ย (auxiliary verb) + ถือ (verb) + กระเป๋า (object)\n(4) เพื่อนของจุ๋มซื้อข้าวผัด - เพื่อน (subject) + ของ (possessive pronoun) + จุ๋ม (noun) + ซื้อ (verb) + ข้าว (object) + ผัด (adjective)\n\nThe structure of the sentence \"จอมขี่จักรยาน\" is similar to the given sentence pattern, where the subject is followed by an auxiliary verb, a verb, and an object.",
+        "latency_ms": 15081,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_mistral_7b_thai_21_good_0",
+        "model_id": "mistral:7b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 21,
+        "question_no": 21,
+        "skill_tag": [
+          "sentence_type",
+          "classification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/4",
+        "is_correct": true,
+        "correct_answer": "1",
+        "correct_answer_text": "วินัยชอบเล่นกีฬาไทยทุกชนิด",
+        "parsed_answer": "1",
+        "model_answer_text": "วินัยชอบเล่นกีฬาไทยทุกชนิด",
+        "stimulus_text": "คุณพ่อจะพาครอบครัวไปเที่ยวที่ไหน",
+        "prompt_text": "ข้อใดเป็นประโยคต่างชนิดกับประโยคข้างต้น",
+        "choices": {
+          "1": "วินัยชอบเล่นกีฬาไทยทุกชนิด",
+          "2": "วิภามักทำอะไรในวันหยุด",
+          "3": "วิทิตไปโรงเรียนกับใคร",
+          "4": "วิชัยร้องไห้ทำไม"
+        },
+        "raw_output_truncated": "1 (วินัยชอบเล่นกีฬาไทยทุกชนิด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่มีผู้หลัก (คุณพ่อ) และเกี่ยวข้องกับกิจกรรมที่คุณพ่อต้องการทำ (เที่ยว) ซึ่งไม่เป็นประโยคที่แสดงถึงผู้",
+        "raw_output_full": "1 (วินัยชอบเล่นกีฬาไทยทุกชนิด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่มีผู้หลัก (คุณพ่อ) และเกี่ยวข้องกับกิจกรรมที่คุณพ่อต้องการทำ (เที่ยว) ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n2 (วิภามักทำอะไรในวันหยุด) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิภา) และเกี่ยวข้องกับการทำอะไรในช่วงเวลาวันหยุด ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n3 (วิทิตไปโรงเรียนกับใคร) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิทิต) และเกี่ยวข้องกับการไปโรงเรียนกับใคร ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\n4 (วิชัยร้องไห้ทำไม) ไม่เป็นประโยคต่างชนิดกับประโยคข้างต้น เนื่องจากประโยคนี้เป็นประโยคที่แสดงถึงผู้หลัก (วิชัย) และเกี่ยวข้องกับการร้องไห้ทำไม ซึ่งไม่เป็นประโยคที่แสดงถึงผู้หลักทำอะไรในช่วงเวลาใดๆ\n\nข้อที่ถูกต้องคือ 1) วินัยชอบเล่นกีฬาไทยทุกชนิด (1)",
+        "latency_ms": 41577,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_olmo2_7b_math_10_bad_1",
+        "model_id": "olmo2:7b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 10,
+        "question_no": 10,
+        "skill_tag": [
+          "number_pattern"
+        ],
+        "curriculum_standard": "ค 1.2 ป.3/1",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "1,170",
+        "parsed_answer": "3",
+        "model_answer_text": "1,125",
+        "stimulus_text": "แม่ให้เงินกระต่าย 405 บาท กระต่ายออมเงินเพิ่มขึ้นเท่ากันทุกวัน โดยมีเงินรวมในแต่ละวันดังนี้: วันที่ 1 = 450, วันที่ 2 = 495, วันที่ 3 = ..., วันที่ 4 = 585, วันที่ 5 = ...",
+        "prompt_text": "จากข้อมูล จำนวนเงินในวันที่ 3 และวันที่ 5 รวมกันได้กี่บาท",
+        "choices": {
+          "1": "630",
+          "2": "1,080",
+          "3": "1,125",
+          "4": "1,170"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 1054,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_olmo2_7b_math_26_good_1",
+        "model_id": "olmo2:7b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1883,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_olmo2_7b_thai_16_good_0",
+        "model_id": "olmo2:7b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 16,
+        "question_no": 16,
+        "skill_tag": [
+          "spelling",
+          "error_identification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/1",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "หมายเลข (4)",
+        "parsed_answer": "4",
+        "model_answer_text": "หมายเลข (4)",
+        "stimulus_text": "เดือนกุมภาพันธ์ แจ๋วและแพนไปทัศนศึกษากับทางโรงเรียน ที่สวนพฤกษศาสตร์ เป็นสถานที่ที่มีพรรณไม้ เช่น ต้นตะเคียนทอง จามจุรี ตีนเป็ด ฯลฯ จากนั้นจึงพาไปพิพิธภัณฑ์สัตว์น้ำ ซึ่งมีปลาหลากหลายสายพันธ์ให้ดู (1) เดือนกุมภาพันธ์ (2) พรรณไม้ (3) พิพิธภัณฑ์ (4) สายพันธ์",
+        "prompt_text": "จากข้อความ คำหมายเลขใดเขียนไม่ถูกต้อง",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1736,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_olmo2_7b_thai_8_bad_0",
+        "model_id": "olmo2:7b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "2",
+        "model_answer_text": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 2154,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_phi4_mini_3_8b_math_10_bad_1",
+        "model_id": "phi4-mini:3.8b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 10,
+        "question_no": 10,
+        "skill_tag": [
+          "number_pattern"
+        ],
+        "curriculum_standard": "ค 1.2 ป.3/1",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "1,170",
+        "parsed_answer": "1",
+        "model_answer_text": "630",
+        "stimulus_text": "แม่ให้เงินกระต่าย 405 บาท กระต่ายออมเงินเพิ่มขึ้นเท่ากันทุกวัน โดยมีเงินรวมในแต่ละวันดังนี้: วันที่ 1 = 450, วันที่ 2 = 495, วันที่ 3 = ..., วันที่ 4 = 585, วันที่ 5 = ...",
+        "prompt_text": "จากข้อมูล จำนวนเงินในวันที่ 3 และวันที่ 5 รวมกันได้กี่บาท",
+        "choices": {
+          "1": "630",
+          "2": "1,080",
+          "3": "1,125",
+          "4": "1,170"
+        },
+        "raw_output_truncated": "1,175",
+        "raw_output_full": "1,175",
+        "latency_ms": 483,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_phi4_mini_3_8b_math_25_good_1",
+        "model_id": "phi4-mini:3.8b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 25,
+        "question_no": 25,
+        "skill_tag": [
+          "pictograph",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/1",
+        "is_correct": true,
+        "correct_answer": "3",
+        "correct_answer_text": "มากกว่า 20 ผล",
+        "parsed_answer": "3",
+        "model_answer_text": "มากกว่า 20 ผล",
+        "stimulus_text": "แผนภูมิรูปภาพจำนวนมะม่วงพันธุ์ต่าง ๆ ที่พ่อเก็บได้ใน 1 วัน โดย 1 รูปแทน 10 ผล: แก้วขมิ้น 5 รูป, อกร่อง 4 รูป, น้ำดอกไม้ 3 รูป, เขียวเสวย 6 รูป",
+        "prompt_text": "จากข้อมูล จำนวนมะม่วงอกร่องรวมกับมะม่วงเขียวเสวย มากกว่าหรือน้อยกว่าจำนวนมะม่วงแก้วขมิ้นรวมกับมะม่วงน้ำดอกไม้ กี่ผล",
+        "choices": {
+          "1": "มากกว่า 2 ผล",
+          "2": "น้อยกว่า 2 ผล",
+          "3": "มากกว่า 20 ผล",
+          "4": "น้อยกว่า 20 ผล"
+        },
+        "raw_output_truncated": "3) มากกว่าสองสิบผล",
+        "raw_output_full": "3) มากกว่าสองสิบผล",
+        "latency_ms": 777,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_phi4_mini_3_8b_thai_10_bad_0",
+        "model_id": "phi4-mini:3.8b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 10,
+        "question_no": 10,
+        "skill_tag": [
+          "applied_reading",
+          "judgment_from_text"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/7",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "อ้อวางผัก ผลไม้ และเนื้อสดในตู้เย็นไว้คนละชั้น",
+        "parsed_answer": "1",
+        "model_answer_text": "โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
+        "stimulus_text": "ข้อแนะนำ 5 วิธีประหยัดไฟฟ้าช่วงหน้าร้อน ได้แก่ ตั้งอุณหภูมิเครื่องปรับอากาศประมาณ 25 - 26 องศา ใช้หลอดไฟ LED เพื่อใช้ไฟน้อยอายุการใช้งานยาวนาน จัดของในตู้เย็นให้เป็นระเบียบ ถอดปลั๊กเครื่องใช้ไฟฟ้าทุกชนิดเมื่อไม่ใช้งาน และเลือกเครื่องใช้ไฟฟ้าที่มีฉลากเบอร์ 5",
+        "prompt_text": "ใครปฏิบัติตนสอดคล้องกับคำแนะนำ",
+        "choices": {
+          "1": "โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
+          "2": "อ้อวางผัก ผลไม้ และเนื้อสดในตู้เย็นไว้คนละชั้น",
+          "3": "อุ้มต้องการประหยัดพลังงานโดยการเปลี่ยนหลอดไฟทุกเดือน",
+          "4": "เอ๋ถอดปลั๊กพัดลมเฉพาะเมื่อต้องไปเที่ยวต่างจังหวัดกับครอบครัว"
+        },
+        "raw_output_truncated": "1) โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
+        "raw_output_full": "1) โอ๋เลือกซื้อเครื่องใช้ไฟฟ้าเฉพาะที่ลดราคา",
+        "latency_ms": 1491,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_phi4_mini_3_8b_thai_1_good_0",
+        "model_id": "phi4-mini:3.8b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 1,
+        "question_no": 1,
+        "skill_tag": [
+          "reading_comprehension",
+          "meaning_matching"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "ขุ่นเคืองใจ",
+        "parsed_answer": "4",
+        "model_answer_text": "ขุ่นเคืองใจ",
+        "stimulus_text": "การให้อภัยเป็นสิ่งจำเป็นอย่างยิ่ง เพราะหากไม่มีการให้อภัยแล้ว ก็จะก่อให้เกิดการ.......................... เรื่องเล็กเรื่องน้อยก็สามารถเป็นเรื่องใหญ่ได้",
+        "prompt_text": "คำในข้อใด เมื่อนำไปเติมในช่องว่างแล้วสอดคล้องกับข้อความ",
+        "choices": {
+          "1": "แข็งใจ",
+          "2": "แปลกใจ",
+          "3": "ท้อแท้ใจ",
+          "4": "ขุ่นเคืองใจ"
+        },
+        "raw_output_truncated": "4) ขุ่นเคืองใจ",
+        "raw_output_full": "4) ขุ่นเคืองใจ",
+        "latency_ms": 2776,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen2_5_7b_math_18_good_1",
+        "model_id": "qwen2.5:7b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": true,
+        "correct_answer": "3",
+        "correct_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "parsed_answer": "3",
+        "model_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "stimulus_text": "เส้นทาง A ยาว 3 กิโลเมตร 500 เมตร, เส้นทาง B สั้นกว่าเส้นทาง A อยู่ 1,200 เมตร, เส้นทาง C ยาว 2 กิโลเมตร 500 เมตร",
+        "prompt_text": "จากข้อมูล ข้อใดสรุปเส้นทางไปโรงเรียนของเด็กชายบอลได้ถูกต้อง",
+        "choices": {
+          "1": "ใช้เส้นทาง B เป็นระยะทางยาว 2,375 เมตร",
+          "2": "ใช้เส้นทาง C เป็นระยะทางยาวกว่า เส้นทาง B อยู่ 175 เมตร",
+          "3": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+          "4": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 1186,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen2_5_7b_math_26_bad_1",
+        "model_id": "qwen2.5:7b",
+        "exam_id": "nt_p3_math_2565",
+        "year_buddhist": 2565,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "ข้าวหอมมะลิ",
+        "parsed_answer": "1",
+        "model_answer_text": "ข้าวกล้อง",
+        "stimulus_text": "ตารางข้าวสารที่ขาย: ข้าวกล้อง 500 ถุง ถุงละ 1 กิโลกรัม; ข้าวเสาไห้ 100 ถุง ถุงละ 5 กิโลกรัม; ข้าวหอมมะลิ 30 ถุง ถุงละ 15 กิโลกรัม; ข้าวขาวนาปี 20 ถุง ถุงละ 25 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ร้านค้าขายข้าวสารชนิดใดที่มีน้ำหนักรวมต่างจากชนิดอื่น",
+        "choices": {
+          "1": "ข้าวกล้อง",
+          "2": "ข้าวเสาไห้",
+          "3": "ข้าวหอมมะลิ",
+          "4": "ข้าวขาวนาปี"
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 1060,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen2_5_7b_thai_20_bad_0",
+        "model_id": "qwen2.5:7b",
+        "exam_id": "nt_p3_th_2566",
+        "year_buddhist": 2566,
+        "subject": "thai",
+        "question_id": 20,
+        "question_no": 20,
+        "skill_tag": [
+          "sentence_type",
+          "declarative_sentence"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/4",
+        "is_correct": false,
+        "correct_answer": "1",
+        "correct_answer_text": "เขาไปซื้อปลาทูให้แม่",
+        "parsed_answer": "4",
+        "model_answer_text": "เธอช่วยหยิบสมุดให้ฉันหน่อย",
+        "stimulus_text": "ฉันชอบกินผลไม้",
+        "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+        "choices": {
+          "1": "เขาไปซื้อปลาทูให้แม่",
+          "2": "เราไม่ให้เธอยืมดินสอ",
+          "3": "ทำไมเธอไม่มาโรงเรียน",
+          "4": "เธอช่วยหยิบสมุดให้ฉันหน่อย"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 644,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen2_5_7b_thai_8_good_0",
+        "model_id": "qwen2.5:7b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "4",
+        "model_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1461,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen3_5_9b_math_18_bad_1",
+        "model_id": "qwen3.5:9b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "parsed_answer": "4",
+        "model_answer_text": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร",
+        "stimulus_text": "เส้นทาง A ยาว 3 กิโลเมตร 500 เมตร, เส้นทาง B สั้นกว่าเส้นทาง A อยู่ 1,200 เมตร, เส้นทาง C ยาว 2 กิโลเมตร 500 เมตร",
+        "prompt_text": "จากข้อมูล ข้อใดสรุปเส้นทางไปโรงเรียนของเด็กชายบอลได้ถูกต้อง",
+        "choices": {
+          "1": "ใช้เส้นทาง B เป็นระยะทางยาว 2,375 เมตร",
+          "2": "ใช้เส้นทาง C เป็นระยะทางยาวกว่า เส้นทาง B อยู่ 175 เมตร",
+          "3": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+          "4": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1983,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen3_5_9b_math_26_good_1",
+        "model_id": "qwen3.5:9b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1996,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen3_5_9b_thai_19_bad_0",
+        "model_id": "qwen3.5:9b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 19,
+        "question_no": 19,
+        "skill_tag": [
+          "parts_of_speech",
+          "verb_identification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/2",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "หมายเลข (2)",
+        "parsed_answer": "3",
+        "model_answer_text": "หมายเลข (3)",
+        "stimulus_text": "บนถนนมีรถยนต์วิ่งขวักไขว่ หญิงสาวขยับตัวอย่างหงุดหงิด เธอปล่อยมือจากพวงมาลัย เอี้ยวตัวไปดึงกระดาษทิชชูจากเบาะด้านหลังมาซับเหงื่อบนใบหน้า (1) รถยนต์ (2) ขยับ (3) เธอ (4) กระดาษทิชชู",
+        "prompt_text": "จากข้อความ คำในหมายเลขใดเป็นคำชนิดเดียวกับคำที่ขีดเส้นใต้",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 1806,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen3_5_9b_thai_8_good_0",
+        "model_id": "qwen3.5:9b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "4",
+        "model_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 2352,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen3_8b_math_25_bad_1",
+        "model_id": "qwen3:8b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 25,
+        "question_no": 25,
+        "skill_tag": [
+          "pictograph",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/1",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "มากกว่า 20 ผล",
+        "parsed_answer": "1",
+        "model_answer_text": "มากกว่า 2 ผล",
+        "stimulus_text": "แผนภูมิรูปภาพจำนวนมะม่วงพันธุ์ต่าง ๆ ที่พ่อเก็บได้ใน 1 วัน โดย 1 รูปแทน 10 ผล: แก้วขมิ้น 5 รูป, อกร่อง 4 รูป, น้ำดอกไม้ 3 รูป, เขียวเสวย 6 รูป",
+        "prompt_text": "จากข้อมูล จำนวนมะม่วงอกร่องรวมกับมะม่วงเขียวเสวย มากกว่าหรือน้อยกว่าจำนวนมะม่วงแก้วขมิ้นรวมกับมะม่วงน้ำดอกไม้ กี่ผล",
+        "choices": {
+          "1": "มากกว่า 2 ผล",
+          "2": "น้อยกว่า 2 ผล",
+          "3": "มากกว่า 20 ผล",
+          "4": "น้อยกว่า 20 ผล"
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 1144,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen3_8b_math_26_good_1",
+        "model_id": "qwen3:8b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 26,
+        "question_no": 26,
+        "skill_tag": [
+          "table_reading",
+          "data_interpretation"
+        ],
+        "curriculum_standard": "ค 3.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "parsed_answer": "4",
+        "model_answer_text": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน",
+        "stimulus_text": "ตารางชมรม: รักษ์ภาษา 27, คณิตคิดสนุก 32, หนูน้อยนักวิทย์ 26, ภาษาอังกฤษ 54, รักษ์ศิลป์ 31",
+        "prompt_text": "จากข้อมูล ข้อสรุปการเลือกชมรมของนักเรียนข้อใดถูกต้อง",
+        "choices": {
+          "1": "นักเรียนเลือกชมรมหนูน้อยนักวิทย์มากกว่าชมรมรักษ์ศิลป์",
+          "2": "นักเรียนเลือกชมรมรักษ์ศิลป์มากกว่าชมรมภาษาอังกฤษ",
+          "3": "นักเรียนเลือกชมรมรักษ์ภาษาน้อยกว่าชมรมหนูน้อยนักวิทย์ อยู่ 1 คน",
+          "4": "นักเรียนเลือกชมรมคณิตคิดสนุกมากกว่าชมรมหนูน้อยนักวิทย์ อยู่ 6 คน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1437,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_qwen3_8b_thai_21_bad_0",
+        "model_id": "qwen3:8b",
+        "exam_id": "nt_p3_th_2566",
+        "year_buddhist": 2566,
+        "subject": "thai",
+        "question_id": 21,
+        "question_no": 21,
+        "skill_tag": [
+          "sentence_type",
+          "classification"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/4",
+        "is_correct": false,
+        "correct_answer": "1",
+        "correct_answer_text": "หมายเลข (1)",
+        "parsed_answer": "2",
+        "model_answer_text": "หมายเลข (2)",
+        "stimulus_text": "(1) ฉันอยากไปเที่ยวสวนสัตว์ (2) เขากินส้มตำเป็นประจำ (3) ผมเขียนจดหมายถึงคุณตา (4) เธอทำกับข้าวอยู่ในครัว",
+        "prompt_text": "ข้อใดเป็นชนิดของประโยคที่ต่างจากพวก",
+        "choices": {
+          "1": "หมายเลข (1)",
+          "2": "หมายเลข (2)",
+          "3": "หมายเลข (3)",
+          "4": "หมายเลข (4)"
+        },
+        "raw_output_truncated": "2) หมายเลข (2)",
+        "raw_output_full": "2) หมายเลข (2)",
+        "latency_ms": 1009,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_qwen3_8b_thai_8_good_0",
+        "model_id": "qwen3:8b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "4",
+        "model_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 1577,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_18_good_1",
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+        "parsed_answer": "2",
+        "model_answer_text": "โซน A มากกว่า โซน B 10 ร้าน",
+        "stimulus_text": "ในงานกาชาดประจำปีมีโซนขายสินค้า: โซน A ยาว 800 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 500 เซนติเมตร; โซน B ยาว 600 เมตร แบ่งเป็นร้านค้าแต่ละร้านยาว 4 เมตร",
+        "prompt_text": "จากข้อมูล โซน A กับ โซน B มีจำนวนร้านค้าต่างกันอย่างไร",
+        "choices": {
+          "1": "โซน A น้อยกว่า โซน B 10 ร้าน",
+          "2": "โซน A มากกว่า โซน B 10 ร้าน",
+          "3": "โซน A น้อยกว่า โซน B 80 ร้าน",
+          "4": "โซน A มากกว่า โซน B 80 ร้าน"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 997,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_6_bad_1",
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "word_problem",
+          "two_step_problem"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/9",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "24",
+        "parsed_answer": "2",
+        "model_answer_text": "10",
+        "stimulus_text": "ร้านค้า มีลูกชิ้นไก่ 50 กิโลกรัม มีลูกชิ้นปลา มากกว่าลูกชิ้นไก่ 70 กิโลกรัม ถ้าร้านค้าแบ่งลูกชิ้นปลาใส่ถุง ถุงละ 5 กิโลกรัม",
+        "prompt_text": "จากข้อมูล ร้านค้าจะแบ่งลูกชิ้นปลาได้ทั้งหมดกี่ถุง",
+        "choices": {
+          "1": "4",
+          "2": "10",
+          "3": "14",
+          "4": "24"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 841,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_23_bad_0",
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "exam_id": "nt_p3_th_2566",
+        "year_buddhist": 2566,
+        "subject": "thai",
+        "question_id": 23,
+        "question_no": 23,
+        "skill_tag": [
+          "standard_thai",
+          "word_choice"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/6",
+        "is_correct": false,
+        "correct_answer": "3",
+        "correct_answer_text": "มอบ ให้",
+        "parsed_answer": "4",
+        "model_answer_text": "ให้ มอบ",
+        "stimulus_text": "ประธานในพิธี.....(1).....ทุนการศึกษาให้แก่นักเรียนที่มีผลการเรียนดี มีความประพฤติเรียบร้อย ตามด้วยการกล่าวแสดงความยินดีและ…..(2).....โอวาทตามลำดับ",
+        "prompt_text": "คำภาษาไทยมาตรฐานในข้อใดเมื่อนำไปเติมในช่องว่างตามลำดับ แล้วจะเป็นข้อความที่เหมาะสม",
+        "choices": {
+          "1": "แจก กล่าว",
+          "2": "ส่ง พูด",
+          "3": "มอบ ให้",
+          "4": "ให้ มอบ"
+        },
+        "raw_output_truncated": "4",
+        "raw_output_full": "4",
+        "latency_ms": 842,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_7_good_0",
+        "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 7,
+        "question_no": 7,
+        "skill_tag": [
+          "moral_application",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "2",
+        "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "parsed_answer": "2",
+        "model_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+        "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+        "choices": {
+          "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+          "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+          "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+          "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+        },
+        "raw_output_truncated": "2",
+        "raw_output_full": "2",
+        "latency_ms": 1576,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_13_good_1",
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 13,
+        "question_no": 13,
+        "skill_tag": [
+          "time",
+          "duration",
+          "table_reading"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/2",
+        "is_correct": true,
+        "correct_answer": "1",
+        "correct_answer_text": "08.30 น.",
+        "parsed_answer": "1",
+        "model_answer_text": "08.30 น.",
+        "stimulus_text": "คิมกับเพื่อนมีกิจกรรมต่อเนื่องกันดังนี้: เดินทางจากบ้านไปหาดบางแสน 1 ชั่วโมง 40 นาที, เล่นน้ำทะเลและก่อกองทราย 2 ชั่วโมง 20 นาที, รับประทานอาหารกลางวัน 30 นาที, ชมพิพิธภัณฑ์สัตว์น้ำ 2 ชั่วโมง; เที่ยวพิพิธภัณฑ์สัตว์น้ำเสร็จเวลา 15.00 น.",
+        "prompt_text": "จากข้อมูล คิมและเพื่อนต้องเดินทางออกจากบ้านเวลาใด",
+        "choices": {
+          "1": "08.30 น.",
+          "2": "10.30 น.",
+          "3": "11.00 น.",
+          "4": "13.00 น."
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 518,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_math_9_bad_1",
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 9,
+        "question_no": 9,
+        "skill_tag": [
+          "fraction_addition",
+          "fraction_subtraction",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/11",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "แบ่งให้หลาน",
+        "parsed_answer": "3",
+        "model_answer_text": "แบ่งไปทำบุญ",
+        "stimulus_text": "คุณยายทำขนมหม้อแกง 1 ถาด แบ่งไปทำบุญ 5/20 ถาด ให้เพื่อนบ้านมากกว่าทำบุญ 1/20 ถาด ให้หลานน้อยกว่าให้เพื่อนบ้าน 2/20 ถาด และที่เหลือนำไปขาย",
+        "prompt_text": "จากข้อมูล การแบ่งขนมในข้อใดที่ได้ขนมหม้อแกงน้อยที่สุด",
+        "choices": {
+          "1": "นำไปขาย",
+          "2": "แบ่งให้หลาน",
+          "3": "แบ่งไปทำบุญ",
+          "4": "แบ่งให้เพื่อนบ้าน"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 468,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "exam_id": "nt_p3_th_2566",
+        "year_buddhist": 2566,
+        "subject": "thai",
+        "question_id": 20,
+        "question_no": 20,
+        "skill_tag": [
+          "sentence_type",
+          "declarative_sentence"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/4",
+        "is_correct": true,
+        "correct_answer": "1",
+        "correct_answer_text": "เขาไปซื้อปลาทูให้แม่",
+        "parsed_answer": "1",
+        "model_answer_text": "เขาไปซื้อปลาทูให้แม่",
+        "stimulus_text": "ฉันชอบกินผลไม้",
+        "prompt_text": "ข้อใดเป็นประโยคชนิดเดียวกับประโยคข้างต้น",
+        "choices": {
+          "1": "เขาไปซื้อปลาทูให้แม่",
+          "2": "เราไม่ให้เธอยืมดินสอ",
+          "3": "ทำไมเธอไม่มาโรงเรียน",
+          "4": "เธอช่วยหยิบสมุดให้ฉันหน่อย"
+        },
+        "raw_output_truncated": "1",
+        "raw_output_full": "1",
+        "latency_ms": 380,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_1_gemma3_4b_thai_7_bad_0",
+        "model_id": "scb10x/typhoon2.1-gemma3-4b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 7,
+        "question_no": 7,
+        "skill_tag": [
+          "moral_application",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": false,
+        "correct_answer": "2",
+        "correct_answer_text": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+        "parsed_answer": "3",
+        "model_answer_text": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+        "stimulus_text": "พี่น้องคู่หนึ่งรักกันมาก เมื่อโตขึ้นมีครอบครัว พ่อแม่จึงปลูกบ้านให้คนละหลัง แต่ให้ทำนาด้วยกัน หลังจากเก็บเกี่ยวก็จะแบ่งข้าวเปลือกกันคนละครึ่ง นำไปเก็บที่ลานบ้านของตน ผู้เป็นพี่คิดว่าน้องชายยังมีภาระมาก จึงแอบหาบข้าวเปลือกไปให้น้องโดยไม่บอกให้รู้ ส่วนน้องชายก็คิดและทำเช่นเดียวกับพี่ชาย เมื่อทั้งสองได้รู้ความจริงว่าอีกฝ่ายรักและห่วงใยตนมาก จึงรู้สึกมีความสุขและรักกันมากยิ่งขึ้น",
+        "prompt_text": "ใครปฏิบัติตนสอดคล้องกับข้อคิดจากนิทาน",
+        "choices": {
+          "1": "เปากับปุ้ม รับหมาจรจัดมาเลี้ยง",
+          "2": "แป้งกับปอน ช่วยกันทบทวนบทเรียน",
+          "3": "ป่านกับปิ่น ไปรับถุงยังชีพจากทางราชการ",
+          "4": "แป๋มกับป้อม ไปอ่านหนังสือให้คนตาบอดฟัง"
+        },
+        "raw_output_truncated": "3",
+        "raw_output_full": "3",
+        "latency_ms": 657,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_5_qwen3_4b_math_18_good_1",
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "exam_id": "nt_p3_math_2566",
+        "year_buddhist": 2566,
+        "subject": "math",
+        "question_id": 18,
+        "question_no": 18,
+        "skill_tag": [
+          "length",
+          "unit_conversion",
+          "comparison"
+        ],
+        "curriculum_standard": "ค 2.1 ป.3/6",
+        "is_correct": true,
+        "correct_answer": "3",
+        "correct_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "parsed_answer": "3",
+        "model_answer_text": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "stimulus_text": "เส้นทาง A ยาว 3 กิโลเมตร 500 เมตร, เส้นทาง B สั้นกว่าเส้นทาง A อยู่ 1,200 เมตร, เส้นทาง C ยาว 2 กิโลเมตร 500 เมตร",
+        "prompt_text": "จากข้อมูล ข้อใดสรุปเส้นทางไปโรงเรียนของเด็กชายบอลได้ถูกต้อง",
+        "choices": {
+          "1": "ใช้เส้นทาง B เป็นระยะทางยาว 2,375 เมตร",
+          "2": "ใช้เส้นทาง C เป็นระยะทางยาวกว่า เส้นทาง B อยู่ 175 เมตร",
+          "3": "ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+          "4": "ใช้เส้นทาง B เป็นระยะทางที่สั้นกว่า เส้นทาง C อยู่ 1,200 เมตร"
+        },
+        "raw_output_truncated": "3) ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "raw_output_full": "3) ใช้เส้นทาง A เป็นระยะทางยาวกว่า เส้นทาง C อยู่ 1,000 เมตร",
+        "latency_ms": 1578,
+        "selection_reason": "good_top_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_5_qwen3_4b_math_6_bad_1",
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "exam_id": "nt_p3_math_2567",
+        "year_buddhist": 2567,
+        "subject": "math",
+        "question_id": 6,
+        "question_no": 6,
+        "skill_tag": [
+          "word_problem",
+          "two_step_problem"
+        ],
+        "curriculum_standard": "ค 1.1 ป.3/9",
+        "is_correct": false,
+        "correct_answer": "1",
+        "correct_answer_text": "1,800",
+        "parsed_answer": "2",
+        "model_answer_text": "3,200",
+        "stimulus_text": "โรงเรียนแห่งหนึ่งได้รับเงินบริจาค 25,000 บาท นำไปจัดซื้อหนังสือให้ห้องสมุด 16,000 บาท และนำเงินที่เหลือทั้งหมดไปซื้อพัดลม 5 ตัว ราคาตัวละเท่า ๆ กัน",
+        "prompt_text": "จากข้อมูล พัดลมราคาตัวละกี่บาท",
+        "choices": {
+          "1": "1,800",
+          "2": "3,200",
+          "3": "5,000",
+          "4": "9,000"
+        },
+        "raw_output_truncated": "2) 3,200",
+        "raw_output_full": "2) 3,200",
+        "latency_ms": 667,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_5_qwen3_4b_thai_23_bad_0",
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "exam_id": "nt_p3_th_2565",
+        "year_buddhist": 2565,
+        "subject": "thai",
+        "question_id": 23,
+        "question_no": 23,
+        "skill_tag": [
+          "standard_thai",
+          "word_choice"
+        ],
+        "curriculum_standard": "ท 4.1 ป.3/6",
+        "is_correct": false,
+        "correct_answer": "4",
+        "correct_answer_text": "เยี่ยม รับประทาน",
+        "parsed_answer": "3",
+        "model_answer_text": "พบ รับประทาน",
+        "stimulus_text": "ทางโรงเรียน เรียนเชิญคณะกรรมการสถานศึกษา เดินทางมา..............โรงเรียน เพื่อร่วม………………….อาหารกลางวัน และเชิญเข้าประชุม เพื่อเตรียมความพร้อมในการเปิดเรียน",
+        "prompt_text": "ควรเติมคำในข้อใดลงในช่องว่าง ตามลำดับจึงจะเหมาะสม",
+        "choices": {
+          "1": "ดู กิน",
+          "2": "ชม กิน",
+          "3": "พบ รับประทาน",
+          "4": "เยี่ยม รับประทาน"
+        },
+        "raw_output_truncated": "3) พบ รับประทาน",
+        "raw_output_full": "3) พบ รับประทาน",
+        "latency_ms": 690,
+        "selection_reason": "bad_weak_skill"
+      },
+      {
+        "example_id": "ex_scb10x_typhoon2_5_qwen3_4b_thai_8_good_0",
+        "model_id": "scb10x/typhoon2.5-qwen3-4b",
+        "exam_id": "nt_p3_th_2567",
+        "year_buddhist": 2567,
+        "subject": "thai",
+        "question_id": 8,
+        "question_no": 8,
+        "skill_tag": [
+          "moral_extraction",
+          "reading_literature"
+        ],
+        "curriculum_standard": "ท 1.1 ป.3/5",
+        "is_correct": true,
+        "correct_answer": "4",
+        "correct_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "parsed_answer": "4",
+        "model_answer_text": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "stimulus_text": "แมงมุมตัวหนึ่งเฝ้าดูนกกระจอกที่ไล่จับแมลงกินเป็นอาหาร แมงมุมคิดว่าใยของมันจะดักจับนกกระจอกได้ จึงเร่งชักใยให้เสร็จเพื่อหวังจะจับนกกระจอกกิน เมื่อนกกระจอกบินมาชนใยแมงมุมและบินทะลุได้อย่างง่ายดาย มันจึงกลับไปซ่อมแซมใยของมัน เพื่อดักจับแมลงกินเป็นอาหารตามเดิม",
+        "prompt_text": "ข้อคิดที่ได้จากนิทานสอดคล้องกับข้อใด",
+        "choices": {
+          "1": "ความขยันทำให้เราได้ในสิ่งที่มุ่งหวัง",
+          "2": "สติปัญญาทำให้รอดพ้นจากอันตรายได้เสมอ",
+          "3": "สิ่งของจะมีค่าก็ต่อเมื่ออยู่กับคนที่รู้ค่าของสิ่งนั้น",
+          "4": "อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน"
+        },
+        "raw_output_truncated": "4) อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "raw_output_full": "4) อย่าพยายามทำในสิ่งที่เกินกำลังความสามารถของตน",
+        "latency_ms": 1456,
+        "selection_reason": "good_top_skill"
+      }
+    ]
+  }
+}

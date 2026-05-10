@@ -31,5 +31,5 @@ jobs:
       - name: Stop retired workflow
         run: |
           echo "::error::benchmark-screen.yml is retired. Use benchmark-verified.yml instead."
-          echo "New flow: preflight -> benchmark-verified (2x on all candidates) -> snapshot-pr"
+          echo "New flow: preflight -> benchmark-verified (1x on all candidates) -> snapshot-pr"
           exit 1

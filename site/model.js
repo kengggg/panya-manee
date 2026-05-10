@@ -17,11 +17,10 @@
   }
 
   try {
-    const [manifest, modelCards, examplesData] = await Promise.all([
-      loadJSON('manifest.json'),
-      loadJSON('model_cards.json'),
-      loadJSON('examples.json'),
-    ]);
+    const current = await loadJSON('current.json');
+    const manifest = current.manifest;
+    const modelCards = current.model_cards;
+    const examplesData = current.examples;
 
     document.getElementById('benchmark-label').textContent =
       manifest.benchmark_label + ' \u2014 ' + manifest.benchmark_scope;

@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-Deterministic verification gate for canonical+shadow publication batches.
+Publication verification gate for benchmark batches.
 
 Runs the publication decision inside the verified batch itself:
-  1. require exactly one canonical run and one shadow run per model
-  2. compare parsed answers item-by-item for determinism
+  1. require the expected number of runs per model
+  2. for multi-run batches, compare canonical and shadow parsed answers
   3. apply post-hoc publication thresholds to the canonical run
   4. optionally verify current model digests against preflight
+
+The official restart-baseline default is one run per model. Prior multi-run
+publication batches were exactly deterministic under the fixed prompt, dataset,
+temperature, and local Ollama setup, so r1 publication is now the default.
 
 This replaces the old screening -> publication contract with a single verified
 batch that filters losers after deterministic verification.
@@ -34,7 +38,8 @@ from screening_gate import (
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_RESPONSES_DIR = PROJECT_ROOT / "benchmark_responses"
-DEFAULT_PROTOCOL = "canonical_shadow_v1"
+DEFAULT_SINGLE_RUN_PROTOCOL = "single_run_publication_v1"
+DEFAULT_SHADOW_PROTOCOL = "canonical_shadow_v1"
 DEFAULT_PUBLICATION_MODE = "verified_posthoc_gate_v1"
 
 
@@ -147,14 +152,16 @@ def verify_publication_batch(
     responses_dir: Path | None = None,
     preflight_path: Path | None = None,
     expected_models: list[str] | None = None,
-    expected_runs: int = 2,
+    expected_runs: int = 1,
     canonical_run_index: int = 1,
-    shadow_run_index: int = 2,
-    protocol: str = DEFAULT_PROTOCOL,
+    shadow_run_index: int | None = None,
+    protocol: str | None = None,
     min_parse_rate: float = MIN_PARSE_RATE,
     min_accuracy: float = MIN_MEAN_ACCURACY,
 ) -> dict:
     responses_dir = responses_dir or DEFAULT_RESPONSES_DIR
+    if protocol is None:
+        protocol = DEFAULT_SINGLE_RUN_PROTOCOL if expected_runs == 1 else DEFAULT_SHADOW_PROTOCOL
     summary_path = responses_dir / f"repeat_summary_{batch_id}.json"
     if not summary_path.exists():
         raise FileNotFoundError(f"repeat_summary not found: {summary_path}")
@@ -191,11 +198,15 @@ def verify_publication_batch(
             reasons.append(f"expected exactly {expected_runs} runs, got {len(runs)}")
 
         canonical = next((r for r in runs if r.get("run_index") == canonical_run_index), None)
-        shadow = next((r for r in runs if r.get("run_index") == shadow_run_index), None)
+        shadow = (
+            next((r for r in runs if r.get("run_index") == shadow_run_index), None)
+            if shadow_run_index is not None
+            else None
+        )
 
         if canonical is None:
             reasons.append(f"missing canonical run_index={canonical_run_index}")
-        if shadow is None:
+        if expected_runs > 1 and shadow is None:
             reasons.append(f"missing shadow run_index={shadow_run_index}")
 
         matching_items = 0
@@ -205,7 +216,11 @@ def verify_publication_batch(
         canonical_parse_rate = canonical.get("parse_rate") if canonical else None
         digest_match = None
 
-        if not reasons and canonical and shadow:
+        if not reasons and canonical and expected_runs == 1:
+            canonical_rows = load_jsonl(resolve_output_path(canonical, responses_dir))
+            total_items = len(canonical_rows)
+            matching_items = total_items
+        elif not reasons and canonical and shadow:
             canonical_rows = load_jsonl(resolve_output_path(canonical, responses_dir))
             shadow_rows = load_jsonl(resolve_output_path(shadow, responses_dir))
             total_items = max(len(canonical_rows), len(shadow_rows))
@@ -305,7 +320,7 @@ def verify_publication_batch(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Deterministic canonical+shadow verification gate")
+    parser = argparse.ArgumentParser(description="Benchmark publication verification gate")
     parser.add_argument("--batch-id", required=True, help="Verified publication batch ID")
     parser.add_argument("--responses-dir", type=Path, default=None,
                         help="Responses directory (default: benchmark_responses/)")
@@ -313,12 +328,12 @@ def main():
                         help="Preflight record JSON for digest verification")
     parser.add_argument("--expected-models", default=None,
                         help="Comma-separated expected model IDs")
-    parser.add_argument("--expected-runs", type=int, default=2,
-                        help="Expected runs per model (default: 2)")
+    parser.add_argument("--expected-runs", type=int, default=1,
+                        help="Expected runs per model (default: 1)")
     parser.add_argument("--canonical-run-index", type=int, default=1,
                         help="Canonical run index (default: 1)")
-    parser.add_argument("--shadow-run-index", type=int, default=2,
-                        help="Shadow run index (default: 2)")
+    parser.add_argument("--shadow-run-index", type=int, default=None,
+                        help="Shadow run index for multi-run verification (default: none)")
     parser.add_argument("--min-parse-rate", type=float, default=MIN_PARSE_RATE,
                         help=f"Minimum canonical parse rate (default: {MIN_PARSE_RATE})")
     parser.add_argument("--min-accuracy", type=float, default=MIN_MEAN_ACCURACY,

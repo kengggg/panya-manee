@@ -6,7 +6,7 @@ Thin wrapper around main.py run — loops over models and run counts,
 generating deterministic run IDs in the format: {batch_id}-{slug}-r{NN}
 
 Usage:
-  python scripts/run_batch.py --batch-id mini-r10-20260415 --models "qwen3:0.6b,gemma3:1b" --runs-per-model 10
+  python scripts/run_batch.py --batch-id mini-r10-20260415 --models "qwen3:0.6b,gemma3:1b" --runs-per-model 1
   python scripts/run_batch.py --batch-id test --models "qwen3:0.6b" --runs-per-model 1 --dry-run
 """
 

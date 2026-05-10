@@ -1,0 +1,28 @@
+{
+  "schema_version": "panya_active_roster_v1",
+  "roster_id": "ntp3-restart-active-20260510",
+  "effective_from_batch_id": "ntp3-pub-r1-20260510",
+  "runs_per_model_default": 1,
+  "publication_policy": "Official publication default is one run per model. Prior multi-run batches were exactly deterministic under the fixed prompt/dataset/temperature setup.",
+  "current_snapshot_policy": "Dashboard exposes one current JSON. The current JSON is generated from one or more compatible batch/snapshot inputs; later compatible results replace earlier rows for the same model_id.",
+  "models": [
+    "qwen2.5:7b",
+    "qwen3:8b",
+    "qwen3.5:9b",
+    "gemma4:e2b",
+    "gemma4:e4b",
+    "llama3.1:8b",
+    "scb10x/typhoon2.1-gemma3-4b",
+    "scb10x/typhoon2.5-qwen3-4b",
+    "scb10x/llama3.1-typhoon2-8b-instruct",
+    "granite4.1:8b"
+  ],
+  "retired_from_future_roster": [
+    "mistral:7b",
+    "phi4-mini:3.8b",
+    "falcon3:7b",
+    "granite3.3:8b",
+    "olmo2:7b"
+  ],
+  "notes": "Do not delete historical dist artifacts containing retired models; this roster controls future active publication only."
+}

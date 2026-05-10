@@ -61,8 +61,11 @@ def update_registry(snapshot_id: str, batch_id: str, manifest_path: str, publish
     print(f"  registry: updated {REGISTRY_PATH}")
 
 
+SUPPORTED_VERIFICATION_PROTOCOLS = {"single_run_publication_v1", "canonical_shadow_v1"}
+
+
 def verify_publishable_batch(batch_id: str) -> dict:
-    """Require a canonical+shadow verification report before publication."""
+    """Require a passing publication verification report before publication."""
     verification_path = RESPONSES_DIR / f"verification_report_{batch_id}.json"
     if not verification_path.exists():
         raise RuntimeError(
@@ -74,7 +77,8 @@ def verify_publishable_batch(batch_id: str) -> dict:
 
     if report.get("status") != "pass":
         raise RuntimeError(f"Verification report status is not pass: {report.get('status')!r}")
-    if report.get("protocol") != "canonical_shadow_v1":
+    protocol = report.get("protocol")
+    if protocol not in SUPPORTED_VERIFICATION_PROTOCOLS:
         raise RuntimeError(f"Unsupported verification protocol: {report.get('protocol')!r}")
 
     models = report.get("models", [])
@@ -89,9 +93,11 @@ def verify_publishable_batch(batch_id: str) -> dict:
 
         for model in models:
             if model.get("publishable"):
-                if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
-                    raise RuntimeError(f"Publishable model missing canonical/shadow run IDs: {model.get('model_id')}")
-                if not model.get("deterministic"):
+                if not model.get("canonical_run_id"):
+                    raise RuntimeError(f"Publishable model missing canonical run ID: {model.get('model_id')}")
+                if protocol == "canonical_shadow_v1" and not model.get("shadow_run_id"):
+                    raise RuntimeError(f"Publishable model missing shadow run ID: {model.get('model_id')}")
+                if protocol == "canonical_shadow_v1" and not model.get("deterministic"):
                     raise RuntimeError(f"Publishable model is not deterministic: {model.get('model_id')}")
     else:
         if not report.get("all_deterministic"):
@@ -105,8 +111,10 @@ def verify_publishable_batch(batch_id: str) -> dict:
         for model in models:
             if not model.get("deterministic"):
                 raise RuntimeError(f"Model failed canonical+shadow verification: {model.get('model_id')}")
-            if not model.get("canonical_run_id") or not model.get("shadow_run_id"):
-                raise RuntimeError(f"Model missing canonical/shadow run IDs: {model.get('model_id')}")
+            if not model.get("canonical_run_id"):
+                raise RuntimeError(f"Model missing canonical run ID: {model.get('model_id')}")
+            if protocol == "canonical_shadow_v1" and not model.get("shadow_run_id"):
+                raise RuntimeError(f"Model missing shadow run ID: {model.get('model_id')}")
 
     return report
 

@@ -350,12 +350,11 @@ class TestClassifyTier(unittest.TestCase):
         self.assertEqual(classify_tier("gemma4:e2b"), "core-international")
         self.assertEqual(classify_tier("qwen3.5:9b"), "core-international")
         self.assertEqual(classify_tier("llama3.1:8b"), "core-international")
-        self.assertEqual(classify_tier("phi4-mini:3.8b"), "core-international")
+        self.assertEqual(classify_tier("granite4.1:8b"), "core-international")
 
     def test_extended_international(self):
         self.assertEqual(classify_tier("phi3:3.8b"), "extended-international")
-        self.assertEqual(classify_tier("falcon3:7b"), "extended-international")
-        self.assertEqual(classify_tier("olmo2:7b"), "extended-international")
+        self.assertEqual(classify_tier("yi:6b"), "extended-international")
 
     def test_thai_specific(self):
         self.assertEqual(classify_tier("scb10x/typhoon2.1-gemma3-4b:latest"), "thai-specific")
@@ -832,8 +831,8 @@ class TestVerifyBatchInputs(unittest.TestCase):
 class TestDerivePubBatchId(unittest.TestCase):
     def test_standard_screening_id(self):
         self.assertEqual(
-            derive_pub_batch_id("ntp3-screen-r3-20260411", 2),
-            "ntp3-vr1-20260411",
+            derive_pub_batch_id("ntp3-screen-r3-20260411", 1),
+            "ntp3-pub-r1-20260411",
         )
 
     def test_different_run_count(self):
@@ -843,8 +842,8 @@ class TestDerivePubBatchId(unittest.TestCase):
         )
 
     def test_nonstandard_id_fallback(self):
-        result = derive_pub_batch_id("custom-screen-batch", 2)
-        self.assertIn("ntp3-pub-r2", result)
+        result = derive_pub_batch_id("custom-screen-batch", 1)
+        self.assertIn("ntp3-pub-r1", result)
         self.assertIn("custom-screen-batch", result)
 
 
@@ -879,15 +878,15 @@ class TestPreparePublicationBatch(unittest.TestCase):
         self.assertEqual(result["status"], "ready")
         self.assertEqual(result["promoted_models"], ["gemma4:e2b", "qwen3:8b"])
         self.assertEqual(result["promoted_count"], 2)
-        self.assertEqual(result["pub_runs"], 2)
-        self.assertEqual(result["pub_batch_id"], "ntp3-vr1-20260411")
-        self.assertEqual(result["verification_protocol"], "canonical_shadow_v1")
+        self.assertEqual(result["pub_runs"], 1)
+        self.assertEqual(result["pub_batch_id"], "ntp3-pub-r1-20260411")
+        self.assertEqual(result["verification_protocol"], "single_run_publication_v1")
 
     def test_total_expected_runs(self):
         result = prepare_publication_batch(
             screening_json_path=self.screening_path,
         )
-        self.assertEqual(result["total_expected_runs"], 4)
+        self.assertEqual(result["total_expected_runs"], 2)
 
     def test_custom_pub_batch_id(self):
         result = prepare_publication_batch(
@@ -946,21 +945,21 @@ class TestWriteEnvFile(unittest.TestCase):
         try:
             env_path = tmpdir / "pub.env"
             result = {
-                "pub_batch_id": "ntp3-vr1-20260411",
+                "pub_batch_id": "ntp3-pub-r1-20260411",
                 "promoted_csv": "gemma4:e2b,qwen3:8b",
-                "pub_runs": 2,
+                "pub_runs": 1,
                 "screening_batch_id": "ntp3-screen-r3-20260411",
-                "verification_protocol": "canonical_shadow_v1",
+                "verification_protocol": "single_run_publication_v1",
                 "canonical_run_index": 1,
-                "shadow_run_index": 2,
+                "shadow_run_index": None,
             }
             write_env_file(result, env_path)
             content = env_path.read_text()
-            self.assertIn('PUB_BATCH_ID="ntp3-vr1-20260411"', content)
+            self.assertIn('PUB_BATCH_ID="ntp3-pub-r1-20260411"', content)
             self.assertIn('PROMOTED_MODELS="gemma4:e2b,qwen3:8b"', content)
-            self.assertIn('PUB_RUNS="2"', content)
+            self.assertIn('PUB_RUNS="1"', content)
             self.assertIn('SCREENING_BATCH_ID="ntp3-screen-r3-20260411"', content)
-            self.assertIn('VERIFICATION_PROTOCOL="canonical_shadow_v1"', content)
+            self.assertIn('VERIFICATION_PROTOCOL="single_run_publication_v1"', content)
         finally:
             shutil.rmtree(tmpdir)
 
@@ -1006,8 +1005,8 @@ class TestPreparePublicationFromScreeningGate(unittest.TestCase):
         self.assertEqual(result["status"], "ready")
         self.assertEqual(result["promoted_models"], ["gemma4:e2b"])
         self.assertEqual(result["promoted_count"], 1)
-        self.assertEqual(result["pub_batch_id"], "ntp3-vr1-20260411")
-        self.assertEqual(result["total_expected_runs"], 2)
+        self.assertEqual(result["pub_batch_id"], "ntp3-pub-r1-20260411")
+        self.assertEqual(result["total_expected_runs"], 1)
 
 
 class TestVerificationGate(unittest.TestCase):
@@ -1052,6 +1051,8 @@ class TestVerificationGate(unittest.TestCase):
                 batch_id=batch_id,
                 responses_dir=tmpdir,
                 expected_models=["gemma4:e2b"],
+                expected_runs=2,
+                shadow_run_index=2,
             )
             self.assertEqual(result["status"], "pass")
             self.assertTrue(result["all_deterministic"])
@@ -1114,6 +1115,8 @@ class TestVerificationGate(unittest.TestCase):
                 batch_id=batch_id,
                 responses_dir=tmpdir,
                 expected_models=["gemma4:e2b", "bad-accuracy:1b", "nondet:2b"],
+                expected_runs=2,
+                shadow_run_index=2,
             )
 
             self.assertEqual(result["status"], "pass")
@@ -1293,7 +1296,7 @@ class TestPublishSnapshotCli(unittest.TestCase):
                 json.dumps(report), encoding="utf-8"
             )
             with mock.patch("scripts.publish_snapshot.RESPONSES_DIR", tmpdir):
-                with self.assertRaisesRegex(RuntimeError, "missing canonical/shadow run IDs"):
+                with self.assertRaisesRegex(RuntimeError, "missing canonical run ID"):
                     verify_publishable_batch("ntp3-vr1-20260411")
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
@@ -1331,7 +1334,7 @@ class TestPublishSnapshotCli(unittest.TestCase):
             }
             (tmpdir / f"repeat_summary_{batch_id}.json").write_text(json.dumps(summary), encoding="utf-8")
 
-            result = verify_publication_batch(batch_id=batch_id, responses_dir=tmpdir)
+            result = verify_publication_batch(batch_id=batch_id, responses_dir=tmpdir, expected_runs=2, shadow_run_index=2)
             self.assertEqual(result["status"], "fail")
             self.assertFalse(result["all_deterministic"])
             self.assertEqual(result["publishable_count"], 0)

@@ -2,15 +2,21 @@
 """
 Sync a validated snapshot bundle into site/data/latest/ for local preview.
 
+The dashboard's canonical data entrypoint is site/data/latest/current.json.
+Legacy split JSON files are still copied for transparency/backward compatibility.
+
 Usage:
   python scripts/sync_site_data.py --snapshot-dir ./dist/test-snapshot-verify
   python scripts/sync_site_data.py --snapshot-dir ./dist/nt-p3-mcq-text-only-mini-r10-20260409
 """
 
 import argparse
+import json
 import shutil
 import sys
 from pathlib import Path
+
+from build_current_json import build_current
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SITE_DATA_DIR = PROJECT_ROOT / "site" / "data" / "latest"
@@ -33,6 +39,12 @@ def sync(snapshot_dir: Path):
     for f in REQUIRED_FILES:
         shutil.copy2(snapshot_dir / f, SITE_DATA_DIR / f)
         print(f"  copied {f}")
+
+    current = build_current([snapshot_dir])
+    with open(SITE_DATA_DIR / "current.json", "w", encoding="utf-8") as f:
+        json.dump(current, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print("  wrote current.json")
 
     # Copy zip bundle if available
     zip_candidates = list(snapshot_dir.parent.glob(f"{snapshot_dir.name}.zip"))

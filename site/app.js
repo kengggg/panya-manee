@@ -37,10 +37,9 @@
   }
 
   try {
-    const [manifest, leaderboard] = await Promise.all([
-      loadJSON('manifest.json'),
-      loadJSON('leaderboard.json'),
-    ]);
+    const current = await loadJSON('current.json');
+    const manifest = current.manifest;
+    const leaderboard = current.leaderboard;
 
     renderMeta(manifest, leaderboard);
     renderMethodology(manifest, leaderboard);

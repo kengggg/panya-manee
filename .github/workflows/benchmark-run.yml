@@ -31,7 +31,7 @@ on:
       runs_per_model:
         description: 'Number of runs per model'
         required: true
-        default: '10'
+        default: '1'
         type: string
       subjects:
         description: 'Comma-separated subjects'
