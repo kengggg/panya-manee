@@ -1,0 +1,265 @@
+{
+  "batch_id": "ntp3-pub-r1-20260510",
+  "publication_mode": "verified_posthoc_gate_v1",
+  "preflight_record": null,
+  "protocol": "single_run_publication_v1",
+  "expected_runs_per_model": 1,
+  "canonical_run_index": 1,
+  "shadow_run_index": null,
+  "thresholds": {
+    "parse_rate_gte": 0.95,
+    "accuracy_gt": 0.25
+  },
+  "expected_models": [
+    "gemma4:e2b",
+    "gemma4:e4b",
+    "granite4.1:8b",
+    "llama3.1:8b",
+    "qwen2.5:7b",
+    "qwen3.5:9b",
+    "qwen3:8b",
+    "scb10x/llama3.1-typhoon2-8b-instruct",
+    "scb10x/typhoon2.1-gemma3-4b",
+    "scb10x/typhoon2.5-qwen3-4b"
+  ],
+  "summary_models": [
+    "gemma4:e2b",
+    "gemma4:e4b",
+    "granite4.1:8b",
+    "llama3.1:8b",
+    "qwen2.5:7b",
+    "qwen3.5:9b",
+    "qwen3:8b",
+    "scb10x/llama3.1-typhoon2-8b-instruct",
+    "scb10x/typhoon2.1-gemma3-4b",
+    "scb10x/typhoon2.5-qwen3-4b"
+  ],
+  "status": "pass",
+  "all_deterministic": true,
+  "publishable_count": 10,
+  "publishable_models": [
+    "gemma4:e2b",
+    "gemma4:e4b",
+    "granite4.1:8b",
+    "llama3.1:8b",
+    "qwen2.5:7b",
+    "qwen3.5:9b",
+    "qwen3:8b",
+    "scb10x/llama3.1-typhoon2-8b-instruct",
+    "scb10x/typhoon2.1-gemma3-4b",
+    "scb10x/typhoon2.5-qwen3-4b"
+  ],
+  "batch_failures": null,
+  "models": [
+    {
+      "model_id": "gemma4:e2b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-gemma4-e2b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.4946236559139785,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "gemma4:e4b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-gemma4-e4b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.5806451612903226,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "granite4.1:8b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-granite4.1-8b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.3655913978494624,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "llama3.1:8b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-llama3.1-8b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.3870967741935484,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "qwen2.5:7b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-qwen2.5-7b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.6021505376344086,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "qwen3.5:9b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-qwen3.5-9b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.5268817204301075,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "qwen3:8b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-qwen3-8b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.5591397849462365,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+      "canonical_run_id": "ntp3-pub-r1-20260510-scb10x-llama3.1-typhoon2-8b-instruct-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.3978494623655914,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-scb10x-typhoon2.1-gemma3-4b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.44086021505376344,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    },
+    {
+      "model_id": "scb10x/typhoon2.5-qwen3-4b",
+      "canonical_run_id": "ntp3-pub-r1-20260510-scb10x-typhoon2.5-qwen3-4b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.5591397849462365,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    }
+  ]
+}

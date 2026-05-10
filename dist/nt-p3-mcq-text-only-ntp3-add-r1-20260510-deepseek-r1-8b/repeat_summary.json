@@ -1,0 +1,56 @@
+{
+  "batch_id": "ntp3-add-r1-20260510-deepseek-r1-8b",
+  "started_at_epoch": 1778412256.7474437,
+  "finished_at_epoch": 1778412349.1534436,
+  "models": [
+    {
+      "model_id": "deepseek-r1:8b",
+      "memory_gb": 5.2,
+      "runs": 1,
+      "mean_correct": 32,
+      "min_correct": 32,
+      "max_correct": 32,
+      "mean_accuracy": 0.34408602150537637,
+      "stdev_accuracy": 0.0,
+      "mean_thai_accuracy": 0.43333333333333335,
+      "mean_math_accuracy": 0.18181818181818182,
+      "mean_time_s": 92.406,
+      "median_time_s": 92.406,
+      "mean_correct_per_min": 20.777871566781375,
+      "mean_correct_per_gb_min": 3.995744532073341
+    }
+  ],
+  "runs": [
+    {
+      "questions": 93,
+      "correct": 32,
+      "accuracy": 0.34408602150537637,
+      "thai_correct": 26,
+      "thai_total": 60,
+      "thai_accuracy": 0.43333333333333335,
+      "math_correct": 6,
+      "math_total": 33,
+      "math_accuracy": 0.18181818181818182,
+      "parseable": 93,
+      "parse_rate": 1.0,
+      "latency_s": 92.406,
+      "eval_s": 4.876,
+      "prompt_s": 83.171,
+      "eval_tokens": 190,
+      "prompt_tokens": 26522,
+      "score": 96,
+      "max_score": 279,
+      "model_id": "deepseek-r1:8b",
+      "alias": "deepseek-r1",
+      "run_index": 1,
+      "run_id": "ntp3-add-r1-20260510-deepseek-r1-8b-deepseek-r1-8b-r01",
+      "output_file": "/Users/openclaw/actions-runner/panya-manee-baseline/_work/panya-manee/panya-manee/benchmark_responses/responses_ntp3-add-r1-20260510-deepseek-r1-8b-deepseek-r1-8b-r01_20260510_182416.jsonl",
+      "memory_gb": 5.2,
+      "questions_per_min": 60.38568924095838,
+      "correct_per_min": 20.777871566781375,
+      "score_per_min": 62.333614700344135,
+      "correct_per_gb_min": 3.995744532073341,
+      "sec_per_correct": 2.8876875
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "panya_current_manifest_v1",
+  "current_id": "ntp3-current-20260510",
+  "sources": [
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-pub-r1-20260510",
+      "batch_id": "ntp3-pub-r1-20260510",
+      "snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-pub-r1-20260510",
+      "published_at": "2026-05-10T18:31:58+07:00"
+    },
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-add-r1-20260510-deepseek-r1-8b",
+      "batch_id": "ntp3-add-r1-20260510-deepseek-r1-8b",
+      "snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-add-r1-20260510-deepseek-r1-8b",
+      "published_at": "2026-05-10T18:31:59+07:00"
+    }
+  ],
+  "merge_policy": "later sources replace earlier rows with the same model_id"
+}
