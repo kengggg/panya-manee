@@ -15,7 +15,8 @@
     "scb10x/typhoon2.1-gemma3-4b",
     "scb10x/typhoon2.5-qwen3-4b",
     "scb10x/llama3.1-typhoon2-8b-instruct",
-    "granite4.1:8b"
+    "granite4.1:8b",
+    "deepseek-r1:8b"
   ],
   "retired_from_future_roster": [
     "mistral:7b",
@@ -24,5 +25,5 @@
     "granite3.3:8b",
     "olmo2:7b"
   ],
-  "notes": "Do not delete historical dist artifacts containing retired models; this roster controls future active publication only."
+  "notes": "Do not delete historical dist artifacts containing retired models; this roster controls future active publication only. Added deepseek-r1:8b as first manifest-append test model on 2026-05-10."
 }

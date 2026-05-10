@@ -15,8 +15,9 @@
 #   1. Builds snapshot bundle from batch data (build_snapshot.py)
 #   2. Validates cross-file consistency (validate_snapshot.py)
 #   3. Syncs dashboard data to site/data/latest/
-#   4. Updates registry/snapshots.json
-#   5. Opens a PR with the changes
+#   4. Updates registry/snapshots.json and registry/current-manifest.json
+#   5. Commits durable dist/ snapshot bundles referenced by the current manifest
+#   6. Opens a PR with the changes
 #
 # After the PR is merged, pages-deploy.yml deploys the dashboard automatically.
 
@@ -35,6 +36,16 @@ on:
         type: string
       snapshot_id:
         description: 'Override snapshot ID (default: nt-p3-mcq-text-only-{batch_id})'
+        required: false
+        default: ''
+        type: string
+      update_current_manifest:
+        description: 'Append/update this snapshot in registry/current-manifest.json and rebuild current.json from it'
+        required: false
+        default: true
+        type: boolean
+      current_id:
+        description: 'Override registry/current-manifest.json current_id (optional)'
         required: false
         default: ''
         type: string
@@ -110,16 +121,26 @@ jobs:
         env:
           BATCH_ID: ${{ inputs.batch_id }}
           SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+          UPDATE_CURRENT_MANIFEST: ${{ inputs.update_current_manifest }}
+          CURRENT_ID: ${{ inputs.current_id }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           SNAP_ARG=""
           if [ -n "$SNAPSHOT_ID" ]; then
             SNAP_ARG="--snapshot-id $SNAPSHOT_ID"
           fi
+          CURRENT_ARG=""
+          if [ -n "$CURRENT_ID" ]; then
+            CURRENT_ARG="--current-id $CURRENT_ID"
+          fi
+          MANIFEST_ARG="--update-current-manifest"
+          if [ "$UPDATE_CURRENT_MANIFEST" != "true" ]; then
+            MANIFEST_ARG="--no-update-current-manifest"
+          fi
           if [ "$DRY_RUN" = "true" ]; then
-            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG --dry-run
+            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG $MANIFEST_ARG $CURRENT_ARG --dry-run
           else
-            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG
+            uv run python scripts/publish_snapshot.py --batch-id "$BATCH_ID" $SNAP_ARG $MANIFEST_ARG $CURRENT_ARG
           fi
 
       - name: Create PR
@@ -128,13 +149,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BATCH_ID: ${{ inputs.batch_id }}
           SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+          UPDATE_CURRENT_MANIFEST: ${{ inputs.update_current_manifest }}
+          CURRENT_ID: ${{ inputs.current_id }}
         run: |
           # Resolve snapshot ID
           SID="${SNAPSHOT_ID:-nt-p3-mcq-text-only-${BATCH_ID}}"
           BRANCH="snapshot/${SID}"
 
-          # Stage site data and registry changes
+          # Stage site data, registries, and durable snapshot bundles. dist/ is
+          # ignored for local build hygiene, so force-add the exact published
+          # snapshot directory/zip referenced by registry/current-manifest.json.
           git add site/data/ registry/
+          git add -f "dist/${SID}"
+          if [ -f "dist/${SID}.zip" ]; then
+            git add -f "dist/${SID}.zip"
+          fi
 
           if git diff --cached --quiet; then
             echo "No changes to commit — snapshot data already matches main."
@@ -165,10 +194,17 @@ jobs:
 
           **Batch ID**: \`${BATCH_ID}\`
           **Source**: benchmark data on self-hosted runner
+          **Current manifest update**: \`${UPDATE_CURRENT_MANIFEST}\`
+          **Current ID**: \`${CURRENT_ID:-'(unchanged/default)'}\`
 
           ### What changed
-          - \`site/data/latest/\` updated snapshot bundle (leaderboard, model cards, examples)
+          - \`site/data/latest/\` updated snapshot bundle plus canonical \`current.json\`
           - \`registry/snapshots.json\` updated snapshot index
+          - \`registry/current-manifest.json\` appended/updated when manifest publishing is enabled
+          - \`dist/${SID}/\` and \`dist/${SID}.zip\` committed so manifest-driven current rebuilds are durable
+
+          ### Current manifest behavior
+          The dashboard loads one canonical \`site/data/latest/current.json\`. When manifest publishing is enabled, it is rebuilt from ordered \`registry/current-manifest.json\` sources; later snapshots replace earlier rows with the same \`model_id\`.
 
           ### Validation
           Snapshot passed all cross-file consistency checks via \`validate_snapshot.py\`.
@@ -205,6 +241,8 @@ jobs:
         env:
           BATCH_ID: ${{ inputs.batch_id }}
           SNAPSHOT_ID: ${{ inputs.snapshot_id }}
+          UPDATE_CURRENT_MANIFEST: ${{ inputs.update_current_manifest }}
+          CURRENT_ID: ${{ inputs.current_id }}
         run: |
           SID="${SNAPSHOT_ID:-nt-p3-mcq-text-only-${BATCH_ID}}"
           {
@@ -215,6 +253,8 @@ jobs:
             echo "| Batch ID | \`${BATCH_ID}\` |"
             echo "| Source run ID | \`${{ inputs.source_run_id }}\` |"
             echo "| Snapshot ID | \`${SID}\` |"
+            echo "| Update current manifest | \`${UPDATE_CURRENT_MANIFEST}\` |"
+            echo "| Current ID | \`${CURRENT_ID:-'(unchanged/default)'}\` |"
             echo "| Dry run | ${{ inputs.dry_run }} |"
             if [ -n "${PR_URL:-}" ]; then
               echo ""

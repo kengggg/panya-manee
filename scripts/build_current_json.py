@@ -8,6 +8,18 @@ some models, as long as the benchmark/prompt/dataset contract is compatible.
 Usage:
   python scripts/build_current_json.py --snapshot-dir dist/nt-p3-mcq-text-only-ntp3-pub-r1-20260510 --out site/data/latest/current.json
   python scripts/build_current_json.py --snapshot-dir dist/base --snapshot-dir dist/new-models --current-id ntp3-current-20260515 --out site/data/latest/current.json
+  python scripts/build_current_json.py --manifest registry/current-manifest.json --out site/data/latest/current.json
+
+Manifest format:
+  {
+    "current_id": "ntp3-current-20260510",
+    "sources": [
+      {"snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-pub-r1-20260510"},
+      {"snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-add-r1-20260520-newmodel"}
+    ]
+  }
+
+Source order matters: later sources replace earlier rows for duplicate model_id.
 """
 from __future__ import annotations
 
@@ -18,6 +30,7 @@ from pathlib import Path
 from typing import Any
 
 REQUIRED_FILES = ("manifest.json", "leaderboard.json", "model_cards.json", "examples.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def load_json(path: Path) -> Any:
@@ -42,6 +55,22 @@ def load_snapshot(snapshot_dir: Path) -> dict[str, Any]:
     }
 
 
+def repo_relative(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(PROJECT_ROOT.resolve()))
+    except ValueError:
+        return str(path)
+
+
+def benchmark_scope(snapshot: dict[str, Any]) -> str | None:
+    return (
+        snapshot["leaderboard"].get("benchmark_scope")
+        or snapshot["model_cards"].get("benchmark_scope")
+        or snapshot["examples"].get("benchmark_scope")
+        or snapshot["manifest"].get("benchmark_scope")
+    )
+
+
 def rerank(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     ordered = sorted(
         rows,
@@ -63,6 +92,10 @@ def build_current(snapshot_dirs: list[Path], current_id: str | None = None) -> d
     loaded = [load_snapshot(path) for path in snapshot_dirs]
     latest = loaded[-1]
     current_id = current_id or latest["manifest"].get("snapshot_id") or "current"
+
+    scopes = {benchmark_scope(snap) for snap in loaded if benchmark_scope(snap)}
+    if len(scopes) > 1:
+        raise ValueError(f"current sources are not benchmark-compatible; found scopes: {sorted(scopes)}")
 
     rows_by_model: dict[str, dict[str, Any]] = {}
     cards_by_model: dict[str, dict[str, Any]] = {}
@@ -99,7 +132,7 @@ def build_current(snapshot_dirs: list[Path], current_id: str | None = None) -> d
         {
             "snapshot_id": snap["manifest"].get("snapshot_id"),
             "published_at": snap["manifest"].get("published_at"),
-            "path": str(snap["dir"]),
+            "path": repo_relative(snap["dir"]),
         }
         for snap in loaded
     ]
@@ -132,14 +165,50 @@ def build_current(snapshot_dirs: list[Path], current_id: str | None = None) -> d
     }
 
 
+def load_manifest(manifest_path: Path) -> tuple[list[Path], str | None]:
+    """Load an ordered current-json source manifest.
+
+    Relative snapshot paths are resolved against the repository root.
+    Each source may use `snapshot_dir`, `path`, or `dir` for readability.
+    """
+    manifest = load_json(manifest_path)
+    sources = manifest.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError(f"{manifest_path} must contain a non-empty sources array")
+
+    snapshot_dirs: list[Path] = []
+    for idx, source in enumerate(sources, 1):
+        if not isinstance(source, dict):
+            raise ValueError(f"{manifest_path} source #{idx} must be an object")
+        raw = source.get("snapshot_dir") or source.get("path") or source.get("dir")
+        if not raw:
+            raise ValueError(f"{manifest_path} source #{idx} missing snapshot_dir/path/dir")
+        path = Path(raw)
+        if not path.is_absolute():
+            path = PROJECT_ROOT / path
+        snapshot_dirs.append(path)
+
+    current_id = manifest.get("current_id")
+    return snapshot_dirs, current_id
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build merged dashboard current.json")
-    parser.add_argument("--snapshot-dir", action="append", type=Path, required=True, help="Snapshot bundle directory; repeatable, later wins")
+    parser.add_argument("--snapshot-dir", action="append", type=Path, default=[], help="Snapshot bundle directory; repeatable, later wins")
+    parser.add_argument("--manifest", type=Path, help="Ordered source manifest JSON; later sources win")
     parser.add_argument("--current-id", default=None, help="Current JSON/snapshot identifier")
     parser.add_argument("--out", type=Path, required=True, help="Output current.json path")
     args = parser.parse_args()
 
-    current = build_current(args.snapshot_dir, args.current_id)
+    snapshot_dirs = args.snapshot_dir
+    current_id = args.current_id
+    if args.manifest:
+        if snapshot_dirs:
+            raise SystemExit("Use either --manifest or --snapshot-dir, not both")
+        snapshot_dirs, manifest_current_id = load_manifest(args.manifest)
+        current_id = current_id or manifest_current_id
+
+    current = build_current(snapshot_dirs, current_id)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(current, f, ensure_ascii=False, indent=2)

@@ -16,7 +16,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from build_current_json import build_current
+from build_current_json import build_current, load_manifest
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SITE_DATA_DIR = PROJECT_ROOT / "site" / "data" / "latest"
@@ -24,7 +24,13 @@ SITE_DATA_DIR = PROJECT_ROOT / "site" / "data" / "latest"
 REQUIRED_FILES = ["manifest.json", "leaderboard.json", "model_cards.json", "examples.json"]
 
 
-def sync(snapshot_dir: Path):
+def sync(
+    snapshot_dir: Path,
+    *,
+    current_snapshot_dirs: list[Path] | None = None,
+    current_id: str | None = None,
+    current_manifest_path: Path | None = None,
+):
     if not snapshot_dir.is_dir():
         print(f"Error: {snapshot_dir} is not a directory")
         sys.exit(1)
@@ -40,7 +46,15 @@ def sync(snapshot_dir: Path):
         shutil.copy2(snapshot_dir / f, SITE_DATA_DIR / f)
         print(f"  copied {f}")
 
-    current = build_current([snapshot_dir])
+    if current_manifest_path is not None:
+        if current_snapshot_dirs is not None:
+            print("Error: use either current_snapshot_dirs or current_manifest_path, not both")
+            sys.exit(1)
+        current_snapshot_dirs, manifest_current_id = load_manifest(current_manifest_path)
+        current_id = current_id or manifest_current_id
+
+    current_dirs = current_snapshot_dirs or [snapshot_dir]
+    current = build_current(current_dirs, current_id=current_id)
     with open(SITE_DATA_DIR / "current.json", "w", encoding="utf-8") as f:
         json.dump(current, f, ensure_ascii=False, indent=2)
         f.write("\n")
@@ -60,8 +74,10 @@ def sync(snapshot_dir: Path):
 def main():
     parser = argparse.ArgumentParser(description="Sync snapshot data into site/data/latest/")
     parser.add_argument("--snapshot-dir", required=True, help="Path to validated snapshot directory")
+    parser.add_argument("--current-manifest", type=Path, help="Optional ordered current manifest for site/data/latest/current.json")
+    parser.add_argument("--current-id", default=None, help="Optional current.json identifier override")
     args = parser.parse_args()
-    sync(Path(args.snapshot_dir))
+    sync(Path(args.snapshot_dir), current_manifest_path=args.current_manifest, current_id=args.current_id)
 
 
 if __name__ == "__main__":

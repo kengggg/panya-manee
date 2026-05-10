@@ -141,6 +141,142 @@ contains the same `model_id`, it replaces the earlier row for the next current
 view. This keeps the 2026-05-10 restart baseline comparable while allowing
 future snapshots to append only new or retested model batches.
 
+### New model lifecycle
+
+Use this path when adding a model after the `ntp3-pub-r1-20260510` restart
+baseline. Benchmarks are manual because they must run on the fixed Mac mini
+self-hosted runner (`panya-manee-baseline`).
+
+#### 1. Register the model if needed
+
+1. Pull and smoke-test it on the Mac mini baseline:
+
+   ```bash
+   ollama pull granite4.1:8b
+   ollama run granite4.1:8b 'ตอบเป็นเลข 1-4 เท่านั้น: 2+2=? 1)3 2)4 3)5 4)6'
+   ```
+
+2. Add the Ollama model ID to `registry/active_roster.json`.
+3. Add metadata to `registry/models.json` if the model is not already there.
+4. Verify inputs locally:
+
+   ```bash
+   uv run python scripts/verify_batch_inputs.py \
+     --batch-id ntp3-add-r1-YYYYMMDD-modelslug \
+     --models 'granite4.1:8b' \
+     --runs-per-model 1 \
+     --subjects thai,math
+   ```
+
+Commit and push those registry/doc changes before running Actions if the model
+should become part of the future active roster. Historical snapshots are not
+edited; roster removals affect future snapshots only.
+
+#### 2. Run the benchmark
+
+Run only the new model:
+
+```bash
+gh workflow run benchmark-verified.yml \
+  --repo kengggg/panya-manee \
+  -f batch_id='ntp3-add-r1-YYYYMMDD-modelslug' \
+  -f models='granite4.1:8b' \
+  -f dry_run=false
+```
+
+Or rerun the whole active roster:
+
+```bash
+MODELS=$(jq -r '.models | join(",")' registry/active_roster.json)
+gh workflow run benchmark-verified.yml \
+  --repo kengggg/panya-manee \
+  -f batch_id='ntp3-pub-r1-YYYYMMDD' \
+  -f models="$MODELS" \
+  -f dry_run=false
+```
+
+GitHub UI equivalent:
+
+1. GitHub repo → **Actions** → **Benchmark Verified** → **Run workflow**
+2. Branch: `main`
+3. `batch_id`: e.g. `ntp3-add-r1-YYYYMMDD-modelslug`
+4. `models`: comma-separated Ollama model IDs
+5. `dry_run`: `false`
+
+Watch and download the artifact:
+
+```bash
+gh run list --repo kengggg/panya-manee --workflow 'Benchmark Verified' --limit 3
+gh run watch <run-id> --repo kengggg/panya-manee --exit-status
+gh run download <run-id> --repo kengggg/panya-manee \
+  --name benchmark-verified-ntp3-add-r1-YYYYMMDD-modelslug
+```
+
+The artifact contains `repeat_summary_<batch_id>.json`, raw per-model JSONL
+responses, and `verification_report_<batch_id>.json`.
+
+#### 3. Publish the result
+
+Publish via **Snapshot PR** after `Benchmark Verified` succeeds:
+
+```bash
+gh workflow run snapshot-pr.yml \
+  --repo kengggg/panya-manee \
+  -f batch_id='ntp3-add-r1-YYYYMMDD-modelslug' \
+  -f source_run_id='<benchmark-verified-run-id>' \
+  -f update_current_manifest=true \
+  -f dry_run=false
+```
+
+GitHub UI equivalent:
+
+1. GitHub repo → **Actions** → **Snapshot PR** → **Run workflow**
+2. Branch: `main`
+3. `batch_id`: the batch that just passed verification
+4. `source_run_id`: the numeric `Benchmark Verified` run ID
+5. leave `snapshot_id` blank unless intentionally overriding it
+6. `update_current_manifest`: `true` for the normal current-dashboard path
+7. `current_id`: optional; set only when intentionally renaming the current view
+8. `dry_run`: `false`
+9. Merge the PR it opens. `pages-deploy.yml` deploys automatically after merge.
+
+For append-only publication, keep `ntp3-pub-r1-20260510` as the first/current
+baseline source and add the new snapshot after it. The ordered current manifest
+is just the source list used to build `site/data/latest/current.json`; later
+sources replace earlier rows for duplicate `model_id` values:
+
+```json
+{
+  "current_id": "ntp3-current-YYYYMMDD",
+  "sources": [
+    {"snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-pub-r1-20260510"},
+    {"snapshot_dir": "dist/nt-p3-mcq-text-only-ntp3-add-r1-YYYYMMDD-modelslug"}
+  ]
+}
+```
+
+`snapshot-pr.yml` updates this manifest automatically by default. If the new
+snapshot source is already present, it updates that source in place rather than
+creating a duplicate, preserving the original source order. The workflow also
+commits `dist/<snapshot_id>/` and `dist/<snapshot_id>.zip` because future
+manifest rebuilds need those source bundles to exist in the repo.
+
+Build from that manifest when preparing or checking `current.json` locally:
+
+```bash
+uv run python scripts/build_current_json.py \
+  --manifest registry/current-manifest.json \
+  --out site/data/latest/current.json
+uv run python scripts/verify_site.py
+```
+
+#### 4. View results
+
+- Public dashboard: <https://kengggg.github.io/panya-manee/>
+- GitHub Pages deployment status: repo → **Actions** → **Deploy Dashboard to GitHub Pages**
+- Raw benchmark artifact: repo → **Actions** → the `Benchmark Verified` run → **Artifacts**
+- Snapshot publication PR: repo → **Pull requests**, title starts with `Publish snapshot:`
+
 `benchmark-screen.yml` is deprecated and intentionally not part of the live publication flow.
 
 ### Individual scripts

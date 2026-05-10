@@ -61,7 +61,8 @@ from scripts.ci.fetch_batch_artifact import (
     ArtifactFetchError,
 )
 import scripts.publish_snapshot as publish_snapshot_module
-from scripts.publish_snapshot import verify_publishable_batch
+from scripts.publish_snapshot import verify_publishable_batch, update_current_manifest
+from scripts.build_current_json import build_current, load_manifest
 from scripts.verification_gate import (
     verify_publication_batch,
 )
@@ -1176,6 +1177,108 @@ class TestPublishSnapshotCli(unittest.TestCase):
                             publish_snapshot_module.main()
             verify_mock.assert_not_called()
             build_mock.assert_called_once()
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestCurrentManifestPublishing(unittest.TestCase):
+    def _write_snapshot(self, root: Path, snapshot_id: str, model_id: str, score: float) -> Path:
+        snapshot_dir = root / "dist" / snapshot_id
+        snapshot_dir.mkdir(parents=True)
+        manifest = {
+            "snapshot_id": snapshot_id,
+            "published_at": "2026-05-10T12:00:00+07:00",
+            "benchmark_scope": "mcq_text_only_v1",
+            "snapshot_notes": {},
+        }
+        leaderboard = {
+            "snapshot_id": snapshot_id,
+            "benchmark_scope": "mcq_text_only_v1",
+            "rows": [{
+                "rank": 1,
+                "model_id": model_id,
+                "balanced_quality_score": score,
+                "overall_score_rate": score,
+                "item_count": 93,
+                "badges": [],
+            }],
+        }
+        model_cards = {
+            "snapshot_id": snapshot_id,
+            "benchmark_scope": "mcq_text_only_v1",
+            "models": [{
+                "model_id": model_id,
+                "metrics": {"average_output_length_chars": 1},
+                "common_failure_types": [],
+                "example_ids": {"good": [f"{model_id}-good"], "bad": []},
+            }],
+        }
+        examples = {
+            "snapshot_id": snapshot_id,
+            "benchmark_scope": "mcq_text_only_v1",
+            "examples": [{"example_id": f"{model_id}-good", "model_id": model_id}],
+        }
+        for name, payload in {
+            "manifest.json": manifest,
+            "leaderboard.json": leaderboard,
+            "model_cards.json": model_cards,
+            "examples.json": examples,
+        }.items():
+            (snapshot_dir / name).write_text(json.dumps(payload), encoding="utf-8")
+        return snapshot_dir
+
+    def test_update_current_manifest_appends_then_updates_without_duplicate(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            manifest_path = tmpdir / "registry" / "current-manifest.json"
+            snapshot_dir = self._write_snapshot(tmpdir, "snap-a", "model-a", 0.6)
+            with mock.patch.object(publish_snapshot_module, "PROJECT_ROOT", tmpdir):
+                first = update_current_manifest(
+                    snapshot_id="snap-a",
+                    batch_id="batch-a",
+                    snapshot_dir=snapshot_dir,
+                    published_at="2026-05-10T12:00:00+07:00",
+                    current_id="ntp3-current-20260510",
+                    manifest_path=manifest_path,
+                )
+                second = update_current_manifest(
+                    snapshot_id="snap-a",
+                    batch_id="batch-a-rerun",
+                    snapshot_dir=snapshot_dir,
+                    published_at="2026-05-11T12:00:00+07:00",
+                    manifest_path=manifest_path,
+                )
+            self.assertEqual(first["current_id"], "ntp3-current-20260510")
+            self.assertEqual(second["current_id"], "ntp3-current-20260510")
+            self.assertEqual(len(second["sources"]), 1)
+            self.assertEqual(second["sources"][0]["snapshot_dir"], "dist/snap-a")
+            self.assertEqual(second["sources"][0]["batch_id"], "batch-a-rerun")
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_build_current_from_manifest_later_source_replaces_duplicate_model(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            base = self._write_snapshot(tmpdir, "base", "model-a", 0.4)
+            new = self._write_snapshot(tmpdir, "new", "model-a", 0.9)
+            manifest_path = tmpdir / "registry" / "current-manifest.json"
+            manifest_path.parent.mkdir()
+            manifest_path.write_text(json.dumps({
+                "current_id": "ntp3-current-test",
+                "sources": [
+                    {"snapshot_dir": str(base)},
+                    {"snapshot_dir": str(new)},
+                ],
+            }), encoding="utf-8")
+
+            snapshot_dirs, current_id = load_manifest(manifest_path)
+            current = build_current(snapshot_dirs, current_id=current_id)
+            rows = current["leaderboard"]["rows"]
+            self.assertEqual(current["current_id"], "ntp3-current-test")
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["model_id"], "model-a")
+            self.assertEqual(rows[0]["balanced_quality_score"], 0.9)
+            self.assertEqual(current["model_sources"], {"model-a": "new"})
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 

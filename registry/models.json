@@ -89,6 +89,14 @@
       "ram_fit_class": "fits_comfortably_16gb",
       "loaded_size_gb_approx": 5.3,
       "notes": "Added for 2026-05-10 restart baseline; locally pulled and smoke-tested via Ollama. Ollama reports Granite family, 8.8B, Q4_K_M."
+    },
+    {
+      "model_id": "deepseek-r1:8b",
+      "model_family": "deepseek-r1",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "loaded_size_gb_approx": 5.2,
+      "notes": "Added as first post-baseline manifest-append test model on 2026-05-10. Ollama deepseek-r1 reasoning model; benchmark parser must verify answer-only compliance from actual run."
     }
   ]
 }
