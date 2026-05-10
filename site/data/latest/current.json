@@ -1,7 +1,7 @@
 {
   "schema_version": "panya_current_v1",
   "current_id": "ntp3-current-20260510",
-  "generated_at": "2026-05-10T18:31:59+07:00",
+  "generated_at": "2026-05-10T20:24:39+07:00",
   "sources": [
     {
       "snapshot_id": "nt-p3-mcq-text-only-ntp3-pub-r1-20260510",
@@ -326,13 +326,7 @@
         "questions_per_min": 60.4,
         "correct_per_min": 20.8,
         "item_count": 93,
-        "badges": [
-          "Best Quality",
-          "Best Thai",
-          "Best Math",
-          "Fastest on Testbed",
-          "Best Small Model"
-        ]
+        "badges": []
       }
     ]
   },
@@ -1221,13 +1215,7 @@
           "wrong_answer",
           "non_answer_only_output"
         ],
-        "badges": [
-          "Best Quality",
-          "Best Thai",
-          "Best Math",
-          "Fastest on Testbed",
-          "Best Small Model"
-        ],
+        "badges": [],
         "auto_summary": "deepseek-r1:8b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are meaning_matching, question_answer_matching, moral_extraction. Its weakest areas are comparison, unit_conversion, pictograph. On the current Mac mini testbed, it is the only model tested.",
         "example_ids": {
           "good": [

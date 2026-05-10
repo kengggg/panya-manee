@@ -85,6 +85,43 @@ def rerank(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return ordered
 
 
+def _best_by(rows: list[dict[str, Any]], field: str, *, reverse: bool = False) -> set[str]:
+    """Return model_ids tied for the best value of a numeric leaderboard field."""
+    candidates = [row for row in rows if isinstance(row.get(field), (int, float))]
+    if not candidates:
+        return set()
+    values = [row[field] for row in candidates]
+    best = min(values) if reverse else max(values)
+    return {row["model_id"] for row in candidates if row[field] == best}
+
+
+def assign_current_badges(rows: list[dict[str, Any]]) -> dict[str, list[str]]:
+    """Assign badges across the merged current leaderboard.
+
+    Individual snapshot bundles already contain badges, but a one-model append
+    snapshot will naturally mark its only model as "Best Quality", "Best Thai",
+    etc. Those snapshot-local badges are not meaningful once the row is merged
+    into the global current leaderboard, so current.json must recompute badges
+    after all source snapshots have been merged.
+    """
+    badge_map: dict[str, list[str]] = {row["model_id"]: [] for row in rows}
+
+    for model_id in _best_by(rows, "balanced_quality_score"):
+        badge_map[model_id].append("Best Quality")
+    for model_id in _best_by(rows, "thai_score_rate"):
+        badge_map[model_id].append("Best Thai")
+    for model_id in _best_by(rows, "math_score_rate"):
+        badge_map[model_id].append("Best Math")
+    for model_id in _best_by(rows, "latency_p50_ms", reverse=True):
+        badge_map[model_id].append("Fastest on Testbed")
+
+    comfortable = [row for row in rows if row.get("ram_fit_class") == "fits_comfortably_16gb"]
+    for model_id in _best_by(comfortable, "balanced_quality_score"):
+        badge_map[model_id].append("Best Small Model")
+
+    return badge_map
+
+
 def build_current(snapshot_dirs: list[Path], current_id: str | None = None) -> dict[str, Any]:
     if not snapshot_dirs:
         raise ValueError("at least one --snapshot-dir is required")
@@ -122,6 +159,11 @@ def build_current(snapshot_dirs: list[Path], current_id: str | None = None) -> d
         referenced_examples.update(ids.get("bad", []))
 
     rows = rerank(list(rows_by_model.values()))
+    badge_map = assign_current_badges(rows)
+    for row in rows:
+        row["badges"] = badge_map.get(row["model_id"], [])
+    for card in cards:
+        card["badges"] = badge_map.get(card["model_id"], [])
     cards.sort(key=lambda card: next((row["rank"] for row in rows if row["model_id"] == card["model_id"]), 10**9))
     examples = [examples_by_id[eid] for eid in sorted(referenced_examples) if eid in examples_by_id]
 

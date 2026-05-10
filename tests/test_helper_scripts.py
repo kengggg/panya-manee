@@ -1182,7 +1182,19 @@ class TestPublishSnapshotCli(unittest.TestCase):
 
 
 class TestCurrentManifestPublishing(unittest.TestCase):
-    def _write_snapshot(self, root: Path, snapshot_id: str, model_id: str, score: float) -> Path:
+    def _write_snapshot(
+        self,
+        root: Path,
+        snapshot_id: str,
+        model_id: str,
+        score: float,
+        *,
+        badges: list[str] | None = None,
+        thai_score: float | None = None,
+        math_score: float | None = None,
+        latency_p50_ms: int = 1000,
+        ram_fit_class: str = "fits_comfortably_16gb",
+    ) -> Path:
         snapshot_dir = root / "dist" / snapshot_id
         snapshot_dir.mkdir(parents=True)
         manifest = {
@@ -1198,9 +1210,15 @@ class TestCurrentManifestPublishing(unittest.TestCase):
                 "rank": 1,
                 "model_id": model_id,
                 "balanced_quality_score": score,
+                "thai_score_rate": score if thai_score is None else thai_score,
+                "math_score_rate": score if math_score is None else math_score,
                 "overall_score_rate": score,
+                "parseable_rate": 1.0,
+                "answer_only_compliance_rate": 1.0,
+                "latency_p50_ms": latency_p50_ms,
+                "ram_fit_class": ram_fit_class,
                 "item_count": 93,
-                "badges": [],
+                "badges": badges or [],
             }],
         }
         model_cards = {
@@ -1208,8 +1226,17 @@ class TestCurrentManifestPublishing(unittest.TestCase):
             "benchmark_scope": "mcq_text_only_v1",
             "models": [{
                 "model_id": model_id,
-                "metrics": {"average_output_length_chars": 1},
+                "ram_fit_class": ram_fit_class,
+                "metrics": {
+                    "average_output_length_chars": 1,
+                    "balanced_quality_score": score,
+                    "thai_score_rate": score if thai_score is None else thai_score,
+                    "math_score_rate": score if math_score is None else math_score,
+                    "overall_score_rate": score,
+                    "latency_p50_ms": latency_p50_ms,
+                },
                 "common_failure_types": [],
+                "badges": badges or [],
                 "example_ids": {"good": [f"{model_id}-good"], "bad": []},
             }],
         }
@@ -1279,6 +1306,43 @@ class TestCurrentManifestPublishing(unittest.TestCase):
             self.assertEqual(rows[0]["model_id"], "model-a")
             self.assertEqual(rows[0]["balanced_quality_score"], 0.9)
             self.assertEqual(current["model_sources"], {"model-a": "new"})
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_build_current_recomputes_badges_after_manifest_merge(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            base = self._write_snapshot(
+                tmpdir,
+                "base",
+                "strong-model",
+                0.8,
+                thai_score=0.8,
+                math_score=0.8,
+                latency_p50_ms=100,
+                badges=["Best Quality", "Best Thai", "Best Math", "Fastest on Testbed", "Best Small Model"],
+            )
+            new = self._write_snapshot(
+                tmpdir,
+                "new",
+                "weak-append-model",
+                0.2,
+                thai_score=0.2,
+                math_score=0.2,
+                latency_p50_ms=200,
+                badges=["Best Quality", "Best Thai", "Best Math", "Fastest on Testbed", "Best Small Model"],
+            )
+
+            current = build_current([base, new], current_id="ntp3-current-test")
+            rows_by_model = {row["model_id"]: row for row in current["leaderboard"]["rows"]}
+            cards_by_model = {card["model_id"]: card for card in current["model_cards"]["models"]}
+
+            self.assertIn("Best Quality", rows_by_model["strong-model"]["badges"])
+            self.assertIn("Best Thai", rows_by_model["strong-model"]["badges"])
+            self.assertIn("Best Math", rows_by_model["strong-model"]["badges"])
+            self.assertIn("Fastest on Testbed", rows_by_model["strong-model"]["badges"])
+            self.assertEqual(rows_by_model["weak-append-model"]["badges"], [])
+            self.assertEqual(cards_by_model["weak-append-model"]["badges"], [])
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 
