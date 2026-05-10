@@ -1,0 +1,49 @@
+{
+  "batch_id": "ntp3-add-r1-20260510-deepseek-r1-8b",
+  "publication_mode": "verified_posthoc_gate_v1",
+  "preflight_record": null,
+  "protocol": "single_run_publication_v1",
+  "expected_runs_per_model": 1,
+  "canonical_run_index": 1,
+  "shadow_run_index": null,
+  "thresholds": {
+    "parse_rate_gte": 0.95,
+    "accuracy_gt": 0.25
+  },
+  "expected_models": [
+    "deepseek-r1:8b"
+  ],
+  "summary_models": [
+    "deepseek-r1:8b"
+  ],
+  "status": "pass",
+  "all_deterministic": true,
+  "publishable_count": 1,
+  "publishable_models": [
+    "deepseek-r1:8b"
+  ],
+  "batch_failures": null,
+  "models": [
+    {
+      "model_id": "deepseek-r1:8b",
+      "canonical_run_id": "ntp3-add-r1-20260510-deepseek-r1-8b-deepseek-r1-8b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.34408602150537637,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": null,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    }
+  ]
+}
