@@ -11,6 +11,7 @@
     "qwen3.5:9b",
     "gemma4:e2b",
     "gemma4:e4b",
+    "gemma4:12b",
     "llama3.1:8b",
     "scb10x/typhoon2.1-gemma3-4b",
     "scb10x/typhoon2.5-qwen3-4b",
@@ -25,5 +26,5 @@
     "granite3.3:8b",
     "olmo2:7b"
   ],
-  "notes": "Do not delete historical dist artifacts containing retired models; this roster controls future active publication only. Added deepseek-r1:8b as first manifest-append test model on 2026-05-10."
+  "notes": "Do not delete historical dist artifacts containing retired models; this roster controls future active publication only. Added deepseek-r1:8b as first manifest-append test model on 2026-05-10. Added gemma4:12b on 2026-06-04 as a Gemma 4 12B candidate; run/publish only after baseline-machine preflight confirms availability and memory fit."
 }

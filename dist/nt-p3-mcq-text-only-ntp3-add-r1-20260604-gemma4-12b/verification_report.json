@@ -1,0 +1,49 @@
+{
+  "batch_id": "ntp3-add-r1-20260604-gemma4-12b",
+  "publication_mode": "verified_posthoc_gate_v1",
+  "preflight_record": "preflight_records/preflight_ntp3-add-r1-20260604-gemma4-12b.json",
+  "protocol": "single_run_publication_v1",
+  "expected_runs_per_model": 1,
+  "canonical_run_index": 1,
+  "shadow_run_index": null,
+  "thresholds": {
+    "parse_rate_gte": 0.95,
+    "accuracy_gt": 0.25
+  },
+  "expected_models": [
+    "gemma4:12b"
+  ],
+  "summary_models": [
+    "gemma4:12b"
+  ],
+  "status": "pass",
+  "all_deterministic": true,
+  "publishable_count": 1,
+  "publishable_models": [
+    "gemma4:12b"
+  ],
+  "batch_failures": null,
+  "models": [
+    {
+      "model_id": "gemma4:12b",
+      "canonical_run_id": "ntp3-add-r1-20260604-gemma4-12b-gemma4-12b-r01",
+      "shadow_run_id": null,
+      "canonical_accuracy": 0.6881720430107527,
+      "canonical_parse_rate": 1.0,
+      "total_items": 93,
+      "matching_items": 93,
+      "divergent_count": 0,
+      "divergent_items": [],
+      "deterministic": true,
+      "digest_checked": true,
+      "thresholds": {
+        "parse_rate_pass": true,
+        "accuracy_pass": true,
+        "digest_pass": true
+      },
+      "publishable": true,
+      "exclusion_reasons": null,
+      "failure_reasons": null
+    }
+  ]
+}
