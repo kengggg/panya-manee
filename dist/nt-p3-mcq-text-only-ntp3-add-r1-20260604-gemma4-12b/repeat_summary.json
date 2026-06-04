@@ -1,0 +1,56 @@
+{
+  "batch_id": "ntp3-add-r1-20260604-gemma4-12b",
+  "started_at_epoch": 1780537516.2265697,
+  "finished_at_epoch": 1780537673.8205698,
+  "models": [
+    {
+      "model_id": "gemma4:12b",
+      "memory_gb": 8.0,
+      "runs": 1,
+      "mean_correct": 64,
+      "min_correct": 64,
+      "max_correct": 64,
+      "mean_accuracy": 0.6881720430107527,
+      "stdev_accuracy": 0.0,
+      "mean_thai_accuracy": 0.8,
+      "mean_math_accuracy": 0.48484848484848486,
+      "mean_time_s": 157.594,
+      "median_time_s": 157.594,
+      "mean_correct_per_min": 24.366409888701348,
+      "mean_correct_per_gb_min": 3.0458012360876685
+    }
+  ],
+  "runs": [
+    {
+      "questions": 93,
+      "correct": 64,
+      "accuracy": 0.6881720430107527,
+      "thai_correct": 48,
+      "thai_total": 60,
+      "thai_accuracy": 0.8,
+      "math_correct": 16,
+      "math_total": 33,
+      "math_accuracy": 0.48484848484848486,
+      "parseable": 93,
+      "parse_rate": 1.0,
+      "latency_s": 157.594,
+      "eval_s": 7.424,
+      "prompt_s": 121.1,
+      "eval_tokens": 186,
+      "prompt_tokens": 18439,
+      "score": 192,
+      "max_score": 279,
+      "model_id": "gemma4:12b",
+      "alias": "gemma4",
+      "run_index": 1,
+      "run_id": "ntp3-add-r1-20260604-gemma4-12b-gemma4-12b-r01",
+      "output_file": "/Users/openclaw/.openclaw/workspace/projects/panya-manee/benchmark_responses/responses_ntp3-add-r1-20260604-gemma4-12b-gemma4-12b-r01_20260604_084516.jsonl",
+      "memory_gb": 8.0,
+      "questions_per_min": 35.407439369519146,
+      "correct_per_min": 24.366409888701348,
+      "score_per_min": 73.09922966610404,
+      "correct_per_gb_min": 3.0458012360876685,
+      "sec_per_correct": 2.46240625
+    }
+  ]
+}

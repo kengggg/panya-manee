@@ -42,6 +42,14 @@
       "notes": "Runnable but closer to upper edge of 16GB; strong historical quality baseline."
     },
     {
+      "model_id": "gemma4:12b",
+      "model_family": "gemma4",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "loaded_size_gb_approx": 8.0,
+      "notes": "Added for 2026-06-04 Gemma 4 12B release. Ollama 0.30.4 reports the pulled tag at 7.6GB and the loaded model at 8.0GB on the Mac mini baseline, matching the documented <=8GB comfortably-fit threshold."
+    },
+    {
       "model_id": "llama3.1:8b",
       "model_family": "llama3.1",
       "parameter_bucket": "4B–8B",
