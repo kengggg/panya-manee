@@ -53,17 +53,27 @@ def check_data_files():
         else:
             error(f"{name} missing or empty")
 
-    zip_path = DATA_DIR / "snapshot-bundle.zip"
-    if zip_path.exists():
-        ok(f"snapshot-bundle.zip exists ({zip_path.stat().st_size} bytes)")
+    current_zip_path = DATA_DIR / "current-bundle.zip"
+    if current_zip_path.exists():
+        ok(f"current-bundle.zip exists ({current_zip_path.stat().st_size} bytes)")
     else:
-        warn("snapshot-bundle.zip missing (download link will be broken)")
+        error("current-bundle.zip missing (current leaderboard download link will be broken)")
+
+    snapshot_zip_path = DATA_DIR / "snapshot-bundle.zip"
+    if snapshot_zip_path.exists():
+        ok(f"snapshot-bundle.zip exists ({snapshot_zip_path.stat().st_size} bytes)")
+    else:
+        warn("snapshot-bundle.zip missing (latest source snapshot download link will be broken)")
 
 
 def check_data_consistency():
     print("\n[3] Data consistency")
     try:
         current = json.loads((DATA_DIR / "current.json").read_text())
+        split_manifest = json.loads((DATA_DIR / "manifest.json").read_text())
+        split_leaderboard = json.loads((DATA_DIR / "leaderboard.json").read_text())
+        split_model_cards = json.loads((DATA_DIR / "model_cards.json").read_text())
+        split_examples = json.loads((DATA_DIR / "examples.json").read_text())
         manifest = current["manifest"]
         leaderboard = current["leaderboard"]
         model_cards = current["model_cards"]
@@ -76,6 +86,17 @@ def check_data_consistency():
         ok("current.json uses panya_current_v1 schema")
     else:
         error("current.json missing panya_current_v1 schema")
+
+    for name, split_data, current_data in [
+        ("manifest.json", split_manifest, manifest),
+        ("leaderboard.json", split_leaderboard, leaderboard),
+        ("model_cards.json", split_model_cards, model_cards),
+        ("examples.json", split_examples, examples),
+    ]:
+        if split_data == current_data:
+            ok(f"{name} mirrors current.json")
+        else:
+            error(f"{name} does not mirror current.json")
 
     # Snapshot ID consistency
     sid = manifest["snapshot_id"]
@@ -155,8 +176,13 @@ def check_html_wiring():
     else:
         error("No model.html link pattern found")
 
+    if "current-bundle.zip" in index_html:
+        ok("Download link for current leaderboard bundle present in index.html")
+    else:
+        error("No download link for current-bundle.zip in index.html")
+
     if "snapshot-bundle.zip" in index_html:
-        ok("Download link for snapshot bundle present in index.html")
+        ok("Download link for latest source snapshot bundle present in index.html")
     else:
         error("No download link for snapshot-bundle.zip in index.html")
 

@@ -9,6 +9,8 @@ Usage:
   python scripts/publish_snapshot.py --batch-id mini-r10-20260409 --dry-run --allow-unverified-publication
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import sys

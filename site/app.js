@@ -41,7 +41,7 @@
     const manifest = current.manifest;
     const leaderboard = current.leaderboard;
 
-    renderMeta(manifest, leaderboard);
+    renderMeta(current, manifest, leaderboard);
     renderMethodology(manifest, leaderboard);
     allRows = leaderboard.rows;
     bounds = computeBounds(allRows);
@@ -57,7 +57,7 @@
       </td></tr>`;
   }
 
-  function renderMeta(manifest, leaderboard) {
+  function renderMeta(current, manifest, leaderboard) {
     const label = document.getElementById('benchmark-label');
     label.textContent = manifest.benchmark_label + ' \u2014 ' + manifest.benchmark_scope;
 
@@ -82,8 +82,11 @@
       `<div class="meta-item"><dt>${k}:</dt><dd>${v}</dd></div>`
     ).join('');
 
+    const latestSource = Array.isArray(current.sources) && current.sources.length
+      ? current.sources[current.sources.length - 1].snapshot_id
+      : manifest.snapshot_id;
     document.getElementById('snapshot-id-label').textContent =
-      'Snapshot: ' + manifest.snapshot_id;
+      'Current aggregate: ' + current.current_id + ' | latest source snapshot: ' + latestSource;
   }
 
   function fmtRate(v) {

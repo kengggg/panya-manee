@@ -1,5 +1,5 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-ntp3-add-r1-20260604-gemma4-12b",
+  "snapshot_id": "ntp3-current-20260510",
   "benchmark_scope": "mcq_text_only_v1",
   "models": [
     {
@@ -73,7 +73,6 @@
         "Best Quality",
         "Best Thai",
         "Best Math",
-        "Fastest on Testbed",
         "Best Small Model"
       ],
       "auto_summary": "gemma4:12b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, reasoning_question, word_meaning. Its weakest areas are unit_conversion, fraction_addition, fraction_subtraction. On the current Mac mini testbed, it is the only model tested.",
@@ -85,6 +84,896 @@
         "bad": [
           "ex_gemma4_12b_thai_7_bad_0",
           "ex_gemma4_12b_math_18_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "qwen2.5:7b",
+      "model_family": "qwen2.5",
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.5757,
+        "thai_score_rate": 0.6667,
+        "math_score_rate": 0.4848,
+        "overall_score_rate": 0.6022,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 872,
+        "latency_p95_ms": 1465,
+        "questions_per_min": 63.3,
+        "correct_per_min": 38.1,
+        "item_count": 93,
+        "total_correct": 56,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 43.6
+      },
+      "strengths": [
+        {
+          "skill_tag": "comparison",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "reasoning_question",
+          "score_rate": 1.0,
+          "correct": 5,
+          "total": 5
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "declarative_sentence",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        },
+        {
+          "skill_tag": "pronoun_identification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        },
+        {
+          "skill_tag": "word_choice",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [
+        "Best Math"
+      ],
+      "auto_summary": "qwen2.5:7b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are comparison, moral_extraction, reasoning_question. Its weakest areas are declarative_sentence, pronoun_identification, word_choice. On the current Mac mini testbed, it is slower than peers.",
+      "example_ids": {
+        "good": [
+          "ex_qwen2_5_7b_thai_8_good_0",
+          "ex_qwen2_5_7b_math_18_good_1"
+        ],
+        "bad": [
+          "ex_qwen2_5_7b_thai_20_bad_0",
+          "ex_qwen2_5_7b_math_25_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "gemma4:e4b",
+      "model_family": "gemma4",
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_tightly_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.5454,
+        "thai_score_rate": 0.6667,
+        "math_score_rate": 0.4242,
+        "overall_score_rate": 0.5806,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 507,
+        "latency_p95_ms": 746,
+        "questions_per_min": 99.9,
+        "correct_per_min": 58.0,
+        "item_count": 93,
+        "total_correct": 54,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 58.8
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_application",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "applied_reading",
+          "score_rate": 1.0,
+          "correct": 3,
+          "total": 3
+        },
+        {
+          "skill_tag": "judgment_from_text",
+          "score_rate": 1.0,
+          "correct": 3,
+          "total": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "verb_identification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "classification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [],
+      "auto_summary": "gemma4:e4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_application, applied_reading, judgment_from_text. Its weakest areas are number_pattern, verb_identification, classification. On the current Mac mini testbed, it is mid-pack on speed.",
+      "example_ids": {
+        "good": [
+          "ex_gemma4_e4b_thai_7_good_0",
+          "ex_gemma4_e4b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_gemma4_e4b_thai_19_bad_0",
+          "ex_gemma4_e4b_math_10_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "qwen3:8b",
+      "model_family": "qwen3",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.5356,
+        "thai_score_rate": 0.6167,
+        "math_score_rate": 0.4545,
+        "overall_score_rate": 0.5591,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9247,
+        "latency_p50_ms": 1038,
+        "latency_p95_ms": 1590,
+        "questions_per_min": 50.2,
+        "correct_per_min": 28.1,
+        "item_count": 93,
+        "total_correct": 52,
+        "average_output_length_chars": 1.5,
+        "throughput_toks_per_sec": 33.6
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "reasoning_question",
+          "score_rate": 1.0,
+          "correct": 5,
+          "total": 5
+        },
+        {
+          "skill_tag": "applied_reading",
+          "score_rate": 1.0,
+          "correct": 3,
+          "total": 3
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "pictograph",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "classification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        },
+        {
+          "skill_tag": "declarative_sentence",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer",
+        "non_answer_only_output"
+      ],
+      "badges": [],
+      "auto_summary": "qwen3:8b performs stronger on Thai than Math. It is mostly reliable on answer-only formatting. Its strongest areas are moral_extraction, reasoning_question, applied_reading. Its weakest areas are pictograph, classification, declarative_sentence. On the current Mac mini testbed, it is slower than peers.",
+      "example_ids": {
+        "good": [
+          "ex_qwen3_8b_thai_8_good_0",
+          "ex_qwen3_8b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_qwen3_8b_thai_21_bad_0",
+          "ex_qwen3_8b_math_25_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "scb10x/typhoon2.5-qwen3-4b",
+      "model_family": "typhoon2.5",
+      "parameter_bucket": "1B–4B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.5083,
+        "thai_score_rate": 0.6833,
+        "math_score_rate": 0.3333,
+        "overall_score_rate": 0.5591,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.3011,
+        "latency_p50_ms": 718,
+        "latency_p95_ms": 15798,
+        "questions_per_min": 15.9,
+        "correct_per_min": 8.9,
+        "item_count": 93,
+        "total_correct": 52,
+        "average_output_length_chars": 194.3,
+        "throughput_toks_per_sec": 34.9
+      },
+      "strengths": [
+        {
+          "skill_tag": "comparison",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "reasoning_question",
+          "score_rate": 1.0,
+          "correct": 5,
+          "total": 5
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "two_step_problem",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        {
+          "skill_tag": "pictograph",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "standard_thai",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "non_answer_only_output",
+        "wrong_answer"
+      ],
+      "badges": [],
+      "auto_summary": "scb10x/typhoon2.5-qwen3-4b performs stronger on Thai than Math. It is format-unstable on answer-only formatting. Its strongest areas are comparison, moral_extraction, reasoning_question. Its weakest areas are two_step_problem, pictograph, standard_thai. On the current Mac mini testbed, it is mid-pack on speed.",
+      "example_ids": {
+        "good": [
+          "ex_scb10x_typhoon2_5_qwen3_4b_thai_8_good_0",
+          "ex_scb10x_typhoon2_5_qwen3_4b_math_18_good_1"
+        ],
+        "bad": [
+          "ex_scb10x_typhoon2_5_qwen3_4b_thai_23_bad_0",
+          "ex_scb10x_typhoon2_5_qwen3_4b_math_6_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "qwen3.5:9b",
+      "model_family": "qwen3.5",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_tightly_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.4765,
+        "thai_score_rate": 0.65,
+        "math_score_rate": 0.303,
+        "overall_score_rate": 0.5269,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 1774,
+        "latency_p95_ms": 2378,
+        "questions_per_min": 31.7,
+        "correct_per_min": 16.7,
+        "item_count": 93,
+        "total_correct": 49,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 26.5
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "reasoning_question",
+          "score_rate": 1.0,
+          "correct": 5,
+          "total": 5
+        },
+        {
+          "skill_tag": "word_meaning",
+          "score_rate": 1.0,
+          "correct": 4,
+          "total": 4
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "parts_of_speech",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 7
+        },
+        {
+          "skill_tag": "unit_conversion",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 5
+        },
+        {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [],
+      "auto_summary": "qwen3.5:9b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, reasoning_question, word_meaning. Its weakest areas are parts_of_speech, unit_conversion, number_pattern. On the current Mac mini testbed, it is slower than peers.",
+      "example_ids": {
+        "good": [
+          "ex_qwen3_5_9b_thai_8_good_0",
+          "ex_qwen3_5_9b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_qwen3_5_9b_thai_19_bad_0",
+          "ex_qwen3_5_9b_math_18_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "gemma4:e2b",
+      "model_family": "gemma4",
+      "parameter_bucket": "1B–4B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.4311,
+        "thai_score_rate": 0.65,
+        "math_score_rate": 0.2121,
+        "overall_score_rate": 0.4946,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 317,
+        "latency_p95_ms": 432,
+        "questions_per_min": 159.4,
+        "correct_per_min": 78.8,
+        "item_count": 93,
+        "total_correct": 46,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 105.4
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "declarative_sentence",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "formal_language",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "two_step_problem",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        {
+          "skill_tag": "pictograph",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "verb_identification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [
+        "Fastest on Testbed"
+      ],
+      "auto_summary": "gemma4:e2b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_extraction, declarative_sentence, formal_language. Its weakest areas are two_step_problem, pictograph, verb_identification. On the current Mac mini testbed, it is among the fastest.",
+      "example_ids": {
+        "good": [
+          "ex_gemma4_e2b_thai_8_good_0",
+          "ex_gemma4_e2b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_gemma4_e2b_thai_19_bad_0",
+          "ex_gemma4_e2b_math_6_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "scb10x/typhoon2.1-gemma3-4b",
+      "model_family": "typhoon2.1",
+      "parameter_bucket": "1B–4B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.4099,
+        "thai_score_rate": 0.5167,
+        "math_score_rate": 0.303,
+        "overall_score_rate": 0.4409,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 1.0,
+        "latency_p50_ms": 461,
+        "latency_p95_ms": 652,
+        "questions_per_min": 120.4,
+        "correct_per_min": 53.1,
+        "item_count": 93,
+        "total_correct": 41,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 55.7
+      },
+      "strengths": [
+        {
+          "skill_tag": "declarative_sentence",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "duration",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "event_ordering",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "fraction_addition",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 7
+        },
+        {
+          "skill_tag": "fraction_subtraction",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 7
+        },
+        {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer"
+      ],
+      "badges": [],
+      "auto_summary": "scb10x/typhoon2.1-gemma3-4b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are declarative_sentence, duration, event_ordering. Its weakest areas are fraction_addition, fraction_subtraction, number_pattern. On the current Mac mini testbed, it is mid-pack on speed.",
+      "example_ids": {
+        "good": [
+          "ex_scb10x_typhoon2_1_gemma3_4b_thai_20_good_0",
+          "ex_scb10x_typhoon2_1_gemma3_4b_math_13_good_1"
+        ],
+        "bad": [
+          "ex_scb10x_typhoon2_1_gemma3_4b_thai_13_bad_0",
+          "ex_scb10x_typhoon2_1_gemma3_4b_math_9_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "granite4.1:8b",
+      "model_family": "granite4.1",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.3583,
+        "thai_score_rate": 0.3833,
+        "math_score_rate": 0.3333,
+        "overall_score_rate": 0.3656,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.0538,
+        "latency_p50_ms": 13641,
+        "latency_p95_ms": 36850,
+        "questions_per_min": 3.6,
+        "correct_per_min": 1.3,
+        "item_count": 93,
+        "total_correct": 34,
+        "average_output_length_chars": 630.6,
+        "throughput_toks_per_sec": 18.9
+      },
+      "strengths": [
+        {
+          "skill_tag": "opinion_on_literature",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "question_answer_matching",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "social_judgment",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "story_prediction",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "verb_identification",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "addition_subtraction_with_units",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        }
+      ],
+      "common_failure_types": [
+        "non_answer_only_output",
+        "wrong_answer"
+      ],
+      "badges": [],
+      "auto_summary": "granite4.1:8b performs at a balanced level across subjects. It is format-unstable on answer-only formatting. Its strongest areas are opinion_on_literature, question_answer_matching, social_judgment. Its weakest areas are story_prediction, verb_identification, addition_subtraction_with_units. On the current Mac mini testbed, it is slower than peers.",
+      "example_ids": {
+        "good": [
+          "ex_granite4_1_8b_thai_26_good_0",
+          "ex_granite4_1_8b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_granite4_1_8b_thai_6_bad_0",
+          "ex_granite4_1_8b_math_16_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "scb10x/llama3.1-typhoon2-8b-instruct",
+      "model_family": "typhoon2",
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.356,
+        "thai_score_rate": 0.5,
+        "math_score_rate": 0.2121,
+        "overall_score_rate": 0.3978,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9892,
+        "latency_p50_ms": 845,
+        "latency_p95_ms": 1495,
+        "questions_per_min": 61.1,
+        "correct_per_min": 24.3,
+        "item_count": 93,
+        "total_correct": 37,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 41.8
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_application",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "meaning_matching",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "opinion_on_literature",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "two_step_problem",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        {
+          "skill_tag": "pictograph",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "standard_thai",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer",
+        "non_answer_only_output"
+      ],
+      "badges": [],
+      "auto_summary": "scb10x/llama3.1-typhoon2-8b-instruct performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are moral_application, meaning_matching, opinion_on_literature. Its weakest areas are two_step_problem, pictograph, standard_thai. On the current Mac mini testbed, it is slower than peers.",
+      "example_ids": {
+        "good": [
+          "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_7_good_0",
+          "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_18_good_1"
+        ],
+        "bad": [
+          "ex_scb10x_llama3_1_typhoon2_8b_instruct_thai_23_bad_0",
+          "ex_scb10x_llama3_1_typhoon2_8b_instruct_math_6_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "llama3.1:8b",
+      "model_family": "llama3.1",
+      "parameter_bucket": "4B–8B",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.3546,
+        "thai_score_rate": 0.4667,
+        "math_score_rate": 0.2424,
+        "overall_score_rate": 0.3871,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9032,
+        "latency_p50_ms": 825,
+        "latency_p95_ms": 1656,
+        "questions_per_min": 61.3,
+        "correct_per_min": 23.7,
+        "item_count": 93,
+        "total_correct": 36,
+        "average_output_length_chars": 2.3,
+        "throughput_toks_per_sec": 34.2
+      },
+      "strengths": [
+        {
+          "skill_tag": "moral_application",
+          "score_rate": 1.0,
+          "correct": 6,
+          "total": 6
+        },
+        {
+          "skill_tag": "reasoning_question",
+          "score_rate": 1.0,
+          "correct": 5,
+          "total": 5
+        },
+        {
+          "skill_tag": "opinion_on_literature",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "two_step_problem",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 4
+        },
+        {
+          "skill_tag": "number_pattern",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        },
+        {
+          "skill_tag": "addition_subtraction_with_units",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 2
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer",
+        "non_answer_only_output"
+      ],
+      "badges": [],
+      "auto_summary": "llama3.1:8b performs stronger on Thai than Math. It is mostly reliable on answer-only formatting. Its strongest areas are moral_application, reasoning_question, opinion_on_literature. Its weakest areas are two_step_problem, number_pattern, addition_subtraction_with_units. On the current Mac mini testbed, it is mid-pack on speed.",
+      "example_ids": {
+        "good": [
+          "ex_llama3_1_8b_thai_7_good_0",
+          "ex_llama3_1_8b_math_18_good_1"
+        ],
+        "bad": [
+          "ex_llama3_1_8b_thai_1_bad_0",
+          "ex_llama3_1_8b_math_6_bad_1"
+        ]
+      }
+    },
+    {
+      "model_id": "deepseek-r1:8b",
+      "model_family": "deepseek-r1",
+      "parameter_bucket": "8B+",
+      "ram_fit_class": "fits_comfortably_16gb",
+      "testbed": {
+        "host_label": "Apple Mac mini M4 / 16GB / Ollama"
+      },
+      "metrics": {
+        "balanced_quality_score": 0.3075,
+        "thai_score_rate": 0.4333,
+        "math_score_rate": 0.1818,
+        "overall_score_rate": 0.3441,
+        "parseable_rate": 1.0,
+        "answer_only_compliance_rate": 0.9892,
+        "latency_p50_ms": 946,
+        "latency_p95_ms": 1493,
+        "questions_per_min": 60.4,
+        "correct_per_min": 20.8,
+        "item_count": 93,
+        "total_correct": 32,
+        "average_output_length_chars": 1.0,
+        "throughput_toks_per_sec": 39.0
+      },
+      "strengths": [
+        {
+          "skill_tag": "meaning_matching",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "question_answer_matching",
+          "score_rate": 1.0,
+          "correct": 2,
+          "total": 2
+        },
+        {
+          "skill_tag": "moral_extraction",
+          "score_rate": 0.6667,
+          "correct": 4,
+          "total": 6
+        }
+      ],
+      "weaknesses": [
+        {
+          "skill_tag": "comparison",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 6
+        },
+        {
+          "skill_tag": "unit_conversion",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 5
+        },
+        {
+          "skill_tag": "pictograph",
+          "score_rate": 0.0,
+          "correct": 0,
+          "total": 3
+        }
+      ],
+      "common_failure_types": [
+        "wrong_answer",
+        "non_answer_only_output"
+      ],
+      "badges": [],
+      "auto_summary": "deepseek-r1:8b performs stronger on Thai than Math. It is very reliable on answer-only formatting. Its strongest areas are meaning_matching, question_answer_matching, moral_extraction. Its weakest areas are comparison, unit_conversion, pictograph. On the current Mac mini testbed, it is the only model tested.",
+      "example_ids": {
+        "good": [
+          "ex_deepseek_r1_8b_thai_1_good_0",
+          "ex_deepseek_r1_8b_math_26_good_1"
+        ],
+        "bad": [
+          "ex_deepseek_r1_8b_thai_7_bad_0",
+          "ex_deepseek_r1_8b_math_18_bad_1"
         ]
       }
     }

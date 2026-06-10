@@ -63,6 +63,7 @@ from scripts.ci.fetch_batch_artifact import (
 import scripts.publish_snapshot as publish_snapshot_module
 from scripts.publish_snapshot import verify_publishable_batch, update_current_manifest
 from scripts.build_current_json import build_current, load_manifest
+from scripts.sync_site_data import sync as sync_site_data, write_current_bundle
 from scripts.verification_gate import (
     verify_publication_batch,
 )
@@ -1343,6 +1344,101 @@ class TestCurrentManifestPublishing(unittest.TestCase):
             self.assertIn("Fastest on Testbed", rows_by_model["strong-model"]["badges"])
             self.assertEqual(rows_by_model["weak-append-model"]["badges"], [])
             self.assertEqual(cards_by_model["weak-append-model"]["badges"], [])
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_build_current_keeps_tied_best_math_badges(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            first = self._write_snapshot(
+                tmpdir,
+                "first",
+                "model-a",
+                0.7,
+                thai_score=0.6,
+                math_score=0.9,
+            )
+            second = self._write_snapshot(
+                tmpdir,
+                "second",
+                "model-b",
+                0.7,
+                thai_score=0.6,
+                math_score=0.9,
+            )
+
+            current = build_current([first, second], current_id="ntp3-current-test")
+            rows_by_model = {row["model_id"]: row for row in current["leaderboard"]["rows"]}
+
+            self.assertIn("Best Math", rows_by_model["model-a"]["badges"])
+            self.assertIn("Best Math", rows_by_model["model-b"]["badges"])
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_write_current_bundle_matches_merged_current_payload(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            base = self._write_snapshot(tmpdir, "base", "model-a", 0.4)
+            new = self._write_snapshot(tmpdir, "new", "model-b", 0.9)
+            manifest_path = tmpdir / "registry" / "current-manifest.json"
+            manifest_path.parent.mkdir()
+            manifest_path.write_text(json.dumps({
+                "current_id": "ntp3-current-test",
+                "sources": [
+                    {"snapshot_dir": str(base)},
+                    {"snapshot_dir": str(new)},
+                ],
+            }), encoding="utf-8")
+            current = build_current([base, new], current_id="ntp3-current-test")
+            bundle_path = tmpdir / "current-bundle.zip"
+
+            write_current_bundle(current, bundle_path, current_manifest_path=manifest_path)
+
+            with zipfile.ZipFile(bundle_path) as zf:
+                names = set(zf.namelist())
+                self.assertIn("ntp3-current-test/current.json", names)
+                self.assertIn("ntp3-current-test/leaderboard.json", names)
+                self.assertIn("ntp3-current-test/current-manifest.json", names)
+                bundled_current = json.loads(zf.read("ntp3-current-test/current.json"))
+                bundled_leaderboard = json.loads(zf.read("ntp3-current-test/leaderboard.json"))
+
+            self.assertEqual(bundled_current["current_id"], "ntp3-current-test")
+            self.assertEqual(
+                bundled_leaderboard["rows"],
+                current["leaderboard"]["rows"],
+            )
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+    def test_sync_site_data_writes_aggregate_latest_split_files(self):
+        tmpdir = Path(tempfile.mkdtemp())
+        try:
+            site_data = tmpdir / "site" / "data" / "latest"
+            manifest_path = tmpdir / "registry" / "current-manifest.json"
+            base = self._write_snapshot(tmpdir, "base", "base-model", 0.4)
+            new = self._write_snapshot(tmpdir, "new", "new-model", 0.9)
+            manifest_path.parent.mkdir()
+            manifest_path.write_text(json.dumps({
+                "current_id": "ntp3-current-test",
+                "sources": [
+                    {"snapshot_dir": str(base)},
+                    {"snapshot_dir": str(new)},
+                ],
+            }), encoding="utf-8")
+
+            with mock.patch("scripts.sync_site_data.SITE_DATA_DIR", site_data):
+                sync_site_data(new, current_manifest_path=manifest_path)
+
+            current = json.loads((site_data / "current.json").read_text(encoding="utf-8"))
+            leaderboard = json.loads((site_data / "leaderboard.json").read_text(encoding="utf-8"))
+
+            self.assertEqual(current["current_id"], "ntp3-current-test")
+            self.assertEqual(leaderboard, current["leaderboard"])
+            self.assertEqual(
+                [row["model_id"] for row in leaderboard["rows"]],
+                ["new-model", "base-model"],
+            )
+            self.assertTrue((site_data / "current-bundle.zip").exists())
         finally:
             shutil.rmtree(tmpdir, ignore_errors=True)
 

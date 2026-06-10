@@ -1,5 +1,5 @@
 {
-  "snapshot_id": "nt-p3-mcq-text-only-ntp3-add-r1-20260604-gemma4-12b",
+  "snapshot_id": "ntp3-current-20260510",
   "published_at": "2026-06-04T09:39:56+07:00",
   "benchmark_name": "NT P3 Local LLM Benchmark",
   "benchmark_label": "NT P3 MCQ Text-Only",
@@ -44,7 +44,8 @@
     "ranking_excludes_human_checked": true,
     "raw_bundle_downloadable": true,
     "published_metrics_use_canonical_run_only": true,
-    "single_run_publication": true
+    "single_run_publication": true,
+    "current_json_merge_policy": "Built from one or more compatible snapshot bundles; later inputs replace earlier rows for duplicate model_id."
   },
   "artifacts": {
     "leaderboard": "leaderboard.json",
@@ -63,5 +64,23 @@
       "parse_rate_gte": 0.95,
       "accuracy_gt": 0.25
     }
-  }
+  },
+  "current_json": true,
+  "source_snapshots": [
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-pub-r1-20260510",
+      "published_at": "2026-05-10T18:31:58+07:00",
+      "path": "dist/nt-p3-mcq-text-only-ntp3-pub-r1-20260510"
+    },
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-add-r1-20260510-deepseek-r1-8b",
+      "published_at": "2026-05-10T18:31:59+07:00",
+      "path": "dist/nt-p3-mcq-text-only-ntp3-add-r1-20260510-deepseek-r1-8b"
+    },
+    {
+      "snapshot_id": "nt-p3-mcq-text-only-ntp3-add-r1-20260604-gemma4-12b",
+      "published_at": "2026-06-04T09:39:56+07:00",
+      "path": "dist/nt-p3-mcq-text-only-ntp3-add-r1-20260604-gemma4-12b"
+    }
+  ]
 }
