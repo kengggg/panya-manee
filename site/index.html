@@ -29,31 +29,40 @@
       <span id="snapshot-id-label"></span>
     </div>
 
-    <div class="controls-bar">
-      <label for="model-filter">Model filter:</label>
-      <select id="model-filter">
-        <option value="">All models</option>
-      </select>
-    </div>
+    <section class="leaderboard-controls" aria-labelledby="ranking-lenses-title">
+      <div class="control-heading">
+        <div>
+          <h2 id="ranking-lenses-title">Ranking Lenses</h2>
+          <p>Combine presets to reorder models for a specific use case. Badges remain factual labels.</p>
+        </div>
+        <button type="button" class="ghost-button" id="reset-presets">Reset</button>
+      </div>
+      <div class="preset-groups" id="preset-groups"></div>
+      <div class="controls-row">
+        <label class="toggle-control">
+          <input type="checkbox" id="nerd-mode">
+          <span>Full table</span>
+        </label>
+      </div>
+    </section>
 
-    <div class="table-wrapper">
+    <div class="table-wrapper compact-leaderboard" id="leaderboard-wrapper">
       <table>
         <thead>
           <tr>
             <th class="num sortable" data-sort-key="rank">Rank<span class="sort-ind"></span></th>
             <th class="sortable" data-sort-key="model">Model<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="bqs">BQS<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="thai">Thai<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="math">Math<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="overall">Overall<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="parseable">Parseable<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="compliance">Compliance<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="p50">p50 (ms)<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="p95">p95 (ms)<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="qmin">Q/min<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="cmin">Correct/min<span class="sort-ind"></span></th>
-            <th class="num sortable" data-sort-key="n">N<span class="sort-ind"></span></th>
-            <th>Badges</th>
+            <th class="sortable lens-col" data-sort-key="lens">Lens<span class="sort-ind"></span></th>
+            <th class="badge-col">Badges</th>
+            <th class="num metric-col sortable" data-sort-key="thai">Thai<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="math">Math<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="overall">Overall<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="p50">p50<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="p95">p95<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="qmin">Q/min<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="cmin">Correct/min<span class="sort-ind"></span></th>
+            <th class="num metric-col sortable" data-sort-key="n">N<span class="sort-ind"></span></th>
+            <th class="details-col">Details</th>
           </tr>
         </thead>
         <tbody id="leaderboard-body"></tbody>

@@ -154,6 +154,7 @@ def check_html_wiring():
     print("\n[4] HTML/JS data path references")
     app_js = (SITE_DIR / "app.js").read_text()
     model_js = (SITE_DIR / "model.js").read_text()
+    index_html = (SITE_DIR / "index.html").read_text()
 
     if "data/latest" in app_js:
         ok("app.js references data/latest")
@@ -170,7 +171,6 @@ def check_html_wiring():
     else:
         error("Dashboard JS does not load current.json")
 
-    index_html = (SITE_DIR / "index.html").read_text()
     if "model.html?model=" in app_js or "model.html?model=" in index_html:
         ok("Leaderboard links to model.html with query param")
     else:
@@ -186,10 +186,43 @@ def check_html_wiring():
     else:
         error("No download link for snapshot-bundle.zip in index.html")
 
-    if "model-filter" in index_html and "model-filter" in app_js:
-        ok("Model filter wiring present")
+    if "preset-groups" in index_html and "PRESET_GROUPS" in app_js:
+        ok("Combinable ranking preset wiring present")
     else:
-        error("Model filter wiring missing")
+        error("Combinable ranking preset wiring missing")
+
+    required_presets = [
+        "Best Overall",
+        "Best Thai",
+        "Best Math",
+        "Fastest",
+        "Best Practical",
+        "Best Small Model",
+        "Thai homework",
+        "Math reasoning",
+        "Fast classroom use",
+        "Best on 16GB Mac mini or similar",
+    ]
+    missing_presets = [label for label in required_presets if label not in app_js]
+    if missing_presets:
+        error(f"Ranking preset labels missing from app.js: {missing_presets}")
+    else:
+        ok("All required ranking preset labels present")
+
+    if "questions_per_min: 1.0" in app_js and "Q/min" in app_js:
+        ok("Fastest preset uses Q/min speed metric")
+    else:
+        error("Fastest preset does not clearly use Q/min")
+
+    if "nerd-mode" in index_html and "metric-col" in index_html:
+        ok("Full table / nerd mode metric hooks present")
+    else:
+        error("Full table / nerd mode metric hooks missing")
+
+    if "model-filter" in index_html or "initModelFilter" in app_js:
+        error("Legacy model filter still present; presets should sort rather than filter")
+    else:
+        ok("No legacy model filter remains")
 
     model_html = (SITE_DIR / "model.html").read_text()
     if "index.html" in model_html:
